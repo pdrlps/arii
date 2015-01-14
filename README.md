@@ -1,4 +1,4 @@
-i2x
+ARiiP
 ===
 
-[i2x](http://bioinformatics.ua.pt/i2x/): integrate everything
+[ARiiP](http://stripe.pt/ariip/): Automated Real-time Integration & Interoperability Platform
