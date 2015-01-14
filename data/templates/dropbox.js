@@ -5,7 +5,7 @@
 	"publisher": "dropbox",
 	"payload": {
 		"method": "append",
-		"uri": "i2x_log.csv",
-		"content": "${i2x.datetime},%{id},%{title}\n"
+		"uri": "ariip_log.csv",
+		"content": "${ariip.datetime},%{id},%{title}\n"
 	}
 }

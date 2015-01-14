@@ -12,21 +12,21 @@
 
  <div class="large-8 columns" role="content"  markdown="1">
 
-# What is i2x?
+# What is ariip?
 
-**i2x** is a data integration framework, targeting the automated real-time integration of data from heterogeneous resources to multiple destinations. **i2x** provides pure Integration-as-a-Service, acting as an _intelligent ETL proxy_ between distinct services.
+**ariip** is a data integration framework, targeting the automated real-time integration of data from heterogeneous resources to multiple destinations. **ariip** provides pure Integration-as-a-Service, acting as an _intelligent ETL proxy_ between distinct services.
 
 <hr>
 
-# How does i2x work?
+# How does ariip work?
 
-**i2x** relies on distributed agents to monitor custom content changes. When new changes are detected, **i2x** generates a new [Event][] and triggers the execution of any number of [templates][] associated with the starting [agent][] (through integrations).
+**ariip** relies on distributed agents to monitor custom content changes. When new changes are detected, **ariip** generates a new [Event][] and triggers the execution of any number of [templates][] associated with the starting [agent][] (through integrations).
 
 <hr>
 
 # What are agents?
 
-[Agents][] are intelligent algorithms that monitor configured data sources, detecting changes to their content. [Agents][] can run on **i2x**'s' server or locally, in a truly distributed environment.
+[Agents][] are intelligent algorithms that monitor configured data sources, detecting changes to their content. [Agents][] can run on **ARiiP**'s' server or locally, in a truly distributed environment.
 
 <hr>
 
@@ -43,11 +43,11 @@ Putting it simply, [Integrations][] connect [agents][] with [templates][]. Hence
 
 </div>
 
-[agent]:        /i2x/docs/#agents
-[agents]:       /i2x/docs/#agents
-[event]:        /i2x/docs/#events
-[templates]:    /i2x/docs/#templates
-[template]:     /i2x/docs/#templates
-[integrations]: /i2x/docs/#integrations
-[integration]:  /i2x/docs/#integrations
-[sources]:      /i2x/docs/#sources
+[agent]:        /ariip/docs/#agents
+[agents]:       /ariip/docs/#agents
+[event]:        /ariip/docs/#events
+[templates]:    /ariip/docs/#templates
+[template]:     /ariip/docs/#templates
+[integrations]: /ariip/docs/#integrations
+[integration]:  /ariip/docs/#integrations
+[sources]:      /ariip/docs/#sources

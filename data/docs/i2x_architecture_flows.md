@@ -1,6 +1,6 @@
 ## Spotting The Differences
 
-<a href="/i2x/images/flow_std.png" class="th">![STD](/i2x/images/flow_std_th.png)</a>
+<a href="/ARiiP/images/flow_std.png" class="th">![STD](/ARiiP/images/flow_std_th.png)</a>
 
 There are two ways to start a new integration task:
 
@@ -9,7 +9,7 @@ There are two ways to start a new integration task:
 
 ## Rule Processing
 
-<a href="/i2x/images/flow_rules.png" class="th">![Rule processing](/i2x/images/flow_rules_th.png)</a>
+<a href="/ARiiP/images/flow_rules.png" class="th">![Rule processing](/ARiiP/images/flow_rules_th.png)</a>
 
 With the inclusion of a semantic rules processor, we can apply complex semantic rules to validate specific conditions before and after the integration actions. This **Ruler** process works as follows:
 
@@ -20,6 +20,6 @@ With the inclusion of a semantic rules processor, we can apply complex semantic 
 
 ## Overview
 
-<a href="/i2x/images/full_flow.png" class="th">![Overview](/i2x/images/full_flow.png)</a>
+<a href="/ARiiP/images/full_flow.png" class="th">![Overview](/ARiiP/images/full_flow.png)</a>
 
 [coeus]:        http://bioinformatics.ua.pt/coeus/  "COEUS: Semantic Web Application Framework"

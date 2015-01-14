@@ -1,21 +1,21 @@
-# i2x is open-source software
+# ARiiP is open-source software
 
-All **i2x** components are available as open-source software, feel free to download, customize and build your apps.
+All **ARiiP** components are available as open-source software, feel free to download, customize and build your apps.
 
-## i2x server
+## ARiiP server
 
-The **i2x** server is the main web application (the one you're browsing right now).
+The **ARiiP** server is the main web application (the one you're browsing right now).
 
-<a href="https://github.com/pdrlps/i2x" target="_blank" class="icon-install">Get i2x server code on GitHub</a>
+<a href="https://github.com/pdrlps/ARiiP" target="_blank" class="icon-install">Get ARiiP server code on GitHub</a>
 
-## i2x client
+## ARiiP client
 
-The **i2x** client contains a sample script (and configuration files) to launch a local **i2x** agent. 
+The **ARiiP** client contains a sample script (and configuration files) to launch a local **ARiiP** agent. 
 
-<a href="https://github.com/pdrlps/i2x-client" target="_blank" class="icon-install">Get i2x client code on GitHub</a>
+<a href="https://github.com/pdrlps/ARiiP-client" target="_blank" class="icon-install">Get ARiiP client code on GitHub</a>
 
-## i2x gem
+## ARiiP gem
 
-The **i2x** gem includes all code and dependencies required for local agent execution. Don't worry, everything is installed automatically!
+The **ARiiP** gem includes all code and dependencies required for local agent execution. Don't worry, everything is installed automatically!
 
-<a href="https://github.com/pdrlps/i2x-gem" target="_blank" class="icon-install">Get i2x gem code on GitHub</a>
+<a href="https://github.com/pdrlps/ARiiP-gem" target="_blank" class="icon-install">Get ARiiP gem code on GitHub</a>

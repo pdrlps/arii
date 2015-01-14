@@ -42,8 +42,8 @@
       <%= f.label :publisher, :class => 'right inline' %>
     </div>
     <div class="small-9 columns">
-      <%= select_tag(:publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['File','file']], {:selected => 'sql'}), :tabindex => 4) %>  
-    </div>  
+      <%= select_tag(:publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['File','file']], {:selected => 'sql'}), :tabindex => 4) %>
+    </div>
   </div>
   <div class="row">
     <div class="small-3 columns">
@@ -98,7 +98,7 @@
       <label for="publisher_sql_database" class="right inline">Database</label>
     </div>
     <div class="small-9 columns">
-      <input type="text" id="publisher_sql_database" tabindex="11" placeholder="E.g.: i2x">
+      <input type="text" id="publisher_sql_database" tabindex="11" placeholder="E.g.: ARiiP">
     </div>
   </div>
   <div class="row">
@@ -147,7 +147,7 @@
     <label for="publisher_url_uri" class="right inline">URI</label>
   </div>
   <div class="small-9 columns">
-   <input type="url" tabindex="16" id="publisher_url_uri" placeholder="E.g.: https://bioinformatics.ua.pt/i2x/...">
+   <input type="url" tabindex="16" id="publisher_url_uri" placeholder="E.g.: http://stripe.pt/ariip/...">
  </div>
 </div>
 </fieldset>

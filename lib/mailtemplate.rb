@@ -12,7 +12,7 @@ module Services
     #
     def execute
       Services::Slog.debug({:message => "Sending email for #{@template[:identifier]}", :module => "MailTemplate", :task => "execute", :extra => {:template => @template[:identifier], :payload => @template[:payload]}})
-      
+
       begin
 
         Mail.defaults do
@@ -22,11 +22,11 @@ module Services
         mail = Mail.new
         mail.from = ENV['MAIL_FROM']
         mail.to = @template[:payload][:to]
-        mail.subject = "[i2x] #{@template[:payload][:subject]}"
+        mail.subject = "[ariip] #{@template[:payload][:subject]}"
         mail.bcc = @template[:payload][:bcc]
         mail.cc = @template[:payload][:cc]
         mail.content_type = 'text/html; charset=UTF-8'
-        mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"https://bioinformatics.ua.pt/i2x/\">i2x</a> platform"
+        mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"http://stripe.pt/ariip/\">ariip</a>"
 
         mail.deliver
 
@@ -34,7 +34,7 @@ module Services
         Services::Slog.exception e
         response = { :status => "400", :message => "Unable to send email, #{e}"  }
       end
-      response = { :status => "200", :message => "Email sent to #{@template[:payload][:to]}", :id =>  @template[:identifier]}            
+      response = { :status => "200", :message => "Email sent to #{@template[:payload][:to]}", :id =>  @template[:identifier]}
     end
 
 

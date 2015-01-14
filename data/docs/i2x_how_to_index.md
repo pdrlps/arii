@@ -24,11 +24,11 @@
 </div>
 
 
-[agent]:        /i2x/docs/#agents
-[agents]:       /i2x/docs/#agents
-[event]:        /i2x/docs/#events
-[templates]:    /i2x/docs/#templates
-[template]:     /i2x/docs/#templates
-[integrations]: /i2x/docs/#integrations
-[integration]:  /i2x/docs/#integrations
-[sources]:      /i2x/docs/#sources
+[agent]:        /ariip/docs/#agents
+[agents]:       /ariip/docs/#agents
+[event]:        /ariip/docs/#events
+[templates]:    /ariip/docs/#templates
+[template]:     /ariip/docs/#templates
+[integrations]: /ariip/docs/#integrations
+[integration]:  /ariip/docs/#integrations
+[sources]:      /ariip/docs/#sources

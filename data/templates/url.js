@@ -5,6 +5,6 @@
 	"publisher": "url",
 	"payload": {
 		"method": "get",
-		"uri": "https://bioinformatics.ua.pt/i2x/fluxcapacitor/ping/%{id}"
+		"uri": "http://stripe.pt/ariip/fluxcapacitor/ping/%{id}"
 	}
 }

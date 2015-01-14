@@ -13,7 +13,7 @@ module Services
 
     def initialize
       # load each helper function into a map for replacement in the delivery
-      @replacements = [["${i2x.date}", self.date], ["${i2x.datetime}", self.datetime], ["${i2x.hostname}", self.hostname], ["${i2x.environment}",self.environment]]
+      @replacements = [["${ariip.date}", self.date], ["${ariip.datetime}", self.datetime], ["${ariip.hostname}", self.hostname], ["${ariip.environment}",self.environment]]
     end
 
     public
@@ -68,7 +68,7 @@ module Services
     ##
     # == Process code.
     # => Evaluates Ruby code in template strings.
-    # => Workflow: 1) look for 'i2x.code' strings, 2) evaluate matches, 3) replace code with evaluation results, 4) return processed string.
+    # => Workflow: 1) look for 'ariip.code' strings, 2) evaluate matches, 3) replace code with evaluation results, 4) return processed string.
     #
     # @param text: the String for evaluation.
     #
@@ -76,12 +76,12 @@ module Services
       begin
         results = text.clone
         # processing code function
-        text.scan(/\${i2x.code\((.*?)\)}/).each { |k|
+        text.scan(/\${ariip.code\((.*?)\)}/).each { |k|
           k.each { |m|
             puts "\n\tProcessing: #{m}"
-            results["${i2x.code(#{m})}"] = eval(m.to_s).to_s
+            results["${ariip.code(#{m})}"] = eval(m.to_s).to_s
           }
-          } if text.include? 'i2x.code'
+          } if text.include? 'ariip.code'
         rescue Exception => e
           Services::Slog.exception e
         end
@@ -90,22 +90,22 @@ module Services
 
     ##
     # == Process Functions
-    # Identifies functions defined in predefined variables. Support: i2x.map.
+    # Identifies functions defined in predefined variables. Support: ariip.map.
     #
     def process_functions(text)
       begin
         results = Array.new
         # processing map function
-        text.scan(/\${i2x.map\((.*?)\)}/).each { |m|
+        text.scan(/\${ariip.map\((.*?)\)}/).each { |m|
           puts m
           results.push m
-          } if text.include? 'i2x.map'
+          } if text.include? 'ariip.map'
 
         # processing compare function
-        text.scan(/\${i2x.compare\((.*?)\)}/).each { |m|
+        text.scan(/\${ariip.compare\((.*?)\)}/).each { |m|
           puts m
           results.push m
-          } if text.include? 'i2x.compare'
+          } if text.include? 'ariip.compare'
 
         rescue Exception => e
           Services::Slog.exception e

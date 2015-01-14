@@ -16,7 +16,7 @@
 
 **Agents** use [Detectors][] to monitor, in real-time, via [polling][], external [sources][] for content changes.
 
-**Agents** can be run at **i2x**'s server, or configured for local execution using the **i2x** [client][].
+**Agents** can be run at **ARiiP**'s server, or configured for local execution using the **ARiiP** [client][].
 
 
 # Agent Publishers
@@ -64,7 +64,7 @@ A [Detector][] can be configured to monitor a database. In this scenario, a _SEL
         "server": "mysql",
         "host": "localhost",
         "port": "3306",
-        "database": "i2x",
+        "database": "ARiiP",
         "username": "root",
         "password": "telematica",
         "query": "SELECT * FROM variants;",
@@ -114,20 +114,20 @@ A **Detector** can monitor structured files for more complex data exchange scena
 
 # Client
 
-[Agents][] can be executed locally using the [i2x client script](https://github.com/pdrlps/i2x-client). This script uses the **i2x** [gem][] to access **i2x**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the template directly).
+[Agents][] can be executed locally using the [ARiiP client script](https://github.com/pdrlps/ARiiP-client). This script uses the **ARiiP** [gem][] to access **ARiiP**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the template directly).
 
-Local clients bring three key benefits to the **i2x** platform: distributed monitoring, improved load control and better security.
-At the architecture level, any number of agents can be remotely deployed and configured to push data to the main **i2x** server. 
+Local clients bring three key benefits to the **ARiiP** platform: distributed monitoring, improved load control and better security.
+At the architecture level, any number of agents can be remotely deployed and configured to push data to the main **ARiiP** server. 
 [Agents][]' scheduling is more flexible. [Agents][] run as a standalone ruby script with an associated configuration file. Script execution can be automated, using a cron job task for instance, or can be run ad-hoc, when the data owners want to integrate/publish new data.
-With client-side [agents][], sensitive content,  such as authentication credentials or private API tokens, do not need to be registered in **i2x**'s server platform. 
+With client-side [agents][], sensitive content,  such as authentication credentials or private API tokens, do not need to be registered in **ARiiP**'s server platform. 
 
 # Detector
 
-The **Detector** engine will perform the [polling][] of configured [sources][] using configured [agents][]. Spot the Differences monitors specified resources looking for changes in the output content. **Detector**'s algorithm identifies what has changed since the last visit to a data source (using hashes and id matching). When content changes are detected, the **Detector** triggers a new [event][]. [Events][] will then be processed through configured **i2x** integration rules. In the system, detected events are sent for processing to the **FluxCapacitor**.
+The **Detector** engine will perform the [polling][] of configured [sources][] using configured [agents][]. Spot the Differences monitors specified resources looking for changes in the output content. **Detector**'s algorithm identifies what has changed since the last visit to a data source (using hashes and id matching). When content changes are detected, the **Detector** triggers a new [event][]. [Events][] will then be processed through configured **ARiiP** integration rules. In the system, detected events are sent for processing to the **FluxCapacitor**.
 
 # Events
 
-**Events** are occurrences of specific conditions that will trigger an [Integration][]. **i2x** events are registered when:
+**Events** are occurrences of specific conditions that will trigger an [Integration][]. **ARiiP** events are registered when:
 
 - New issue  (Ex: GitHub)
 - New row in table (Ex: WAVe)
@@ -150,15 +150,15 @@ These key/value objects are available for mapping into the action as required.
 
 # FluxCapacitor
 
-**FluxCapacitor** is **i2x**'s' API. It controls everything happening within the platform, whether it was triggered internally or by any of the distributed clients.
+**FluxCapacitor** is **ARiiP**'s' API. It controls everything happening within the platform, whether it was triggered internally or by any of the distributed clients.
 
 ## Public Methods
 
 ### Verify Cache
 
-This methods is used by [client][] [agents][] to verify if a specific set of properties has already been processed by **i2x**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [templates][deliverytemplate] associated with provided [agent][] for delivery.
+This methods is used by [client][] [agents][] to verify if a specific set of properties has already been processed by **ARiiP**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [templates][deliverytemplate] associated with provided [agent][] for delivery.
 
-**Address**: POST to `../i2x/fluxcapacitor/verify.json`
+**Address**: POST to `../ARiiP/fluxcapacitor/verify.json`
 
 **Example**
   
@@ -172,11 +172,11 @@ This methods is used by [client][] [agents][] to verify if a specific set of pro
 
 # Gem
 
-**i2x** [gem](http://rubygems.org/gems/i2x) includes all monitoring and detection features required by distributed [agents][] in a single [open-source package](https://github.com/pdrlps/i2x-gem).
+**ARiiP** [gem](http://rubygems.org/gems/ARiiP) includes all monitoring and detection features required by distributed [agents][] in a single [open-source package](https://github.com/pdrlps/ARiiP-gem).
 
 To install, add this line to your application's Gemfile:
 
-    gem 'i2x'
+    gem 'ARiiP'
 
 
 And then execute:
@@ -186,18 +186,18 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install i2x
+    $ gem install ARiiP
 
 
-Sample usage can be found in **i2x**'s [client][].
+Sample usage can be found in **ARiiP**'s [client][].
 
 # Helper Functions
 
-**i2x** includes several internal functions allowing quick access to generic variables that can be used in all [templates][deliverytemplates]. These functions allow the templates to retrieve information such as date/time, random numbers or strings, among many others.
+**ARiiP** includes several internal functions allowing quick access to generic variables that can be used in all [templates][deliverytemplates]. These functions allow the templates to retrieve information such as date/time, random numbers or strings, among many others.
 
 ## Usage
 
-**i2x** helper functions are used just like the template [variables][], changing only the start character form `%` to `$`. These reserved keywords are written as `i2x.function name`.
+**ARiiP** helper functions are used just like the template [variables][], changing only the start character form `%` to `$`. These reserved keywords are written as `ARiiP.function name`.
 
 ## Function list
 
@@ -211,13 +211,13 @@ Sample usage can be found in **i2x**'s [client][].
 
 ## Code
 
-The `i2x.code` function allows running arbitrary code Ruby within your template. This allows implementing simple variable comparisons or more complex operations. For instance, the functions listed previously could be reproduced using a `code` segment:
+The `ARiiP.code` function allows running arbitrary code Ruby within your template. This allows implementing simple variable comparisons or more complex operations. For instance, the functions listed previously could be reproduced using a `code` segment:
 
-* _datetime_: `${i2x.code( Time.now )}`
+* _datetime_: `${ARiiP.code( Time.now )}`
 
 Other **examples**:
 
-* _if_ statement, appending to file: `%{title},${i2x.code( %{b} > %{a} ? '%{big}' : '%{small}'  )}``
+* _if_ statement, appending to file: `%{title},${ARiiP.code( %{b} > %{a} ? '%{big}' : '%{small}'  )}``
 
 
 Some additional notes on `code` blocks:
@@ -228,14 +228,14 @@ Some additional notes on `code` blocks:
 
 # Hooks
 
-The traditional workflow uses the [Detector][] to detect new [events][]. However, [events][] can be pushed into **i2x** using the Web/REST hooks interface. In this case, the hook payload is directly [pushed][push] to the [Integration][].
-Relevant data must be sent in the POST request parameters. Upon receiving these data, **i2x** will start the [detector][] for the identified [agent][], processing the associated [integrations][].
+The traditional workflow uses the [Detector][] to detect new [events][]. However, [events][] can be pushed into **ARiiP** using the Web/REST hooks interface. In this case, the hook payload is directly [pushed][push] to the [Integration][].
+Relevant data must be sent in the POST request parameters. Upon receiving these data, **ARiiP** will start the [detector][] for the identified [agent][], processing the associated [integrations][].
 
-**Address**: Hooks must [push][] data to `i2x/push/<agent_identifier>.js` address.
+**Address**: Hooks must [push][] data to `ARiiP/push/<agent_identifier>.js` address.
 
 # Icons
 
-Here's **i2x** iconography legend.
+Here's **ARiiP** iconography legend.
 
 <ul class="no-bullet">
 <li><a class="icon-about xl-icon"> </a> about</li>
@@ -248,7 +248,7 @@ Here's **i2x** iconography legend.
 <li><a class="icon-settings xl-icon"> </a> edit/settings</li>
 <li><a class="icon-list xl-icon"> </a> events (on agent: events found, on template: deliveries made)</li>
 <li><a class="icon-files xl-icon"> </a> files</li>
-<li><a class="icon-i2x xl-icon"> </a> logo</li>
+<li><a class="icon-ARiiP xl-icon"> </a> logo</li>
 <li><a class="icon-install xl-icon"> </a> install</li>
 <li><a class="icon-integration xl-icon"> </a> integration</li>
 <li><a class="icon-publisher xl-icon"> </a> publisher</li>
@@ -296,11 +296,11 @@ This is some human-readable explanatory text, usually something that clarifies w
 
 # Polling
 
-Polling is the process of repeatedly hitting the same endpoint looking for new data. Unfortunately, i2x uses the [Detector][] to do this. We don't like doing this (its wasteful), vendors don't like us doing it (again, its wasteful) and users dislike it (they have to wait a maximum interval to detect new events). However, it is the one method that is ubiquitous, so we support it.
+Polling is the process of repeatedly hitting the same endpoint looking for new data. Unfortunately, ARiiP uses the [Detector][] to do this. We don't like doing this (its wasteful), vendors don't like us doing it (again, its wasteful) and users dislike it (they have to wait a maximum interval to detect new events). However, it is the one method that is ubiquitous, so we support it.
 
-It is also closely tied into how i2x handles deduplication.
+It is also closely tied into how ARiiP handles deduplication.
 
-A more modern approach uses Web/REST hooks. This way, services can [push][] data into **i2x**, which reduces the application load.
+A more modern approach uses Web/REST hooks. This way, services can [push][] data into **ARiiP**, which reduces the application load.
 
 # Postman
 
@@ -308,7 +308,7 @@ Handles the final step of the [integrations][]: gets the [integration fields][] 
 
 # Push
 
-**i2x** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **i2x** will start processing the [agents][] specified in the push request. [Agents][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [agent][], even if they have specific monitoring schedules.
+**ARiiP** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **ARiiP** will start processing the [agents][] specified in the push request. [Agents][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [agent][], even if they have specific monitoring schedules.
 
 # Seeds
 
@@ -322,7 +322,7 @@ Handles the final step of the [integrations][]: gets the [integration fields][] 
 
 # Templates
 
-**Delivery Templates** are used to define how **i2x** will handle [events][] data obtained by the [agents][]. 
+**Delivery Templates** are used to define how **ARiiP** will handle [events][] data obtained by the [agents][]. 
 
 ## Metadata
 
@@ -364,7 +364,7 @@ Object containing the set of properties specific to each [delivery][delivery] ty
 
 **Example**: *{"id":"%{id}","subject":"%{subject}"}* or *{"title":"%{title}","key":"%{key}"}*
 
-**Property**: `payload` (related to `i2x:payload` object)
+**Property**: `payload` (related to `ARiiP:payload` object)
 
 ## Sample
 
@@ -372,7 +372,7 @@ Sample configuration for exchanged data between the application controller and t
 
     {
       "publisher": "url",
-      "identifier": "i2x",
+      "identifier": "ARiiP",
       "title": "label",
       "payload": {
         "url": "http://www.example.com",
@@ -387,7 +387,7 @@ Sample configuration for exchanged data between the application controller and t
 
 ## Email
 
-Sends custom emails to the configured recipients. **Note** that emails are sent from the server configured in **i2x**'s Rails settings.
+Sends custom emails to the configured recipients. **Note** that emails are sent from the server configured in **ARiiP**'s Rails settings.
 
 ### Metadata
 
@@ -395,7 +395,7 @@ Sends custom emails to the configured recipients. **Note** that emails are sent 
 
 The subject for the new mail to be sent by the [Postman][postman].
 
-**Example**: *[i2x] new mail for %{i2x.action_identifier}*
+**Example**: *[ARiiP] new mail for %{ARiiP.action_identifier}*
 
 **Property**: `subject` (maps to `dc:subject`)
 
@@ -405,7 +405,7 @@ An array with the main destination for the email.
 
 **Example**: *["johndoe@gmail.com", "%{to}"]*
 
-**Property**: `to` (maps to `i2x:to`)
+**Property**: `to` (maps to `ARiiP:to`)
 
 #### CC
 
@@ -413,7 +413,7 @@ An array with the CC destination for the email.
 
 **Example**: *["johndoe@gmail.com", "%{to}"]*
 
-**Property**: `cc` (maps to `i2x:cc`)
+**Property**: `cc` (maps to `ARiiP:cc`)
 
 #### BCC
 
@@ -421,19 +421,19 @@ An array with the BCC destination for the email.
 
 **Example**: *["johndoe@gmail.com", "%{to}"]*
 
-**Property**: `bcc` (maps to `i2x:bcc`)
+**Property**: `bcc` (maps to `ARiiP:bcc`)
 
 #### Body
 
 The body for the message being sent.
 
-**Example**: *Hello %{first_name}! Welcome to i2x!--\n%{i2x.datetime}*
+**Example**: *Hello %{first_name}! Welcome to ARiiP!--\n%{ARiiP.datetime}*
 
-**Property**: `body` (maps to `i2x:body`)
+**Property**: `body` (maps to `ARiiP:body`)
 
 ## Dropbox Management
 
-In addition to accessing files on your server workspace, **i2x** can interact with your Dropbox to create or update files. The configuration is just like the **File Management** template, detailed next.
+In addition to accessing files on your server workspace, **ARiiP** can interact with your Dropbox to create or update files. The configuration is just like the **File Management** template, detailed next.
 
 ## File Management
 
@@ -445,9 +445,9 @@ Changes files directly on the file system.
 
 Template for the content being written to the selected file.
 
-**Example**: *%{id},%{i2x.datetime}\n*
+**Example**: *%{id},%{ARiiP.datetime}\n*
 
-**Property**: `content` (maps to `i2x:content`)
+**Property**: `content` (maps to `ARiiP:content`)
 
 #### Method
 
@@ -455,7 +455,7 @@ Defines what is the type of the change that will be performed in the file by the
 
 **Example**: *append*, *create*
 
-**Property**: `method` (maps to `i2x:method`)
+**Property**: `method` (maps to `ARiiP:method`)
 
 ##### Append
 
@@ -471,7 +471,7 @@ The file URI. Not that filenames can include _variables_. The use of full system
 
 **Example**: */Temp/log.csv*
 
-**Property**: `uri` (maps to `i2x:uri`)
+**Property**: `uri` (maps to `ARiiP:uri`)
 
 ### Sample
 
@@ -484,7 +484,7 @@ The file URI. Not that filenames can include _variables_. The use of full system
       "payload": {
         "method": "append",
         "uri": "data/github.csv",
-        "content": "%{i2x.date},%{before},%{after},%{repository}\n"
+        "content": "%{ARiiP.date},%{before},%{after},%{repository}\n"
       }
     }
 
@@ -500,7 +500,7 @@ A string matching the available database servers.
 
 **Example**: *sqlserver*, *mysql*, *postgres*, *sqlite*
 
-**Property**: `server` (maps to `i2x:server`)
+**Property**: `server` (maps to `ARiiP:server`)
 
 #### Host
 
@@ -508,7 +508,7 @@ Address for the database host. This value defaults to `localhost` if no data is 
 
 **Example**: *localhost*, *192.168.2.5*
 
-**Property**: `host` (maps to `i2x:host`)
+**Property**: `host` (maps to `ARiiP:host`)
 
 #### Port
 
@@ -516,7 +516,7 @@ Port open for connection in the database host. This value defaults to the standa
 
 **Example**: *3306*, *1255*
 
-**Property**: `port` (maps to `i2x:port`)
+**Property**: `port` (maps to `ARiiP:port`)
 
 #### Database Name
 
@@ -524,7 +524,7 @@ Database name where the query will be performed.
 
 **Example**: *wave10*, *issues*
 
-**Property**: `database` (maps to `i2x:database`) (**mandatory**)
+**Property**: `database` (maps to `ARiiP:database`) (**mandatory**)
 
 #### Username
 
@@ -532,7 +532,7 @@ Database user.
 
 **Example**: *john_doe*
 
-**Property**: `username` (maps to `i2x:username`) (**mandatory**)
+**Property**: `username` (maps to `ARiiP:username`) (**mandatory**)
 
 #### Password
 
@@ -540,7 +540,7 @@ User password. The password is hashed before being exchanged between any service
 
 **Example**: *qwerty§12345*
 
-**Property**: `password` (maps to `i2x:password`) (**mandatory**)
+**Property**: `password` (maps to `ARiiP:password`) (**mandatory**)
 
 #### Query
 
@@ -548,7 +548,7 @@ The query that will be executed by the [Postman][postman] in the configured data
 
 **Example**: *INSERT INTO issues (title, description, timestamp) VALUES ('{%title}, '%{description}', getdate());*
 
-**Property**: `query` (maps to `i2x:server`) (**mandatory**)
+**Property**: `query` (maps to `ARiiP:server`) (**mandatory**)
 
 ## URL Route
 
@@ -562,7 +562,7 @@ Defines what is the type of the request that will be executed by the [Postman][p
 
 **Example**: *get*, *post*, *delete*
 
-**Property**: `method` (maps to `i2x:method`)
+**Property**: `method` (maps to `ARiiP:method`)
 
 ##### GET
 
@@ -583,23 +583,23 @@ This URL Route POSTs extracted data to the defined URL route. [Action Fields][ac
       "id": "%{id}"
     }
 
-**Property**: `payload` (related to `i2x:payload` object)
+**Property**: `payload` (related to `ARiiP:payload` object)
 
 #### URI
 
 The destination URL for the request.
 
-**Example**: http://bioinformatics.ua.pt/i2x/postman/%{id}, http://bmd-software.com/
+**Example**: http://bioinformatics.ua.pt/ARiiP/postman/%{id}, http://bmd-software.com/
 
-**Property**: `uri` (maps to `i2x:uri`)
+**Property**: `uri` (maps to `ARiiP:uri`)
 
 # Variables
 
-[Agents][] and [delivery templates][delivery] can have an endless number of variables being matched within **i2x**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Agents][] and [Templates][].
+[Agents][] and [delivery templates][delivery] can have an endless number of variables being matched within **ARiiP**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Agents][] and [Templates][].
 
 ## Usage
 
-**i2x** identifies variables by matching content in property values within `%{ }`. On [template][] processing, each variable is replaced with content from the sent payload. Variables can be included in SQL queries, URIs or request parameters. **Note** that **i2x** [helper functions][helpers] are also variables.
+**ARiiP** identifies variables by matching content in property values within `%{ }`. On [template][] processing, each variable is replaced with content from the sent payload. Variables can be included in SQL queries, URIs or request parameters. **Note** that **ARiiP** [helper functions][helpers] are also variables.
 
 **Example**:  `%{name}` is replaced by the `name` property in the calling function parameters hash. 
 

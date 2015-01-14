@@ -33,11 +33,11 @@ I2X::Application.configure do
   # Generate digests for assets URLs.
   #
   # => Perhaps should be changed to true? is there a real difference?
-  #  
+  #
   config.assets.digest = true
- 
+
   # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '0.1'
+  config.assets.version = '1.0'
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
@@ -59,7 +59,7 @@ I2X::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  #config.action_controller.asset_host = "http://bioinformatics.ua.pt/i2x"
+  #config.action_controller.asset_host = "http://stripe.pt/ariip"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -84,6 +84,6 @@ I2X::Application.configure do
 
   # devise config
 
-  config.action_mailer.default_url_options = { :host => 'bioinformatics.ua.pt', :protocol => 'https://' }
-  config.host = 'https://bioinformatics.ua.pt/i2x/'
+  config.action_mailer.default_url_options = { :host => 'stripe.pt', :protocol => 'http://' }
+  config.host = 'http://stripe.pt/'
 end

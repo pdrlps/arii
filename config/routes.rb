@@ -8,15 +8,15 @@ I2X::Application.routes.draw do
   # About
   get "about/index"
 
-  # Agents control  
+  # Agents control
   resources :agents
   get "agents/partials/:identifier", to: 'agents#partials'  		# what is this?
   get "agents/import/:identifier", to: "agents#import"      		# import from JSON file
   get "agents/:id/get", to: "agents#get"            		        # load agent as JSON
   get "agents/add/:identifier", to: "agents#add"            		# add sample agent to user
   get "agents/:id/execute", to: "agents#execute"                # launch on-demand agent execution
-  
-  
+
+
   # Caches (internal) control
   resources :caches
 
@@ -56,7 +56,7 @@ I2X::Application.routes.draw do
   post 'fluxcapacitor/generate_client', to: 'flux_capacitor#generate_client'
   get 'fluxcapacitor/generate_client', to: 'flux_capacitor#generate_client'
   post 'fluxcapacitor/agents/:id/update_meta', to: 'flux_capacitor#agent_update_meta'
-  
+
   # Helpers
   get "helper/index"
 
@@ -84,7 +84,7 @@ I2X::Application.routes.draw do
   post "templates/new"
   get "templates/start"
   get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
-  
+
 
   # Tester controller
   get "tester/regex", to: 'tester#regex'
@@ -108,8 +108,8 @@ I2X::Application.routes.draw do
   get "how_to" => 'how_to/index'
   get 'reference' => 'reference/index'
 
-  # i2x image hack
-  get '/i2x/images/*all', to: redirect('/images/%{all}.png')
+  # ariip image hack
+  get '/ariip/images/*all', to: redirect('/images/%{all}.png')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
