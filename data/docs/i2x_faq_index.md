@@ -12,15 +12,15 @@
 
  <div class="large-8 columns" role="content"  markdown="1">
 
-# What is ariip?
+# What is ARiiP?
 
-**ariip** is a data integration framework, targeting the automated real-time integration of data from heterogeneous resources to multiple destinations. **ariip** provides pure Integration-as-a-Service, acting as an _intelligent ETL proxy_ between distinct services.
+**ARiiP** is a data integration framework, targeting the automated real-time integration of data from heterogeneous resources to multiple destinations. **ARiiP** provides pure Integration-as-a-Service, acting as an _intelligent ETL proxy_ between distinct services.
 
 <hr>
 
-# How does ariip work?
+# How does ARiiP work?
 
-**ariip** relies on distributed agents to monitor custom content changes. When new changes are detected, **ariip** generates a new [Event][] and triggers the execution of any number of [templates][] associated with the starting [agent][] (through integrations).
+**ARiiP** relies on distributed agents to monitor custom content changes. When new changes are detected, **ARiiP** generates a new [Event][] and triggers the execution of any number of [templates][] associated with the starting [agent][] (through integrations).
 
 <hr>
 

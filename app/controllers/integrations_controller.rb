@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class IntegrationsController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_integration, only: [:show, :edit, :update, :destroy]
@@ -49,6 +51,7 @@ class IntegrationsController < ApplicationController
   def create
     @integration = Integration.new(integration_params)
     @integration.status = 200
+    @integration.identifier = "#{@integration.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
 
     respond_to do |format|
       if @integration.save
@@ -112,7 +115,7 @@ class IntegrationsController < ApplicationController
   def save
     begin
       @integration = Integration.find(params[:id])
-      if (params[:remove]) then        
+      if (params[:remove]) then
         unless params[:template].nil? then
           @integration.templates.destroy(Template.find(params[:template]))
         end
@@ -181,13 +184,13 @@ end
     @agent = Agent.create! agent_object
     @agent.events_count = 0
     @agent.last_check_at = Time.now
-    
+
     current_user.agents.push @agent
 
     #load template
     template_object = JSON.parse(File.read("data/templates/#{params[:template]}.js"))
     template_object['identifier'] = "#{template_object['identifier']}_#{current_user.id}_#{@helper.random_int}"
-    @template = Template.create! template_object    
+    @template = Template.create! template_object
     @template.status = 100
     @template.count = 0
     current_user.templates.push @template
@@ -197,13 +200,14 @@ end
     integration_object[:identifier] =  "#{@agent[:identifier]}_2_#{@template[:identifier]}"
     integration_object[:title] = "#{@agent[:title]} to #{@template[:title]}"
     integration_object[:status] = 100
-    @integration = Integration.create! integration_object 
+    @integration = Integration.create! integration_object
+    @integration.identifier = "#{@integration.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
     @integration.agents.push @agent
     @integration.templates.push @template
 
     current_user.integrations.push @integration
 
-    if @agent.save && @template.save && @integration.save then    
+    if @agent.save && @template.save && @integration.save then
       respond_to do |format|
         format.html { redirect_to @integration }
       end

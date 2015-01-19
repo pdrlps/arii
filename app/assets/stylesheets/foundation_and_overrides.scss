@@ -1,4 +1,4 @@
-// 
+//
 // FOUNDATION SETTINGS
 //
 
@@ -39,7 +39,7 @@ $microformat-border-width: 0px;
 
 // We use these to control various global styles
 // $body-bg: #fff;
-// $body-font-color: #222;
+$body-font-color: #434e58;//#222;
 $body-font-family: 'Oxygen', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $body-font-weight: 300;
 // $body-font-style: normal;
@@ -53,10 +53,10 @@ $body-font-weight: 300;
 // $default-float: left;
 
 // We use these as default colors throughout
-$primary-color: #268bd2;
-$secondary-color: #e9e9e9;
-$alert-color: #f04124;
-// $success-color: #43AC6A;
+ $primary-color: #8fa1b2;//#268bd2;
+ $secondary-color: #cbd0d7;//#e9e9e9;
+ $alert-color: #cc777d;//#f04124;
+ $success-color: #b2c89d;//#43AC6A;
 
 // We use these to make sure border radius matches unless we want it different.
 // $global-radius: 3px;
@@ -499,14 +499,14 @@ $tabbar-bg: #FFFFFF;
 
 // Off Canvas Menu Variables
 $off-canvas-width: 200px;
-$off-canvas-bg: #efefef;
+$off-canvas-bg: #cbd0d7;
 
 // Off Canvas Menu List Variables
 $off-canvas-label-padding: 0.3rem rem-calc(15);
 $off-canvas-label-color: #222;
 // $off-canvas-label-text-transform: uppercase;
 $off-canvas-label-font-weight: 600;
-$off-canvas-label-bg: #efefef;
+$off-canvas-label-bg: #cbd0d7;
 $off-canvas-label-border-top: none ;
 $off-canvas-label-border-bottom: none;
 $off-canvas-label-margin:4px;

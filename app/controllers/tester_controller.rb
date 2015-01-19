@@ -13,7 +13,7 @@ class TesterController < ApplicationController
     @d = Services::SQLDetector.new params[:identifier]
     @response = @d.checkup
 
-    @response.merge({:content => "[i2x]: testing agent #{params[:identifier]}", :agent_id => @d.agent[:identifier]})
+    @response.merge({:content => "[ARiiP]: testing agent #{params[:identifier]}", :agent_id => @d.agent[:identifier]})
     respond_to do |format|
       format.json { render :json => @response }
       format.js { render :json => @response }

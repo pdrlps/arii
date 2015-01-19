@@ -31,7 +31,7 @@ module Services
     ##
     # == Start original source detection process
     #
-    def checkup	
+    def checkup
 
       begin
 
@@ -89,7 +89,7 @@ module Services
           @objects.push object
         end
       rescue Exception => e
-        @response = {:status => 404, :message => "[i2x][Detector] failed to load doc, #{e}"}
+        @response = {:status => 404, :message => "[ARiiP][Detector] failed to load doc, #{e}"}
         Services::Slog.exception e
       end
 
@@ -98,12 +98,12 @@ module Services
         @agent.increment!(:events_count, @payloads.size)
         @response = { :payload => @payloads, :status => 100}
       rescue Exception => e
-        @response = {:status => 404, :message => "[i2x][Detector] failed to process queries, #{e}"}
+        @response = {:status => 404, :message => "[ARiiP][Detector] failed to process queries, #{e}"}
         Services::Slog.exception e
       end
       @response
     end
-    
+
 
   end
 end

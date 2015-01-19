@@ -41,7 +41,7 @@
             <ul class="title-area">
               <!-- Title Area -->
               <li class="name">
-                <h1><a href="<%= root_url %>" class="logo icon-i2x"></a></h1>
+                <h1><a href="<%= root_url %>" class="logo icon-ariip"></a></h1>
               </li>
               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
             </ul>
@@ -51,7 +51,7 @@
              </ul>
              <!-- Right Nav Section -->
              <ul class="right">
-              <li class="has-dropdown not-click">
+             <!-- <li class="has-dropdown not-click">
                 <a href="#">Architecture</a>
                 <ul class="dropdown" >
                   <li><%= link_to "Components", :controller => '/docs', :action => 'show', :section => 'architecture', :topic => 'components' %></li>
@@ -65,20 +65,20 @@
                   <li><%= link_to "Translate Diff", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'diff' %></li>
                 </ul>
               </li>
-              <li class="divider"></li>
+              <li class="divider"></li>-->
               <li><%= link_to "FAQ", :controller => '/docs', :action => 'show', :section => 'faq', :topic => 'index' %></li>
               <li class="divider"></li>
               <li><%= link_to "How To", :controller => '/docs', :action => 'show', :section => 'how_to', :topic => 'index' %></li>
               <li class="divider"></li>
               <li><%= link_to "Reference", :controller => '/docs' %></li>
-              <li class="divider"></li>
+              <!--<li class="divider"></li>
               <li class="has-dropdown not-click">
                 <a href="#">Research</a>
                 <ul class="dropdown">
                   <li><%= link_to "Others", :controller => '/docs', :action => 'show', :section => '/research', :topic => 'others' %></li>
                   <li><%= link_to "SWOT", :controller => '/docs', :action => 'show', :section => '/research', :topic => 'swot' %></li>
                 </ul>
-              </li>
+              </li>-->
               <li class="divider"></li>
               <li><%= link_to "Contact", :controller => '/contact' %></li>
               <li class="divider"></li>
@@ -95,7 +95,7 @@
       <aside class="right-off-canvas-menu side-user sticky">
         <%= render partial: "helper/sidenav"  %>
       </aside>
-      
+
       <a class="exit-off-canvas"></a>
     </div>
   </div>
@@ -104,10 +104,10 @@
 </body>
 </html>
 <!--
- _  ____        
+ _  ____
 (_)|___ \ __  __
 | |  __) |\ \/ /
-| | / __/  >  < 
+| | / __/  >  <
 |_||_____|/_/\_\
-                
+
 -->

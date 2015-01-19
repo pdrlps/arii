@@ -5,7 +5,7 @@
 	"publisher": "file",
 	"payload": {
 		"method": "append",
-		"uri": "i2x_log.csv",
-		"content": "${i2x.datetime},%{variant},%{locus},%{refseq}\n"
+		"uri": "arii_log.csv",
+		"content": "${arii.datetime},%{title},%{content},%{url}\n"
 	}
 }

@@ -14,7 +14,7 @@ class PostmanController < ApplicationController
     @delivery
     begin
       @template = Template.find_by! identifier: params[:identifier]
-      
+
 
       case @template[:publisher]
       when 'sql'
@@ -29,21 +29,21 @@ class PostmanController < ApplicationController
         @delivery = Services::DropboxTemplate.new @template
       end
     rescue Exception => e
-      @response = { :status => "401", :message => "[i2x] Unable to load selected Delivery Template", :identifier => params[:identifier], :error => e }
+      @response = { :status => "401", :message => "[ARiiP] Unable to load selected Delivery Template", :identifier => params[:identifier], :error => e }
       Services::Slog.exception e
     end
 
     begin
       @delivery.process params
     rescue Exception => e
-      @response = { :status => "402", :message => "[i2x] Unable to process input parameters", :identifier => params[:identifier], :error => e, :template => @template }
+      @response = { :status => "402", :message => "[ARiiP] Unable to process input parameters", :identifier => params[:identifier], :error => e, :template => @template }
       Services::Slog.exception e
     end
 
     begin
       @response = @delivery.execute
     rescue Exception => e
-      @response = { :status => "403", :message => "[i2x] Unable to perform final delivery, #{e}", :identifier => params[:identifier], :error => e, :template => @template }
+      @response = { :status => "403", :message => "[ARiiP] Unable to perform final delivery, #{e}", :identifier => params[:identifier], :error => e, :template => @template }
       Services::Slog.exception e
     end
 
@@ -75,11 +75,11 @@ class PostmanController < ApplicationController
     begin
       @t = Template.where(identifier: params[:identifier], publisher: params[:publisher])
       if @t.count > 0 then
-        response = { :status => "402", :message => "[i2x]: template #{params[:identifier]} already exists"}
+        response = { :status => "402", :message => "[ARiiP]: template #{params[:identifier]} already exists"}
       else
         attrs = JSON.parse(IO.read("templates/#{params[:publisher]}/#{params[:identifier]}.js"))
         t = Template.create! attrs
-        response = { :status => "200", :message => "[i2x]: template #{params[:identifier]} loaded", :id => "#{t[:id]}" }
+        response = { :status => "200", :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => "#{t[:id]}" }
       end
     rescue
       response = { :status => "401", :message => "Error: template not found for #{params[:publisher]} with name #{params[:key]}.", :error =>  $!}

@@ -32,7 +32,7 @@ A [Detector][] monitors delimited files accessible through a valid URI (`http://
     {
       "publisher": "csv",
       "payload": {
-        "uri": "http://bioinformatics.ua.pt/",
+        "uri": "http://stripe.pt/",
         "cache": "0",
         "headers": "on",
         "delimiter": "\n",
@@ -176,7 +176,7 @@ This methods is used by [client][] [agents][] to verify if a specific set of pro
 
 To install, add this line to your application's Gemfile:
 
-    gem 'ARiiP'
+    gem 'arii'
 
 
 And then execute:
@@ -186,7 +186,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ARiiP
+    $ gem install arii
 
 
 Sample usage can be found in **ARiiP**'s [client][].
@@ -248,7 +248,7 @@ Here's **ARiiP** iconography legend.
 <li><a class="icon-settings xl-icon"> </a> edit/settings</li>
 <li><a class="icon-list xl-icon"> </a> events (on agent: events found, on template: deliveries made)</li>
 <li><a class="icon-files xl-icon"> </a> files</li>
-<li><a class="icon-ARiiP xl-icon"> </a> logo</li>
+<li><a class="icon-arii xl-icon"> </a> logo</li>
 <li><a class="icon-install xl-icon"> </a> install</li>
 <li><a class="icon-integration xl-icon"> </a> integration</li>
 <li><a class="icon-publisher xl-icon"> </a> publisher</li>
@@ -589,7 +589,7 @@ This URL Route POSTs extracted data to the defined URL route. [Action Fields][ac
 
 The destination URL for the request.
 
-**Example**: http://bioinformatics.ua.pt/ARiiP/postman/%{id}, http://bmd-software.com/
+**Example**: http://stripe.pt/ARiiP/postman/%{id}, http://bmd-software.com/
 
 **Property**: `uri` (maps to `ARiiP:uri`)
 

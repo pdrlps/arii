@@ -6,9 +6,9 @@
 
 ## Setup
 
-**Note**: The full **ariip** experience requires two additional components. [Redis](http://redis.io) and [Sentry](http://getsentry.com). Redis is used to improve the content change detection cache performance, and Sentry is used to capture miscellaneous events during execution.  Both of these tools can be freely downloaded and deployed.
+**Note**: The full **ARiiP** experience requires two additional components. [Redis](http://redis.io) and [Sentry](http://getsentry.com). Redis is used to improve the content change detection cache performance, and Sentry is used to capture miscellaneous events during execution.  Both of these tools can be freely downloaded and deployed.
 
-1. Clone or download **ariip** code from GitHub
+1. Clone or download **ARiiP** code from GitHub
 
 2. Configure your database, services, mail, Redis and Sentry settings
 
@@ -31,6 +31,9 @@
 6. Initiate the tasks (on a distinct shell, check *delayed_job* documentation)
 
         rake jobs:work
+
+        # daemon solution
+        RAILS_ENV=production ruby script/delayed_job start -n 3
 
 
 

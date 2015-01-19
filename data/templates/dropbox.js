@@ -6,6 +6,6 @@
 	"payload": {
 		"method": "append",
 		"uri": "ariip_log.csv",
-		"content": "${ariip.datetime},%{id},%{title}\n"
+		"content": "${arii.datetime},%{id},%{title}\n"
 	}
 }

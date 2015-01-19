@@ -19,12 +19,12 @@ $panel-padding: rem-calc(5);
 .info-enabled {
 	@extend .clear-borders;
 	@extend .info-row;
-	border-left-color: lighten($success-color,10%);
-	background-color: lighten($success-color,50%);
+	border-left-color: lighten($success-color,5%);
+	background-color: lighten($success-color,25%);//lighten($success-color,50%);
 }
 .info-enabled:hover {
-	border-left-color: darken($success-color, 10%);
-	background-color: lighten($success-color,45%);
+	border-left-color: darken($success-color, 2%);
+	background-color: lighten($success-color,20%);
 }
 
 .info-disabled{
@@ -44,7 +44,7 @@ $panel-padding: rem-calc(5);
 	display: table-cell;
 	text-align: center;
 	vertical-align: middle;
-	border-radius: 50%; 
+	border-radius: 50%;
 }
 
 .on {

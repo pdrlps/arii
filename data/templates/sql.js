@@ -10,6 +10,6 @@
         "username": "demo",
         "password": "demo1234",
         "database": "hummer",
-        "query": "INSERT INTO mutations(mutation, content, author, created_at) VALUES('%{mutation}', '%{content}', '%{author}', now());"
+        "query": "INSERT INTO content(id, title, content, time) VALUES('%{id}', '%{title}', '%{content}', now());"
     }
 }

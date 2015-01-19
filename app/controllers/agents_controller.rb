@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class AgentsController < ApplicationController
 	before_filter :authenticate_user!
 	before_action :set_agent, only: [:show, :edit, :update, :destroy]
@@ -60,6 +62,7 @@ class AgentsController < ApplicationController
   	@agent.last_check_at = @help.datetime
   	@agent.status = 100
   	@agent.events_count = 0
+    @agent.identifier = "#{@agent.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
 
     # include seed in agent?
     if params[:seed][:publisher] != 'none' then
@@ -131,7 +134,7 @@ class AgentsController < ApplicationController
    puts @file
    @agent = Agent.create! JSON.parse(@file)
 
-   response = { :status => 200, :message => "[i2x]: agent #{params[:identifier]} imported", :id => @agent[:id] }
+   response = { :status => 200, :message => "[ARiiP]: agent #{params[:identifier]} imported", :id => @agent[:id] }
    respond_to do |format|
     format.json { render :json => response}
     format.xml { render :xml => response}
@@ -170,9 +173,9 @@ end
   	@agent = Agent.create! @object
   	@agent.events_count = 0
   	@agent.last_check_at = Time.now
-  	@agent.identifier = "#{@agent.id}_#{@agent.identifier}"
+  	@agent.identifier = "#{@agent.id}_#{@agent.identifier}_#{SecureRandom.hex(8)}"
   	current_user.agents.push @agent
-  	if @agent.save then    
+  	if @agent.save then
   		respond_to do |format|
   			format.html { redirect_to @agent }
   		end

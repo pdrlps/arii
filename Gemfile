@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', "~> 4.0.2"
+gem 'rails' #, "~> 4.0.2"
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
@@ -19,7 +19,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 1.2'
+gem 'jbuilder' #, '~> 1.2'
 
 gem 'compass-rails'
 
@@ -38,7 +38,7 @@ gem 'pg'
 gem 'devise'
 
 # Additional User information. Read more: https://github.com/n8/devise_marketable
-gem 'devise_marketable', "~> 0.0.4"
+gem 'devise_marketable' #, "~> 0.0.4"
 
 # OmniAuth authentication system. Read more: https://github.com/intridea/omniauth
 gem 'omniauth'

@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class TemplatesController < ApplicationController
   before_filter :authenticate_user!
   before_action :set_template, only: [:show, :edit, :update, :destroy]
@@ -33,7 +35,7 @@ class TemplatesController < ApplicationController
       if @template.save
         current_user.templates.push(@template)
         current_user.save
-        response = { :status => 200, :message => "[i2x]: template #{params[:identifier]} loaded", :id => @template[:id] }
+        response = { :status => 200, :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => @template[:id] }
       end
       respond_to do |format|
         #format.html { redirect_to templates_url }
@@ -57,6 +59,7 @@ class TemplatesController < ApplicationController
     @template.last_execute_at = nil
     @template.status = 100
     @template.count = 0
+    @template.identifier = "#{@template.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
     respond_to do |format|
       if @template.save
         current_user.templates.push(@template)
@@ -113,7 +116,7 @@ class TemplatesController < ApplicationController
       puts params[:message]
       attrs = JSON.parse(params[:message])
       @template = Template.create! attrs
-      response = { :status => 200, :message => "[i2x]: template #{params[:identifier]} loaded", :id => @template[:id] }
+      response = { :status => 200, :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => @template[:id] }
       respond_to do |format|
         format.html { redirect_to templates_url }
         format.json { render :json => response}
@@ -142,7 +145,7 @@ class TemplatesController < ApplicationController
     @object = JSON.parse(File.read("data/templates/#{params[:identifier]}.js"))
     @object['identifier'] = "#{@object['identifier']}_#{current_user.id}"
     @template = Template.create! @object
-    @template.identifier = "#{@template.id}_#{@template.identifier}"
+    @template.identifier = "#{@template.id}_#{@template.identifier}_#{SecureRandom.hex(8)}"
     @template.status = 100
     @template.count = 0
 

@@ -25,7 +25,7 @@ class Agent < ActiveRecord::Base
   #
   has_many  :user_agents
   has_many  :users, :through => :user_agents
-  
+
   ##
   # => Use AgentMappings to connect Agents
   #
@@ -36,9 +36,9 @@ class Agent < ActiveRecord::Base
   # => Events mapping
   #
   has_many :events
-  
+
   public
-  
+
   ##
   # => Perform the actual agent monitoring tasks.
   #
@@ -108,7 +108,7 @@ class Agent < ActiveRecord::Base
       rescue Exception => e
       	Services::Slog.exception e
       end
-      response = {:status => @checkup[:status], :message => "[i2x][Checkup][execute] All OK."}     
+      response = {:status => @checkup[:status], :message => "[ARiiP][Checkup][execute] All OK."}
   end
   #handle_asynchronously :execute
 
@@ -123,7 +123,7 @@ class Agent < ActiveRecord::Base
     rescue Exception => e
     	Services::Slog.exception e
     end
-    
+
     ## this should be simpler!!!
     begin
     	i = 0
@@ -141,7 +141,7 @@ class Agent < ActiveRecord::Base
     						@event.save
     					else
     						Services::Slog.warn({:message => "Delivery failed for #{identifier} in #{t.identifier}", :module => "Agent", :task => "process", :extra => {:agent => identifier, :template => t.identifier}})
-    					end              
+    					end
     				end
     			end
     		#end
@@ -150,6 +150,6 @@ class Agent < ActiveRecord::Base
     rescue Exception => e
     	Services::Slog.exception e
     end
-    
+
 end
 end

@@ -5,7 +5,7 @@
 	"publisher": "json",
 	"schedule": "2h",
 	"payload": {
-		"uri": "http://bioinformatics.ua.pt/diseasecard/entry/104300.js",
+		"uri": "http://stripe.pt/diseasecard/entry/104300.js",
 		"cache": ".size",
 		"query": ".",
 		"selectors": "[{\"id\":\".omim\"},{\"location\":\".location\"},{\"name\": \".description\"}]"

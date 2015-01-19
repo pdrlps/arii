@@ -5,7 +5,7 @@
 	"publisher": "csv",
 	"schedule": "2h",
 	"payload": {
-		"uri": "http://bioinformatics.ua.pt/diseasecard/hgnc.csv",
+		"uri": "http://stripe.pt/diseasecard/hgnc.csv",
 		"headers": false,
 		"delimiter": ",",
 		"cache": "0",

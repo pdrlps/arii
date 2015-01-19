@@ -43,14 +43,14 @@ module Services
           Services::Slog.debug({:message => "Verifying cache", :module => "Cashier", :task => "cache", :extra => {:agent => agent[:identifier], :memory => memory, :payload => payload, :seed => seed, :cache => "redis"}})
           if @@redis.hexists("ariip:#{agent[:identifier]}:#{seed}", "#{memory}") then
             # already cached, ignore
-            response = {:status => 200, :message => "[ariip][Cashier] Nothing to update"}
+            response = {:status => 200, :message => "[ARiiP][Cashier] Nothing to update"}
           else
             # not on cache, store
             @@redis.hset("ariip:#{agent[:identifier]}:#{seed}", "#{memory}", payload)
-            response = {:status => 100, :message => "[ariip][Cashier] Memory recorded to cache"}
+            response = {:status => 100, :message => "[ARiiP][Cashier] Memory recorded to cache"}
           end
         rescue Exception => e
-          response = {:message => "[ariip][Cashier] unable to verify cache content, #{e}", :status => 301}
+          response = {:message => "[ARiiP][Cashier] unable to verify cache content, #{e}", :status => 301}
           Services::Slog.exception e
         end
 
@@ -73,14 +73,14 @@ module Services
           begin
             @cached = Cache.new({:memory => memory, :agent_id => agent[:id], :payload => payload, :seed => seed})
             @cached.save
-            response = {:status => 100, :message => "[ariip][Cashier] Memory recorded to cache"}
+            response = {:status => 100, :message => "[ARiiP][Cashier] Memory recorded to cache"}
           rescue Exception => e
-            response = {:message => "[i2x][Cashier] unable to save new cache content, #{e}", :status => 300}
+            response = {:message => "[ARiiP][Cashier] unable to save new cache content, #{e}", :status => 300}
             Services::Slog.exception e
           end
         else
           # already cached, ignore
-          response = {:status => 200, :message => "[ariip][Cashier] Nothing to update"}
+          response = {:status => 200, :message => "[ARiiP][Cashier] Nothing to update"}
         end
 
       end
