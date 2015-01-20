@@ -144,8 +144,13 @@ li.social {
 
 .off-canvas-list a:hover {
 	color: #008CBA;
-  background-color: #efefef;
+  background-color: #cbd0d7;
 }
+
+off-canvas-list li a:hover {
+    background-color:#cbd0d7;
+}
+
 .remember_me {
 	color: #333;
 }

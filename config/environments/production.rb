@@ -59,7 +59,7 @@ I2X::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  #config.action_controller.asset_host = "http://stripe.pt/ariip"
+  #config.action_controller.asset_host = "http://ariip.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -84,6 +84,6 @@ I2X::Application.configure do
 
   # devise config
 
-  config.action_mailer.default_url_options = { :host => 'stripe.pt', :protocol => 'http://' }
-  config.host = 'http://stripe.pt/'
+  config.action_mailer.default_url_options = { :host => 'ariip.com', :protocol => 'http://' }
+  config.host = 'http://ariip.com/'
 end

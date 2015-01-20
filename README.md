@@ -1,6 +1,6 @@
 # ARiiP
 
-**[ARiiP](http://stripe.pt/ariip/): integrate everything**
+**[ARiiP](http://ariip.com/): integrate everything**
 
 **ARiiP** is a barebones framework for deploying custom automated, real-time, data integration & interoperability platforms.
 

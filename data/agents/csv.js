@@ -5,7 +5,7 @@
 	"publisher": "csv",
 	"schedule": "2h",
 	"payload": {
-		"uri": "http://stripe.pt/diseasecard/hgnc.csv",
+		"uri": "http://ariip.com/diseasecard/hgnc.csv",
 		"headers": false,
 		"delimiter": ",",
 		"cache": "0",

@@ -5,6 +5,6 @@
 	"publisher": "url",
 	"payload": {
 		"method": "get",
-		"uri": "http://stripe.pt/ariip/fluxcapacitor/ping/%{id}"
+		"uri": "http://ariip.com/fluxcapacitor/ping/%{id}"
 	}
 }

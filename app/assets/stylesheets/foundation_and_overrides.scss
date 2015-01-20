@@ -38,7 +38,7 @@ $microformat-border-width: 0px;
 // $total-columns: 12;
 
 // We use these to control various global styles
-// $body-bg: #fff;
+$body-bg: #fff;
 $body-font-color: #434e58;//#222;
 $body-font-family: 'Oxygen', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $body-font-weight: 300;
@@ -516,7 +516,7 @@ $off-canvas-link-border-bottom: none; //1px solid darken($off-canvas-bg, 5%);
 
 // Off Canvas Menu Icon Variables
 // $tabbar-menu-icon-color: #FFF;
-// $tabbar-menu-icon-hover: darken($tabbar-menu-icon-color, 30%);
+$tabbar-menu-icon-hover: #cbd0d7;//darken($tabbar-menu-icon-color, 30%);
 
 // $tabbar-menu-icon-text-indent: rem-calc(35);
 // $tabbar-menu-icon-width: $tabbar-height;
@@ -930,7 +930,7 @@ $tooltip-pip-size: 0px;//5px;
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #FFF;
+$topbar-bg-color: #eff1f5;
 // $topbar-bg: $topbar-bg-color;
 
 // Height and margin

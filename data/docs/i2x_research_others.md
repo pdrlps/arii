@@ -8,7 +8,7 @@ The platform, targeted at biomedical application developers, provides a complete
 - Multiple integration connectors
 - Base engine for i2x
 
-**URL**: [http://bioinformatics.ua.pt/coeus/](http://bioinformatics.ua.pt/coeus/ "COEUS")
+**URL**: [http://ariip.com/coeus/](http://ariip.com/coeus/ "COEUS")
   
 ## Bio2RDF
 The Bio2RDF project uses a data integration approach based on semantic web rules to answer a broad question: What is known about the mouse and human genomes? Using its *rdfizing* services, a semantic mashup of 65 million triples was built from 30 public bioinformatics data providers: GO, NCBI, UniProt, KEGG, PDB and many others. The average link-rank (ALR) of a node is 4.7 which means that a usual topic is connected to 4.7 other topics by direct or reverse links within the warehouse.

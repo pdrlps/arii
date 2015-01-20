@@ -22,4 +22,4 @@ With the inclusion of a semantic rules processor, we can apply complex semantic 
 
 <a href="/ARiiP/images/full_flow.png" class="th">![Overview](/ARiiP/images/full_flow.png)</a>
 
-[coeus]:        http://bioinformatics.ua.pt/coeus/  "COEUS: Semantic Web Application Framework"
+[coeus]:        http://ariip.com/coeus/  "COEUS: Semantic Web Application Framework"

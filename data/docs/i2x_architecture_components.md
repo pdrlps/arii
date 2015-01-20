@@ -126,4 +126,4 @@ Rule processing uses a semantic engine, where new results can be inferred from e
 
 
 [LinkedData]:	http://linkeddata.org 				"LinkedData"
-[coeus]:		http://bioinformatics.ua.pt/coeus/	"COEUS: Semantic Web Application Framework"
+[coeus]:		http://ariip.com/coeus/	"COEUS: Semantic Web Application Framework"

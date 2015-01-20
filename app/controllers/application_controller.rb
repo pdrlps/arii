@@ -18,10 +18,10 @@ class ApplicationController < ActionController::Base
   def default_url_options
   	if Rails.env.production?
   		{
-  			:host => "bioinformatics.ua.pt",
-  			:protocol => 'https://'
+  			:host => "ariip.com",
+  			:protocol => 'http://'
   		}
-  	else  
+  	else
   		{}
   	end
   end

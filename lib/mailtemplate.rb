@@ -26,7 +26,7 @@ module Services
         mail.bcc = @template[:payload][:bcc]
         mail.cc = @template[:payload][:cc]
         mail.content_type = 'text/html; charset=UTF-8'
-        mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"http://stripe.pt/ariip/\">ariip</a>"
+        mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"http://ariip.com/\">ariip</a>"
 
         mail.deliver
 
