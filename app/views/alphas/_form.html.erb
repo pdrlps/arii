@@ -1,0 +1,36 @@
+<%= form_for(@alpha, :remote => true) do |f| %>
+  <% if @alpha.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@alpha.errors.count, "error") %> prohibited this alpha from being saved:</h2>
+
+      <ul>
+      <% @alpha.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+
+   <!-- <p class="lead" id="request_access_message">We only need your email.</p>
+  <div class="row" id="request_access_form">
+    <div class="large-12 columns">
+      <div class="row collapse prefix-radius">
+        <div class="small-9 columns">
+          <input id="request_access_email" name="email" type="text" placeholder="Email">
+        </div>
+        <div class="small-3 columns">
+          <a href="#" class="request_access button postfix radius">Request</a>
+        </div>
+      </div>
+    </div>
+  </div>-->
+<% end %>

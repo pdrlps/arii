@@ -1,9 +1,9 @@
-<% content_for :title, "Dashboard - #{ENV["APP_TITLE"]}" %>
+<% content_for :title, "Integrations - #{ENV["APP_TITLE"]}" %>
 <ul class="breadcrumbs">
   <li><a href="<%= root_url %>">Home</a></li>
-  <li class="current">Dashboard</li>
+  <li class="current">Integrations</li>
 </ul>
-<h1>Dashboard</h1>
+<h1>Integrations</h1>
 <!-- main content -->
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
@@ -30,7 +30,7 @@
   </div>
   <% else %>
 
-
+  <h3 class="subheader">Active integrations</h3>
   <% @integrations.each do |integration| %>
   <div class="row agent-info <%= (integration.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-11 columns left">

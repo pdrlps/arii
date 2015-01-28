@@ -26,7 +26,7 @@
   </div>
   <div class="small-10 columns">
     <div class="row">
-      <h4 class="subheader">Help</h4>
+      <h4 class="subheader">Description</h4>
       <%= template.help %>
     </div>
     <hr>
@@ -48,5 +48,10 @@
       <%= render partial: "templates/show_dropbox", locals: {:template => template}%>
       <% end %>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-1 columns right">
+    <%= link_to 'Remove', @template, :class => 'remove right', method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
 </div>

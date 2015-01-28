@@ -33,7 +33,7 @@
         rake jobs:work
 
         # daemon solution
-        RAILS_ENV=production ruby script/delayed_job start -n 3
+        RAILS_ENV=production ruby bin/delayed_job start -n 3
 
 
 

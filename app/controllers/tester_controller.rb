@@ -22,10 +22,8 @@ class TesterController < ApplicationController
   end
 
   def regex
-    # yarr = Array.new
-    #str = 'abc %{i2x.map(title,{"a":2,"b":2, "c":3})};'
     a = 3
-    str = 'ahlbsjdkfskdjfs${i2x.code(%{number} > 4 ? " yes " : " no " )}sdfdsf'
+    str = 'ahlbsjdkfskdjfs${arii.code(%{number} > 4 ? " yes " : " no " )}sdfdsf'
     str['%{number}'] = a.to_s
     fin = str.clone
     #yarr.push str
@@ -37,7 +35,7 @@ class TesterController < ApplicationController
     str.scan(/\${i2x.code\((.*?)\)}/).each { |l|
       l.each { |m|
         #eval(m)
-        fin["${i2x.code(#{m})}"] = eval(m).to_s
+        fin["${arii.code(#{m})}"] = eval(m).to_s
         puts "\n\tHERE: #{m}"
         #arr.push m
       }

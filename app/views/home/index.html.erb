@@ -1,18 +1,6 @@
 <div class="row" id="home">
-  <div class="row">
-    <div class="large-12 columns banner">
-      <h1>ARiiP</h1>
-      <h4 class="subheader">Integrate Everything</h4>
-      <div class="index-logo">
-        <img src="http://pedrolopes.s3-website-us-east-1.amazonaws.com/piira.png" height="300" width="200" alt="ariip">
-      </div>
-
-      <h3 class="show-for-small">Integration-as-a-Service Platform</h3>
-      <hr>
-      </div>
-    </div>
     <div class="row">
-      <div class="large-12 columns centered-text">
+      <div class="large-6 columns">
         <h3>Automated Real-time Integration &amp; Interoperability Platform</h3>
         <h5 class="subheader">
           <strong>ARiiP</strong>
@@ -21,16 +9,20 @@
           miscellaneous heterogeneous resources
           <strong>to</strong>
           any destination.</h5>
+          <p>
+            <%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => 'button radius ' %>
+            <a href="#" data-reveal-id="request_access" class="button success radius">Request access</a>
+          </p>
+      </div>
+      <div class="large-4 columns">
+      <%= image_tag "ariip_xl.png", size: '200' %>
       </div>
     </div>
-    <!--<div class="row centered-text">
-      <div class="medium-3 large-3 columns">
-        <%= link_to '<div class="icon-realtime huge"></div>'.html_safe, integrations_path %>
-        <h5>Real-time</h5>
-        <p class="small-text">No more integration snapshots. Where traditional data integration strategies create a unique version of aggregated data, with
-          <strong>ARiiP</strong>
-          the integration is continuous and in (near) real time.</p>
-      </div>
+
+    <hr>
+
+    <div class="row centered-text">
+
       <div class="medium-3 large-3 columns">
         <div class="icon-agent huge">
         </div>
@@ -38,14 +30,15 @@
         <p class="small-text">Create automated integration pipelines. No more scripting and manually launching tasks: with
           <strong>ARiiP</strong>, the platform does the work for you.</p>
       </div>
-      <div class="medium-3 large-3 columns">
-        <div class="icon-template huge">
-        </div>
-        <h5>Templates</h5>
-        <p class="small-text">Delivery templates to integrate everywhere. From custom SQL queries, to file appends, to web service calls or sending emails, with
+
+<div class="medium-3 large-3 columns">
+        <%= link_to '<div class="icon-realtime huge"></div>'.html_safe, integrations_path %>
+        <h5>Real-time</h5>
+        <p class="small-text">No more integration snapshots. Where traditional data integration strategies create a unique version of aggregated data, with
           <strong>ARiiP</strong>
-          integrated data can be sent everywhere.</p>
+          the integration is continuous and in (near) real time.</p>
       </div>
+
       <div class="medium-3 large-3 columns">
         <div class="icon-integration huge">
         </div>
@@ -54,5 +47,26 @@
           <strong>ARiiP</strong>
           can get it for you. From complex SQL queries to JSON objects up to LinkedData URIs, multiple formats can be delivered to your endpoint.</p>
       </div>
-    </div>-->
+
+      <div class="medium-3 large-3 columns">
+        <div class="icon-template huge">
+        </div>
+        <h5>Interoperability</h5>
+        <p class="small-text">Delivery templates to integrate everywhere. From custom SQL queries, to file appends, to web service calls or sending emails, with
+          <strong>ARiiP</strong>
+          integrated data can be sent everywhere.</p>
+      </div>
+
+
+    </div>
   </div>
+
+  <!-- access modal content -->
+  <div id="request_access" class="reveal-modal" data-reveal>
+  <h2>Request Access</h2>
+  <%= render(:partial => 'alphas/form') %>
+
+  <a class="close-reveal-modal">&#215;</a>
+
+
+</div>

@@ -13,7 +13,7 @@ module Services
 
     def initialize
       # load each helper function into a map for replacement in the delivery
-      @replacements = [["${ariip.date}", self.date], ["${ariip.datetime}", self.datetime], ["${ariip.hostname}", self.hostname], ["${ariip.environment}",self.environment]]
+      @replacements = [["${arii.date}", self.date], ["${arii.datetime}", self.datetime], ["${arii.hostname}", self.hostname], ["${arii.environment}",self.environment]]
     end
 
     public

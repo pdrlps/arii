@@ -9,7 +9,9 @@
   <%= flash[:notice].html_safe %> <a href="#" class="close">&times;</a>
 </div>
 <% end %>
+
 <div class="small-9 columns">
+<h3 class="subheader">Active Templates</h3>
   <% @templates.each do |template| %>
   <div class="row agent-info <%= (template.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-11 columns left">
@@ -36,7 +38,7 @@
     <div class="small-11 columns">
       <div class="info-details">
         <h6 class="subheader">SQL Template</h6>
-        <span class="label secondary icon-publisher">sql</span>
+        <span class="label secondary radius icon-publisher">sql</span>
       </div>
     </div>
     <div class="small-1 columns right">
@@ -107,7 +109,7 @@
   <%= link_to ' New Template', new_template_path, :class => 'button small radius icon-template', :title => 'Create new template' %>
   <h4>Go to</h4>
   <ul class="no-bullet">
-    <li><%= link_to 'Dashboard'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard'%></li>
+    <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard'%></li>
     <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
     <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
   </ul>

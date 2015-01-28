@@ -45,3 +45,9 @@
     <% end %>
   </div>
 </div>
+  <br />
+  <div class="row">
+    <div class="small-1 columns right">
+      <%= link_to 'Remove', @integration, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
+    </div>
+  </div>

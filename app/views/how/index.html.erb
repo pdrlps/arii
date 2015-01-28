@@ -1,0 +1,14 @@
+<% content_for :title, "How it works - #{ENV["APP_TITLE"]}" %>
+<ul class="breadcrumbs animated fadeIn">
+    <li><a href="<%= root_url %>">Home</a></li>
+    <li class="current">How</li>
+</ul>
+<h1 class="animated fadeIn">How <strong>ARiiP</strong> works</h1>
+
+<div class="row animated fadeIn">
+    <div class="small-12 columns">
+        <p>
+           Check the <%= link_to 'docs', {:controller => '/docs'}, :class => 'icon-documentation xl-icon' %>.
+        </p>
+    </div>
+</div>

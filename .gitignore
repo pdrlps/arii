@@ -12,8 +12,8 @@ data/users/*
 # Ignore application configuration
 /config/application.yml
 
-# Ignore i2x temporary files
-/tmp/ariip/*
+# Ignore arii temporary files
+/tmp/arii/*
 /tmp/*
 /tmp/cache
 /tmp/cache/*

@@ -48,6 +48,9 @@ $(function() {
   //temp for user adding keys
   $('#user_add_api_key').on('click', update_user_generate_key);
 
+  // request access links
+  $('.request_access').on('click', request_access);
+
 });
 
 /**
@@ -92,3 +95,21 @@ function update_user_remove_key_selectors() {
 function show_down(element) {
     element.removeClass('hidden').addClass('animated fadeIn');
 }
+
+/**
+ * Save email for access request
+ *
+function request_access(event) {
+  event.preventDefault();
+  var data = {};
+  data.email = $('#request_access_email').val();
+  $.post('../alphas/create', data, request_access_saved);
+}
+
+/**
+ * Update message on saved request access
+ *
+function request_access_saved(e, data, status, xhr) {
+  console.log(data);
+}
+*/

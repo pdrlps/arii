@@ -29,7 +29,7 @@
   </div>
   <div class="row">
     <div class="small-3 columns">
-      <%= f.label :help, :class => 'right inline' %>
+      <%= f.label 'description', :class => 'right inline' %>
     </div>
     <div class="small-9 columns">
       <%= f.text_area :help, :tabindex => autotab %>
@@ -46,7 +46,7 @@
      <%= f.select(:publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'],['Email', 'mail'], ['File','file']], {:selected => 'url'}), :tabindex => autotab) %>
      <% end %>
 
-      
+
     </div>
   </div>
   <div id="publisher_content">

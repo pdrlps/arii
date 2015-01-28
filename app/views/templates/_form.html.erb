@@ -20,7 +20,7 @@
   </div>
   <div class="row">
     <div class="small-3 columns">
-      <%= f.label :help, :class => 'right inline' %>
+      <%= f.label 'description', :class => 'right inline' %>
     </div>
     <div class="small-9 columns">
       <%= f.text_area :help, :tabindex => autotab %>
@@ -44,3 +44,8 @@
     </div>
   </div>
   <% end %>
+  <div class="row">
+  <div class="small-1 columns right">
+    <%= link_to 'Remove', @template, :class => 'remove right', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>

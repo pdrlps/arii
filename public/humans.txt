@@ -3,4 +3,4 @@
 /* humanstxt.org */
 
 /* Authors */
-Pedro Lopes, pedrolopes@ua.pt, http://pedrolopes.net/
+Pedro Lopes, hello@pedrolopes.net, http://pedrolopes.net/
