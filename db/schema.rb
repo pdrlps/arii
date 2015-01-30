@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130114423) do
+ActiveRecord::Schema.define(version: 20150130153638) do
 
   create_table "agent_mappings", force: true do |t|
     t.integer  "integration_id"
@@ -96,6 +96,15 @@ ActiveRecord::Schema.define(version: 20150130114423) do
     t.text     "memory"
     t.integer  "agent_id"
     t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feedbacks", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -46,46 +46,23 @@
               <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
             </ul>
             <section class="top-bar-section">
-            <ul class="left">
-                <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
+             <ul class="left">
+                <li data-tooltip class="has-tip radius" title="Features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
                 <li data-tooltip class="has-tip radius" title="How"><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></li>
-                <li data-tooltip class="has-tip radius" title="Why"><%= link_to 'Why', {:controller => '/why', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="Use Cases"><%= link_to 'Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="Contact"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
               </ul>
               <ul class="right">
-               <li class="has-tip radius" data-tooltip title="User"><a class="icon-user right-off-canvas-toggle xl-icon" title="User"><%= user_signed_in? ? (current_user.name ||= current_user.username) : 'Sign in' %></a></li>
+               <li class="has-tip radius" data-tooltip title="User"><a class="right-off-canvas-toggle" title="User"><%= user_signed_in? ? (current_user.name ||= current_user.username) : 'Sign in' %></a></li>
              </ul>
              <!-- Right Nav Section -->
              <ul class="right">
-             <!-- <li class="has-dropdown not-click">
-                <a href="#">Architecture</a>
-                <ul class="dropdown" >
-                  <li><%= link_to "Components", :controller => '/docs', :action => 'show', :section => 'architecture', :topic => 'components' %></li>
-                  <li><%= link_to "Flows", :controller => '/docs', :action => 'show', :section => 'architecture', :topic =>'flows' %></li>
-                  <li><%= link_to "Models", :controller => '/docs', :action => 'show', :section => 'architecture', :topic => 'models' %></li>
-                  <li><label>Sequences</label></li>
-                  <li><%= link_to "Apply Integration Rules", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'rules' %></li>
-                  <li><%= link_to "Execute Delivery Template", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'template' %></li>
-                  <li><%= link_to "Full Sequence Diagram", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'full' %></li>
-                  <li><%= link_to "Poll Content Changes", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'content' %></li>
-                  <li><%= link_to "Translate Diff", :controller => '/docs', :action => 'show', :section => '/sequences', :topic => 'diff' %></li>
-                </ul>
-              </li>
-              <li class="divider"></li>-->
               <li><%= link_to "FAQ", :controller => '/docs', :action => 'show', :section => 'faq', :topic => 'index' %></li>
               <li class="divider"></li>
               <li><%= link_to "How To", :controller => '/docs', :action => 'show', :section => 'how_to', :topic => 'index' %></li>
               <li class="divider"></li>
               <li><%= link_to "Reference", :controller => '/docs' %></li>
-              <!--<li class="divider"></li>
-              <li class="has-dropdown not-click">
-                <a href="#">Research</a>
-                <ul class="dropdown">
-                  <li><%= link_to "Others", :controller => '/docs', :action => 'show', :section => '/research', :topic => 'others' %></li>
-                  <li><%= link_to "SWOT", :controller => '/docs', :action => 'show', :section => '/research', :topic => 'swot' %></li>
-                </ul>
-              </li>-->
-              <li class="divider"></li>
-              <li><%= link_to "Contact", :controller => '/contact' %></li>
               <li class="divider"></li>
             </ul>
           </section>

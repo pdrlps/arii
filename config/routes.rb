@@ -1,4 +1,7 @@
 ARII::Application.routes.draw do
+
+  resources :feedbacks
+
   # Home
   root  'home#index'
   get 'home' => 'home/index'
@@ -26,7 +29,7 @@ ARII::Application.routes.draw do
   get "contact/index", to: 'contact#index'
 
   # Dashboard
-  get 'dashboard',to: redirect('/integrations')
+  get 'dashboard', to: redirect('/integrations')
 
   # Delivery control
   get "delivery/get"
@@ -110,8 +113,10 @@ ARII::Application.routes.draw do
   get "how_to" => 'how_to/index'
   get 'reference' => 'reference/index'
 
-  get "why/index"
+  # New homepage stuff
   get "how/index"
+  get "use_cases/index"
+  get "features/index"
 
   # ariip image hack
   get '/ariip/images/*all', to: redirect('/images/%{all}.png')
