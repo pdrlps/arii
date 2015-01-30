@@ -11,26 +11,46 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-
-
-   <!-- <p class="lead" id="request_access_message">We only need your email.</p>
-  <div class="row" id="request_access_form">
-    <div class="large-12 columns">
-      <div class="row collapse prefix-radius">
-        <div class="small-9 columns">
-          <input id="request_access_email" name="email" type="text" placeholder="Email">
+<h5 class="subheader">Be an early tester</h5>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-1 columns">
+          <%= f.label :name, :class => 'right inline' %>
         </div>
-        <div class="small-3 columns">
-          <a href="#" class="request_access button postfix radius">Request</a>
+        <div class="small-11 columns">
+           <%= f.text_field :name %>
         </div>
       </div>
     </div>
-  </div>-->
+  </div>
+    <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-1 columns">
+          <%= f.label :email, :class => 'right inline' %>
+        </div>
+        <div class="small-11 columns">
+           <%= f.email_field :email %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="small-12 columns">
+      <div class="row">
+        <div class="small-1 columns">
+          <%= f.label :job, :class => 'right inline' %>
+        </div>
+        <div class="small-11 columns">
+           <%= f.select :job, options_for_select([['Web Developer', 'webdeveloper'], ['Software Engineer', 'softwareengineer'], ['EAI Consultant','eaiconsultant']]), {}, {:tabindex => autotab} %>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row">
+  <div class="small-12 columns right">
+    <%= f.submit 'Submit Request', :class => 'button right success small radius' %>
+  </div>
+</div>
 <% end %>

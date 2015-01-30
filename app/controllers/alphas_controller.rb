@@ -36,25 +36,12 @@ class AlphasController < ApplicationController
     respond_with(@alpha)
   end
 
-  ##
-  # Add email to access request list
-  def request
-    @alpha = Alpha.new(alpha_params)
-    respond_to do |format|
-      if @alpha.save
-        format.json { render json: @agent, status: :created }
-       else
-        format.json { render json: @agent.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   private
     def set_alpha
       @alpha = Alpha.find(params[:id])
     end
 
     def alpha_params
-      params.require(:alpha).permit(:email)
+      params.require(:alpha).permit(:name, :email, :job)
     end
 end

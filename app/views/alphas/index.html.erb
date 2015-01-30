@@ -3,7 +3,9 @@
 <table>
   <thead>
     <tr>
+      <th>Name</th>
       <th>Email</th>
+      <th>Job</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +15,9 @@
   <tbody>
     <% @alphas.each do |alpha| %>
       <tr>
+        <td><%= alpha.name %></td>
         <td><%= alpha.email %></td>
+        <td><%= alpha.job %></td>
         <td><%= link_to 'Show', alpha %></td>
         <td><%= link_to 'Edit', edit_alpha_path(alpha) %></td>
         <td><%= link_to 'Destroy', alpha, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -18,7 +18,7 @@ class AlphasControllerTest < ActionController::TestCase
 
   test "should create alpha" do
     assert_difference('Alpha.count') do
-      post :create, alpha: { email: @alpha.email }
+      post :create, alpha: { email: @alpha.email, job: @alpha.job, name: @alpha.name }
     end
 
     assert_redirected_to alpha_path(assigns(:alpha))
@@ -35,7 +35,7 @@ class AlphasControllerTest < ActionController::TestCase
   end
 
   test "should update alpha" do
-    patch :update, id: @alpha, alpha: { email: @alpha.email }
+    patch :update, id: @alpha, alpha: { email: @alpha.email, job: @alpha.job, name: @alpha.name }
     assert_redirected_to alpha_path(assigns(:alpha))
   end
 

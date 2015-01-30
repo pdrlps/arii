@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150127154623) do
+ActiveRecord::Schema.define(version: 20150130114423) do
 
   create_table "agent_mappings", force: true do |t|
     t.integer  "integration_id"
@@ -38,7 +38,9 @@ ActiveRecord::Schema.define(version: 20150127154623) do
   add_index "agents", ["identifier"], name: "index_agents_on_identifier", unique: true, using: :btree
 
   create_table "alphas", force: true do |t|
+    t.string   "name"
     t.string   "email"
+    t.string   "job"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
