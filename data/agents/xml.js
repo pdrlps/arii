@@ -1,13 +1,13 @@
 {
-    "identifier": "xml",
-    "title": "LOVD XML Agent",
-    "help": "Load mutation data for COL3A1 gene from LOVD, available in XML format.",
+    "identifier": "df_xml",
+    "title": "DaringFireball tracker",
+    "help": "Check for new content on DaringFireball.",
     "publisher": "xml",
-    "schedule": "2h",
+    "schedule": "1h",
     "payload": {
-        "uri": "https://eds.gene.le.ac.uk/api/rest.php/variants/COL3A1",
+        "uri": "http://daringfireball.net/feeds/main",
         "cache": "id",
         "query": "//entry",
-        "selectors": "[{\"mutation\":\"title\"},{\"author\":\"author/name\"},{\"content\": \"content\"}]"
+        "selectors": "[{\"title\":\"title\"},{\"author\":\"author/name\"},{\"content\": \"content\"},{\"url\": \"link/@shorturl\"}]"
     }
 }

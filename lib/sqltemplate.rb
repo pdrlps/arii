@@ -29,6 +29,7 @@ module Services
           unless result.nil?
             response = { :status => "200", :message => "SQL Query successfully executed"}
           end
+          client.close
 
         when 'sqlserver'
           response = { :status => "400", :message => "SQL Server is unsupported" }
@@ -49,12 +50,12 @@ module Services
         if @template[:payload][:server].nil? then
           @template[:payload][:server] = 'mysql'
         end
-        
+
         if @template[:payload][:host].nil? then
           @template[:payload][:host] = 'localhost'
         end
-        
-        
+
+
         case @template[:payload][:server]
         when 'mysql'
           if (@template[:payload][:host].nil?) then

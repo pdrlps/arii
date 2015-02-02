@@ -1,7 +1,7 @@
 <% content_for :title, "#{@template.title} - #{ENV["APP_TITLE"]}" %>
 <ul class="breadcrumbs">
   <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Templates', templates_path %></li>
+  <li><%= link_to 'Endpoints', templates_path %></li>
   <li class="current"><%= @template.title %></li>
 </ul>
 <div class="row">
@@ -10,3 +10,8 @@
   </div>
 </div>
 <%= render :partial => "templates/show", locals: {:template => @template} %>
+<div class="row">
+  <div class="small-1 columns right">
+    <%= link_to 'Remove', @template, :class => 'remove right', method: :delete, data: { confirm: 'Are you sure?' } %>
+  </div>
+</div>

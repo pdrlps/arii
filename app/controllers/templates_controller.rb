@@ -142,7 +142,7 @@ class TemplatesController < ApplicationController
   # => Add existing sample templates to user.
   #
   def add
-    @object = JSON.parse(File.read("data/templates/#{params[:identifier]}.js"))
+    @object = JSON.parse(File.read("data/endpoints/#{params[:identifier]}.js"))
     @object['identifier'] = "#{@object['identifier']}_#{current_user.id}"
     @template = Template.create! @object
     @template.identifier = "#{@template.id}_#{@template.identifier}_#{SecureRandom.hex(8)}"

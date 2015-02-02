@@ -15,7 +15,7 @@
   <% if @integrations.empty? %>
   <div class="row">
     <div class="small-12 columns">
-      <p><strong>Integrations</strong> control your integration flow, connecting intelligent <%= link_to 'agents'.html_safe, {:controller => '/agents'}, :class => ''%> with delivery <%= link_to 'templates', {:controller => '/templates'}, :class => '' %>.</p>
+      <p><strong>Integrations</strong> control your integration flow, connecting intelligent <%= link_to 'agents'.html_safe, {:controller => '/agents'}, :class => ''%> with delivery <%= link_to 'endpoints', {:controller => '/templates'}, :class => '' %>.</p>
       <% if current_user.agents.empty? %>
       <h5 class="subheader">Start by creating a <%= link_to 'new agent', new_agent_path, :title => 'Create new agent', :class => '', :data => { :tooltip => ''} %></h5>
       <% else %>
@@ -81,7 +81,7 @@
         <div class="info-details">
           <h6 class="subheader">SQL to CSV file</h6>
           <span class="label radius secondary icon-publisher">sql</span>
-          <span class="label radius secondary icon-schedule">2d</span>
+          <span class="label radius secondary icon-schedule">1d</span>
           <span class="icon-forward"></span>
           <span class="label radius secondary radius icon-publisher">file</span>
         </div>
@@ -100,7 +100,7 @@
         <div class="info-details">
           <h6 class="subheader">XML to SQL table</h6>
           <span class="label radius secondary radius icon-publisher">xml</span>
-          <span class="label radius secondary radius icon-schedule">2h</span>
+          <span class="label radius secondary radius icon-schedule">1h</span>
           <span class="icon-forward"></span>
           <span class="label radius secondary radius icon-publisher">sql</span>
         </div>

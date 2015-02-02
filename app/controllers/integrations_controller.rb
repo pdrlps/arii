@@ -188,7 +188,7 @@ end
     current_user.agents.push @agent
 
     #load template
-    template_object = JSON.parse(File.read("data/templates/#{params[:template]}.js"))
+    template_object = JSON.parse(File.read("data/endpoints/#{params[:template]}.js"))
     template_object['identifier'] = "#{template_object['identifier']}_#{current_user.id}_#{@helper.random_int}"
     @template = Template.create! template_object
     @template.status = 100

@@ -16,4 +16,8 @@
   <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-<%= render :partial => "agents/show", locals: {:agent => @agent} %>
+<%= render :partial => "agents/show", locals: {:agent => @agent} %><div class="row">
+  <div class="small-12 columns right">
+    <%= link_to 'Remove', agent, :tabindex => autotab, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{agent.title} agent?" } %>
+  </div>
+</div>

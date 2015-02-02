@@ -9,8 +9,8 @@
         ago</small></span>
       </div>
       <div class="small-2 columns right text-right">
-        <span class="has-tip radius right" data-tooltip title="Edit <%= agent.title %>"><%= link_to '', edit_agent_path(agent), :data => {:tooltip => ''}, :title => "Edit #{agent.title}", :class => 'icon-settings xl-icon' %></span>
-        <span class="has-tip radius right" data-tooltip title="Execute <%= agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play xl-icon',:title => "Execute #{agent.title}", :data => {:tooltip => ''} %></span>
+        <span class="has-tip radius right" data-tooltip title="Edit <%= agent.title %>"><%= link_to '', edit_agent_path(agent), :title => "Edit #{agent.title}", :class => 'icon-settings xl-icon' %></span>
+        <span class="has-tip radius right" data-tooltip title="Execute <%= agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play xl-icon',:title => "Execute #{agent.title}" %></span>
       </div>
     </div>
     <br />
@@ -65,10 +65,5 @@
       <% end %>
     </div>
     <% end %>
-  </div>
-</div>
-<div class="row">
-  <div class="small-12 columns right">
-    <%= link_to 'Remove', agent, :tabindex => autotab, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{agent.title} agent?" } %>
   </div>
 </div>

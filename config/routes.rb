@@ -27,6 +27,7 @@ ARII::Application.routes.draw do
 
   # Contact
   get "contact/index", to: 'contact#index'
+  get 'contacts', to: redirect('/contact/index')
 
   # Dashboard
   get 'dashboard', to: redirect('/integrations')

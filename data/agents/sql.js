@@ -1,18 +1,18 @@
 {
-    "identifier": "sql",
-    "title": "WAVe SQL agent",
-    "help": "Read data for BRCA2 mutations from WAVe database, available through SQL queries.",
+    "identifier": "df_sql",
+    "title": "DaringFireball SQL agent.",
+    "help": "Read DaringFireball articles from internal database.",
     "publisher": "sql",
-    "schedule": "2d",
+    "schedule": "1d",
     "payload": {
-        "server": "mysql",
-        "host": "localhost",
-        "port": 3306,
-        "username": "demo",
-        "password": "demo1234",
-        "database": "hummer",
-        "query": "SELECT * FROM variants;",
-        "cache": "rs",
-        "selectors": "[{\"refseq\":\"rs\"},{\"variant\":\"mutation\"},{\"locus\": \"gene\"}]"
+        "server": "postgresql",
+        "host": "127.0.0.1",
+        "port": 5432,
+        "username": "daring",
+        "password": "fireball",
+        "database": "daring",
+        "query": "SELECT * FROM posts;",
+        "cache": "id",
+        "selectors": "[{\"title\":\"title\"},{\"author\":\"author\"},{\"content\": \"content\"},{\"url\": \"url\"}]"
     }
 }

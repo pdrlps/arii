@@ -1,14 +1,14 @@
 {
-	"identifier": "diseasecard_csv",
-	"title": "Diseasecard CSV Agent",
-	"help": "Load a (small) list of genes from Diseasecard, available in CSV format.",
+	"identifier": "names_csv",
+	"title": "Names monitor",
+	"help": "Load a list of fake names, available in CSV format.",
 	"publisher": "csv",
-	"schedule": "2h",
+	"schedule": "1d",
 	"payload": {
-		"uri": "http://ariip.com/diseasecard/hgnc.csv",
-		"headers": false,
+		"uri": "http://pedrolopes.net/ariip_names.csv",
+		"headers": true,
 		"delimiter": ",",
 		"cache": "0",
-		"selectors": "[{\"id\":0},{\"gene\":1},{\"name\": 2}]"
+		"selectors": "[{\"country\":4},{\"email\":5},{\"username\": 6}]"
 	}
 }
