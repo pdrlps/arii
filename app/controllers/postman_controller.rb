@@ -41,6 +41,8 @@ class PostmanController < ApplicationController
     end
 
     begin
+      p "DELIVERY #{@delivery}"
+
       @response = @delivery.execute
     rescue Exception => e
       @response = { :status => "403", :message => "[ARiiP] Unable to perform final delivery, #{e}", :identifier => params[:identifier], :error => e, :template => @template }

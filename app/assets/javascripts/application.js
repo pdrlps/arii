@@ -48,9 +48,6 @@ $(function() {
   //temp for user adding keys
   $('#user_add_api_key').on('click', update_user_generate_key);
 
-  // request access links
-  $('.request_access').on('click', request_access);
-
 });
 
 /**

@@ -16,7 +16,7 @@ module Services
       begin
 
         Mail.defaults do
-          delivery_method :smtp, :address => ENV["MAIL_ADDRESS"], :port => ENV["MAIL_PORT"], :domain => ENV["MAIL_DOMAIN"], :user_name => ENV["MAIL_USERNAME"], :password => ENV["MAIL_PASSWORD"], :authentication => ENV["MAIL_AUTHENTICATION"], :enable_starttls_auto => ENV["MAIL_STARTTLS"]
+          delivery_method :smtp, :address => ENV["MAIL_ADDRESS"], :port => ENV["MAIL_PORT"], :domain => ENV["MAIL_DOMAIN"], :user_name => ENV["MAIL_USERNAME"], :password => ENV["MAIL_PASSWORD"], :authentication => ENV["MAIL_AUTHENTICATION"], :enable_starttls_auto => ENV["MAIL_STARTTLS"], :ssl => ENV["MAIL_SSL"], :tls => ENV["MAIL_TLS"], :domain => ENV["MAIL_DOMAIN"]
         end
 
         mail = Mail.new
@@ -24,13 +24,19 @@ module Services
         mail.to = @template[:payload][:to]
         mail.subject = "[ariip] #{@template[:payload][:subject]}"
         mail.bcc = @template[:payload][:bcc]
+
         mail.cc = @template[:payload][:cc]
         mail.content_type = 'text/html; charset=UTF-8'
         mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"http://ariip.com/\">ariip</a>"
 
+        p "FUCK THIS #{mail}"
+
         mail.deliver
 
+
+
       rescue Exception => e
+        p "ERROR #{e}"
         Services::Slog.exception e
         response = { :status => "400", :message => "Unable to send email, #{e}"  }
       end
