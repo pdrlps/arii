@@ -20,7 +20,7 @@
 
 # How does ARiiP work?
 
-**ARiiP** relies on distributed agents to monitor custom content changes. When new changes are detected, **ARiiP** generates a new [Event][] and triggers the execution of any number of [templates][] associated with the starting [agent][] (through integrations).
+**ARiiP** relies on distributed agents to monitor custom content changes. When new changes are detected, **ARiiP** generates a new [Event][] and triggers the execution of any number of [endpoints][] associated with the starting [agent][] (through integrations).
 
 <hr>
 
@@ -30,15 +30,15 @@
 
 <hr>
 
-# What are templates?
+# What are endpoints?
 
-[Templates][] are used to define what to do data with the data points gathered by the [agents][]. This can go from updating a file in your Dropbox account to sending custom emails.
+[Endpoints][] are used to define what to do with the data gathered by [agents][]. This can go from updating a file in your Dropbox account to sending custom emails.
 
 <hr>
 
 # What are integrations?
 
-Putting it simply, [Integrations][] connect [agents][] with [templates][]. Hence, [integrations][] are the logical bridge between the distributed monitored [sources][] and the actions triggered by content changes.
+Putting it simply, [Integrations][] connect [agents][] with [endpoints][]. Hence, [integrations][] are the logical bridge between the distributed monitored [sources][] and the actions triggered by content changes.
 <hr>
 
 </div>
@@ -46,8 +46,8 @@ Putting it simply, [Integrations][] connect [agents][] with [templates][]. Hence
 [agent]:        /ariip/docs/#agents
 [agents]:       /ariip/docs/#agents
 [event]:        /ariip/docs/#events
-[templates]:    /ariip/docs/#templates
-[template]:     /ariip/docs/#templates
+[endpoints]:    /ariip/docs/#endpoints
+[endpoint]:     /ariip/docs/#endpoints
 [integrations]: /ariip/docs/#integrations
 [integration]:  /ariip/docs/#integrations
 [sources]:      /ariip/docs/#sources

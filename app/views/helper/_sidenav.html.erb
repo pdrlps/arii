@@ -8,9 +8,9 @@
 <br/>
 <ul class="off-canvas-list">
   <li><label>Go To</label></li>
-  <li><%= link_to 'Dashboard'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard' %></li>
+  <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Integrations' %></li>
   <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
-  <li><%= link_to 'Templates', {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Templates' %></li>
+  <li><%= link_to 'Endpoints', {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Endpoints' %></li>
   <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
 </ul>
 <!-- User not logged in, display login and social authentication links -->

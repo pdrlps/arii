@@ -114,7 +114,7 @@ A **Detector** can monitor structured files for more complex data exchange scena
 
 # Client
 
-[Agents][] can be executed locally using the [ARiiP client script](https://github.com/pdrlps/ARiiP-client). This script uses the **ARiiP** [gem][] to access **ARiiP**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the template directly).
+[Agents][] can be executed locally using the [ARiiP client script](https://github.com/pdrlps/ARiiP-client). This script uses the **ARiiP** [gem][] to access **ARiiP**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the endpoint directly).
 
 Local clients bring three key benefits to the **ARiiP** platform: distributed monitoring, improved load control and better security.
 At the architecture level, any number of agents can be remotely deployed and configured to push data to the main **ARiiP** server. 
@@ -125,204 +125,9 @@ With client-side [agents][], sensitive content,  such as authentication credenti
 
 The **Detector** engine will perform the [polling][] of configured [sources][] using configured [agents][]. Spot the Differences monitors specified resources looking for changes in the output content. **Detector**'s algorithm identifies what has changed since the last visit to a data source (using hashes and id matching). When content changes are detected, the **Detector** triggers a new [event][]. [Events][] will then be processed through configured **ARiiP** integration rules. In the system, detected events are sent for processing to the **FluxCapacitor**.
 
-# Events
+# Endpoints
 
-**Events** are occurrences of specific conditions that will trigger an [Integration][]. **ARiiP** events are registered when:
-
-- New issue  (Ex: GitHub)
-- New row in table (Ex: WAVe)
-- New image in index (Ex: Dicoogle)
-
-You can think of an **Event** as the _ignition_ of a new [integration][].
-
-Basically, they're things that happen in monitored systems which cause a defined action to happen. Additionally, events supply data about what happened. These data will be passed on to the [Integrations][] controller, which validates them and moves them to the [Postman][] for execution through the [Delivery Template][deliverytemplate].
-
-For example, say a service has a "New Row Added" event being monitored. We will detect when this event happens using a [polling][] strategy. The general event data will be something like this:
-
-    {
-      "id": 987654,
-      "create_at": "Mon, 17 Sep 2013 15:07:01 0000",
-      "agent_id": 1,
-      "payload": { ... }
-    }
-
-These key/value objects are available for mapping into the action as required.
-
-# FluxCapacitor
-
-**FluxCapacitor** is **ARiiP**'s' API. It controls everything happening within the platform, whether it was triggered internally or by any of the distributed clients.
-
-## Public Methods
-
-### Verify Cache
-
-This methods is used by [client][] [agents][] to verify if a specific set of properties has already been processed by **ARiiP**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [templates][deliverytemplate] associated with provided [agent][] for delivery.
-
-**Address**: POST to `../ARiiP/fluxcapacitor/verify.json`
-
-**Example**
-  
-      {
-      "access_token": 987654,
-      "agent":"csv_agent"",
-      "cache": 1,
-      "seed": "abc",
-      "payload": { ... }
-    }
-
-# Gem
-
-**ARiiP** [gem](http://rubygems.org/gems/ARiiP) includes all monitoring and detection features required by distributed [agents][] in a single [open-source package](https://github.com/pdrlps/ARiiP-gem).
-
-To install, add this line to your application's Gemfile:
-
-    gem 'arii'
-
-
-And then execute:
-
-    $ bundle
-
-
-Or install it yourself as:
-
-    $ gem install arii
-
-
-Sample usage can be found in **ARiiP**'s [client][].
-
-# Helper Functions
-
-**ARiiP** includes several internal functions allowing quick access to generic variables that can be used in all [templates][deliverytemplates]. These functions allow the templates to retrieve information such as date/time, random numbers or strings, among many others.
-
-## Usage
-
-**ARiiP** helper functions are used just like the template [variables][], changing only the start character form `%` to `$`. These reserved keywords are written as `ARiiP.function name`.
-
-## Function list
-
-* `date`: returns the system date
-* `datetime`: returns the system date with time included (until _ms_)
-* `environment`: returns the server execution environment (from Rails)
-* `hostname`: returns the postman server hostname
-* `random_int`: returns a random integer number
-* `random_string`: returns a random string with 8 characters
-* `random_hex`: returns a random hex string with 64 characters
-
-## Code
-
-The `ARiiP.code` function allows running arbitrary code Ruby within your template. This allows implementing simple variable comparisons or more complex operations. For instance, the functions listed previously could be reproduced using a `code` segment:
-
-* _datetime_: `${ARiiP.code( Time.now )}`
-
-Other **examples**:
-
-* _if_ statement, appending to file: `%{title},${ARiiP.code( %{b} > %{a} ? '%{big}' : '%{small}'  )}``
-
-
-Some additional notes on `code` blocks:
-
-* There are some validations to prevent executing malicious code. However, there are still open security issues. Handle with care.
-* The `code` block must return (or use) something (object, function, array) that can be cast as a String.
-* Multiline code is **not** possible.
-
-# Hooks
-
-The traditional workflow uses the [Detector][] to detect new [events][]. However, [events][] can be pushed into **ARiiP** using the Web/REST hooks interface. In this case, the hook payload is directly [pushed][push] to the [Integration][].
-Relevant data must be sent in the POST request parameters. Upon receiving these data, **ARiiP** will start the [detector][] for the identified [agent][], processing the associated [integrations][].
-
-**Address**: Hooks must [push][] data to `ARiiP/push/<agent_identifier>.js` address.
-
-# Icons
-
-Here's **ARiiP** iconography legend.
-
-<ul class="no-bullet">
-<li><a class="icon-about xl-icon"> </a> about</li>
-<li><a class="icon-add xl-icon"> </a> add (add sample agent, integration or template)</li>
-<li><a class="icon-agent xl-icon"> </a> agent</li>
-<li><a class="icon-delete xl-icon"> </a> delete/remove</li>
-<li><a class="icon-details xl-icon"> </a> details (agent or template configuration details)</li>
-<li><a class="icon-documentation xl-icon"> </a> documentation</li>
-<li><a class="icon-download xl-icon"> </a> download</li>
-<li><a class="icon-settings xl-icon"> </a> edit/settings</li>
-<li><a class="icon-list xl-icon"> </a> events (on agent: events found, on template: deliveries made)</li>
-<li><a class="icon-files xl-icon"> </a> files</li>
-<li><a class="icon-arii xl-icon"> </a> logo</li>
-<li><a class="icon-install xl-icon"> </a> install</li>
-<li><a class="icon-integration xl-icon"> </a> integration</li>
-<li><a class="icon-publisher xl-icon"> </a> publisher</li>
-<li><a class="icon-schedule xl-icon"> </a> schedule</li>
-<li><a class="icon-selectors xl-icon"> </a> selectors</li>
-<li><a class="icon-signout xl-icon"> </a> sign out</li>
-<li><a class="icon-signup xl-icon"> </a> sign up</li>
-<li><a class="icon-template xl-icon"> </a> template</li>
-<li><a class="icon-trash xl-icon"> </a> trash</li>
-<li><a class="icon-user xl-icon"> </a> user</li>
-<li><a class="icon-view xl-icon"> </a> view</li>
-</ul>
-
-# Integrations
-
-**Integrations** are the complete workflows of what users want to achieve, associating one or more [agents][] with one or more [templates][deliverytemplates].
-
-**Examples**
-
-- Add metadata to index (Ex: Dicoogle)
-- Add new data to database (Ex: WAVe)
-- Create issue from task (Ex: Redmine)
-
-You can think of **Integrations** as the full path from database SELECTs or file processing to POSTs, writes, query executions, or the creation of a resource. **Integrations** start with the [agents][] and are finalized by the [Postman](#Postman) using the specified [delivery templates][].
-
-## Metadata
-
-### Title
-
-This is a human readable label a user would see when browsing the integrations dashboard describing. Make it short but descriptive.
-
-**Example**: *Create issue*, *Add variant* or *Index document*
-
-### Identifier
-
-This is a field only really used internally for both prefill and scripting references. Needs to be at least 2 characters long, start with an alpha, and only contain a-z, A-Z, 0-9 or _.
-
-**Example**: *create_issue*, *add_variant* or *index*
-
-### Help Text
-
-This is some human-readable explanatory text, usually something that clarifies what the integration does.
-
-**Example**: *Adds a new variant to the configured database*.
-
-# Polling
-
-Polling is the process of repeatedly hitting the same endpoint looking for new data. Unfortunately, ARiiP uses the [Detector][] to do this. We don't like doing this (its wasteful), vendors don't like us doing it (again, its wasteful) and users dislike it (they have to wait a maximum interval to detect new events). However, it is the one method that is ubiquitous, so we support it.
-
-It is also closely tied into how ARiiP handles deduplication.
-
-A more modern approach uses Web/REST hooks. This way, services can [push][] data into **ARiiP**, which reduces the application load.
-
-# Postman
-
-Handles the final step of the [integrations][]: gets the [integration fields][] and applies them to the [delivery template][] for execution.
-
-# Push
-
-**ARiiP** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **ARiiP** will start processing the [agents][] specified in the push request. [Agents][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [agent][], even if they have specific monitoring schedules.
-
-# Seeds
-
-[Agents][] can have any number of **Seeds** where you can configure an initial dataset to start the monitoring. Seeds are useful for monitoring long lists of similar sources.
-
-**Seeds** configuration is identical to [agents][]'. Variables defined in **seed** selectors will replace content in the [agents][] settings, enabling the composition of dynamic queries or file access strategies.
-
-# Sources
-
-**Sources** setup the location of external content for event detection. The [Detector][] uses a [polling][] process to identify new [events][] in monitored resources. There a few changes tough, URL Routes can only be GET and SQL queries must contain a SELECT statement.
-
-# Templates
-
-**Delivery Templates** are used to define how **ARiiP** will handle [events][] data obtained by the [agents][]. 
+**Delivery Endpoints** are used to define how **ARiiP** will handle [events][] data obtained by the [agents][]. 
 
 ## Metadata
 
@@ -352,7 +157,7 @@ Human readable description of an action field, useful for describing some detail
 
 ### Publisher
 
-The type of template publisher that will be delivered by the Postman.
+The type of endpoint publisher that will be delivered by the Postman.
 
 **Available Publishers**: *url*, *sql*, *sparql*, *mail*, *file*, *json*...
 
@@ -368,7 +173,7 @@ Object containing the set of properties specific to each [delivery][delivery] ty
 
 ## Sample
 
-Sample configuration for exchanged data between the application controller and the [Integrations][]. Each [Delivery Template][deliverytemplate] type will have its own set of configuration properties, defined in the object payload.
+Sample configuration for exchanged data between the application controller and the [Integrations][]. Each [Delivery Endpoint][deliveryendpoint] type will have its own set of configuration properties, defined in the object payload.
 
     {
       "publisher": "url",
@@ -381,9 +186,9 @@ Sample configuration for exchanged data between the application controller and t
       }
     }
 
-# Template Types
+# Endpoint Types
 
-[Delivery Templates][] have one (and only one) type. This defines what processing is required in the [Postman][postman] engine for successful delivery of the data. Variables in each template are marked within `%{ }` characters.
+[Delivery Endpoints][] have one (and only one) type. This defines what processing is required in the [Postman][postman] engine for successful delivery of the data. Variables in each endpoint are marked within `%{ }` characters.
 
 ## Email
 
@@ -433,7 +238,7 @@ The body for the message being sent.
 
 ## Dropbox Management
 
-In addition to accessing files on your server workspace, **ARiiP** can interact with your Dropbox to create or update files. The configuration is just like the **File Management** template, detailed next.
+In addition to accessing files on your server workspace, **ARiiP** can interact with your Dropbox to create or update files. The configuration is just like the **File Management** endpoint, detailed next.
 
 ## File Management
 
@@ -490,7 +295,7 @@ The file URI. Not that filenames can include _variables_. The use of full system
 
 ## SQL Query
 
-The SQL Query [Delivery Template][deliverytemplate] will execute the specified SQL query in the destination database. 
+The SQL Query [Delivery Endpoint][deliveryendpoint] will execute the specified SQL query in the destination database. 
  
 ### Metadata
 
@@ -566,13 +371,13 @@ Defines what is the type of the request that will be executed by the [Postman][p
 
 ##### GET
 
-The URL Route [Delivery Template][] will issue a GET request to the defined URL. URI *keys* are used to match [Action Fields][] defined in the [variables][variables].
+The URL Route [Delivery Endpoint][] will issue a GET request to the defined URL. URI *keys* are used to match [Action Fields][] defined in the [variables][variables].
 
 **Example**: http://example.com/services/`%{id}`/`%{description}`/`%{otherpayload}`
 
 ##### POST
 
-This URL Route POSTs extracted data to the defined URL route. [Action Fields][actionfields] are mapped to specific key/value pairs in the request metadata. The POSTed payload is included in the `payload` object in the template.
+This URL Route POSTs extracted data to the defined URL route. [Action Fields][actionfields] are mapped to specific key/value pairs in the request metadata. The POSTed payload is included in the `payload` object in the endpoint.
 
 **Example**:
 
@@ -593,13 +398,208 @@ The destination URL for the request.
 
 **Property**: `uri` (maps to `ARiiP:uri`)
 
-# Variables
+# Events
 
-[Agents][] and [delivery templates][delivery] can have an endless number of variables being matched within **ARiiP**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Agents][] and [Templates][].
+**Events** are occurrences of specific conditions that will trigger an [Integration][]. **ARiiP** events are registered when:
+
+- New issue  (Ex: GitHub)
+- New row in table (Ex: WAVe)
+- New image in index (Ex: Dicoogle)
+
+You can think of an **Event** as the _ignition_ of a new [integration][].
+
+Basically, they're things that happen in monitored systems which cause a defined action to happen. Additionally, events supply data about what happened. These data will be passed on to the [Integrations][] controller, which validates them and moves them to the [Postman][] for execution through the [Delivery Endpoint][deliveryendpoint].
+
+For example, say a service has a "New Row Added" event being monitored. We will detect when this event happens using a [polling][] strategy. The general event data will be something like this:
+
+    {
+      "id": 987654,
+      "create_at": "Mon, 17 Sep 2013 15:07:01 0000",
+      "agent_id": 1,
+      "payload": { ... }
+    }
+
+These key/value objects are available for mapping into the action as required.
+
+# FluxCapacitor
+
+**FluxCapacitor** is **ARiiP**'s' API. It controls everything happening within the platform, whether it was triggered internally or by any of the distributed clients.
+
+## Public Methods
+
+### Verify Cache
+
+This methods is used by [client][] [agents][] to verify if a specific set of properties has already been processed by **ARiiP**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [endpoints][deliveryendpoint] associated with provided [agent][] for delivery.
+
+**Address**: POST to `../ARiiP/fluxcapacitor/verify.json`
+
+**Example**
+  
+      {
+      "access_token": 987654,
+      "agent":"csv_agent"",
+      "cache": 1,
+      "seed": "abc",
+      "payload": { ... }
+    }
+
+# Gem
+
+**ARiiP** [gem](http://rubygems.org/gems/ARiiP) includes all monitoring and detection features required by distributed [agents][] in a single [open-source package](https://github.com/pdrlps/ARiiP-gem).
+
+To install, add this line to your application's Gemfile:
+
+    gem 'arii'
+
+
+And then execute:
+
+    $ bundle
+
+
+Or install it yourself as:
+
+    $ gem install arii
+
+
+Sample usage can be found in **ARiiP**'s [client][].
+
+# Helper Functions
+
+**ARiiP** includes several internal functions allowing quick access to generic variables that can be used in all [endpoints][deliveryendpoints]. These functions allow the endpoints to retrieve information such as date/time, random numbers or strings, among many others.
 
 ## Usage
 
-**ARiiP** identifies variables by matching content in property values within `%{ }`. On [template][] processing, each variable is replaced with content from the sent payload. Variables can be included in SQL queries, URIs or request parameters. **Note** that **ARiiP** [helper functions][helpers] are also variables.
+**ARiiP** helper functions are used just like the endpoint [variables][], changing only the start character form `%` to `$`. These reserved keywords are written as `ARiiP.function name`.
+
+## Function list
+
+* `date`: returns the system date
+* `datetime`: returns the system date with time included (until _ms_)
+* `environment`: returns the server execution environment (from Rails)
+* `hostname`: returns the postman server hostname
+* `random_int`: returns a random integer number
+* `random_string`: returns a random string with 8 characters
+* `random_hex`: returns a random hex string with 64 characters
+
+## Code
+
+The `ARiiP.code` function allows running arbitrary code Ruby within your endpoint. This allows implementing simple variable comparisons or more complex operations. For instance, the functions listed previously could be reproduced using a `code` segment:
+
+* _datetime_: `${ARiiP.code( Time.now )}`
+
+Other **examples**:
+
+* _if_ statement, appending to file: `%{title},${ARiiP.code( %{b} > %{a} ? '%{big}' : '%{small}'  )}``
+
+
+Some additional notes on `code` blocks:
+
+* There are some validations to prevent executing malicious code. However, there are still open security issues. Handle with care.
+* The `code` block must return (or use) something (object, function, array) that can be cast as a String.
+* Multiline code is **not** possible.
+
+# Hooks
+
+The traditional workflow uses the [Detector][] to detect new [events][]. However, [events][] can be pushed into **ARiiP** using the Web/REST hooks interface. In this case, the hook payload is directly [pushed][push] to the [Integration][].
+Relevant data must be sent in the POST request parameters. Upon receiving these data, **ARiiP** will start the [detector][] for the identified [agent][], processing the associated [integrations][].
+
+**Address**: Hooks must [push][] data to `ARiiP/push/<agent_identifier>.js` address.
+
+# Icons
+
+Here's **ARiiP** iconography legend.
+
+<ul class="no-bullet">
+<li><a class="icon-about xl-icon"> </a> about</li>
+<li><a class="icon-add xl-icon"> </a> add (add sample agent, integration or endpoint)</li>
+<li><a class="icon-agent xl-icon"> </a> agent</li>
+<li><a class="icon-delete xl-icon"> </a> delete/remove</li>
+<li><a class="icon-details xl-icon"> </a> details (agent or endpoint configuration details)</li>
+<li><a class="icon-documentation xl-icon"> </a> documentation</li>
+<li><a class="icon-download xl-icon"> </a> download</li>
+<li><a class="icon-settings xl-icon"> </a> edit/settings</li>
+<li><a class="icon-list xl-icon"> </a> events (on agent: events found, on endpoint: deliveries made)</li>
+<li><a class="icon-files xl-icon"> </a> files</li>
+<li><a class="icon-arii xl-icon"> </a> logo</li>
+<li><a class="icon-install xl-icon"> </a> install</li>
+<li><a class="icon-integration xl-icon"> </a> integration</li>
+<li><a class="icon-publisher xl-icon"> </a> publisher</li>
+<li><a class="icon-schedule xl-icon"> </a> schedule</li>
+<li><a class="icon-selectors xl-icon"> </a> selectors</li>
+<li><a class="icon-signout xl-icon"> </a> sign out</li>
+<li><a class="icon-signup xl-icon"> </a> sign up</li>
+<li><a class="icon-template xl-icon"> </a> endpoint</li>
+<li><a class="icon-trash xl-icon"> </a> trash</li>
+<li><a class="icon-user xl-icon"> </a> user</li>
+<li><a class="icon-view xl-icon"> </a> view</li>
+</ul>
+
+# Integrations
+
+**Integrations** are the complete workflows of what users want to achieve, associating one or more [agents][] with one or more [endpoints][deliveryendpoints].
+
+**Examples**
+
+- Add metadata to index (Ex: Dicoogle)
+- Add new data to database (Ex: WAVe)
+- Create issue from task (Ex: Redmine)
+
+You can think of **Integrations** as the full path from database SELECTs or file processing to POSTs, writes, query executions, or the creation of a resource. **Integrations** start with the [agents][] and are finalized by the [Postman](#Postman) using the specified [delivery endpoints][].
+
+## Metadata
+
+### Title
+
+This is a human readable label a user would see when browsing the integrations dashboard describing. Make it short but descriptive.
+
+**Example**: *Create issue*, *Add variant* or *Index document*
+
+### Identifier
+
+This is a field only really used internally for both prefill and scripting references. Needs to be at least 2 characters long, start with an alpha, and only contain a-z, A-Z, 0-9 or _.
+
+**Example**: *create_issue*, *add_variant* or *index*
+
+### Help Text
+
+This is some human-readable explanatory text, usually something that clarifies what the integration does.
+
+**Example**: *Adds a new variant to the configured database*.
+
+# Polling
+
+Polling is the process of repeatedly hitting the same endpoint looking for new data. Unfortunately, ARiiP uses the [Detector][] to do this. We don't like doing this (its wasteful), vendors don't like us doing it (again, its wasteful) and users dislike it (they have to wait a maximum interval to detect new events). However, it is the one method that is ubiquitous, so we support it.
+
+It is also closely tied into how ARiiP handles deduplication.
+
+A more modern approach uses Web/REST hooks. This way, services can [push][] data into **ARiiP**, which reduces the application load.
+
+# Postman
+
+Handles the final step of the [integrations][]: gets the [integration fields][] and applies them to the [delivery endpoint][] for execution.
+
+# Push
+
+**ARiiP** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **ARiiP** will start processing the [agents][] specified in the push request. [Agents][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [agent][], even if they have specific monitoring schedules.
+
+# Seeds
+
+[Agents][] can have any number of **Seeds** where you can configure an initial dataset to start the monitoring. Seeds are useful for monitoring long lists of similar sources.
+
+**Seeds** configuration is identical to [agents][]'. Variables defined in **seed** selectors will replace content in the [agents][] settings, enabling the composition of dynamic queries or file access strategies.
+
+# Sources
+
+**Sources** setup the location of external content for event detection. The [Detector][] uses a [polling][] process to identify new [events][] in monitored resources. There a few changes tough, URL Routes can only be GET and SQL queries must contain a SELECT statement.
+
+# Variables
+
+[Agents][] and [delivery endpoints][delivery] can have an endless number of variables being matched within **ARiiP**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Agents][] and [Endpoints][].
+
+## Usage
+
+**ARiiP** identifies variables by matching content in property values within `%{ }`. On [endpoint][] processing, each variable is replaced with content from the sent payload. Variables can be included in SQL queries, URIs or request parameters. **Note** that **ARiiP** [helper functions][helpers] are also variables.
 
 **Example**:  `%{name}` is replaced by the `name` property in the calling function parameters hash. 
 
@@ -609,15 +609,17 @@ The destination URL for the request.
 [agent]:              #agents
 [agents]:             #agents
 [client]:             #client
+[Endpoint]:           #endpoints
+[Endpoints]:          #endpoints
 [gem]:                #gem
 [Integration]:        #integrations
 [Integrations]:       #integrations
 [integration fields]: #integration-fields
 [delivery]:           #deliveries
-[deliverytemplate]:   #templates
-[deliverytemplates]:  #templates
-[delivery template]:  #templates
-[delivery templates]: #templates
+[deliveryendpoint]:   #endpoints
+[deliveryendpoints]:  #endpoints
+[delivery endpoint]:  #endpoints
+[delivery endpoints]: #endpoints
 [Detector]:           #detector
 [Detectors]:          #detector
 [event]:              #events
@@ -630,6 +632,4 @@ The destination URL for the request.
 [push]:               #push
 [source]:             #sources
 [sources]:            #sources
-[Template]:           #templates
-[Templates]:          #templates
 [variables]:          #variables

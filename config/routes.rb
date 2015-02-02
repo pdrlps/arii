@@ -40,6 +40,16 @@ ARII::Application.routes.draw do
   get "docs", to: 'docs#index'
   get 'docs/:section/:topic', to: 'docs#show'
 
+  # Endpoints controls (previously Templates)
+  get 'endpoints/*all', to: redirect('/templates/%{all}')
+  post 'endpoints/*all', to: redirect('/templates/%{all}')
+  get 'endpoints', to: redirect('templates')
+  resources :templates
+  get "templates/:id/get", to: "templates#get"            # load template as JSON
+  post "templates/new"
+  get "templates/start"
+  get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
+
   # Events control
   resources :events
   resources :events do

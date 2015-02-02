@@ -41,7 +41,6 @@ class PostmanController < ApplicationController
     end
 
     begin
-      p "DELIVERY #{@delivery}"
 
       @response = @delivery.execute
     rescue Exception => e

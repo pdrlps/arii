@@ -1,9 +1,9 @@
-<% content_for :title, "Templates - #{ENV["APP_TITLE"]}" %>
+<% content_for :title, "Endpoints - #{ENV["APP_TITLE"]}" %>
 <ul class="breadcrumbs">
   <li><a href="<%= root_url %>">Home</a></li>
-  <li class="current">Templates</li>
+  <li class="current">Endpoints</li>
 </ul>
-<h1>Templates</h1>
+<h1>Endpoints</h1>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
   <%= flash[:notice].html_safe %> <a href="#" class="close">&times;</a>
@@ -11,7 +11,7 @@
 <% end %>
 
 <div class="small-9 columns">
-<h3 class="subheader">Active Templates</h3>
+<h3 class="subheader">Active Endpoints</h3>
   <% @templates.each do |template| %>
   <div class="row agent-info <%= (template.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-11 columns left">
@@ -30,20 +30,20 @@
     </div>
   </div>
   <% end %>
-  <h5 class="subheader">Create <%= link_to 'new template', new_template_path, :class => '' %></h5>
+  <h5 class="subheader">Create <%= link_to 'new endpoint', new_template_path, :class => '' %></h5>
   <hr>
-  <h5 class="subheader">or <strong>add a sample template</strong></h5>
+  <h5 class="subheader">or <strong>add a sample endpoint</strong></h5>
 
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
-        <h6 class="subheader">SQL Template</h6>
+        <h6 class="subheader">SQL Endpoint</h6>
         <span class="label secondary radius icon-publisher">sql</span>
       </div>
     </div>
     <div class="small-1 columns right">
       <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL template"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add xl-icon action right',:title => 'Add sample SQL template', :data => {:tooltip => ''} %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add xl-icon action right',:title => 'Add sample SQL template', :data => {:tooltip => ''} %></span>
       </div>
     </div>
   </div>
@@ -51,13 +51,13 @@
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
-        <h6 class="subheader">URL Template</h6>
+        <h6 class="subheader">URL Endpoint</h6>
         <span class="label radius secondary icon-publisher">url</span>
       </div>
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample URL template"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add action right',:title => 'Add sample URL template', :data => {:tooltip => ''} %></span>
+         <span class="has-tip tip-top radius" data-tooltip title="Add sample URL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add action right',:title => 'Add sample URL endpoint', :data => {:tooltip => ''} %></span>
       </div>
     </div>
   </div>
@@ -65,13 +65,13 @@
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
-        <h6 class="subheader">File Template</h6>
+        <h6 class="subheader">File Endpoint</h6>
         <span class="label radius secondary icon-publisher">file</span>
       </div>
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample file template"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add action right',:title => 'Add sample File template', :data => {:tooltip => ''} %></span>
+         <span class="has-tip tip-top radius" data-tooltip title="Add sample file endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add action right',:title => 'Add sample File endpoint', :data => {:tooltip => ''} %></span>
       </div>
     </div>
   </div>
@@ -79,13 +79,13 @@
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
-        <h6 class="subheader">Dropbox Template</h6>
+        <h6 class="subheader">Dropbox Endpoint</h6>
         <span class="label radius secondary icon-publisher">dropbox</span>
       </div>
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample Dropbox file template"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'dropbox'}, :class => 'icon-add action right',:title => 'Add sample Dropbox template', :data => {:tooltip => ''} %></span>
+         <span class="has-tip tip-top radius" data-tooltip title="Add sample Dropbox file endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'dropbox'}, :class => 'icon-add action right',:title => 'Add sample Dropbox endpoint', :data => {:tooltip => ''} %></span>
       </div>
     </div>
   </div>
@@ -93,20 +93,20 @@
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
-        <h6 class="subheader">Mail Template</h6>
+        <h6 class="subheader">Mail Endpoint</h6>
         <span class="label radius secondary icon-publisher">mail</span>
       </div>
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample mail template"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add action right',:title => 'Add sample Mail template', :data => {:tooltip => ''} %></span>
+         <span class="has-tip tip-top radius" data-tooltip title="Add sample mail endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add action right',:title => 'Add sample Mail endpoint', :data => {:tooltip => ''} %></span>
       </div>
     </div>
   </div>
 
 </div>
 <div class="small-3 columns right">
-  <%= link_to ' New Template', new_template_path, :class => 'button small radius icon-template', :title => 'Create new template' %>
+  <%= link_to ' New Endpoint', new_template_path, :class => 'button small radius icon-template', :title => 'Create new template' %>
   <h4>Go to</h4>
   <ul class="no-bullet">
     <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard'%></li>

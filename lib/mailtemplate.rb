@@ -29,14 +29,9 @@ module Services
         mail.content_type = 'text/html; charset=UTF-8'
         mail.body = "#{@template[:payload][:message]}<br /><br />Message sent automatically by <a href=\"http://ariip.com/\">ariip</a>"
 
-        p "FUCK THIS #{mail}"
 
         mail.deliver
-
-
-
       rescue Exception => e
-        p "ERROR #{e}"
         Services::Slog.exception e
         response = { :status => "400", :message => "Unable to send email, #{e}"  }
       end

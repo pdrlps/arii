@@ -17,9 +17,9 @@
 - You can create new agents in the [agents][] listing page, pressing the **New Agent** button.
 <hr>
 
-# How to create new templates?
+# How to create new endpoints?
 
-- You can create new templates in the [templates][] listing page, pressing the **New Template** button.
+- You can create new endpoints in the [endpoint][] listing page, pressing the **New Endpoint** button.
 <hr>
 </div>
 
@@ -27,8 +27,8 @@
 [agent]:        /ariip/docs/#agents
 [agents]:       /ariip/docs/#agents
 [event]:        /ariip/docs/#events
-[templates]:    /ariip/docs/#templates
-[template]:     /ariip/docs/#templates
+[endpoints]:    /ariip/docs/#endpoints
+[endpoint]:     /ariip/docs/#endpoints
 [integrations]: /ariip/docs/#integrations
 [integration]:  /ariip/docs/#integrations
 [sources]:      /ariip/docs/#sources

@@ -40,10 +40,10 @@
       </div>
     </div>
   </div>
-  <!-- Templates -->
+  <!-- Endpoints -->
   <div class="row">
     <div class="small-12 medium-2 large-2 columns">
-      <h3><%= pluralize(@integration.templates.size, 'Template') %></h3>
+      <h3><%= pluralize(@integration.templates.size, 'Endpoint') %></h3>
     </div>
     <div class="small-12 medium-10 large-10 columns">
       <% @integration.templates.each do |template| %>
@@ -51,11 +51,11 @@
       <% end %>
       <div class="row" id="edit_select_template">
         <div class="small-3 medium-3 large-3 columns">
-        <label class="right inline">Add template</label>
+        <label class="right inline">Add endpoint</label>
         </div>
         <div class="small-9 medium-9 large-9 columns">
           <select id="edit_template_select_list" tabindex="8">
-            <option value="0" selected="selected">Create new template...</option>
+            <option value="0" selected="selected">Create new endpoint...</option>
             <% @templates.each do |template| %>
             <option value="<%= template.id %>"><%= template.title %></option>
             <% end %>

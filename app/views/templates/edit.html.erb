@@ -5,11 +5,11 @@
 <% content_for :title, "Edit #{@template.title} - #{ENV["APP_TITLE"]}" %>
 <ul class="breadcrumbs">
   <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Templates', templates_path %></li>
+  <li><%= link_to 'Endpoints', templates_path %></li>
   <li><%= link_to @template.title, @template %></li>
   <li class="current">Edit <%= @template.title %></li>
 </ul>
-<h1>Editing <strong><%= @template.title %></strong> template</h1>
+<h1>Editing <strong><%= @template.title %></strong> endpoint</h1>
 
 <%= render 'form' %>
 
