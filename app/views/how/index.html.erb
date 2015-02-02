@@ -1,14 +1,50 @@
 <% content_for :title, "How it works - #{ENV["APP_TITLE"]}" %>
 <ul class="breadcrumbs animated fadeIn">
     <li><a href="<%= root_url %>">Home</a></li>
-    <li class="current">How</li>
+    <li class="current">How it works</li>
 </ul>
-<h1 class="animated fadeIn">How <strong>ARiiP</strong> works</h1>
+<h1 class="animated fadeIn">What is <strong>ARiiP</strong>?</h1>
+<div class="row">
+    <div class="small-6 columns">
 
+    </div>
+    <div class="small-6 columns">
+        <strong>ARiiP</strong> easily connects any data and services you use, enabling the automation of miscellaneous integration and interoperability tasks.
+        <br />
+        <a href="#" data-reveal-id="request_access" class="button success radius">Request access</a>
+    </div>
+</div>
+<h1 class="animated fadeIn">How <strong>ARiiP</strong> works</h1>
+<div class="row animated fadeIn">
+    <div class="small-6 columns">
+        <h2 class="subheader">1. Setup your integrations</h2>
+    </div>
+    <div class="small-6 columns">
+    </div>
+</div>
+<hr>
+<div class="row animated fadeIn">
+    <div class="small-6 columns">
+        <h2 class="subheader">2. ARiiP tracks everything</h2>
+    </div>
+    <div class="small-6 columns">
+    </div>
+</div>
+<hr>
+<div class="row animated fadeIn">
+    <div class="small-6 columns">
+        <h2 class="subheader">3. You relax</h2>
+    </div>
+    <div class="small-6 columns">
+    </div>
+</div>
+<hr>
 <div class="row animated fadeIn">
     <div class="small-12 columns">
         <p>
-           Check the <%= link_to 'docs', {:controller => '/docs'}, :class => 'icon-documentation xl-icon' %>.
+           For further information, check the <%= link_to 'full documentation', {:controller => '/docs'}, :class => 'icon-documentation' %>.
         </p>
     </div>
 </div>
+
+<%= render(:partial => 'helper/requestaccess') %>
