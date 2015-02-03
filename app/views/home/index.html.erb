@@ -1,14 +1,12 @@
 <div class="row" id="home">
+<br/>
+<br/>
     <div class="row">
       <div class="large-6 columns">
         <h3>Automated Real-time Integration &amp; Interoperability Platform</h3>
         <h5 class="subheader">
           <strong>ARiiP</strong>
-          brings the power of automated real-time data integration to everyone. Quickly create new integrations delivering your data
-          <strong>from</strong>
-          miscellaneous heterogeneous resources
-          <strong>to</strong>
-          any destination.</h5>
+          brings the power of automated real-time data integration to everyone. Quickly create new integrations connecting your data and services to anything.</h5>
           <p>
             <%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => 'button radius ' %>
             <a href="#" data-reveal-id="request_access" class="button success radius">Request access</a>
@@ -24,19 +22,20 @@
     <div class="row centered-text">
 
       <div class="medium-3 large-3 columns">
-        <div class="icon-agent huge">
-        </div>
+        <div class="icon-agent huge"></div>
         <h5>Automation</h5>
         <p class="small-text">Create automated integration pipelines. No more scripting and manually launching tasks: with
           <strong>ARiiP</strong>, the platform does the work for you.</p>
+
       </div>
 
 <div class="medium-3 large-3 columns">
-        <%= link_to '<div class="icon-realtime huge"></div>'.html_safe, integrations_path %>
+        <div class="icon-realtime huge"></div>
         <h5>Real-time</h5>
         <p class="small-text">No more integration snapshots. Where traditional data integration strategies create a unique version of aggregated data, with
           <strong>ARiiP</strong>
           the integration is continuous and in (near) real time.</p>
+
       </div>
 
       <div class="medium-3 large-3 columns">
@@ -46,6 +45,7 @@
         <p class="small-text">Integrate everything. If there&apos;s a way to get the data,
           <strong>ARiiP</strong>
           can get it for you. From complex SQL queries to JSON objects up to LinkedData URIs, multiple formats can be delivered to your endpoint.</p>
+
       </div>
 
       <div class="medium-3 large-3 columns">
@@ -55,9 +55,24 @@
         <p class="small-text">Delivery endpoints to interoperate with everything. From custom SQL queries, to file appends, to web service calls or sending emails, with
           <strong>ARiiP</strong>
           integrated data can be sent anywhere.</p>
+
       </div>
 
 
+    </div>
+    <div class="row centered-text">
+      <div class="medium-3 large-3 columns">
+      <%= link_to 'More', {:controller => 'features', :action => 'index', :anchor => 'automation'}, :class => 'button tiny radius icon-add secondary' %>
+      </div>
+      <div class="medium-3 large-3 columns">
+      <%= link_to 'More', {:controller => 'features', :action => 'index', :anchor => 'realtime'}, :class => 'button tiny radius icon-add secondary' %>
+      </div>
+      <div class="medium-3 large-3 columns">
+      <%= link_to 'More', {:controller => 'features', :action => 'index', :anchor => 'integration'}, :class => 'button tiny radius icon-add secondary' %>
+      </div>
+      <div class="medium-3 large-3 columns">
+      <%= link_to 'More', {:controller => 'features', :action => 'index', :anchor => 'interoperability'}, :class => 'button tiny radius icon-add secondary' %>
+      </div>
     </div>
   </div>
 

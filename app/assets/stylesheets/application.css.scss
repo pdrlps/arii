@@ -217,7 +217,10 @@ a[class^='icon-user']:before, a[class*=" icon-user"]:before {
 }
 
 .icon-template:before {
- content: '\1F4C4';
+ content: '\E723';
+}
+.icon-endpoint:before {
+ content: '\E723';
 }
 .icon-realtime:before {
  content: '\E771';

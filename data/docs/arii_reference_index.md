@@ -14,10 +14,11 @@
 
 # Agents
 
-**Agents** use [Detectors][] to monitor, in real-time, via [polling][], external [sources][] for content changes.
+**Agents** use [Detectors][] to monitor, in real-time, via [polling][], external [sources][] for content changes. Content changes trigger new events.
 
-**Agents** can be run at **ARiiP**'s server, or configured for local execution using the **ARiiP** [client][].
+**Agents** can be run at **ARiiP**'s server, or configured for local execution using the **ARiiP** [client][]. 
 
+**Agents** can also be setup to receive events data from external sources, via [push][]. This means a data package is POSTed to an predefined service.
 
 # Agent Publishers
 

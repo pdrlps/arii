@@ -12,9 +12,9 @@
 
  <div class="large-9 columns" role="content"  markdown="1">
 
-# Use Case 1
+# CRM management
 
-# Use Case 2
+# Feed tracking
 
 </div>
 
