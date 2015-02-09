@@ -8,6 +8,6 @@
         "uri": "http://daringfireball.net/feeds/main",
         "cache": "id",
         "query": "//entry",
-        "selectors": "[{\"title\":\"title\"},{\"author\":\"author/name\"},{\"content\": \"content\"},{\"url\": \"link/@shorturl\"}]"
+        "selectors": "[{\"title\":\"title\"},{\"author\":\"author/name\"},{\"content\": \"content\"},{\"url\": \"link[@rel='shorturl']\"}]"
     }
 }

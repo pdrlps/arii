@@ -267,7 +267,8 @@ a[class^='icon-user']:before, a[class*=" icon-user"]:before {
 .icon-trash:before { content: '\E729'; color: #FF0000;}
 .icon-mail:before { content: '\1F53F';}
 a[class^='icon-install']:before, a[class*=" icon-install"]:before { font-size: 200%;content: '\E778';}
-.icon-play:before { margin-left: -10px; content: '\25B6'; float: left;}
+/*.icon-play:before { margin-left: -10px; content: '\25B6'; float: left;}*/
+.icon-play:before { content: '\25B6'; }
 
 /** Social icons **/
 .icon-facebook:before { font-family: 'entypo-social'; content: '\F30E'; }

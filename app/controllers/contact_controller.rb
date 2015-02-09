@@ -1,5 +1,4 @@
 class ContactController < ApplicationController
-  layout "documentation"
 
   def index
     @feedback = Feedback.new

@@ -47,8 +47,8 @@
             <% end %>
           </ul>
         </div>
-        <div class="small-1 columns icon-forward" style="font-size: 2em;">
-          &nbsp;
+        <div class="small-1 columns icon-forward">
+
         </div>
         <div class="small-5 columns">
           <ul class="no-bullet">
@@ -67,6 +67,7 @@
         <span class="has-tip tip-right radius action right" data-tooltip title="Execute <%=integration.title%>"><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'icon-play',:title => "Execute #{integration.title}" %></span>
         <span class="has-tip tip-right radius action right" data-tooltip title="Edit <%=integration.title%>"><%= link_to '', edit_integration_path(integration), :class => 'action right icon-settings' %></span>
         <span class="has-tip tip-right radius action right" data-tooltip title="View <%=integration.title%>"><%= link_to '', integration, :class => 'action right icon-view' %></span>
+        <br>
       </div>
     </div>
     <% end %>

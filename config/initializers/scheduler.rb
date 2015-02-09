@@ -12,7 +12,7 @@ require 'json'
 #     Services::Checkup.new.boot
 #   rescue Exception => e
 #     Services::Slog.exception e
-#   ensure  
+#   ensure
 #     ActiveRecord::Base.connection_pool.release_connection
 #   end
 # }
