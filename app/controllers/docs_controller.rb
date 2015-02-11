@@ -1,5 +1,5 @@
 class DocsController < ApplicationController
-	#layout "documentation"
+	layout "documentation"
 
 	def show
 		generate_content params[:section], params[:topic]

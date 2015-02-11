@@ -4,8 +4,12 @@ class FeedbacksController < ApplicationController
   respond_to :html
 
   def index
-    @feedbacks = Feedback.all
-    respond_with(@feedbacks)
+    if current_user.status == 110
+      @feedbacks = Feedback.all
+      respond_with(@feedbacks)
+    else
+      redirect_to root_url, :notice => 'Unauthorized Access.'
+    end
   end
 
   def show

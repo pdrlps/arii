@@ -27,6 +27,7 @@ JSON.parse(ENV["APP_SCHEDULE"]).each do |timing|
           unless ActiveRecord::Base.connected?
             ActiveRecord::Base.connection.verify!(0)
           end
+          Services::Slog.info({:message => "Starting #{schedule} check", :module => "Scheduler", :task => "scheduling", :extra => {:schedule => schedule}})
           Services::Checkup.new.check(schedule)
         rescue Exception => e
           Services::Slog.exception e

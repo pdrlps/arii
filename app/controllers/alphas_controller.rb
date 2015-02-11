@@ -4,8 +4,12 @@ class AlphasController < ApplicationController
   respond_to :html
 
   def index
-    @alphas = Alpha.all
-    respond_with(@alphas)
+    if current_user.status == 110
+      @alphas = Alpha.all
+      respond_with(@alphas)
+    else
+      redirect_to root_url, :notice => 'Unauthorized Access.'
+    end
   end
 
   def show

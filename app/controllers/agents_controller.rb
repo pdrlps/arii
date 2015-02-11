@@ -131,7 +131,6 @@ class AgentsController < ApplicationController
 
   def import
     @file = File.read("data/agents/#{params[:identifier]}.js")
-    puts @file
     @agent = Agent.create! JSON.parse(@file)
 
     response = { :status => 200, :message => "[ARiiP]: agent #{params[:identifier]} imported", :id => @agent[:id] }

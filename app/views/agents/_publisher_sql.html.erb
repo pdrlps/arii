@@ -3,10 +3,7 @@
     <label for="agent_payload_sqlserver" class="right inline">Server</label>
   </div>
   <div class="small-9 columns">
-    <select id="agent_sqlserver" name="agent[server]" tabindex="<%= autotab %>">
-      <option selected="selected" value="mysql">MySQL</option>
-      <option value="postgresql">Postgres</option>
-    </select>
+    <%= select_tag 'agent_payload_sqlserver', options_for_select([['MySQL', 'mysql'], ['Postgres', 'postgresql']], {:selected => @agent.server}), {:tabindex => autotab, :name => 'agent[server]'} %>
   </div>
 </div>
 <div class="row">
