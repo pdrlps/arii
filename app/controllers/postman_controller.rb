@@ -9,12 +9,11 @@ require 'raven'
 
 class PostmanController < ApplicationController
   def deliver
-    Services::Slog.debug({:message => "Starting delivery for #{params[:identifier]}", :module => "Postman", :task => "deliver", :extra => {:template => params[:identifier], :params => params}})
+    Services::Slog.debug({:message => "Starting delivery for #{params[:identifier]}", :module => "Postman", :task => "deliver", :extra => {:endpoint => params[:identifier], :params => params}})
 
     @delivery
     begin
       @template = Template.find_by! identifier: params[:identifier]
-
 
       case @template[:publisher]
       when 'sql'

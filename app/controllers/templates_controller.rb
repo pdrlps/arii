@@ -64,6 +64,7 @@ class TemplatesController < ApplicationController
       if @template.save
         current_user.templates.push(@template)
         current_user.save
+        Services::Slog.info({:message => "New endpoint created", :module => "EndpointsController", :task => "create_endpoint", :extra => {:endpoint => @template.identifier, :user => current_user, :payload => @template}})
         #format.html { redirect_to @template, notice: 'Template was successfully created.' }
         #format.json { render action: 'show', status: :created, location: @template }
         format.json { render json: @template, status: :created }

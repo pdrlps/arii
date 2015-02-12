@@ -27,6 +27,7 @@ class FeedbacksController < ApplicationController
   def create
     @feedback = Feedback.new(feedback_params)
     flash[:notice] = 'Feedback was successfully created.' if @feedback.save
+    Services::Slog.info({:message => "New feedback saved", :module => "FeedbacksController", :task => "create_feedback", :extra => {:feedback => @feedback}})
     respond_with(@feedback)
   end
 

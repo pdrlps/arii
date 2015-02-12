@@ -27,6 +27,7 @@ class AlphasController < ApplicationController
   def create
     @alpha = Alpha.new(alpha_params)
     flash[:notice] = 'Alpha was successfully created.' if @alpha.save
+    Services::Slog.info({:message => "New Alpha request", :module => "AlphasController", :task => "create_alpha", :extra => {:alpha => @alpha}})
     respond_with(@alpha)
   end
 
@@ -41,11 +42,11 @@ class AlphasController < ApplicationController
   end
 
   private
-    def set_alpha
-      @alpha = Alpha.find(params[:id])
-    end
+  def set_alpha
+    @alpha = Alpha.find(params[:id])
+  end
 
-    def alpha_params
-      params.require(:alpha).permit(:name, :email, :job)
-    end
+  def alpha_params
+    params.require(:alpha).permit(:name, :email, :job)
+  end
 end

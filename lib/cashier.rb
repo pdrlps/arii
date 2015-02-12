@@ -40,7 +40,7 @@ module Services
         # the actual verification
         begin
           # commented, do not log all cache verifications
-          Services::Slog.debug({:message => "Verifying cache", :module => "Cashier", :task => "cache", :extra => {:agent => agent[:identifier], :memory => memory, :payload => payload, :seed => seed, :cache => "redis"}})
+          #Services::Slog.debug({:message => "Verifying cache", :module => "Cashier", :task => "cache", :extra => {:agent => agent[:identifier], :memory => memory, :payload => payload, :seed => seed, :cache => "redis"}})
           if @@redis.hexists("ariip:#{agent[:identifier]}:#{seed}", "#{memory}") then
             # already cached, ignore
             response = {:status => 200, :message => "[ARiiP][Cashier] Nothing to update"}

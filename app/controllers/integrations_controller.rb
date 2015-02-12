@@ -85,7 +85,7 @@ class IntegrationsController < ApplicationController
   def destroy
     # remove integrations from user
     begin
-     current_user.integrations.delete(@integration)
+      current_user.integrations.delete(@integration)
 
       # remove integrations from agents
       current_user.agents.each do |agent|
@@ -106,6 +106,48 @@ class IntegrationsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to integrations_url }
       format.json { head :no_content }
+    end
+  end
+
+  ##
+  # Set integration as paused (will not execute!). Status = 400
+  def pause
+    begin
+      @integration = current_user.integrations.find(params[:id])
+      @integration.status = 400
+
+      if @integration.save
+        respond_to do |format|
+          format.json {render json: @integration}
+        end
+      else
+        respond_to do |format|
+          format.json {render json: @integration}
+        end
+      end
+    rescue Exception => e
+      Services::Slog.exception e
+    end
+  end
+
+  ##
+  # Set integration as active (will not execute!). Status = 100
+  def play
+    begin
+      @integration = current_user.integrations.find(params[:id])
+      @integration.status = 100
+
+      if @integration.save
+        respond_to do |format|
+          format.json {render json: @integration}
+        end
+      else
+        respond_to do |format|
+          format.json {render json: @integration}
+        end
+      end
+    rescue Exception => e
+      Services::Slog.exception e
     end
   end
 
@@ -146,32 +188,32 @@ class IntegrationsController < ApplicationController
   end
 
 
-##
-# => Start agent monitoring process (on demand).
-#
-def execute
-  begin
-    @integration = Integration.all.find(params[:id])
+  ##
+  # => Start agent monitoring process (on demand).
+  #
+  def execute
+    begin
+      @integration = Integration.all.find(params[:id])
 
-    @integration.agents.each do |agent|
-      Thread.new {
-        begin
-          agent.execute
-        rescue Exception => e
-          Services::Slog.exception e
-        end
-      }
+      @integration.agents.each do |agent|
+        Thread.new {
+          begin
+            agent.execute
+          rescue Exception => e
+            Services::Slog.exception e
+          end
+        }
+      end
+      respond_to do |format|
+        format.html { redirect_to @integration, notice: 'Integration execution started.' }
+      end
+    rescue Exception => e
+      Services::Slog.exception e
     end
-    respond_to do |format|
-      format.html { redirect_to @integration, notice: 'Integration execution started.' }
-    end
-  rescue Exception => e
-    Services::Slog.exception e
+
   end
 
-end
-
-    ##
+  ##
   # => Add existing sample integration to user.
   #
   def add

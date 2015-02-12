@@ -64,6 +64,8 @@ class AgentsController < ApplicationController
     @agent.events_count = 0
     @agent.identifier = "#{@agent.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
 
+
+
     # include seed in agent?
     if params[:seed][:publisher] != 'none' then
       @seed = @agent.seeds.build(seed_params)
@@ -73,8 +75,6 @@ class AgentsController < ApplicationController
       if @agent.save
         current_user.agents.push(@agent)
         current_user.save
-        #format.html { redirect_to @agent, notice: 'Agent was successfully created.' }
-        #format.json { render action: json: @integration, status: :created#'show', status: :created, location: @agent }
         format.json { render json: @agent, status: :created }
       else
         format.html { render action: 'new' }

@@ -43,7 +43,59 @@ $(function() {
 	// Add template to integration from edit
 	$('#edit_save_template_select').on('click', edit_save_template_select);
 
+	/***
+	 *
+	 * Play/Pause integrations handlers
+	 *
+	 ***/
+
+	 // Play paused integration
+	$('.integration_play').on('click', integration_play);
+
+	// Pause active integration
+	$('.integration_pause').on('click', integration_pause);
+	//
+
 });
+
+/**
+ * Pause integration handler
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+function integration_pause(event) {
+	event.preventDefault();
+	$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
+		if (data.status === 400) {
+			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
+			$('#integration_pause_' + data.id).remove();
+			$('#integration_play_' + data.id).html('<a href="#" data-id="' +data.id + '" class="icon-play integration_play">&nbsp; </a>');
+			$('#integration_play_' + data.id).attr('title','Enable ' + data.title);
+			$('#integration_play_' + data.id).data('title','Enable ' + data.title);
+			$('.integration_play').on('click', integration_play);
+			$(document).foundation('reflow');
+		}
+	});
+}
+
+/**
+ * Play integration handler
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+function integration_play(event) {
+	event.preventDefault();
+	$.getJSON('../integrations/' + $(this).data('id') + '/play', function(data) {
+		if (data.status === 100) {
+			$("#integration_details_" + data.id).removeClass('info-disabled').addClass('info-enabled');
+
+			$('#integration_play_' + data.id).html('<a href="../integrations/' + data.id + '/execute" class="icon-play integration_play" data-id="' +data.id + '">&nbsp; </a>').attr('title','Execute ' + data.title).removeClass('integration_play');
+			$('<span class="has-tip tip-right radius action right" id="integration_pause_' +data.id + '" data-tooltip title="Disable integration"><a class="icon-pause integration_pause" href="#" data-id="' + data.id + '" >&nbsp; </a></span>').insertAfter($('#integration_play_' + data.id));
+			$('.integration_pause').on('click', integration_pause);
+			$(document).foundation('reflow');
+		}
+	});
+}
 
 /**
  * On new integration, add agent to integration from select.

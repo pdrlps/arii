@@ -24,15 +24,13 @@
       <% else %>
       <h5 class="subheader">Your agents and endpoints are ready, create a <%= link_to 'new integration'.html_safe, new_integration_path, :class => '' %></h5>
       <% end %>
-
       <% end %>
     </div>
   </div>
   <% else %>
-
-  <h3 class="subheader">Active Integrations</h3>
+  <h3 class="subheader">Integrations</h3>
   <% @integrations.each do |integration| %>
-  <div class="row agent-info <%= (integration.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
+  <div id="integration_details_<%= integration.id %>" class="row agent-info <%= (integration.status != 400) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-11 columns left">
       <h6 class="subheader"><%= integration.title %></h6>
       <div class="row">
@@ -48,87 +46,93 @@
           </ul>
         </div>
         <div class="small-1 columns icon-forward">
-
         </div>
         <div class="small-5 columns">
           <ul class="no-bullet">
             <% integration.templates.each do |template| %>
             <li><%= link_to template.title, template %>
-              <span class="label secondary radius icon-publisher"><%= template.publisher %></span></li>
-              <% end %>
-            </ul>
-          </div>
-          <div class="small-1 columns">
-            &nbsp;
-          </div>
+            <span class="label secondary radius icon-publisher"><%= template.publisher %></span></li>
+            <% end %>
+          </ul>
         </div>
-      </div>
-      <div class="small-1 columns right">
-        <span class="has-tip tip-right radius action right" data-tooltip title="Execute <%=integration.title%>"><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'icon-play',:title => "Execute #{integration.title}" %></span>
-        <span class="has-tip tip-right radius action right" data-tooltip title="Edit <%=integration.title%>"><%= link_to '', edit_integration_path(integration), :class => 'action right icon-settings' %></span>
-        <span class="has-tip tip-right radius action right" data-tooltip title="View <%=integration.title%>"><%= link_to '', integration, :class => 'action right icon-view' %></span>
-        <br>
-      </div>
-    </div>
-    <% end %>
-    <h5 class="subheader">Create a <%= link_to 'new integration'.html_safe, new_integration_path, :class => '' %></h5>
-    <% end %>
-    <hr>
-    <h5 class="subheader">or <strong>add a sample integration</strong></h5>
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="left">
-        </div>
-        <div class="info-details">
-          <h6 class="subheader">SQL to CSV file</h6>
-          <span class="label radius secondary icon-publisher">sql</span>
-          <span class="label radius secondary icon-schedule">1d</span>
-          <span class="icon-forward"></span>
-          <span class="label radius secondary radius icon-publisher">file</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-right radius action right" data-tooltip title="Add SQL results to CSV file sample integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action right icon-add', :title => "Add SQL results to CSV file sample integration" %></span>
+        <div class="small-1 columns">
+          &nbsp;
         </div>
       </div>
     </div>
-
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="left">
-        </div>
-        <div class="info-details">
-          <h6 class="subheader">XML to SQL table</h6>
-          <span class="label radius secondary radius icon-publisher">xml</span>
-          <span class="label radius secondary radius icon-schedule">1h</span>
-          <span class="icon-forward"></span>
-          <span class="label radius secondary radius icon-publisher">sql</span>
-        </div>
+    <div class="small-1 columns right">
+      <%
+      if integration.status == 100
+      %>
+      <span class="has-tip tip-right radius action right" id="integration_play_<%= integration.id %>" data-tooltip title="Execute <%=integration.title%>"><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'icon-play',:title => "Execute #{integration.title}" %></span>
+      <span class="has-tip tip-right radius action right " id="integration_pause_<%= integration.id %>" data-tooltip title="Disable <%=integration.title%>"><a data-id="<%= integration.id %>" class="integration_pause icon-pause" href="#">&nbsp; </a></span>
+      <% else %>
+      <span class="has-tip tip-right radius action right " id="integration_play_<%= integration.id %>" data-tooltip title="Enable <%=integration.title%>"><a href="#" class="icon-play integration_play" title="Play <%= integration.title %>" data-id="<%= integration.id %>">&nbsp; </a></span>
+      <% end
+      %>
+      <span class="has-tip tip-right radius action right" data-tooltip title="Edit <%=integration.title%>"><%= link_to '', edit_integration_path(integration), :class => '  icon-settings' %></span>
+      <span class="has-tip tip-right radius action right" data-tooltip title="View <%=integration.title%>"><%= link_to '', integration, :class => '  icon-view' %></span>
+      <br>
+    </div>
+  </div>
+  <% end %>
+  <h5 class="subheader">Create a <%= link_to 'new integration'.html_safe, new_integration_path, :class => '' %></h5>
+  <% end %>
+  <hr>
+  <h5 class="subheader">or <strong>add a sample integration</strong></h5>
+  <div class="row agent-info info-enabled">
+    <div class="small-11 columns">
+      <div class="left">
       </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-right radius action right" data-tooltip title="Add XML to SQL table integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action right icon-add', :title => "Add XML to SQL table integration" %></span>
-        </div>
+      <div class="info-details">
+        <h6 class="subheader">SQL to CSV file</h6>
+        <span class="label radius secondary icon-publisher">sql</span>
+        <span class="label radius secondary icon-schedule">1d</span>
+        <span class="icon-forward"></span>
+        <span class="label radius secondary radius icon-publisher">file</span>
+      </div>
+    </div>
+    <div class="small-1 columns right">
+      <div class="right">
+        <span class="has-tip tip-right radius action right" data-tooltip title="Add SQL results to CSV file sample integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action right icon-add', :title => "Add SQL results to CSV file sample integration" %></span>
       </div>
     </div>
   </div>
-  <!-- sidebar -->
-  <div class="small-3 columns">
-    <% if current_user.agents.empty? %>
-    <%= link_to 'New Agent', new_agent_path, :title => 'Create new agent', :class => 'button small radius icon-agent' %>
-    <% else %>
-    <% if current_user.templates.empty? %>
-    <%= link_to ' New Template', new_template_path, :class => 'button small radius icon-template' %>
-    <% else %>
-    <%= link_to ' New Integration'.html_safe, new_integration_path, :class => 'button small radius icon-integration' %>
-    <% end %>
-    <% end %>
-    <h4>Go to</h4>
-    <ul class="no-bullet">
-      <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
-      <li><%= link_to 'Endpoints'.html_safe, {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Endpoints'%></li>
-      <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
-    </ul>
-    <%= render partial: "helper/event_list"  %>
+  <div class="row agent-info info-enabled">
+    <div class="small-11 columns">
+      <div class="left">
+      </div>
+      <div class="info-details">
+        <h6 class="subheader">XML to SQL table</h6>
+        <span class="label radius secondary radius icon-publisher">xml</span>
+        <span class="label radius secondary radius icon-schedule">1h</span>
+        <span class="icon-forward"></span>
+        <span class="label radius secondary radius icon-publisher">sql</span>
+      </div>
+    </div>
+    <div class="small-1 columns right">
+      <div class="right">
+        <span class="has-tip tip-right radius action right" data-tooltip title="Add XML to SQL table integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action right icon-add', :title => "Add XML to SQL table integration" %></span>
+      </div>
+    </div>
   </div>
+</div>
+<!-- sidebar -->
+<div class="small-3 columns">
+  <% if current_user.agents.empty? %>
+  <%= link_to 'New Agent', new_agent_path, :title => 'Create new agent', :class => 'button small radius icon-agent' %>
+  <% else %>
+  <% if current_user.templates.empty? %>
+  <%= link_to ' New Template', new_template_path, :class => 'button small radius icon-template' %>
+  <% else %>
+  <%= link_to ' New Integration'.html_safe, new_integration_path, :class => 'button small radius icon-integration' %>
+  <% end %>
+  <% end %>
+  <h4>Go to</h4>
+  <ul class="no-bullet">
+    <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
+    <li><%= link_to 'Endpoints'.html_safe, {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Endpoints'%></li>
+    <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
+  </ul>
+  <%= render partial: "helper/event_list"  %>
+</div>

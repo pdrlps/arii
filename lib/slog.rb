@@ -2,14 +2,14 @@ require 'raven'
 
 
 module Services
-	
+
 	##
 	# = Slog
 	#
 	# => General (internal) logging engine.
 	#
 	class Slog
-		
+
 		public
 		##
 		# == Log Exceptions to Sentry using Raven
@@ -21,7 +21,7 @@ module Services
 				else
 					puts exception.inspect
 				end
-				
+
 			rescue Exception => e
 				if ENV["LOG_SENTRY"] then
 					Raven.capture_exception(e)
@@ -30,7 +30,7 @@ module Services
 				end
 			end
 		end
-		
+
 		##
 		# == Log information messages to Sentry using Raven
 		#
@@ -45,14 +45,14 @@ module Services
 			end
 
 		end
-		
+
 		##
 		# == Log debug messages to Sentry using Raven
 		#
 		def self.debug message
 			begin
 				if ENV["APP_DEBUG"] then
-					message[:l] = 'debug'
+					message[:l] = 'info'
 					if ENV["LOG_SENTRY"] then
 						capture_message message
 					end
@@ -77,10 +77,10 @@ module Services
 				exception e
 			end
 		end
-		
-		
+
+
 		private
-		
+
 		##
 		# == Generic message capture
 		#

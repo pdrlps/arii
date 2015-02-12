@@ -81,6 +81,8 @@ ARII::Application.routes.draw do
   post "integrations/:id/save", to: 'integrations#save'
   get "integrations/add/:agent/:template", to: 'integrations#add'
   get "integrations/:id/execute", to: 'integrations#execute'      # execute integration on-demand
+  get "integrations/:id/pause", to: 'integrations#pause'
+  get "integrations/:id/play", to: 'integrations#play'
 
   # Postman control
   get "postman/load/:publisher/:identifier", to: "postman#load"

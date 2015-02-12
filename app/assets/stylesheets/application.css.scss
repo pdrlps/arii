@@ -269,6 +269,7 @@ a[class^='icon-user']:before, a[class*=" icon-user"]:before {
 a[class^='icon-install']:before, a[class*=" icon-install"]:before { font-size: 200%;content: '\E778';}
 /*.icon-play:before { margin-left: -10px; content: '\25B6'; float: left;}*/
 .icon-play:before { content: '\25B6'; }
+.icon-pause:before { content: '\2016'; }
 
 /** Social icons **/
 .icon-facebook:before { font-family: 'entypo-social'; content: '\F30E'; }
