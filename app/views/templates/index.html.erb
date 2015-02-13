@@ -3,15 +3,18 @@
   <li><a href="<%= root_url %>">Home</a></li>
   <li class="current">Endpoints</li>
 </ul>
+<div data-alert class="alert-box secondary radius">
+  Got any trouble creating new endpoints? <a href="#" data-reveal-id="endpoints_demo_video"><strong>Check the demo video</strong></a>.
+  <a href="#" class="close">&times;</a>
+</div>
 <h1>Endpoints</h1>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
   <%= flash[:notice].html_safe %> <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-
 <div class="small-9 columns">
-<h3 class="subheader">Active Endpoints</h3>
+  <h3 class="subheader">Active Endpoints</h3>
   <% @templates.each do |template| %>
   <div class="row agent-info <%= (template.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-11 columns left">
@@ -33,7 +36,6 @@
   <h5 class="subheader">Create <%= link_to 'new endpoint', new_template_path, :class => '' %></h5>
   <hr>
   <h5 class="subheader">or <strong>add a sample endpoint</strong></h5>
-
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
@@ -43,11 +45,10 @@
     </div>
     <div class="small-1 columns right">
       <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add xl-icon action right',:title => 'Add sample SQL template', :data => {:tooltip => ''} %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add xl-icon action right',:title => 'Add sample SQL template' %></span>
       </div>
     </div>
   </div>
-
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
@@ -57,11 +58,10 @@
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample URL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add action right',:title => 'Add sample URL endpoint', :data => {:tooltip => ''} %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Add sample URL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add action right',:title => 'Add sample URL endpoint'%></span>
       </div>
     </div>
   </div>
-
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
@@ -71,11 +71,10 @@
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample file endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add action right',:title => 'Add sample File endpoint', :data => {:tooltip => ''} %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Add sample file endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add action right',:title => 'Add sample File endpoint' %></span>
       </div>
     </div>
   </div>
-
   <div class="row agent-info info-enabled">
     <div class="small-11 columns">
       <div class="info-details">
@@ -85,11 +84,10 @@
     </div>
     <div class="small-1 columns right">
       <div class="right">
-         <span class="has-tip tip-top radius" data-tooltip title="Add sample mail endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add action right',:title => 'Add sample Mail endpoint', :data => {:tooltip => ''} %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Add sample mail endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add action right',:title => 'Add sample Mail endpoint' %></span>
       </div>
     </div>
   </div>
-
 </div>
 <div class="small-3 columns right">
   <%= link_to ' New Endpoint', new_template_path, :class => 'button small radius icon-template', :title => 'Create new template' %>
@@ -100,4 +98,11 @@
     <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
   </ul>
   <%= render partial: "helper/event_list"  %>
+</div>
+<div id="endpoints_demo_video" class="reveal-modal large" data-reveal>
+  <h2>Endpoints Demo Video</h2>
+  <div class="flex-video widescreen vimeo" style="display: block;">
+    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0"></iframe>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
 </div>

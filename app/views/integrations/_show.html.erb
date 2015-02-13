@@ -3,7 +3,7 @@
     <span class="label secondary radius"><small>Updated <%= time_ago_in_words(integration.updated_at) %> ago</small></span>
   </div>
   <div class="small-1 columns right text-right">
-    <span class="has-tip radius right" data-tooltip title="Edit <%= integration.title%>"><%= link_to '', edit_integration_path(integration), :title => "Edit #{integration.title}", :class => 'icon-settings xl-icon', :data => {:tooltip => ''} %></span>
+    <span class="has-tip radius right" data-tooltip title="Edit <%= integration.title%>"><%= link_to '', edit_integration_path(integration), :title => "Edit #{integration.title}", :class => 'icon-settings xl-icon' %></span>
     <span class="has-tip radius right" data-tooltip title="Execute <%= integration.title%>"><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'icon-play xl-icon',:title => "Execute #{integration.title}" %></span>
 
   </div>

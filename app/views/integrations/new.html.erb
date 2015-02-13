@@ -33,11 +33,11 @@
 <div id="new_select_template" class="hidden">
   <div class="row" >
     <div class="small-3 columns">
-      <label class="right inline">Select template</label>
+      <label class="right inline">Select endpoint</label>
     </div>
     <div class="small-9 columns">
       <select tabindex="<%= autotab %>" id="new_template_select_list" tabindex="8">
-        <option value="0" selected="selected">Create new template...</option>
+        <option value="0" selected="selected">Create new endpoint...</option>
         <% @templates.each do |template| %>
           <option value="<%= template.id %>"><%= template.title %></option>
         <% end %>
@@ -54,7 +54,7 @@
   <div class="row">
     <div class="small-3 columns right">
       <label class="right inline">
-        Create new template</label>
+        Create new endpoint</label>
     </div>
     <div class="small-9 columns">
       <%= render "templates/new" %>

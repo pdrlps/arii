@@ -3,6 +3,10 @@
   <li><a href="<%= root_url %>">Home</a></li>
   <li class="current">Integrations</li>
 </ul>
+<div data-alert class="alert-box secondary radius">
+  Got any trouble creating new integrations? <a href="#" data-reveal-id="integrations_demo_video"><strong>Check the demo video</strong></a>.
+  <a href="#" class="close">&times;</a>
+</div>
 <h1>Integrations</h1>
 <!-- main content -->
 <% unless flash[:notice].nil? then %>
@@ -135,4 +139,11 @@
     <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
   </ul>
   <%= render partial: "helper/event_list"  %>
+</div>
+<div id="integrations_demo_video" class="reveal-modal large" data-reveal>
+  <h2>Integrations Demo Video</h2>
+  <div class="flex-video widescreen vimeo" style="display: block;">
+    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0"></iframe>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
 </div>

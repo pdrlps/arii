@@ -3,6 +3,10 @@
   <li><a href="<%= root_url %>">Home</a></li>
   <li class="current">Agents</li>
 </ul>
+<div data-alert class="alert-box secondary radius">
+  Got any trouble creating new agents? <a href="#" data-reveal-id="agents_demo_video"><strong>Check the demo video</strong></a>.
+  <a href="#" class="close">&times;</a>
+</div>
 <h1>Agents</h1>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
@@ -126,3 +130,11 @@
     </ul>
     <%= render partial: "helper/event_list"  %>
   </div>
+
+  <div id="agents_demo_video" class="reveal-modal large" data-reveal>
+ <h2>Agents Demo Video</h2>
+  <div class="flex-video widescreen vimeo" style="display: block;">
+    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0"></iframe>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
