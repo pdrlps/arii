@@ -16,6 +16,8 @@ function agent_update_publisher_view(event) {
 
 	if (publisher === 'csv') {
 		$('#publisher_content').html("<%= j render(:partial => 'publisher_csv') %>");
+	} else if (publisher === 'excel') {
+		$('#publisher_content').html("<%= j render(:partial => 'publisher_excel') %>");
 	} else if (publisher === 'xml') {
 		$('#publisher_content').html("<%= j render(:partial => 'publisher_xml') %>");
 	} else if (publisher === 'json') {

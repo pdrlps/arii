@@ -2,40 +2,40 @@
   <div class="small-10 columns left">
     <span class="label secondary radius"><small>Updated
       <%= time_ago_in_words(agent.updated_at) %>
-      ago</small></span>
-      <span class="label secondary radius"><small>
-        Last check
-        <%= time_ago_in_words(agent.last_check_at) %>
-        ago</small></span>
+    ago</small></span>
+    <span class="label secondary radius"><small>
+      Last check
+      <%= time_ago_in_words(agent.last_check_at) %>
+    ago</small></span>
+  </div>
+  <div class="small-2 columns right text-right">
+    <span class="has-tip radius right" data-tooltip title="Edit <%= agent.title %>"><%= link_to '', edit_agent_path(agent), :title => "Edit #{agent.title}", :class => 'icon-settings xl-icon' %></span>
+    <span class="has-tip radius right" data-tooltip title="Execute <%= agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play xl-icon',:title => "Execute #{agent.title}" %></span>
+  </div>
+</div>
+<br />
+<div class="row">
+  <div class="small-2 columns">
+    <div class="agent-hl ">
+      <div class="big center">
+        <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= agent.events.size %></span>
       </div>
-      <div class="small-2 columns right text-right">
-        <span class="has-tip radius right" data-tooltip title="Edit <%= agent.title %>"><%= link_to '', edit_agent_path(agent), :title => "Edit #{agent.title}", :class => 'icon-settings xl-icon' %></span>
-        <span class="has-tip radius right" data-tooltip title="Execute <%= agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play xl-icon',:title => "Execute #{agent.title}" %></span>
-      </div>
+      <h5 class="center icon-list xl-icon"></h5>
     </div>
-    <br />
-    <div class="row">
-      <div class="small-2 columns">
-        <div class="agent-hl ">
-          <div class="big center">
-            <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= agent.events.size %></span>
-          </div>
-          <h5 class="center icon-list xl-icon"></h5>
-        </div>
-        <div class="agent-hl">
-          <div class="big center">
-           <span class="has-tip radius" data-tooltip title="Schedule: ARiiP polls this agent every <%= agent.schedule %>"><%= agent.schedule %></span>
-         </div>
-         <h5 class="center icon-schedule xl-icon"></h5>
-       </div>
-       <div class="agent-hl">
-        <div class="big center">
-         <span class="has-tip radius" data-tooltip title="Monitor: this agent processes '<%= agent.publisher %>'' input"><%= agent.publisher %></span>
-       </div>
-       <h5 class="center icon-publisher xl-icon"></h5>
-     </div>
-   </div>
-   <div class="small-10 columns">
+    <div class="agent-hl">
+      <div class="big center">
+        <span class="has-tip radius" data-tooltip title="Schedule: ARiiP polls this agent every <%= agent.schedule %>"><%= agent.schedule %></span>
+      </div>
+      <h5 class="center icon-schedule xl-icon"></h5>
+    </div>
+    <div class="agent-hl">
+      <div class="big center">
+        <span class="has-tip radius" data-tooltip title="Monitor: this agent processes '<%= agent.publisher %>'' input"><%= agent.publisher %></span>
+      </div>
+      <h5 class="center icon-publisher xl-icon"></h5>
+    </div>
+  </div>
+  <div class="small-10 columns">
     <div class="row">
       <h4 class="subheader">Description</h4>
       <%= agent.help %>
@@ -54,6 +54,9 @@
       <% end %>
       <% if agent.publisher == 'csv' then %>
       <%= render partial: "agents/show_csv", locals: {:agent => agent}%>
+      <% end %>
+      <% if agent.publisher == 'excel' then %>
+      <%= render partial: "agents/show_excel", locals: {:agent => agent}%>
       <% end %>
     </div>
     <% if agent.seeds.size != 0 then %>

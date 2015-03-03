@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="small-3 columns">
+    <label class="right inline">URI</label>
+  </div>
+  <div class="small-9 columns">
+    <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>"  name="agent[uri]" type="text" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <label class="right inline">Headers</label>
+  </div>
+  <div class="small-9 columns">
+    <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? '' : '' %>  name="agent[headers]" type="text" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <label class="right inline">Sheet</label>
+  </div>
+  <div class="small-9 columns">
+    <input id="agent_payload_sheet" value="<%= @agent.sheet.nil? ? '' : @agent.sheet %>"  name="agent[sheet]" type="text" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <label class="right inline">Cache</label>
+  </div>
+  <div class="small-9 columns">
+    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  name="agent[cache]" type="number" />
+  </div>
+</div>
+<%= render :partial => "agents/edit_selectors", locals: {:agent => @agent} %>

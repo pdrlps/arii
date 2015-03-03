@@ -46,7 +46,10 @@ module Services
             response = {:status => 200, :message => "[ARiiP][Cashier] Nothing to update"}
           else
             # not on cache, store
-            @@redis.hset("ariip:#{agent[:identifier]}:#{seed}", "#{memory}", payload)
+
+            #puts "ariip:#{agent[:identifier]}:#{seed}\n\t#{memory}\n\t#{payload}"
+
+            @@redis.hset("ariip:#{agent[:identifier]}:#{seed}", "#{memory}", "#{payload}")
             response = {:status => 100, :message => "[ARiiP][Cashier] Memory recorded to cache"}
           end
         rescue Exception => e

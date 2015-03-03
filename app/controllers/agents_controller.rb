@@ -213,7 +213,7 @@ class AgentsController < ApplicationController
   def agent_params
     a = params[:agent].clone
     #a[:selectors] = JSON.parse(a[:selectors])
-    a.permit(:publisher, :payload, :identifier, :title, :help, :schedule, :seed, :action, :uri, :cache, :headers, :delimiter, :checked ,:server, :host, :port, :database, :username, :password, :query, :selectors)
+    a.permit(:publisher, :payload, :identifier, :title, :help, :schedule, :seed, :action, :uri, :cache, :headers, :delimiter, :checked ,:server, :host, :port, :database, :username, :password, :query, :selectors, :sheet)
   end
 
   def seed_params

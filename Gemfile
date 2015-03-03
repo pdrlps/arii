@@ -5,7 +5,6 @@ gem 'rails' #, "~> 4.0.2"
 
 # Use SCSS for stylesheets
 gem 'sass-rails'
-
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
@@ -30,9 +29,11 @@ gem 'foundation-rails'
 gem 'kramdown'
 
 # Databases
-gem  'mysql2'
+gem 'mysql2'
 gem 'pg'
 
+# Excel support. Read more: https://github.com/weshatheleopard/rubyXL
+gem 'rubyXL'
 
 # Authentication and security stuff. Read more: http://devise.plataformatec.com.br
 gem 'devise'
@@ -88,8 +89,8 @@ gem 'rest-client'
 gem 'nokogiri'
 
 # Redis cache access. Read more: https://github.com/redis/redis-rb
-gem 'hiredis'
-gem 'redis'
+gem "redis", "~> 3.0.1"
+gem "hiredis", "~> 0.4.5"
 
 # Sentry logger access. Read more: https://github.com/getsentry/raven-ruby
 gem "sentry-raven"

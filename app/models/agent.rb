@@ -1,5 +1,6 @@
 require 'detector'
 require 'csvdetector'
+require 'exceldetector'
 require 'jsondetector'
 require 'xmldetector'
 require 'sqldetector'
@@ -10,7 +11,7 @@ class Agent < ActiveRecord::Base
   # => Store for saving Hashes in DB
   # => Accessors to make everything easy to access
   #
-  store   :payload, accessors: [:uri, :cache, :checked, :headers, :delimiter, :server, :host, :port, :database, :username, :password, :query, :selectors]
+  store   :payload, accessors: [:uri, :cache, :checked, :headers, :delimiter, :server, :host, :port, :database, :username, :password, :query, :selectors, :sheet]
   store   :memory
   attr_accessor :content
 
@@ -57,6 +58,13 @@ class Agent < ActiveRecord::Base
     when 'csv'
       begin
         @d = Services::CSVDetector.new(identifier)
+      rescue Exception => e
+        Services::Slog.exception e
+        @response = {:status => 400, :error => e}
+      end
+    when 'excel'
+      begin
+        @d = Services::ExcelDetector.new(identifier)
       rescue Exception => e
         Services::Slog.exception e
         @response = {:status => 400, :error => e}

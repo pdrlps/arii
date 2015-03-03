@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="small-1 columns">
+    <div class="right inline icon-properties xl-icon has-tip" data-tooltip class="has-tip tip-top" title="Connection Details">&nbsp;</div>
+  </div>
+  <div class="small-11 columns">
+    <div class="row">
+      <div class="small-3 columns">
+        <strong class="right inline">URI</strong>
+      </div>
+      <div class="small-9 columns">
+        <%= agent[:payload][:uri] %>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <strong class="right inline">Headers</strong>
+        </div>
+        <div class="small-9 columns">
+          <%= agent[:payload][:headers] %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <strong class="right inline">Sheet</strong>
+        </div>
+        <div class="small-9 columns">
+          <%= agent[:payload][:sheet] %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-3 columns">
+          <strong class="right inline">Cache</strong>
+        </div>
+        <div class="small-9 columns">
+          <%= agent[:payload][:cache] %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+  <div class="row">
+    <div class="small-1 columns">
+      <div class="right inline icon-selectors xl-icon has-tip" title="Selectors" data-tooltip>&nbsp;</div>
+    </div>
+    <div class="small-11 columns">
+      <% JSON.parse(agent[:payload][:selectors]).each do |k| %>
+      <% k.each do |key, value| %>
+      <div class="row">
+        <div class="small-3 columns">
+          <strong class="right inline"><%= key %></strong>
+        </div>
+        <div class="small-9 columns">
+          <%= value %>
+        </div>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
