@@ -1,8 +1,10 @@
 class HomeController < ApplicationController
+  layout "home"
+
   def index
-  	if user_signed_in? then
-  		redirect_to :controller => "integrations", :action => "index"
-  	end
+    if user_signed_in? then
+      redirect_to :controller => "integrations", :action => "index"
+    end
 
     @alpha = Alpha.new
   end

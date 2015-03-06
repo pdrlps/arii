@@ -8,7 +8,6 @@ class IntegrationsController < ApplicationController
   # GET /integrations.json
   def index
     @integrations = current_user.integrations
-    @events = Event.by_user_limit current_user
   end
 
   # GET /integrations/1

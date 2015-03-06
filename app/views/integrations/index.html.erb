@@ -1,13 +1,8 @@
 <% content_for :title, "Integrations - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li class="current">Integrations</li>
-</ul>
-<div data-alert class="alert-box secondary radius">
+<div data-alert class="alert-box info radius">
   Got any trouble creating new integrations? <a href="#" data-reveal-id="integrations_demo_video"><strong>Check the demo video</strong></a>.
   <a href="#" class="close">&times;</a>
 </div>
-<h1>Integrations</h1>
 <!-- main content -->
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
@@ -15,7 +10,7 @@
   <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-<div class="small-9 columns">
+<div class="small-12 medium-12 large-12 columns">
   <% if @integrations.empty? %>
   <div class="row">
     <div class="small-12 columns">
@@ -32,14 +27,45 @@
     </div>
   </div>
   <% else %>
-  <h3 class="subheader">Integrations</h3>
+  <div class="row">
+    <div class="small-6 columns left">
+      <h3 class="subheader">Integrations</h3>
+    </div>
+    <div class="small-6 columns right">
+      <%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right primary' %>
+    </div>
+  </div>
   <% @integrations.each do |integration| %>
   <div id="integration_details_<%= integration.id %>" class="row agent-info <%= (integration.status != 400) ? 'info-enabled' : 'info-disabled'  %>">
-    <div class="small-11 columns left">
-      <h6 class="subheader"><%= integration.title %></h6>
-      <div class="row">
-        <div class="small-5 columns">
-          <ul class="no-bullet">
+    <div class="small-12 medium-1 large-1 columns">
+      <div class="switch small success radius">
+        <input class="integration_toggle" data-id="<%= integration.id %>" id="integration_switch_<%= integration.id %>" type="checkbox" <%= (integration.status == 100) ? 'checked' : '' %> name="switch_integration_<%= integration.id %>">
+        <label for="integration_switch_<%= integration.id %>"></label>
+      </div>
+    </div>
+    <div class="small-12 medium-7 large-7 columns">
+      <h6 class="subheader"><%= integration.title %> </h6>
+    </div>
+    <div class="small-12 medium-1 large-1 columns">
+      <span class="label radius secondary right integration_details_toggle" data-id="<%= integration.id %>"><%= integration.agents.count %><i class="icon-integration"></i><%= integration.templates.count %></span>
+    </div>
+    <div class="small-12 medium-3 large-3 columns right">
+      <ul class="button-group radius right">
+        <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button success icon-execute',:title => "Execute #{integration.title}" %></li>
+        <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button secondary icon-edit' %></li>
+        <li><%= link_to 'View', integration, :class => ' small button secondary icon-view' %></li>
+      </ul>
+    </div>
+    <!-- Inputs & Outputs -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row integration_details" id="details_integration_<%= integration.id %>" >
+        <div class="small-2 medium-1 large-1 columns">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-10 medium-5 large-5 columns left">
+          <ul class="no-bullet left">
             <% integration.agents.each do |agent| %>
             <li>
               <%= link_to agent.title, agent %>
@@ -49,101 +75,109 @@
             <% end %>
           </ul>
         </div>
-        <div class="small-1 columns icon-forward">
+        <div class="small-2 medium-1 large-1 columns icon-output">
         </div>
-        <div class="small-5 columns">
-          <ul class="no-bullet">
+        <div class="small-10 medium-4 large-4 columns left">
+          <ul class="no-bullet left">
             <% integration.templates.each do |template| %>
             <li><%= link_to template.title, template %>
-            <span class="label secondary radius icon-publisher"><%= template.publisher %></span></li>
-            <% end %>
-          </ul>
-        </div>
-        <div class="small-1 columns">
-          &nbsp;
+              <span class="label secondary radiussi icon-endpoint"><%= template.publisher %></span></li>
+              <% end %>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <%
-      if integration.status == 100
-      %>
-      <span class="has-tip tip-right radius action right" id="integration_play_<%= integration.id %>" data-tooltip title="Execute <%=integration.title%>"><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'icon-play',:title => "Execute #{integration.title}" %></span>
-      <span class="has-tip tip-right radius action right " id="integration_pause_<%= integration.id %>" data-tooltip title="Disable <%=integration.title%>"><a data-id="<%= integration.id %>" class="integration_pause icon-pause" href="#">&nbsp; </a></span>
-      <% else %>
-      <span class="has-tip tip-right radius action right " id="integration_play_<%= integration.id %>" data-tooltip title="Enable <%=integration.title%>"><a href="#" class="icon-play integration_play" title="Play <%= integration.title %>" data-id="<%= integration.id %>">&nbsp; </a></span>
-      <% end
-      %>
-      <span class="has-tip tip-right radius action right" data-tooltip title="Edit <%=integration.title%>"><%= link_to '', edit_integration_path(integration), :class => '  icon-settings' %></span>
-      <span class="has-tip tip-right radius action right" data-tooltip title="View <%=integration.title%>"><%= link_to '', integration, :class => '  icon-view' %></span>
-      <br>
-    </div>
-  </div>
-  <% end %>
-  <h5 class="subheader">Create a <%= link_to 'new integration'.html_safe, new_integration_path, :class => '' %></h5>
-  <% end %>
-  <hr>
-  <h5 class="subheader">or <strong>add a sample integration</strong></h5>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
-      <div class="left">
+    <% end %>
+    <% end %>
+    <hr>
+    <h5 class="subheader">Add sample integration</h5>
+    <div class="row agent-info info-secondary">
+      <div class="small-12 medium-1 large-1 columns left">
+        &nbsp;
       </div>
-      <div class="info-details">
+      <div class="small-12 medium-7 large-7 columns left">
         <h6 class="subheader">SQL to CSV file</h6>
-        <span class="label radius secondary icon-publisher">sql</span>
-        <span class="label radius secondary icon-schedule">1d</span>
-        <span class="icon-forward"></span>
-        <span class="label radius secondary radius icon-publisher">file</span>
+      </div>
+      <div class="small-12 medium-1 large-1 columns">
+        <span class="label radius secondary integration_details_toggle" data-id="sample1">1<i class="icon-integration"></i>1</span>
+      </div>
+      <div class="small-12 medium-3 large-3 columns right">
+        <ul class="button-group radius right">
+          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action small button primary right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
+        </ul>
+      </div>
+      <div class="small-12 medium-12 large-12 columns">
+        <div class="row integration_details" id="details_integration_sample1" >
+          <div class="small-2 medium-1 large-1 columns">
+            &nbsp;
+          </div>
+          <div class="small-2 medium-1 large-1 columns icon-input">
+          </div>
+          <div class="small-10 medium-5 large-5 columns left">
+            <ul class="no-bullet left">
+              <li>
+                <span class="label radius secondary icon-publisher">sql</span>
+                <span class="label radius secondary icon-schedule">1d</span>
+              </li>
+            </ul>
+          </div>
+          <div class="small-2 medium-1 large-1 columns icon-output">
+          </div>
+          <div class="small-10 medium-4 large-4 columns left">
+            <ul class="no-bullet left">
+              <li><span class="label radius secondary radius icon-endpoint">file</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-right radius action right" data-tooltip title="Add SQL results to CSV file sample integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action right icon-add', :title => "Add SQL results to CSV file sample integration" %></span>
+    <div class="row agent-info info-secondary">
+      <div class="small-12 medium-1 large-1 columns left">
+        &nbsp;
       </div>
-    </div>
-  </div>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
-      <div class="left">
-      </div>
-      <div class="info-details">
+      <div class="small-12 medium-7 large-7 columns left">
         <h6 class="subheader">XML to SQL table</h6>
-        <span class="label radius secondary radius icon-publisher">xml</span>
-        <span class="label radius secondary radius icon-schedule">1h</span>
-        <span class="icon-forward"></span>
-        <span class="label radius secondary radius icon-publisher">sql</span>
       </div>
-    </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-right radius action right" data-tooltip title="Add XML to SQL table integration"><%= link_to ''.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action right icon-add', :title => "Add XML to SQL table integration" %></span>
+      <div class="small-12 medium-1 large-1 columns">
+        <span class="label radius secondary integration_details_toggle" data-id="sample2">1<i class="icon-integration"></i>1</span>
+      </div>
+      <div class="small-12 medium-3 large-3 columns right">
+        <ul class="button-group radius right">
+          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action small button primary right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
+        </ul>
+      </div>
+      <div class="small-12 medium-12 large-12 columns">
+        <div class="row integration_details" id="details_integration_sample2" >
+          <div class="small-2 medium-1 large-1 columns">
+            &nbsp;
+          </div>
+          <div class="small-2 medium-1 large-1 columns icon-input">
+          </div>
+          <div class="small-10 medium-5 large-5 columns left">
+            <ul class="no-bullet left">
+              <li>
+                <span class="label radius secondary icon-publisher">xml</span>
+                <span class="label radius secondary icon-schedule">1h</span>
+              </li>
+            </ul>
+          </div>
+          <div class="small-2 medium-1 large-1 columns icon-output">
+          </div>
+          <div class="small-10 medium-4 large-4 columns left">
+            <ul class="no-bullet left">
+              <li><span class="label radius secondary radius icon-endpoint">sql</span></li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<!-- sidebar -->
-<div class="small-3 columns">
-  <% if current_user.agents.empty? %>
-  <%= link_to 'New Agent', new_agent_path, :title => 'Create new agent', :class => 'button small radius icon-agent' %>
-  <% else %>
-  <% if current_user.templates.empty? %>
-  <%= link_to ' New Template', new_template_path, :class => 'button small radius icon-template' %>
-  <% else %>
-  <%= link_to ' New Integration'.html_safe, new_integration_path, :class => 'button small radius icon-integration' %>
-  <% end %>
-  <% end %>
-  <h4>Go to</h4>
-  <ul class="no-bullet">
-    <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
-    <li><%= link_to 'Endpoints'.html_safe, {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Endpoints'%></li>
-    <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
-  </ul>
-  <%= render partial: "helper/event_list"  %>
-</div>
-<div id="integrations_demo_video" class="reveal-modal large" data-reveal>
-  <h2>Integrations Demo Video</h2>
-  <div class="flex-video widescreen vimeo" style="display: block;">
-    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0"></iframe>
+  <!-- Demo VIDEO modal -->
+  <div id="integrations_demo_video" class="reveal-modal large" data-reveal>
+    <h2>Integrations Demo Video</h2>
+    <div class="flex-video widescreen vimeo" style="display: block;">
+      <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0"></iframe>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
   </div>
-  <a class="close-reveal-modal">&#215;</a>
-</div>

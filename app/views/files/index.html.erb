@@ -1,9 +1,4 @@
 <% content_for :title, "Files - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-	<li><a href="<%= root_url %>">Home</a></li>
-	<li class="current">Files</li>
-</ul>
-<h1>Files</h1>
 <!-- main content -->
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
@@ -11,36 +6,26 @@
 	<a href="#" class="close">&times;</a>
 </div>
 <% end %>
-<div class="small-9 columns">
-	<table>
-		<thead>
-			<th>Filename</th><th>Actions</th>
-		</thead>
-		<tbody>
-			<% @files.each do |file| %>
-			<tr>
-				<td><a href="<%= "../files/get/#{File.basename(file)}" %>"><%= File.basename(file) %></a></td>
-				<td class="right"><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download"></a> <a href="<%= "../files/delete/#{File.basename(file)}" %>" class="icon-delete"></a></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
-</div>
-<div class="small-3 columns">
-	<% if current_user.agents.empty? %>
-	<%= link_to 'New Agent', new_agent_path, :title => 'Create new agent', :class => 'button small radius icon-agent', :data => { :tooltip => ''} %>
-	<% else %>
-	<% if current_user.templates.empty? %>
-	<%= link_to ' New Endpoint', new_template_path, :class => 'button small radius icon-template' %>
-	<% else %>
-	<%= link_to ' New Integration'.html_safe, new_integration_path, :class => 'button small radius icon-integration' %>
+<div class="small-12 columns">
+	<div class="row">
+		<div class="small-6 columns left">
+			<h3 class="subheader">Files</h3>
+		</div>
+		<div class="small-6 columns right">
+
+		</div>
+	</div>
+	<% @files.each do |file| %>
+	<div class="row agent-info info-secondary">
+		<div class="small-12 medium-7 large-7 columns left">
+			<h6 class="subheader"><%= File.basename(file)  %></h6>
+		</div>
+		<div class="small-12 medium-5 large-5 columns right">
+			<ul class="button-group radius right">
+				<li><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download small button success">Download</a></li>
+				<li><a href="<%= "../files/delete/#{File.basename(file)}" %>" class="icon-delete small button alert">Delete</a></li>
+			</ul>
+		</div>
+	</div>
 	<% end %>
-	<% end %>
-	<h4>Go to</h4>
-	<ul class="no-bullet">
-		<li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent'%></li>
-		<li><%= link_to 'Endpoints'.html_safe, {:controller => '/templates'}, :class => 'icon-template'%></li>
-		<li><%= link_to 'Integrations', {:controller => '/integrations', :action => 'index'}, :class => 'icon-integration' %></li>
-	</ul>
-	<%= render partial: "helper/event_list"  %>
 </div>

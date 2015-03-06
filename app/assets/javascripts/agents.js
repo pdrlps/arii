@@ -4,6 +4,13 @@ $(function() {
 
 	// Remote save edited agent
 	$('.edit_agent').on('ajax:success', edit_agent_save);
+
+
+	// show integration details
+	$('.input_details_toggle').on('click', function(event) {
+		event.preventDefault();
+		$('#details_input_' + $(this).data('id')).toggle('slow');
+	})
 });
 
 /**

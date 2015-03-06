@@ -8,7 +8,6 @@ class TemplatesController < ApplicationController
   # GET /templates.json
   def index
     @templates =  current_user.templates
-    @events = Event.by_user_limit current_user
   end
 
   # GET /templates/1

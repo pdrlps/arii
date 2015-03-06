@@ -40,8 +40,8 @@ $microformat-border-width: 0px;
 // We use these to control various global styles
 $body-bg: #fff;
 $body-font-color: #434e58;//#222;
-$body-font-family: 'Oxygen', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$body-font-weight: 300;
+ $body-font-family: 'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+ $body-font-weight: 300;
 // $body-font-style: normal;
 
 // We use this to control font-smoothing
@@ -58,6 +58,8 @@ $body-font-weight: 300;
  $secondary-color: #cbd0d7;//#e9e9e9;
  $alert-color: #cc777d;//#f04124;
  $success-color: #b2c89d;//#43AC6A;
+ $warning-color:#d08770;
+ $info-color: #96b5b4;
 
 
 // We use these to make sure border radius matches unless we want it different.
@@ -501,24 +503,24 @@ $tabbar-bg: #FFFFFF;
 
 // Off Canvas Menu Variables
 $off-canvas-width: 200px;
-$off-canvas-bg: #cbd0d7;
+$off-canvas-bg: #4f5a66;
 
 // Off Canvas Menu List Variables
 $off-canvas-label-padding: 0.3rem rem-calc(15);
-$off-canvas-label-color: #222;
+$off-canvas-label-color: #FFF;
 // $off-canvas-label-text-transform: uppercase;
 $off-canvas-label-font-weight: 600;
-$off-canvas-label-bg: #cbd0d7;
+$off-canvas-label-bg: #4f5a66;
 $off-canvas-label-border-top: none ;
 $off-canvas-label-border-bottom: none;
 $off-canvas-label-margin:4px;
 // $off-canvas-link-padding: rem-calc(10, 15);
-$off-canvas-link-color: darken($primary-color, 20%); //rgba(#333, 0.7);
+$off-canvas-link-color: #FFF;//darken($primary-color, 20%); //rgba(#333, 0.7);
 $off-canvas-link-border-bottom: none; //1px solid darken($off-canvas-bg, 5%);
 
 // Off Canvas Menu Icon Variables
-// $tabbar-menu-icon-color: #FFF;
-$tabbar-menu-icon-hover: #cbd0d7;//darken($tabbar-menu-icon-color, 30%);
+$tabbar-menu-icon-color: #FFF;
+$tabbar-menu-icon-hover: #343d46;//darken($tabbar-menu-icon-color, 30%);
 
 // $tabbar-menu-icon-text-indent: rem-calc(35);
 // $tabbar-menu-icon-width: $tabbar-height;
@@ -946,12 +948,12 @@ $topbar-bg-color: #eff1f5;
 // $topbar-title-font-size: rem-calc(17);
 
 // Style the top bar dropdown elements
-// $topbar-dropdown-bg: #333;
+$topbar-dropdown-bg: #FFF;
 $topbar-dropdown-link-color: $primary-color;
-$topbar-dropdown-link-bg: #FFF;
-// $topbar-dropdown-toggle-size: 5px;
-$topbar-dropdown-toggle-color: #333;
-// $topbar-dropdown-toggle-alpha: 0.4;
+$topbar-dropdown-link-bg: #eff1f5;
+//$topbar-dropdown-toggle-size: 5px;
+$topbar-dropdown-toggle-color: $primary-color;
+$topbar-dropdown-toggle-alpha: 0.4;
 
 // Set the link colors and styles for top-level nav
 $topbar-link-color: $primary-color;
@@ -962,16 +964,16 @@ $topbar-link-font-size: rem-calc(10);
 // $topbar-link-hover-lightness: -10%; // Darken by 10%
 $topbar-link-bg-hover: #FFF  ;
 // $topbar-link-bg-active: $primary-color;
-// $topbar-link-bg-active-hover: darken($primary-color, 5%);
+$topbar-link-bg-active-hover: #FFF; //darken($primary-color, 5%);
 // $topbar-link-font-family: $body-font-family;
 
 // $topbar-button-font-size: 0.75rem;
 
 $topbar-dropdown-label-color: #444;
-// $topbar-dropdown-label-text-transform: uppercase;
-// $topbar-dropdown-label-font-weight: bold;
-// $topbar-dropdown-label-font-size: rem-calc(10);
-$topbar-dropdown-label-bg: #FFF;
+$topbar-dropdown-label-text-transform: uppercase;
+$topbar-dropdown-label-font-weight: bold;
+$topbar-dropdown-label-font-size: rem-calc(10);
+$topbar-dropdown-label-bg: #eff1f5;
 
 // Top menu icon styles
 // $topbar-menu-link-transform: uppercase;
@@ -995,13 +997,17 @@ $topbar-dropdown-label-bg: #FFF;
 // Sticky Class
 // $topbar-sticky-class: ".sticky";
 // $topbar-arrows: true; //Set false to remove the triangle icon from the menu item
-@import 'foundation';
-$include-open-sans: false;
-html{
-  height: 100%;
-}
 
-/** Hack for displaying correct icons on external applications login in sidenav **/
-ul.off-canvas-list li a {
-  display: inline-block;
-}
+// button updates
+
+$button-sml: rem-calc(4);
+$button-margin-bottom: rem-calc(0);
+
+
+// labels updates
+//$label-font-sizing: rem-calc(12);
+$label-font-weight: 300; //bold;
+$label-font-color: #343d46;
+$label-font-color-alt: #fff;
+@import 'foundation';
+$include-open-sans: true;

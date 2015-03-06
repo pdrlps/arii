@@ -1,140 +1,232 @@
-<% content_for :title, "Agents - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li class="current">Agents</li>
-</ul>
-<div data-alert class="alert-box secondary radius">
-  Got any trouble creating new agents? <a href="#" data-reveal-id="agents_demo_video"><strong>Check the demo video</strong></a>.
+<% content_for :title, "Inputs - #{ENV["APP_TITLE"]}" %>
+<div data-alert class="alert-box info radius">
+  Got any trouble creating new inputs? <a href="#" data-reveal-id="inputs_demo_video"><strong>Check the demo video</strong></a>.
   <a href="#" class="close">&times;</a>
 </div>
-<h1>Agents</h1>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
   <%= flash[:notice].html_safe %>
   <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-
-<div class="small-12 medium-9 large-9 columns">
-<h3 class="subheader">Active Agents</h3>
+<div class="small-12 medium-12 large-12 columns">
+  <div class="row">
+    <div class="small-6 columns left">
+      <h3 class="subheader">Inputs</h3>
+    </div>
+    <div class="small-6 columns right">
+      <%= link_to 'Create input'.html_safe, new_agent_path, :class => 'icon-create small button radius right primary' %></h5>
+    </div>
+  </div>
   <% @agents.each do |agent| %>
   <div class="row agent-info <%= (agent.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
-    <div class="small-11 columns left">
+    <div class="small-12 medium-1 large-1 columns">
+      <div class="switch small success radius">
+        <input class="input_toggle" data-id="<%= agent.id %>" id="input_switch_<%= agent.id %>" type="checkbox" <%= (agent.status == 100) ? 'checked' : '' %> name="switch_input_<%= agent.id %>">
+        <label for="input_switch_<%= agent.id %>"></label>
+      </div>
+    </div>
+    <div class="small-12 medium-7 large-7 columns">
+      <h6 class="subheader"><%= agent.title %></h6>
+    </div>
+    <div class="small-12 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="<%= agent.id %>"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-12 medium-3 large-3 columns right">
+      <ul class="button-group radius right">
+        <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
+        <li><%= link_to 'Edit', edit_agent_path(agent), :class => 'small button secondary icon-edit' %></li>
+        <li><%= link_to 'View', agent, :class => ' small button secondary icon-view' %></li>
+      </ul>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_<%= agent.id %>" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-events"><%= agent.events.size %> Events</span></li>
+            <li><span class="label secondary radius icon-updated"><%= time_ago_in_words(agent.last_check_at) %> ago</span></li>
+            <li><span class="label secondary radius icon-publisher"><%= agent.publisher %></span></li>
+            <li><span class="label secondary radius icon-schedule"><%= agent.schedule %></span></li>
+            <%= (agent.seeds.size != 0) ? "<li><span class=\"label radius icon-seed\">#{pluralize(agent.seeds.size, 'seed')}</span></li>".html_safe : '' %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+  <hr>
+  <h5 class="subheader">Add sample input</h5>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
       <div class="info-details">
-        <h6 class="subheader"><%=  agent.title %></h6>
-        <span class="label secondary radius icon-list"><%= agent.events.size %> Events</span>
-        <span class="label secondary radius icon-update"><%= time_ago_in_words(agent.last_check_at) %>
-          ago</span>
-        <span class="label secondary radius icon-publisher"><%= agent.publisher %></span>
-        <span class="label secondary radius icon-schedule"><%= agent.schedule %></span>
-        <%= (agent.seeds.size != 0) ? "<span class=\"label radius icon-seed\">#{pluralize(agent.seeds.size, 'seed')}</span>".html_safe : '' %>
-        </div>
+        <h6 class="subheader">SQL Input</h6>
       </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="action right has-tip tip-right radius" data-tooltip title="Execute <%=agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play',:title => "Execute #{agent.title}" %></span>
-          <span class="action right has-tip tip-right radius" data-tooltip title="Edit <%=agent.title %>"><%= link_to '', edit_agent_path(agent), :class => 'icon-settings',:title => "Edit #{agent.title}" %></span>
-          <span class="action right has-tip tip-bottom radius" data-tooltip title="View <%=agent.title %>"><%= link_to '', agent, :class => 'icon-view ',:title => "View #{agent.title}" %></span>
-          <br><br>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample1" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">sql</span></li>
+            <li><span class="label secondary radius icon-schedule">1d</span></li>
+          </ul>
         </div>
       </div>
     </div>
-    <% end %>
-    <h5 class="subheader">Create <%= link_to 'new agent', new_agent_path, :title => 'Create new agent', :class => '' %></h5>
-    <hr>
-    <h5 class="subheader">or <strong>add a sample agent</strong></h5>
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="info-details">
-          <h6 class="subheader">XML Agent</h6>
-          <span class="label radius secondary icon-publisher">xml</span>
-          <span class="label radius secondary icon-schedule">1h</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-top radius" data-tooltip title="Add sample XML agent"><%= link_to '', {:controller => 'agents', :action => 'add', :identifier => 'xml'}, :class => 'icon-add action right',:title => 'Add sample XML agent' %></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="info-details">
-          <h6 class="subheader">JSON Agent</h6>
-          <span class="label radius secondary icon-publisher">json</span>
-          <span class="label radius secondary icon-schedule">1h</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-top radius" data-tooltip title="Add sample JSON agent"><%= link_to '', {:controller => 'agents', :action => 'add', :identifier => 'json'}, :class => 'icon-add action right',:title => 'Add sample JSON agent' %></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="info-details">
-          <h6 class="subheader">SQL Agent</h6>
-          <span class="label radius secondary icon-publisher">sql</span>
-          <span class="label radius secondary icon-schedule">1d</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL agent"><%= link_to '', {:controller => 'agents', :action => 'add', :identifier => 'sql'}, :class => 'icon-add action right',:title => 'Add sample SQL agent' %></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="info-details">
-          <h6 class="subheader">CSV Agent</h6>
-          <span class="label radius secondary icon-publisher">csv</span>
-          <span class="label radius secondary icon-schedule">1d</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-top radius" data-tooltip title="Add sample CSV agent"><%= link_to '', {:controller => 'agents', :action => 'add', :identifier => 'csv'}, :class => 'icon-add action right',:title => 'Add sample CSV agent' %></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="row agent-info info-enabled">
-      <div class="small-11 columns">
-        <div class="info-details">
-          <h6 class="subheader">RSS Agent</h6>
-          <span class="label radius secondary icon-publisher">xml</span>
-          <span class="label radius secondary icon-schedule">5m</span>
-        </div>
-      </div>
-      <div class="small-1 columns right">
-        <div class="right">
-          <span class="has-tip tip-top radius" data-tooltip title="Add sample RSS agent"><%= link_to '', {:controller => 'agents', :action => 'add', :identifier => 'rss'}, :class => 'icon-add action right',:title => 'Add sample RSS agent' %></span>
-        </div>
-      </div>
-    </div>
-
   </div>
-  <!-- sidebar -->
-  <div class="small-12 medium-3 large-3 columns animated fadeIn">
-    <%= link_to ' New Agent', new_agent_path, :title => 'Create new agent', :class => 'button small radius icon-agent', :data => { :tooltip => ''} %>
-    <h4>Go to</h4>
-    <ul class="no-bullet">
-      <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard'%></li>
-      <li><%= link_to 'Endpoints'.html_safe, {:controller => '/templates'}, :class => 'icon-template', :title => 'Go to Endpoints'%></li>
-      <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
-    </ul>
-    <%= render partial: "helper/event_list"  %>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
+      <div class="info-details">
+        <h6 class="subheader">XML Input</h6>
+      </div>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample2"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample XML inpu"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'xml'}, :class => 'icon-add radius small button primary',:title => 'Add sample XML input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample2" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">xml</span></li>
+            <li><span class="label secondary radius icon-schedule">1h</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div id="agents_demo_video" class="reveal-modal large" data-reveal>
- <h2>Agents Demo Video</h2>
-  <div class="flex-video widescreen vimeo" style="display: block;">
-    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0"></iframe>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
+      <div class="info-details">
+        <h6 class="subheader">JSON Input</h6>
+      </div>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample3"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample JSON Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'json'}, :class => 'icon-add radius small button primary',:title => 'Add sample JSON Input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample3" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">json</span></li>
+            <li><span class="label secondary radius icon-schedule">1h</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
+      <div class="info-details">
+        <h6 class="subheader">CSV Input</h6>
+      </div>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample4"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample CSV Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'csv'}, :class => 'icon-add radius small button primary',:title => 'Add sample CSV Input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample4" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">csv</span></li>
+            <li><span class="label secondary radius icon-schedule">1d</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
+      <div class="info-details">
+        <h6 class="subheader">RSS Input</h6>
+      </div>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample5"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample RSS Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'rss'}, :class => 'icon-add radius small button primary',:title => 'Add sample RSS Input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample5" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">xml</span></li>
+            <li><span class="label secondary radius icon-schedule">1d</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- demo video -->
+  <div id="inputs_demo_video" class="reveal-modal large" data-reveal>
+    <h2>Agents Demo Video</h2>
+    <div class="flex-video widescreen vimeo" style="display: block;">
+      <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/dfsy3_hVIC4?rel=0"></iframe>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>

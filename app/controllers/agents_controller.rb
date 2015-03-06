@@ -1,6 +1,7 @@
 require 'securerandom'
 
 class AgentsController < ApplicationController
+
   before_filter :authenticate_user!
   before_action :set_agent, only: [:show, :edit, :update, :destroy]
 
@@ -8,7 +9,7 @@ class AgentsController < ApplicationController
   # GET /agents.json
   def index
     @agents = current_user.agents
-    @events = Event.by_user_limit current_user
+    @feedback = Feedback.new
   end
 
   # GET /agents/1

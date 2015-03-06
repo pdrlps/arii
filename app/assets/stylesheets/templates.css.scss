@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .publisher_sql {
-	
+
 }
 .publisher_url {
 	display: none;
@@ -18,4 +18,12 @@
 #publiser_url_post_params {
 }
 
+
+.output_details_toggle {
+cursor: pointer;
+}
+
+.output_details {
+    display: none;
+}
 

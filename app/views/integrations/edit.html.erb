@@ -1,79 +1,72 @@
 <% content_for :title, "Editing #{@integration.title} - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Integrations', integrations_path %></li>
-  <li><%= link_to @integration.title, @integration %></li>
-  <li class="current">Edit
-    <%= @integration.title %></li>
-  </ul>
-  <h1 id="integration" data-id="<%= @integration.id %>">Editing <strong><%= @integration.title %></strong></h1>
-  <%= render 'form' %>
-  <!-- Agents -->
-  <div class="row">
-    <div class="small-12 medium-2 large-2 columns">
-      <h3><%= pluralize(@integration.agents.size, 'Agent') %></h3>
-    </div>
-    <div class="small-12 medium-10 large-10 columns">
-      <% @integration.agents.each do |agent| %>
-      <%= render :partial => "agents/show_integration", locals: {:agent => agent} %>
-      <% end %>
-      <br />
-      <div class="row" id="edit_select_agent" >
-        <div class="small-3 medium-3 large-3 columns">
-          <label class="right inline">Add agent</label>
-        </div>
-        <div class="small-9 medium-9 large-9 columns">
-          <select id="edit_agent_select_list" tabindex="8">
-            <option value="0" selected="selected">Create new agent...</option>
-            <% @agents.each do |agent| %>
-            <option value="<%= agent.id %>"><%= agent.title %></option>
-            <% end %>
-          </select>
-        </div>
-        <div class="small-12 medium-12 large-12 columns" >
-          <div class="row">
-            <div class="small-2 columns right">
-              <a href="#" id="edit_save_agent_select" class="button tiny success radius right">Add</a>
-            </div>
+<h1 id="integration" data-id="<%= @integration.id %>">Editing <strong><%= @integration.title %></strong></h1>
+<%= render 'form' %>
+<!-- Agents -->
+<div class="row">
+  <div class="small-12 medium-2 large-2 columns">
+    <h3><%= pluralize(@integration.agents.size, 'Agent') %></h3>
+  </div>
+  <div class="small-12 medium-10 large-10 columns">
+    <% @integration.agents.each do |agent| %>
+    <%= render :partial => "agents/show_integration", locals: {:agent => agent} %>
+    <% end %>
+    <br />
+    <div class="row" id="edit_select_agent" >
+      <div class="small-3 medium-3 large-3 columns">
+        <label class="right inline">Add agent</label>
+      </div>
+      <div class="small-9 medium-9 large-9 columns">
+        <select id="edit_agent_select_list" tabindex="8">
+          <option value="0" selected="selected">Create new agent...</option>
+          <% @agents.each do |agent| %>
+          <option value="<%= agent.id %>"><%= agent.title %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="small-12 medium-12 large-12 columns" >
+        <div class="row">
+          <div class="small-2 columns right">
+            <a href="#" id="edit_save_agent_select" class="button tiny success radius right">Add</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <!-- Endpoints -->
-  <div class="row">
-    <div class="small-12 medium-2 large-2 columns">
-      <h3><%= pluralize(@integration.templates.size, 'Endpoint') %></h3>
-    </div>
-    <div class="small-12 medium-10 large-10 columns">
-      <% @integration.templates.each do |template| %>
-      <%= render :partial => "templates/show_integration", locals: {:template => template} %>
-      <% end %>
-      <div class="row" id="edit_select_template">
-        <div class="small-3 medium-3 large-3 columns">
+</div>
+<!-- Endpoints -->
+<div class="row">
+  <div class="small-12 medium-2 large-2 columns">
+    <h3><%= pluralize(@integration.templates.size, 'Endpoint') %></h3>
+  </div>
+  <div class="small-12 medium-10 large-10 columns">
+    <% @integration.templates.each do |template| %>
+    <%= render :partial => "templates/show_integration", locals: {:template => template} %>
+    <% end %>
+    <div class="row" id="edit_select_template">
+      <div class="small-3 medium-3 large-3 columns">
         <label class="right inline">Add endpoint</label>
-        </div>
-        <div class="small-9 medium-9 large-9 columns">
-          <select id="edit_template_select_list" tabindex="8">
-            <option value="0" selected="selected">Create new endpoint...</option>
-            <% @templates.each do |template| %>
-            <option value="<%= template.id %>"><%= template.title %></option>
-            <% end %>
-          </select>
-        </div>
-        <div class="small-12 medium-12 large-12 columns" >
-          <div class="row">
-            <div class="small-2 columns right">
-              <a href="#" id="edit_save_template_select" class="button tiny success radius right">Add</a>
-            </div>
+      </div>
+      <div class="small-9 medium-9 large-9 columns">
+        <select id="edit_template_select_list" tabindex="8">
+          <option value="0" selected="selected">Create new endpoint...</option>
+          <% @templates.each do |template| %>
+          <option value="<%= template.id %>"><%= template.title %></option>
+          <% end %>
+        </select>
+      </div>
+      <div class="small-12 medium-12 large-12 columns" >
+        <div class="row">
+          <div class="small-2 columns right">
+            <a href="#" id="edit_save_template_select" class="button tiny success radius right">Add</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <br />
-  <div class="row">
-    <div class="small-1 columns right">
-      <%= link_to 'Remove', @integration, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
-    </div>
+</div>
+<br />
+<div class="row">
+  <div class="small-1 columns right">
+    <%= link_to 'Remove', @integration, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
   </div>
+</div>

@@ -4,6 +4,11 @@ $(function() {
 
   // Update template action
   $('.edit_template').on('ajax:success', edit_template_save);
+
+    $('.output_details_toggle').on('click', function(event) {
+    event.preventDefault();
+    $('#details_output_' + $(this).data('id')).toggle('slow');
+  })
 });
 
 

@@ -11,12 +11,31 @@
 	color: darken(#be616b,10%);
 }
 
+.dark {
+ color: darken(#8fa1b2, 10%);
+}
+
 .index-logo{
 	color: #268bd2;
 	font-size: 1400%
 }
 
-// override off-canvas link background color on hover
-ul.off-canvas-list li a:hover {
-  background-color: #cbd0d7;
+.home_navbar {
+    padding: 4px;
 }
+
+/*new sidebar */
+ul.off-canvas-list li a.active {
+  border-left: #FFF 4px solid;
+  background-color:#65727d;
+}
+
+ul.off-canvas-list li {
+
+}
+
+
+ul.off-canvas-list li a:hover {
+  background-color: #343d46;
+}
+

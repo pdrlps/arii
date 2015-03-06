@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     begin
-      # use Kaminari for pagination      
+      # use Kaminari for pagination
       @events = Kaminari.paginate_array(Event.by_user(current_user)).page(params[:page])
       unless params[:page].nil? then
         @events.page params[:page]
@@ -17,7 +17,7 @@ class EventsController < ApplicationController
     rescue Exception => e
       Services::Slog.exception e
     end
-    
+
   end
 
   # GET /events/1
@@ -35,14 +35,37 @@ class EventsController < ApplicationController
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_event
-      @event = Event.find(params[:id])
-    end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def event_params
-      params.require(:event).permit(:payload, :memory)
+  ##
+  # Get all events for given agent
+  def agent
+    begin
+      # use Kaminari for pagination
+      @agent = current_user.agents.find(params[:id])
+      @events = Kaminari.paginate_array(Event.by_agent(params[:id])).page(params[:page])
+      unless params[:page].nil? then
+        @events.page params[:page]
+      else
+        params[:page] = 1
+        @events.page 1
+      end
+    rescue Exception => e
+      Services::Slog.exception e
     end
   end
+
+  ##
+  # Get all events for given integration
+  def integration
+  end
+
+  private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_event
+    @event = Event.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def event_params
+    params.require(:event).permit(:payload, :memory)
+  end
+end

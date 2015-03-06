@@ -1,69 +1,65 @@
 <%= form_for(@feedback, :remote => true) do |f| %>
-  <% if @feedback.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
-
-      <ul>
-      <% @feedback.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
- <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-2 columns">
-          <%= f.label :name, :class => 'right inline' %>
-        </div>
-        <div class="small-10 columns">
-           <%= f.text_field :name %>
-        </div>
-      </div>
-    </div>
-  </div>
+<% if @feedback.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
+  <ul>
+    <% @feedback.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-12 columns">
     <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-2 columns">
-          <%= f.label :email, :class => 'right inline' %>
-        </div>
-        <div class="small-10 columns">
-           <%= f.email_field :email %>
-        </div>
+      <div class="small-2 columns">
+        <%= f.label :name, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_field :name %>
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
     <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-2 columns">
-          <%= f.label :subject, :class => 'right inline' %>
-        </div>
-        <div class="small-10 columns">
-           <%= f.text_field :subject %>
-        </div>
+      <div class="small-2 columns">
+        <%= f.label :email, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.email_field :email %>
       </div>
     </div>
   </div>
-      <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-2 columns">
-          <%= f.label :message, :class => 'right inline' %>
-        </div>
-        <div class="small-10 columns">
-            <%= f.text_area :message %>
-        </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :subject, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_field :subject %>
       </div>
     </div>
   </div>
-
-
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :message, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_area :message %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="small-12 columns right">
-    <%= f.submit 'Send Feedback', :class => 'button right small radius' %>
+    <%= f.submit 'Give Feedback', :class => 'button right success radius icon-mail' %>
   </div>
 </div>
 <% end %>

@@ -1,5 +1,23 @@
 ARII::Application.routes.draw do
 
+  get 'dashboard/index'
+
+  get 'dashboard/show'
+
+  get 'dashboard/update'
+
+  get 'library/index'
+
+  get 'library/inputs'
+
+  get 'library/outputs'
+
+  get 'library/integrations'
+
+  get 'library/show'
+
+  get 'library/get'
+
   resources :feedbacks
 
   # Home
@@ -11,6 +29,7 @@ ARII::Application.routes.draw do
   get "about/index"
 
   # Agents control
+  resources :inputs, :controller =>'agents'
   resources :agents
   get "agents/partials/:identifier", to: 'agents#partials'  		# what is this?
   get "agents/import/:identifier", to: "agents#import"      		# import from JSON file
@@ -30,7 +49,6 @@ ARII::Application.routes.draw do
   get 'contacts', to: redirect('/contact/index')
 
   # Dashboard
-  get 'dashboard', to: redirect('/integrations')
 
   # Delivery control
   get "delivery/get"
@@ -52,9 +70,12 @@ ARII::Application.routes.draw do
   get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
 
   # Events control
+  #
+  get 'events/agent/:id', to: 'events#agent'
+  get 'events/integration/:id', to: 'events#integration'
   resources :events
   resources :events do
-    get 'page/:page', :action => :index, :on => :collection
+     get 'page/:page', :action => :index, :on => :collection
   end
 
   # Files control
@@ -97,6 +118,7 @@ ARII::Application.routes.draw do
   resources :seeds
 
   # Templates controls
+  resources :outputs, :controller =>'templates'
   resources :templates
   get "templates/:id/get", to: "templates#get"            # load template as JSON
   post "templates/new"

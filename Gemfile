@@ -32,8 +32,11 @@ gem 'kramdown'
 gem 'mysql2'
 gem 'pg'
 
-# Excel support. Read more: https://github.com/weshatheleopard/rubyXL
+# Excel support (xslx files). Read more: https://github.com/weshatheleopard/rubyXL
 gem 'rubyXL'
+
+# Excel support (xsl files). Read more: https://github.com/zdavatz/spreadsheet
+gem 'spreadsheet'
 
 # Authentication and security stuff. Read more: http://devise.plataformatec.com.br
 gem 'devise'
@@ -89,8 +92,7 @@ gem 'rest-client'
 gem 'nokogiri'
 
 # Redis cache access. Read more: https://github.com/redis/redis-rb
-gem "redis", "~> 3.0.1"
-gem "hiredis", "~> 0.4.5"
+gem "redis"
 
 # Sentry logger access. Read more: https://github.com/getsentry/raven-ruby
 gem "sentry-raven"

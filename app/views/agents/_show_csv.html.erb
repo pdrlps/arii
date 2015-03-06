@@ -16,7 +16,7 @@
         <strong class="right inline">Headers</strong>
       </div>
       <div class="small-9 columns">
-        <%= agent[:payload][:headers] %>
+        <%= agent[:payload][:headers] ? 'Yes' : 'No'  %>
       </div>
     </div>
     <div class="row">
@@ -39,6 +39,7 @@
 </div>
 <br />
 <div class="row">
+  <h4 class="subheader">Selectors</h4>
   <div class="small-1 columns">
     <div class="right inline icon-selectors xl-icon has-tip" title="Selectors" data-tooltip>&nbsp;</div>
   </div>

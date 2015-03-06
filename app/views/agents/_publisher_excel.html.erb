@@ -11,7 +11,7 @@
     <label class="right inline">Headers</label>
   </div>
   <div class="small-9 columns">
-    <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? '' : '' %>  name="agent[headers]" type="text" />
+    <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? '' : @agent.headers %>  name="agent[headers]" type="text" />
   </div>
 </div>
 <div class="row">

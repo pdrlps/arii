@@ -11,9 +11,11 @@ $panel-padding: rem-calc(5);
 
 .info-row {
 	border-left: 3px solid #ccc;
-	border-bottom: 3px solid #FFF;
-	border-top: 3px solid #FFF;
-	padding: 4px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	padding: 2px;
+	padding-top: 8px;
+
 }
 
 .info-enabled {
@@ -38,13 +40,15 @@ $panel-padding: rem-calc(5);
 	background-color: lighten($alert-color,40%);
 }
 
-.circle_48 {
-	height: 48px;
-	width: 48px;
-	display: table-cell;
-	text-align: center;
-	vertical-align: middle;
-	border-radius: 50%;
+.info-secondary {
+	@extend .clear-borders;
+	@extend .info-row;
+	border-left-color: lighten($primary-color,5%);
+	background-color: lighten($primary-color,25%);//lighten($success-color,50%);
+}
+.info-secondary:hover {
+	border-left-color: darken($primary-color, 2%);
+	background-color: lighten($primary-color,20%);
 }
 
 .on {
@@ -59,20 +63,6 @@ $panel-padding: rem-calc(5);
 	color: #FFFFFF;
 }
 
-.action {
-	display: block;
-	margin: 0 auto;
-	clear: both;
-	width: 22px;
-	height: 20px;
-	font-size: 22px;
-	vertical-align: bottom;
-}
-
-
-.info-details {
-	margin-left: 8px;
-}
 
 .big {
 	font-size: 30px;
@@ -89,3 +79,15 @@ $panel-padding: rem-calc(5);
 	margin: 0 auto;
 	padding: 0px;
 }
+
+
+.input_details_toggle {
+cursor: pointer;
+}
+
+.input_details {
+    display: none;
+}
+
+
+

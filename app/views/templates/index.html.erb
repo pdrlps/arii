@@ -1,108 +1,192 @@
-<% content_for :title, "Endpoints - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li class="current">Endpoints</li>
-</ul>
+<% content_for :title, "Outputs - #{ENV["APP_TITLE"]}" %>
 <div data-alert class="alert-box secondary radius">
-  Got any trouble creating new endpoints? <a href="#" data-reveal-id="endpoints_demo_video"><strong>Check the demo video</strong></a>.
+  Got any trouble creating new outputs? <a href="#" data-reveal-id="endpoints_demo_video"><strong>Check the demo video</strong></a>.
   <a href="#" class="close">&times;</a>
 </div>
-<h1>Endpoints</h1>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
   <%= flash[:notice].html_safe %> <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-<div class="small-9 columns">
-  <h3 class="subheader">Active Endpoints</h3>
+<div class="small-12 columns">
+  <div class="row">
+    <div class="small-6 columns left">
+      <h3 class="subheader">Outputs</h3>
+    </div>
+    <div class="small-6 columns right">
+      <%= link_to 'Create output'.html_safe, new_template_path, :class => 'icon-create small button radius right primary' %>
+    </div>
+  </div>
   <% @templates.each do |template| %>
   <div class="row agent-info <%= (template.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
-    <div class="small-11 columns left">
-      <div class="info-details">
-        <h6 class="subheader"><%= template.title %></h6>
-        <span class="label secondary radius icon-list"><%= template.count %></span>
-        <span class="label secondary radius icon-update"><%= template.last_execute_at.nil? ? 'Not executed' : time_ago_in_words(template.last_execute_at) + ' ago' %></span>
-        <span class="label secondary radius icon-publisher"><%= template.publisher %></span>
+    <div class="small-12 medium-1 large-1 columns">
+      <div class="switch small success radius">
+        <input class="output_toggle" data-id="<%= template.id %>" id="output_switch_<%= template.id %>" type="checkbox" <%= (template.status == 100) ? 'checked' : '' %> name="switch_output_<%= template.id %>">
+        <label for="output_switch_<%= template.id %>"></label>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-right radius action right" data-tooltip title="Edit <%=template.title%>"><%= link_to '', edit_template_path(template), :class => 'icon-settings', :title => "Edit #{template.title}" %></span>
-        <span class="has-tip tip-right radius action right" data-tooltip title="View <%=template.title%>"><%= link_to '', template, :class => 'icon-view', :title => "View #{template.title}" %></span>
+    <div class="small-12 medium-7 large-7 columns">
+      <h6 class="subheader"><%= template.title %></h6>
+    </div>
+    <div class="small-12 medium-1 large-1 columns">
+      <span class="label right radius secondary output_details_toggle" data-id="<%= template.id %>"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-12 medium-3 large-3 columns right">
+      <ul class="button-group radius right">
+        <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button secondary icon-edit' %></li>
+        <li><%= link_to 'View', template, :class => ' small button secondary icon-view' %></li>
+      </ul>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row output_details" id="details_output_<%= template.id %>" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-events"><%= template.count %> Events</span></li>
+            <li><span class="label secondary radius icon-updated"><%= template.last_execute_at.nil? ? 'Not executed' : time_ago_in_words(template.last_execute_at) + ' ago' %></span></li>
+            <li><span class="label secondary radius icon-endpooint"><%= template.publisher %></span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
   <% end %>
-  <h5 class="subheader">Create <%= link_to 'new endpoint', new_template_path, :class => '' %></h5>
   <hr>
-  <h5 class="subheader">or <strong>add a sample endpoint</strong></h5>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
+  <h5 class="subheader">Add sample output</h5>
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
       <div class="info-details">
-        <h6 class="subheader">SQL Endpoint</h6>
-        <span class="label secondary radius icon-publisher">sql</span>
+        <h6 class="subheader">SQL Output</h6>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample SQL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add xl-icon action right',:title => 'Add sample SQL template' %></span>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row output_details" id="details_output_sample1" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-endpoint">sql</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
       <div class="info-details">
-        <h6 class="subheader">URL Endpoint</h6>
-        <span class="label radius secondary icon-publisher">url</span>
+        <h6 class="subheader">URL Output</h6>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample URL endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add action right',:title => 'Add sample URL endpoint'%></span>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample URL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row output_details" id="details_output_sample1" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-endpoint">url</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
       <div class="info-details">
-        <h6 class="subheader">File Endpoint</h6>
-        <span class="label radius secondary icon-publisher">file</span>
+        <h6 class="subheader">File Output</h6>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample file endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add action right',:title => 'Add sample File endpoint' %></span>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add radius small button primary',:title => 'Add sample File output' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row output_details" id="details_output_sample1" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-endpoint">file</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row agent-info info-enabled">
-    <div class="small-11 columns">
+  <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
       <div class="info-details">
-        <h6 class="subheader">Mail Endpoint</h6>
-        <span class="label radius secondary icon-publisher">mail</span>
+        <h6 class="subheader">Mail Output</h6>
       </div>
     </div>
-    <div class="small-1 columns right">
-      <div class="right">
-        <span class="has-tip tip-top radius" data-tooltip title="Add sample mail endpoint"><%= link_to '', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add action right',:title => 'Add sample Mail endpoint' %></span>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample Mail output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add radius small button primary',:title => 'Add sample Mail output' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row output_details" id="details_output_sample1" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-endpoint">mail</span></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="small-3 columns right">
-  <%= link_to ' New Endpoint', new_template_path, :class => 'button small radius icon-template', :title => 'Create new template' %>
-  <h4>Go to</h4>
-  <ul class="no-bullet">
-    <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :class => 'icon-integration', :title => 'Go to Dashboard'%></li>
-    <li><%= link_to 'Agents'.html_safe, {:controller => '/agents'}, :class => 'icon-agent', :title => 'Go to Agents'%></li>
-    <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :class => 'icon-files', :title => 'Go to Files' %></li>
-  </ul>
-  <%= render partial: "helper/event_list"  %>
-</div>
-<div id="endpoints_demo_video" class="reveal-modal large" data-reveal>
-  <h2>Endpoints Demo Video</h2>
-  <div class="flex-video widescreen vimeo" style="display: block;">
-    <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0"></iframe>
+  <!-- demo video -->
+  <div id="endpoints_demo_video" class="reveal-modal large" data-reveal>
+    <h2>Endpoints Demo Video</h2>
+    <div class="flex-video widescreen vimeo" style="display: block;">
+      <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0"></iframe>
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
   </div>
-  <a class="close-reveal-modal">&#215;</a>
-</div>

@@ -45,18 +45,64 @@ $(function() {
 
 	/***
 	 *
-	 * Play/Pause integrations handlers
+	 * Enable/Disable integrations handlers
 	 *
 	 ***/
+
+	 $('.integration_toggle').on('change',update_integration_toggle);
+
 
 	 // Play paused integration
 	$('.integration_play').on('click', integration_play);
 
 	// Pause active integration
 	$('.integration_pause').on('click', integration_pause);
-	//
+
+
+	// show integration details
+	$('.integration_details_toggle').on('click', function(event) {
+		event.preventDefault();
+		$('#details_integration_' + $(this).data('id')).toggle('slow');
+	})
 
 });
+
+/**
+ * Pause integration handler
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+function update_integration_toggle(event) {
+	event.preventDefault();
+	if ($(this).is(':checked')) {
+		$.getJSON('../integrations/' + $(this).data('id') + '/play', function(data) {
+			if (data.status === 100) {
+				$("#integration_details_" + data.id).removeClass('info-disabled').addClass('info-enabled');
+			} else {
+				$(this).prop('checked',false);
+			}
+		});
+	} else {
+	$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
+		if (data.status === 400) {
+			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
+		} else {
+			$(this).prop('checked',true);
+		}
+	});
+	}
+	/*$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
+		if (data.status === 400) {
+			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
+			$('#integration_pause_' + data.id).remove();
+			$('#integration_play_' + data.id).html('<a href="#" data-id="' +data.id + '" class="icon-play integration_play">&nbsp; </a>');
+			$('#integration_play_' + data.id).attr('title','Enable ' + data.title);
+			$('#integration_play_' + data.id).data('title','Enable ' + data.title);
+			$('.integration_play').on('click', integration_play);
+			$(document).foundation('reflow');
+		}
+	});*/
+}
 
 /**
  * Pause integration handler

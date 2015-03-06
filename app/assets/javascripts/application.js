@@ -36,19 +36,29 @@ if (typeof String.prototype.addSlashes != 'function') {
 $(function() {
   $(document).foundation();
 
-  // fix sidebar height
-  if ($('#sidebar').height() < $(window).height()) {
-    $('#sidebar').height($(window).height());
-  }
-
-
   // API KEY MANAGEMENT
   update_user_remove_key_selectors();
 
   //temp for user adding keys
   $('#user_add_api_key').on('click', update_user_generate_key);
 
+  update_sidebar();
+
 });
+
+/**
+ * Assign active class to correct menu item on dashboard
+ * @return {[type]} [description]
+ */
+function update_sidebar(){
+
+  menu_items = ['integrations', 'inputs', 'outputs','dashboard', 'files', 'library', 'user', 'events'];
+  menu_items.forEach(function(entry) {
+    if (window.location.href.indexOf(entry) > 0) {
+    $('#sidebar_' + entry).addClass('active');
+  }
+  })
+}
 
 /**
  *	Add User API keys (no reload!).

@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7 ]>
 <html class="ie6" lang="en">
   <![endif]-->
@@ -9,7 +8,8 @@
     <!--[if IE 8 ]>
     <html class="ie8" lang="en">
       <![endif]-->
-      <!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+      <!--[if (gte IE 9)|!(IE)]><!-->
+      <html lang="en"> <!--<![endif]-->
       <head>
         <meta charset="utf-8" />
         <!-- Uncomment to make IE8 render like IE7 -->
@@ -24,52 +24,43 @@
         <%= csrf_meta_tags %>
       </head>
       <body>
-        <div class="off-canvas-wrap" data-offcanvas>
-          <div class="inner-wrap">
-            <div class="fixed">
-              <nav class="top-bar animated fadeInDown">
-                <ul class="title-area">
-                  <!-- Title Area -->
-                  <li class="name">
-                    <h1><a href="<%= root_url %>" class="logo"><%= image_tag "ariip_xl.png", :size => '20' %></a></h1>
-                  </li>
-                  <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
-                </ul>
-                <section class="top-bar-section">
-                  <ul class="left">
-                    <li data-tooltip class="has-tip radius" title="Features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="How"><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="Use Cases"><%= link_to 'Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="Contact"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
-                  </ul>
-                  <ul class="right">
-                    <li class="has-tip radius" data-tooltip title="User"><a class="right-off-canvas-toggle" title="User"><%= user_signed_in? ? (current_user.name ||= current_user.username) : 'Sign in' %></a></li>
-                  </ul>
-                  <!-- Right Nav Section -->
-                  <ul class="right">
-                    <li><%= link_to "FAQ", :controller => '/docs', :action => 'show', :section => 'faq', :topic => 'index' %></li>
-                    <!--<li class="divider"></li>
-                    <li><%= link_to "How To", :controller => '/docs', :action => 'show', :section => 'how_to', :topic => 'index' %></li>-->
-                    <li class="divider"></li>
-                    <li><%= link_to "Reference", :controller => '/docs' %></li>
-                    <li class="divider"></li>
-                  </ul>
-                </section>
-              </nav>
-              </div><!-- End Top Bar -->
-              <!-- Start main content -->
-              <div class="row content animated fadeIn" id="content">
-                <%= yield %>
-              </div>
-              <!-- Finish main content -->
-              <!-- User sidebar -->
-              <aside class="right-off-canvas-menu side-user sticky">
-                <%= render partial: "helper/sidenav"  %>
-              </aside>
-              <a class="exit-off-canvas"></a>
-            </div>
+        <div class="fixed">
+          <nav class="top-bar animated fadeInDown">
+            <ul class="title-area">
+              <!-- Title Area -->
+              <li class="name">
+                <h1><a href="<%= root_url %>" class="logo"><%= image_tag "ariip_xl.png", :size => '20' %></a></h1>
+              </li>
+              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+            </ul>
+            <section class="top-bar-section">
+              <ul class="left">
+                <li data-tooltip class="has-tip radius" title="Features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="How"><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="Use Cases"><%= link_to 'Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
+                <li data-tooltip class="has-tip radius" title="Contact"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
+              </ul>
+              <ul class="right">
+                <li class="has-tip radius" data-tooltip title="User"><a class="right-off-canvas-toggle" title="User"><%= user_signed_in? ? (current_user.name ||= current_user.username) : 'Sign in' %></a></li>
+              </ul>
+              <!-- Right Nav Section -->
+              <ul class="right">
+                <li><%= link_to "FAQ", :controller => '/docs', :action => 'show', :section => 'faq', :topic => 'index' %></li>
+                <!--<li class="divider"></li>
+                <li><%= link_to "How To", :controller => '/docs', :action => 'show', :section => 'how_to', :topic => 'index' %></li>-->
+                <li class="divider"></li>
+                <li><%= link_to "Reference", :controller => '/docs' %></li>
+                <li class="divider"></li>
+              </ul>
+            </section>
+          </nav>
+          </div><!-- End Top Bar -->
+          <!-- Start main content -->
+          <div class="row content animated fadeIn" id="content">
+            <%= yield %>
           </div>
+          <!-- Finish main content -->
           <%= javascript_include_tag "application" %>
           <!-- HotJar -->
           <script>
