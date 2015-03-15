@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="small-12 medium-7 large-7 columns">
-      <h6 class="subheader"><%= agent.title %></h6>
+      <h6 class="subheader"><%= link_to agent.title, input_path(agent), :class => '' %></h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
       <span class="label right radius secondary input_details_toggle" data-id="<%= agent.id %>"><i class="icon-tag"></i></span>
@@ -34,8 +34,8 @@
     <div class="small-12 medium-3 large-3 columns right">
       <ul class="button-group radius right">
         <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
-        <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
-        <li><%= link_to 'View', input_path(agent), :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button info icon-edit' %></li>
+        <li><%= link_to 'View', input_path(agent), :class => ' small button info icon-view' %></li>
       </ul>
     </div>
     <!-- details -->

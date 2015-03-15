@@ -10,7 +10,7 @@
     <span class="label secondary radius icon-delivery">Last delivery <%= template.last_execute_at.nil? ? 'not executed' : time_ago_in_words(template.last_execute_at) +' ago' %></span>
   </div>
   <div class="small-10 medium-3 large-3 columns right text-right">
-    <span class="has-tip tip-top radius" data-tooltip title="Edit <%= template.title %>"><%= link_to 'Edit', edit_output_path(template), :class => "icon-edit small button radius secondary", :title => "Edit #{template.title}" %></span>
+    <span class="has-tip tip-top radius" data-tooltip title="Edit <%= template.title %>"><%= link_to 'Edit', edit_output_path(template), :class => "icon-edit small button radius info", :title => "Edit #{template.title}" %></span>
   </div>
 </div>
 <br />

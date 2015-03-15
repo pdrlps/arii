@@ -12,7 +12,7 @@
   <div class="small-10 medium-3 large-3 columns right text-right">
     <ul class="button-group radius right">
       <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
-      <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
+      <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button info icon-edit' %></li>
     </ul>
   </div>
 </div>
@@ -21,7 +21,7 @@
   <div class="small-2 columns">
     <div class="agent-hl ">
       <div class="big center">
-        <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= agent.events.size %></span>
+        <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= link_to agent.events.size, {:controller => 'events', :action => 'input', :id => agent.id} %></span>
       </div>
       <h5 class="center icon-events xl-icon"></h5>
     </div>

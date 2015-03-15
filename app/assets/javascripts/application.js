@@ -54,6 +54,22 @@ $(function() {
     prev_button : '<a href="#" class="small button radius joyride-prev-tip"></a>'}} }).foundation('joyride', 'start');
   });
 
+  /**
+   * Events
+   */
+
+  // redirect on inputs filter change
+   $('#inputs_filter').on('change', function(event) {
+      event.preventDefault();
+      window.location = '/events/input/' + $(this).val();
+   })
+
+  // redirect on integrations filter change
+   $('#integrations_filter').on('change', function(event) {
+      event.preventDefault();
+      window.location = '/events/integration/' + $(this).val();
+   })
+
 
 });
 

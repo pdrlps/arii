@@ -6,6 +6,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     begin
+      @integrations = current_user.integrations
+      @agents = current_user.agents
       # use Kaminari for pagination
       @events = Kaminari.paginate_array(Event.by_user(current_user)).page(params[:page])
       unless params[:page].nil? then
@@ -16,6 +18,10 @@ class EventsController < ApplicationController
       end
     rescue Exception => e
       Services::Slog.exception e
+    end
+    respond_to do |format|
+      format.js
+      format.html
     end
 
   end
@@ -39,6 +45,8 @@ class EventsController < ApplicationController
   # Get all events for given agent
   def input
     begin
+      @integrations = current_user.integrations
+      @agents = current_user.agents
       # use Kaminari for pagination
       @agent = current_user.agents.find(params[:id])
       @events = Kaminari.paginate_array(Event.by_agent(params[:id])).page(params[:page])
@@ -49,7 +57,7 @@ class EventsController < ApplicationController
         @events.page 1
       end
     rescue Exception => e
-       flash[:notice] = "You are not authorized to access that Input."
+      flash[:notice] = "You are not authorized to access that Input."
       Services::Slog.exception e
     end
   end
@@ -60,6 +68,8 @@ class EventsController < ApplicationController
   # Get all events for given integration
   def integration
     begin
+      @integrations = current_user.integrations
+      @agents = current_user.agents
       # use Kaminari for pagination
       @integration = current_user.integrations.find(params[:id])
       @events = Kaminari.paginate_array(Event.by_integration(@integration)).page(params[:page])
@@ -70,7 +80,7 @@ class EventsController < ApplicationController
         @events.page 1
       end
     rescue Exception => e
-       flash[:notice] = "You are not authorized to access that Integration."
+      flash[:notice] = "You are not authorized to access that Integration."
       Services::Slog.exception e
     end
   end

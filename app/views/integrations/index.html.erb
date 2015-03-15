@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="small-12 medium-7 large-7 columns">
-      <h6 class="subheader"><%= integration.title %> </h6>
+      <h6 class="subheader"><%= link_to integration.title, integration, :class => '' %> </h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
       <span class="label radius secondary right integration_details_toggle" data-id="<%= integration.id %>"><%= integration.agents.count %><i class="icon-integration"></i><%= integration.templates.count %></span>
@@ -51,8 +51,8 @@
     <div class="small-12 medium-3 large-3 columns right">
       <ul class="button-group radius right">
         <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button success icon-execute',:title => "Execute #{integration.title}" %></li>
-        <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button secondary icon-edit' %></li>
-        <li><%= link_to 'View', integration, :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button info icon-edit' %></li>
+        <li><%= link_to 'View', integration, :class => ' small button info icon-view' %></li>
       </ul>
     </div>
     <!-- Inputs & Outputs -->

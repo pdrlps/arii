@@ -25,15 +25,15 @@
       </div>
     </div>
     <div class="small-12 medium-8 large-8 columns">
-      <h6 class="subheader"><%= template.title %></h6>
+      <h6 class="subheader"><%= link_to template.title, output_path(template), :class => '' %></h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="<%= template.id %>"><i class="icon-tag"></i></span>
     </div>
     <div class="small-12 medium-2 large-2 columns right">
       <ul class="button-group radius right">
-        <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button secondary icon-edit' %></li>
-        <li><%= link_to 'View', output_path(template), :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button info icon-edit' %></li>
+        <li><%= link_to 'View', output_path(template), :class => ' small button info icon-view' %></li>
       </ul>
     </div>
     <!-- details -->
