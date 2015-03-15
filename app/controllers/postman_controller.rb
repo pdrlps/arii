@@ -9,7 +9,7 @@ require 'raven'
 
 class PostmanController < ApplicationController
   def deliver
-    Services::Slog.debug({:message => "Starting delivery for #{params[:identifier]}", :module => "Postman", :task => "deliver", :extra => {:endpoint => params[:identifier], :params => params}})
+    Services::Slog.debug({:message => "Starting delivery to #{params[:identifier]}", :module => "Postman", :task => "deliver", :extra => {:endpoint => params[:identifier], :params => params}})
 
     @delivery
     begin
@@ -28,8 +28,22 @@ class PostmanController < ApplicationController
         @delivery = Services::DropboxTemplate.new @template
       end
     rescue Exception => e
-      @response = { :status => "401", :message => "[ARiiP] Unable to load selected Delivery Template", :identifier => params[:identifier], :error => e }
+      @response = { :status => "401", :message => "[ARiiP] Unable to load selected Output", :identifier => params[:identifier], :error => e }
       Services::Slog.exception e
+    end
+
+    # stop if output is disabled
+    if @template.status != 100
+      @response = {:status => 403, :message => '[ARiiP] Selected Output is disabled.', :identifier => params[:identifier]}
+      respond_to do |format|
+        format.json  {
+          render :json => @response
+        }
+        format.js  {
+          render :json => @response
+        }
+      end
+      return
     end
 
     begin
@@ -75,14 +89,14 @@ class PostmanController < ApplicationController
     begin
       @t = Template.where(identifier: params[:identifier], publisher: params[:publisher])
       if @t.count > 0 then
-        response = { :status => "402", :message => "[ARiiP]: template #{params[:identifier]} already exists"}
+        response = { :status => "402", :message => "[ARiiP]: output #{params[:identifier]} already exists"}
       else
         attrs = JSON.parse(IO.read("templates/#{params[:publisher]}/#{params[:identifier]}.js"))
         t = Template.create! attrs
-        response = { :status => "200", :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => "#{t[:id]}" }
+        response = { :status => "200", :message => "[ARiiP]: outut #{params[:identifier]} loaded", :id => "#{t[:id]}" }
       end
     rescue
-      response = { :status => "401", :message => "Error: template not found for #{params[:publisher]} with name #{params[:key]}.", :error =>  $!}
+      response = { :status => "401", :message => "Error: output not found for #{params[:publisher]} with name #{params[:key]}.", :error =>  $!}
       Services::Slog.exception e
     end
 

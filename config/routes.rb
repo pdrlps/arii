@@ -1,25 +1,5 @@
 ARII::Application.routes.draw do
 
-  get 'dashboard/index'
-
-  get 'dashboard/show'
-
-  get 'dashboard/update'
-
-  get 'library/index'
-
-  get 'library/inputs'
-
-  get 'library/outputs'
-
-  get 'library/integrations'
-
-  get 'library/show'
-
-  get 'library/get'
-
-  resources :feedbacks
-
   # Home
   root  'home#index'
   get 'home' => 'home/index'
@@ -27,15 +7,6 @@ ARII::Application.routes.draw do
 
   # About
   get "about/index"
-
-  # Agents control
-  resources :inputs, :controller =>'agents'
-  resources :agents
-  get "agents/partials/:identifier", to: 'agents#partials'  		# what is this?
-  get "agents/import/:identifier", to: "agents#import"      		# import from JSON file
-  get "agents/:id/get", to: "agents#get"            		        # load agent as JSON
-  get "agents/add/:identifier", to: "agents#add"            		# add sample agent to user
-  get "agents/:id/execute", to: "agents#execute"                # launch on-demand agent execution
 
   # Alphas control
   resources :alphas
@@ -49,6 +20,9 @@ ARII::Application.routes.draw do
   get 'contacts', to: redirect('/contact/index')
 
   # Dashboard
+  get 'dashboard/index'
+  get 'dashboard/show'
+  get 'dashboard/update'
 
   # Delivery control
   get "delivery/get"
@@ -59,24 +33,17 @@ ARII::Application.routes.draw do
   get "docs", to: 'docs#index'
   get 'docs/:section/:topic', to: 'docs#show'
 
-  # Endpoints controls (previously Templates)
-  get 'endpoints/*all', to: redirect('/templates/%{all}')
-  post 'endpoints/*all', to: redirect('/templates/%{all}')
-  get 'endpoints', to: redirect('templates')
-  resources :templates
-  get "templates/:id/get", to: "templates#get"            # load template as JSON
-  post "templates/new"
-  get "templates/start"
-  get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
-
   # Events control
-  #
-  get 'events/agent/:id', to: 'events#agent'
+  get "stream" => 'events/index'
+  get 'events/input/:id', to: 'events#input'
   get 'events/integration/:id', to: 'events#integration'
   resources :events
   resources :events do
      get 'page/:page', :action => :index, :on => :collection
   end
+
+  # Feedback
+  resources :feedbacks
 
   # Files control
   get "files/get/:filename", to: "files#get"
@@ -97,13 +64,43 @@ ARII::Application.routes.draw do
   # Helpers
   get "helper/index"
 
+  # Inputs control
+  resources :inputs, :controller =>'agents'
+  resources :agents
+  get "agents/partials/:identifier", to: 'agents#partials'      # what is this?
+  get "agents/import/:identifier", to: "agents#import"          # import from JSON file
+  get "agents/:id/get", to: "agents#get"                        # load agent as JSON
+  get "agents/add/:identifier", to: "agents#add"                # add sample agent to user
+  get "agents/:id/execute", to: "agents#execute"                # launch on-demand agent execution
+  get "inputs/:id/enable", to: 'agents#enable'                  # enable input
+  get "inputs/:id/disable", to: 'agents#disable'                # disable input
+
   # Integrations control
   resources :integrations
   post "integrations/:id/save", to: 'integrations#save'
   get "integrations/add/:agent/:template", to: 'integrations#add'
   get "integrations/:id/execute", to: 'integrations#execute'      # execute integration on-demand
-  get "integrations/:id/pause", to: 'integrations#pause'
-  get "integrations/:id/play", to: 'integrations#play'
+  get "integrations/:id/enable", to: 'integrations#enable'        # enable integration
+  get "integrations/:id/disable", to: 'integrations#disable'      # disable integration
+
+  # Library control
+  get 'library/index'
+  get 'library/inputs'
+  get 'library/outputs'
+  get 'library/integrations'
+  get 'library/show'
+  get 'library/get'
+
+
+  # Outputs controls (previously Templates)
+  resources :outputs, :controller =>'templates'
+  resources :templates
+  get "templates/:id/get", to: "templates#get"                    # load template as JSON
+  post "templates/new"
+  get "templates/start"
+  get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
+  get "outputs/:id/enable", to: 'templates#enable'                # enable output
+  get "outputs/:id/disable", to: 'templates#disable'              # disable output
 
   # Postman control
   get "postman/load/:publisher/:identifier", to: "postman#load"
@@ -116,15 +113,6 @@ ARII::Application.routes.draw do
 
   # Seeds control
   resources :seeds
-
-  # Templates controls
-  resources :outputs, :controller =>'templates'
-  resources :templates
-  get "templates/:id/get", to: "templates#get"            # load template as JSON
-  post "templates/new"
-  get "templates/start"
-  get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
-
 
   # Tester controller
   get "tester/regex", to: 'tester#regex'

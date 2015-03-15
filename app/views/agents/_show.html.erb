@@ -1,16 +1,19 @@
 <div class="row">
-  <div class="small-10 columns left">
-    <span class="label secondary radius"><small>Updated
-      <%= time_ago_in_words(agent.updated_at) %>
-    ago</small></span>
-    <span class="label secondary radius"><small>
-      Last check
-      <%= time_ago_in_words(agent.last_check_at) %>
-    ago</small></span>
+  <div class="small-2 medium-1 large-1 columns left">
+    <div class="switch small radius">
+      <input class="input_toggle" data-id="<%= agent.id %>" id="input_switch_<%= agent.id %>" type="checkbox" <%= (agent.status == 100) ? 'checked' : '' %> name="switch_input_<%= agent.id %>">
+      <label for="input_switch_<%= agent.id %>"></label>
+    </div>
   </div>
-  <div class="small-2 columns right text-right">
-    <span class="has-tip radius right" data-tooltip title="Edit <%= agent.title %>"><%= link_to '', edit_agent_path(agent), :title => "Edit #{agent.title}", :class => 'icon-settings xl-icon' %></span>
-    <span class="has-tip radius right" data-tooltip title="Execute <%= agent.title %>"><%= link_to '', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'icon-play xl-icon',:title => "Execute #{agent.title}" %></span>
+  <div class="small-12 medium-8 large-8 columns">
+    <span class="label secondary radius icon-updated">Updated <%= time_ago_in_words(agent.updated_at) %> ago</span>
+    <span class="label secondary radius icon-check">Last check <%= time_ago_in_words(agent.last_check_at) %> ago</span>
+  </div>
+  <div class="small-10 medium-3 large-3 columns right text-right">
+    <ul class="button-group radius right">
+      <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
+      <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
+    </ul>
   </div>
 </div>
 <br />
@@ -20,7 +23,7 @@
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= agent.events.size %></span>
       </div>
-      <h5 class="center icon-list xl-icon"></h5>
+      <h5 class="center icon-events xl-icon"></h5>
     </div>
     <div class="agent-hl">
       <div class="big center">

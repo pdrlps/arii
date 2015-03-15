@@ -5,12 +5,11 @@
   <a href="#" class="close">&times;</a>
 </div>
 <% else %>
-<% content_for :title, "Events for #{@integration.title} - #{params[:page]} - #{ENV["APP_TITLE"]}" %>
-
+<% content_for :title, "Events for #{@agent.title} - #{params[:page]} - #{ENV["APP_TITLE"]}" %>
 <div class="small-12 medium-12 large-12 columns">
   <div class="row">
     <div class="small-6 columns left">
-      <h3 class="subheader">Events for <%= link_to @integration.title, @integration %></h3>
+      <h3 class="subheader">Events for <%= link_to @agent.title, @agent %></h3>
     </div>
     <div class="small-6 columns right">
     </div>

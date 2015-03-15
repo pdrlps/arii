@@ -1,7 +1,7 @@
 <%= form_for(@agent, :remote => true) do |f| %>
 <% if @agent.errors.any? %>
 <div id="error_explanation">
-  <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this agent from being saved:</h2>
+  <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this input from being saved:</h2>
   <ul>
     <% @agent.errors.full_messages.each do |msg| %>
     <li><%= msg %></li>
@@ -46,7 +46,6 @@
 <div id="publisher_content">
   <%= render(:partial => "agents/publisher_#{@agent.publisher}") %>
 </div>
-
 <hr>
 <!-- Seed processing -->
 <% unless @agent.seeds.size > 0 then %>
@@ -70,23 +69,27 @@
 <% @agent.seeds.each do |seed| %>
 <div class="row">
   <div class="small-3 columns">
-   <label class="right inline">Seed</label>
- </div>
- <div class="small-9 columns">
- <%= select_tag 'seed[publisher]', options_for_select([['SQL', 'sql'], ['CSV', 'csv'], ['XML','xml'], ['JSON','json']], {:selected => seed.publisher}), {:tabindex => autotab, :id => 'seed', :name => 'seed[publisher]'} %>
-</div>
+    <label class="right inline">Seed</label>
+  </div>
+  <div class="small-9 columns">
+    <%= select_tag 'seed[publisher]', options_for_select([['SQL', 'sql'], ['CSV', 'csv'], ['XML','xml'], ['JSON','json']], {:selected => seed.publisher}), {:tabindex => autotab, :id => 'seed', :name => 'seed[publisher]'} %>
+  </div>
 </div>
 <%= render :partial => "agents/seed_#{seed.publisher}", locals: {:seed => seed} %>
 <% end %>
 <% end %>
 <div class="row">
-  <div class="small-12 columns right">
-    <%= f.submit 'Save', :class => 'button right success small radius edit_save_agent', :tabindex => autotab, :id => 'save_agent' %>
+  <div class="small-12 medium-2 large-2 columns right">
+    <ul class="button-group radius right">
+      <li><%= link_to 'Back', :back, :class => 'small button secondary icon-back' %></li>
+      <li><%= link_to 'Save', '#', :class => 'small button success edit_save_agent icon-save',:tabindex => autotab, :id => 'save_agent'  %></li>
+    </ul>
   </div>
 </div>
 <% end %>
+<br />
 <div class="row">
-  <div class="small-12 columns right">
-    <%= link_to 'Remove', @agent, :tabindex => autotab, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@agent.title} agent?" } %>
+  <div class="small-12 medium-10 large-10 columns right text-right">
+    <%= link_to 'Remove', @agent, :tabindex => autotab, :class => 'remove right icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@agent.title} input?" } %>
   </div>
 </div>

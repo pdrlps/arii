@@ -5,18 +5,24 @@
   <ul class="off-canvas-list">
     <li><label>Manage</label></li>
     <li><%= link_to 'Integrations'.html_safe, {:controller => '/integrations'}, :id => 'sidebar_integrations',:class => 'icon-integration sidebar-icon', :title => 'Go to Integrations' %></li>
-    <li id=""><%= link_to 'Inputs'.html_safe, inputs_path, :id => 'sidebar_inputs',:class => 'icon-input sidebar-icon', :title => 'Go to Inputs'%></li>
-    <li id=""><%= link_to 'Outputs', outputs_path, :id => 'sidebar_outputs',:class => 'icon-output sidebar-icon', :title => 'Go to Outputs' %></li>
-    <li id=""><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :id => 'sidebar_files',:class => 'icon-files sidebar-icon', :title => 'Go to Files' %></li>
-    <li id=""><%= link_to 'Library', {:controller => '/library'}, :id => 'sidebar_library',:class => 'icon-library sidebar-icon', :title => 'Go to Library' %></li>
+    <li><%= link_to 'Inputs'.html_safe, inputs_path, :id => 'sidebar_inputs',:class => 'icon-input sidebar-icon', :title => 'Go to Inputs'%></li>
+    <li><%= link_to 'Outputs', outputs_path, :id => 'sidebar_outputs',:class => 'icon-output sidebar-icon', :title => 'Go to Outputs' %></li>
+    <li><%= link_to 'Files', {:controller => '/files', :action => 'index'}, :id => 'sidebar_files',:class => 'icon-files sidebar-icon', :title => 'Go to Files' %></li>
+    <li><%= link_to 'Templates', {:controller => '/library'}, :id => 'sidebar_library',:class => 'icon-library sidebar-icon', :title => 'Go to Library' %></li>
   </ul>
     <ul class="off-canvas-list">
     <li><label>Monitor</label></li>
-    <li><%= link_to('Events'.html_safe, events_path, :id => 'sidebar_events',:class => 'icon-events sidebar-icon') %></li>
+    <li><%= link_to('Stream'.html_safe, events_path, :id => 'sidebar_events',:class => 'icon-events sidebar-icon') %></li>
   </ul>
   <ul class="off-canvas-list">
     <li><label>Account</label></li>
-    <li id=""><%= link_to('Details'.html_safe, edit_user_registration_path, :id => 'sidebar_user',:class => 'icon-user sidebar-icon') %></li>
+    <li><%= link_to('Details'.html_safe, edit_user_registration_path, :id => 'sidebar_user',:class => 'icon-user sidebar-icon') %></li>
     <li><%= link_to('Sign Out'.html_safe, destroy_user_session_path, :method => :delete, :class => 'icon-signout sidebar-icon') %></li>
+  </ul>
+    <ul class="off-canvas-list">
+    <li><label>Resources</label></li>
+    <li><%= link_to('How To'.html_safe, {:controller => '/how'}, :id => 'sidebar_how',:class => 'icon-how sidebar-icon') %></li>
+    <li><%= link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => 'sidebar_docs',:class => 'icon-docs sidebar-icon') %></li>
+    <li><%= link_to('FAQ'.html_safe, {:controller => '/docs'}, :id => 'sidebar_faq',:class => 'icon-faq sidebar-icon') %></li>
   </ul>
 </div>

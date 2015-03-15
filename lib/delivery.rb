@@ -18,7 +18,7 @@ module Services
         @publisher = template[:publisher]
         @template = template
         @help = Services::Helper.new
-        
+
 
       rescue Exception => e
         Services::Slog.exception e
@@ -78,8 +78,8 @@ module Services
         @template.update_execute_at Time.now
         @template.increment(:count)
       rescue Exception => e
-       Services::Slog.exception e
-     end
-   end
- end
+        Services::Slog.exception e
+      end
+    end
+  end
 end

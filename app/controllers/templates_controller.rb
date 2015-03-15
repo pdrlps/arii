@@ -28,6 +28,7 @@ class TemplatesController < ApplicationController
     if request.post? then
       puts params[:message]
       attrs = JSON.parse(params[:message])
+      attrs[:identifier] = "out_#{SecureRandom.hex(32)}"
       @template = Template.create! attrs
       @template.status = 100
       @template.count = 0
@@ -58,7 +59,7 @@ class TemplatesController < ApplicationController
     @template.last_execute_at = nil
     @template.status = 100
     @template.count = 0
-    @template.identifier = "#{@template.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
+    @template.identifier = "o_#{SecureRandom.hex(32)}"
     respond_to do |format|
       if @template.save
         current_user.templates.push(@template)
@@ -93,9 +94,9 @@ class TemplatesController < ApplicationController
   # DELETE /templates/1.json
   def destroy
     current_user.templates.delete(@template)
-        # Remove from integrations
-        @template.integrations.each do |integration|
-          integration.templates.delete(@template)
+    # Remove from integrations
+    @template.integrations.each do |integration|
+      integration.templates.delete(@template)
 
       # check if integrations has agents, remove if all empty
       if integration.agents.empty?
@@ -153,6 +154,40 @@ class TemplatesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to @template }
     end if @template.save
+  end
+
+  ##
+  # Disable output (will not execute!). Status = 400
+  def disable
+    begin
+      @output = current_user.templates.find(params[:id])
+      @output.status = 400
+
+      @output.save
+      respond_to do |format|
+        format.json {render json: @output}
+      end
+    rescue Exception => e
+      Services::Slog.exception e
+      format.json {render json: @output}
+    end
+  end
+
+  ##
+  # Enable output (will execute!). Status = 100
+  def enable
+    begin
+      @output = current_user.templates.find(params[:id])
+      @output.status = 100
+
+      @output.save
+      respond_to do |format|
+        format.json {render json: @output}
+      end
+    rescue Exception => e
+      Services::Slog.exception e
+      format.json {render json: @output}
+    end
   end
 
   private

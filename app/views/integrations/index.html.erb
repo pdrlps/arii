@@ -1,8 +1,4 @@
 <% content_for :title, "Integrations - #{ENV["APP_TITLE"]}" %>
-<div data-alert class="alert-box info radius">
-  Got any trouble creating new integrations? <a href="#" data-reveal-id="integrations_demo_video"><strong>Check the demo video</strong></a>.
-  <a href="#" class="close">&times;</a>
-</div>
 <!-- main content -->
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
@@ -29,10 +25,13 @@
   <% else %>
   <div class="row">
     <div class="small-6 columns left">
-      <h3 class="subheader">Integrations</h3>
+      <h3 class="subheader" id="integrations_header">Integrations</h3>
     </div>
     <div class="small-6 columns right">
-      <%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right primary' %>
+      <ul class="inline-list right">
+        <li><a href="#" id="what_integration" class="button small radius warning icon-help">What is this?</a></li>
+        <li><%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right primary' %></li>
+      </ul>
     </div>
   </div>
   <% @integrations.each do |integration| %>
@@ -91,7 +90,7 @@
     <% end %>
     <% end %>
     <hr>
-    <h5 class="subheader">Add sample integration</h5>
+    <h5 class="subheader" id="integration_samples">Add sample integration</h5>
     <div class="row agent-info info-secondary">
       <div class="small-12 medium-1 large-1 columns left">
         &nbsp;
@@ -173,11 +172,21 @@
       </div>
     </div>
   </div>
-  <!-- Demo VIDEO modal -->
-  <div id="integrations_demo_video" class="reveal-modal large" data-reveal>
-    <h2>Integrations Demo Video</h2>
-    <div class="flex-video widescreen vimeo" style="display: block;">
-      <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/wQJyzTGA5vQ?rel=0"></iframe>
-    </div>
-    <a class="close-reveal-modal">&#215;</a>
-  </div>
+  <!-- joyride tour -->
+  <ol class="joyride-list" data-joyride>
+    <li data-id="what_integration" data-text="Next" data-options="tip_location: top; prev_button: false">
+      <p>Hello and welcome to the Joyride <br>documentation page.</p>
+    </li>
+    <li data-id="integrations_header" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
+      <h4>Stop #1</h4>
+      <p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
+    </li>
+    <li data-id="integration_samples" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Stop #2</h4>
+      <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+    </li>
+    <li data-button="End" data-prev-text="Prev">
+      <h4>Stop #3</h4>
+      <p>It works as a modal too!</p>
+    </li>
+  </ol>

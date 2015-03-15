@@ -50,13 +50,12 @@ class IntegrationsController < ApplicationController
   def create
     @integration = Integration.new(integration_params)
     @integration.status = 200
-    @integration.identifier = "#{@integration.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
+    @integration.identifier = "i_#{SecureRandom.hex(32)}"
 
     respond_to do |format|
       if @integration.save
         current_user.integrations.push(@integration)
         current_user.save
-        #format.html { redirect_to @integration, notice: 'Integration was successfully created.' }
         format.json { render json: @integration, status: :created }#, location: @integration }
       else
         format.html { render action: 'new' }
@@ -109,8 +108,8 @@ class IntegrationsController < ApplicationController
   end
 
   ##
-  # Set integration as paused (will not execute!). Status = 400
-  def pause
+  # Disable integration (will not execute!). Status = 400
+  def disable
     begin
       @integration = current_user.integrations.find(params[:id])
       @integration.status = 400
@@ -130,8 +129,8 @@ class IntegrationsController < ApplicationController
   end
 
   ##
-  # Set integration as active (will not execute!). Status = 100
-  def play
+  # Enable integration (will execute!). Status = 100
+  def enable
     begin
       @integration = current_user.integrations.find(params[:id])
       @integration.status = 100

@@ -46,8 +46,8 @@ module Services
         query =  "last_check_at < (now() - '10 minutes'::interval)"
       end
 
-      Integration.all.each do |integration|
-        @agents = integration.agents.where( :schedule => schedule).where(query)
+      Integration.where(:status => 100).each do |integration|
+        @agents = integration.agents.where(:status => 100).where( :schedule => schedule).where(query)
         @agents.each do |agent|
           begin
             self.execute agent

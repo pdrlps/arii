@@ -11,21 +11,45 @@
 		<div class="small-6 columns left">
 			<h3 class="subheader">Files</h3>
 		</div>
-		<div class="small-6 columns right">
-
-		</div>
-	</div>
-	<% @files.each do |file| %>
-	<div class="row agent-info info-secondary">
-		<div class="small-12 medium-7 large-7 columns left">
-			<h6 class="subheader"><%= File.basename(file)  %></h6>
-		</div>
-		<div class="small-12 medium-5 large-5 columns right">
-			<ul class="button-group radius right">
-				<li><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download small button success">Download</a></li>
-				<li><a href="<%= "../files/delete/#{File.basename(file)}" %>" class="icon-delete small button alert">Delete</a></li>
+		<div class="small-6 columns ">
+			<ul class="inline-list right">
+				<li id="files_tour_0"><a href="#" id="what_files"  class="button small right radius warning icon-help">What is this?</a></li>
 			</ul>
 		</div>
 	</div>
-	<% end %>
+	<div id="files_tour_1">
+		<% @files.each_with_index do |file, i| %>
+		<div class="row agent-info info-secondary">
+			<div class="small-12 medium-7 large-7 columns left">
+				<h6 class="subheader"><a href="<%= "../files/get/#{File.basename(file)}" %>"><%= File.basename(file)  %></a></h6>
+			</div>
+			<div class="small-12 medium-5 large-5 columns right" >
+				<ul class="button-group radius right" id="<%= i == 0 ? 'files_tour_2' : '' %>">
+					<li><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download small button success">Download</a></li>
+					<li><a href="<%= "../files/delete/#{File.basename(file)}" %>" class="icon-delete small button alert">Delete</a></li>
+				</ul>
+			</div>
+		</div>
+		<% end %>
+	</div>
 </div>
+<!-- joyride tour -->
+<ol class="joyride-list" data-joyride>
+	<li data-id="files_tour_0" data-text="Next" data-options="tip_location: left; prev_button: false">
+		<p>This is your presonal files workspace in ARiiP. <br>When your integrations interact with files, they are stored by ARiiP internally in this area.</p>
+	</li>
+	<li data-id="files_tour_1" data-text="Next" data-prev-text="Prev" data-options="tip_location: top;">
+		<h4>File list</h4>
+		<p>This is the list of files available in your workspace.</p>
+	</li>
+	<% unless @files.size == 0 %>
+	<li data-id="files_tour_2" data-button="Next" data-prev-text="Prev" data-options="tip_location: left; nub_position: right;">
+		<h4>File actions</h4>
+		<p>Download or delete existing from your workspace.</p>
+	</li>
+	<% end %>
+	<li data-button="End" data-prev-text="Prev">
+		<h4>More questions?</h4>
+		<p>If you still have any questions check the files video or access ARiiP's documentation.</p>
+	</li>
+</ol>

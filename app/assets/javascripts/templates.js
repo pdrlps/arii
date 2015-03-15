@@ -2,6 +2,9 @@ $(function() {
   // Remote save new template
   $('#new_template').on('ajax:success', new_template_save);
 
+  // Edit output
+  $('.edit_save_template').on('click', save_output_on_edit);
+
   // Update template action
   $('.edit_template').on('ajax:success', edit_template_save);
 
@@ -9,9 +12,47 @@ $(function() {
     event.preventDefault();
     $('#details_output_' + $(this).data('id')).toggle('slow');
   })
+
+
+  // Enable/Disable input
+  $('.output_toggle').on('change',update_output_toggle);
 });
 
 
+/**
+ * Save on edit handler
+ *
+ */
+function save_output_on_edit(event) {
+  event.preventDefault();
+  $('.edit_template').submit();
+}
+
+/**
+ * Enable/disable output handler
+ * @param  {[type]} event [description]
+ * @return {[type]}       [description]
+ */
+function update_output_toggle(event) {
+  event.preventDefault();
+  if ($(this).is(':checked')) {
+    $.getJSON('../outputs/' + $(this).data('id') + '/enable', function(data) {
+      if (data.status === 100) {
+        $("#output_details_" + data.id).removeClass('info-disabled').addClass('info-enabled');
+      } else {
+        $(this).prop('checked',false);
+      }
+    });
+  } else {
+  $.getJSON('../outputs/' + $(this).data('id') + '/disable', function(data) {
+    if (data.status === 400) {
+      $("#output_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
+    } else {
+      $(this).prop('checked',true);
+    }
+  });
+  }
+}
 
 /**
  *	Reload jQuery model to listen to new events for POST params "Remove" button
@@ -110,7 +151,7 @@ function remove_url_post_params(event) {
 function new_template_save(e, data, status, xhr) {
   if (status === 'success') {
     template = JSON.parse(xhr.responseText);
-    window.location = '../templates/' + template.id;
+    window.location = '../outputs/' + template.id;
   }
 }
 
@@ -119,9 +160,9 @@ function new_template_save(e, data, status, xhr) {
  **/
 function edit_template_save(e, data, status, xhr) {
   if (status === 'success') {
-    $('#save_template').val('Saved');
+    $('#save_template').html('Saved');
     $('.edit_template :input').on('change', function() {
-      $('#save_template').val('Save');
+      $('#save_template').html('Save');
     });
   }
 }

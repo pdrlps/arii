@@ -2,7 +2,7 @@
 <div id="payload_selector_include">
   <% i = 1 %>
   <% unless agent.selectors.nil? then %>
-  <% JSON.parse(agent.selectors).each do |selector| %> 
+  <% JSON.parse(agent.selectors).each do |selector| %>
   <% selector.each do |k,v| %>
   <div class="row">
     <div class="payload_selector_new_<%= i %>">
@@ -19,13 +19,13 @@
     </div>
   </div>
   <% i = i +1 %>
-  <% end %>      
+  <% end %>
   <% end %>
   <% end %>
 </div>
 <div class="row">
   <div class="small-3 columns">
-  <label class="right inline">New Selector</label>
+    <label class="right inline">New Selector</label>
   </div>
   <div class="small-4 columns">
     <input type="text" class="payload_selector_key " tabindex="<%= autotab %>" data-id="<%= i %>" placeholder="Key" id="payload_selector_key_<%= i %>" />

@@ -14,6 +14,9 @@ $(function() {
 		}
 	});
 
+	// Edit integration
+	$('.integration_save').on('click', save_integration_on_edit);
+
 	// Add template to integration
 	$('#new_save_template_select').on('click', new_save_template_select);
 	$('#new_template_select_list').on('keypress', function(e) {
@@ -43,20 +46,8 @@ $(function() {
 	// Add template to integration from edit
 	$('#edit_save_template_select').on('click', edit_save_template_select);
 
-	/***
-	 *
-	 * Enable/Disable integrations handlers
-	 *
-	 ***/
-
-	 $('.integration_toggle').on('change',update_integration_toggle);
-
-
-	 // Play paused integration
-	$('.integration_play').on('click', integration_play);
-
-	// Pause active integration
-	$('.integration_pause').on('click', integration_pause);
+	// Enable/Disable integration
+	$('.integration_toggle').on('change',update_integration_toggle);
 
 
 	// show integration details
@@ -65,17 +56,32 @@ $(function() {
 		$('#details_integration_' + $(this).data('id')).toggle('slow');
 	})
 
+	// Joyride Tour
+	$('#what_integration').on('click', function(event){
+		$(document).foundation({joyride: { template : { button : '<a href="#" class="small button radius joyride-next-tip"></a>',
+    prev_button : '<a href="#" class="small button radius joyride-prev-tip"></a>',wrapper     : '<div class="joyride-content-wrapper radius"></div>',}} }).foundation('joyride', 'start');
+	});
+
 });
 
 /**
- * Pause integration handler
+ * Save on edit handler
+ *
+ */
+function save_integration_on_edit(event) {
+	event.preventDefault();
+	$('.edit_integration').submit();
+}
+
+/**
+ * Enable/disable integration handler
  * @param  {[type]} event [description]
  * @return {[type]}       [description]
  */
 function update_integration_toggle(event) {
 	event.preventDefault();
 	if ($(this).is(':checked')) {
-		$.getJSON('../integrations/' + $(this).data('id') + '/play', function(data) {
+		$.getJSON('../integrations/' + $(this).data('id') + '/enable', function(data) {
 			if (data.status === 100) {
 				$("#integration_details_" + data.id).removeClass('info-disabled').addClass('info-enabled');
 			} else {
@@ -83,7 +89,7 @@ function update_integration_toggle(event) {
 			}
 		});
 	} else {
-	$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
+	$.getJSON('../integrations/' + $(this).data('id') + '/disable', function(data) {
 		if (data.status === 400) {
 			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
 		} else {
@@ -91,56 +97,6 @@ function update_integration_toggle(event) {
 		}
 	});
 	}
-	/*$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
-		if (data.status === 400) {
-			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
-			$('#integration_pause_' + data.id).remove();
-			$('#integration_play_' + data.id).html('<a href="#" data-id="' +data.id + '" class="icon-play integration_play">&nbsp; </a>');
-			$('#integration_play_' + data.id).attr('title','Enable ' + data.title);
-			$('#integration_play_' + data.id).data('title','Enable ' + data.title);
-			$('.integration_play').on('click', integration_play);
-			$(document).foundation('reflow');
-		}
-	});*/
-}
-
-/**
- * Pause integration handler
- * @param  {[type]} event [description]
- * @return {[type]}       [description]
- */
-function integration_pause(event) {
-	event.preventDefault();
-	$.getJSON('../integrations/' + $(this).data('id') + '/pause', function(data) {
-		if (data.status === 400) {
-			$("#integration_details_" + data.id).removeClass('info-enabled').addClass('info-disabled');
-			$('#integration_pause_' + data.id).remove();
-			$('#integration_play_' + data.id).html('<a href="#" data-id="' +data.id + '" class="icon-play integration_play">&nbsp; </a>');
-			$('#integration_play_' + data.id).attr('title','Enable ' + data.title);
-			$('#integration_play_' + data.id).data('title','Enable ' + data.title);
-			$('.integration_play').on('click', integration_play);
-			$(document).foundation('reflow');
-		}
-	});
-}
-
-/**
- * Play integration handler
- * @param  {[type]} event [description]
- * @return {[type]}       [description]
- */
-function integration_play(event) {
-	event.preventDefault();
-	$.getJSON('../integrations/' + $(this).data('id') + '/play', function(data) {
-		if (data.status === 100) {
-			$("#integration_details_" + data.id).removeClass('info-disabled').addClass('info-enabled');
-
-			$('#integration_play_' + data.id).html('<a href="../integrations/' + data.id + '/execute" class="icon-play integration_play" data-id="' +data.id + '">&nbsp; </a>').attr('title','Execute ' + data.title).removeClass('integration_play');
-			$('<span class="has-tip tip-right radius action right" id="integration_pause_' +data.id + '" data-tooltip title="Disable integration"><a class="icon-pause integration_pause" href="#" data-id="' + data.id + '" >&nbsp; </a></span>').insertAfter($('#integration_play_' + data.id));
-			$('.integration_pause').on('click', integration_pause);
-			$(document).foundation('reflow');
-		}
-	});
 }
 
 /**
@@ -152,11 +108,11 @@ function new_save_agent_select(event) {
 	if (selected === '0') {
 		// show new agent form
 		//$('#new_agent_form').fadeIn(500);
-		window.location = '../agents/new';
+		window.location = '../inputs/new';
 	} else {
 		// load existing agent data
-		$.getJSON('../agents/' + selected + '/get.json', function(data) {
-			$('#new_select_agent').html('<h5 id="agent" data-id="' + data.id + '"><a href="../agents/' + data.id + '" target="_blank">Agent <strong>' + data.title + '</strong></a></h5><div class="row"><div class="small-11 medium-12 large-11 columns right"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule">' + data.schedule + '</span></div></div>');
+		$.getJSON('../inputs/' + selected + '/get.json', function(data) {
+			$('#new_select_agent').html('<h5 id="agent" data-id="' + data.id + '"><a href="../inputs/' + data.id + '" target="_blank">Input <strong>' + data.title + '</strong></a></h5><div class="row"><div class="small-11 medium-12 large-11 columns right"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule">' + data.schedule + '</span></div></div>');
 		});
 	}
 
@@ -174,11 +130,11 @@ function new_save_template_select(event) {
 	if (selected === '0') {
 		// show new agent form
 		//$('#new_template_form').fadeIn(500);
-		window.location = '../templates/new';
+		window.location = '../outputs/new';
 	} else {
 		// load existing agent data
-		$.getJSON('../templates/' + selected + '/get.json', function(data) {
-			$('#new_select_template').html('<h5 id="template" data-id="' + data.id + '"><a href="../templates/' + data.id + '" target="_blank">Endpoint <strong>' + data.title + '</strong></a></h5><div class="row"><div class="small-11 medium-12 large-11 columns right"><span class="label secondary radius icon-publisher">' + data.publisher + '</span></div></div>');
+		$.getJSON('../outputs/' + selected + '/get.json', function(data) {
+			$('#new_select_template').html('<h5 id="template" data-id="' + data.id + '"><a href="../templates/' + data.id + '" target="_blank">Output <strong>' + data.title + '</strong></a></h5><div class="row"><div class="small-11 medium-12 large-11 columns right"><span class="label secondary radius icon-publisher">' + data.publisher + '</span></div></div>');
 		});
 	}
 
@@ -225,9 +181,9 @@ function new_integration_save_meta(e, data, status, xhr) {
  **/
 function save_edit_integration(e, data, status, xhr) {
 	if (status === 'success') {
-		$('.integration_save').val('Saved');
+		$('.integration_save').html('Saved');
 		$('.edit_integration :input').on('change', function() {
-			$('.integration_save').val('Save');
+			$('.integration_save').html('Save');
 		});
 	}
 }

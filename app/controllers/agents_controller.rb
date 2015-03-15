@@ -19,7 +19,7 @@ class AgentsController < ApplicationController
       @agent = current_user.agents.find(params[:id])
 
     rescue Exception => e
-      flash[:notice] = "You are not authorized to access that Agent"
+      flash[:notice] = "You are not authorized to access that Agent."
       Services::Slog.exception e
       redirect_to :root
     end
@@ -63,9 +63,7 @@ class AgentsController < ApplicationController
     @agent.last_check_at = @help.datetime
     @agent.status = 100
     @agent.events_count = 0
-    @agent.identifier = "#{@agent.identifier}_#{current_user.id}_#{SecureRandom.hex(8)}"
-
-
+    @agent.identifier ="in_#{SecureRandom.hex(32)}"
 
     # include seed in agent?
     if params[:seed][:publisher] != 'none' then
@@ -195,6 +193,40 @@ class AgentsController < ApplicationController
       end
     rescue Exception => e
       Services::Slog.exception e
+    end
+  end
+
+    ##
+  # Disable input (will not execute!). Status = 400
+  def disable
+    begin
+      @input = current_user.agents.find(params[:id])
+      @input.status = 400
+
+      @input.save
+      respond_to do |format|
+        format.json {render json: @input}
+      end
+    rescue Exception => e
+      Services::Slog.exception e
+      format.json {render json: @input}
+    end
+  end
+
+  ##
+  # Enable input (will execute!). Status = 100
+  def enable
+    begin
+      @input = current_user.agents.find(params[:id])
+      @input.status = 100
+
+      @input.save
+      respond_to do |format|
+        format.json {render json: @input}
+      end
+    rescue Exception => e
+      Services::Slog.exception e
+      format.json {render json: @input}
     end
   end
 

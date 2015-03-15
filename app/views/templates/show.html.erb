@@ -1,17 +1,18 @@
 <% content_for :title, "#{@template.title} - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Endpoints', templates_path %></li>
-  <li class="current"><%= @template.title %></li>
-</ul>
 <div class="row">
-  <div class="small-12 columns">
-    <h1><%= @template.title %></h1>
-  </div>
+    <div class="small-12 columns">
+        <h3 class="subheader"><%= @template.title %></h3>
+    </div>
 </div>
+<% unless flash[:notice].nil? then %>
+<div data-alert class="alert-box warning radius">
+    <%= flash[:notice].html_safe %>
+    <a href="#" class="close">&times;</a>
+</div>
+<% end %>
 <%= render :partial => "templates/show", locals: {:template => @template} %>
 <div class="row">
-  <div class="small-1 columns right">
-    <%= link_to 'Remove', @template, :class => 'remove right', method: :delete, data: { confirm: 'Are you sure?' } %>
-  </div>
+    <div class="small-12 columns right">
+        <%= link_to 'Remove', @template, :class => 'icon-delete remove right', method: :delete, data: { confirm: "Are you sureyou want to remove the #{@template.title} output?" } %>
+    </div>
 </div>

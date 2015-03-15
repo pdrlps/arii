@@ -37,7 +37,7 @@ class EventsController < ApplicationController
 
   ##
   # Get all events for given agent
-  def agent
+  def input
     begin
       # use Kaminari for pagination
       @agent = current_user.agents.find(params[:id])
@@ -49,13 +49,30 @@ class EventsController < ApplicationController
         @events.page 1
       end
     rescue Exception => e
+       flash[:notice] = "You are not authorized to access that Input."
       Services::Slog.exception e
     end
   end
 
+
+
   ##
   # Get all events for given integration
   def integration
+    begin
+      # use Kaminari for pagination
+      @integration = current_user.integrations.find(params[:id])
+      @events = Kaminari.paginate_array(Event.by_integration(@integration)).page(params[:page])
+      unless params[:page].nil? then
+        @events.page params[:page]
+      else
+        params[:page] = 1
+        @events.page 1
+      end
+    rescue Exception => e
+       flash[:notice] = "You are not authorized to access that Integration."
+      Services::Slog.exception e
+    end
   end
 
   private

@@ -1,8 +1,4 @@
 <% content_for :title, "Outputs - #{ENV["APP_TITLE"]}" %>
-<div data-alert class="alert-box secondary radius">
-  Got any trouble creating new outputs? <a href="#" data-reveal-id="endpoints_demo_video"><strong>Check the demo video</strong></a>.
-  <a href="#" class="close">&times;</a>
-</div>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
   <%= flash[:notice].html_safe %> <a href="#" class="close">&times;</a>
@@ -14,27 +10,30 @@
       <h3 class="subheader">Outputs</h3>
     </div>
     <div class="small-6 columns right">
-      <%= link_to 'Create output'.html_safe, new_template_path, :class => 'icon-create small button radius right primary' %>
+      <ul class="inline-list right">
+        <li><a href="#" id="what_output" class="button small radius warning icon-help">What is this?</a></li>
+        <li><%= link_to 'Create output'.html_safe, new_template_path, :class => 'icon-create small button radius right primary' %></li>
+      </ul>
     </div>
   </div>
   <% @templates.each do |template| %>
-  <div class="row agent-info <%= (template.status != 0) ? 'info-enabled' : 'info-disabled'  %>">
+  <div id="output_details_<%= template.id %>" class="row agent-info <%= (template.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-12 medium-1 large-1 columns">
       <div class="switch small success radius">
         <input class="output_toggle" data-id="<%= template.id %>" id="output_switch_<%= template.id %>" type="checkbox" <%= (template.status == 100) ? 'checked' : '' %> name="switch_output_<%= template.id %>">
         <label for="output_switch_<%= template.id %>"></label>
       </div>
     </div>
-    <div class="small-12 medium-7 large-7 columns">
+    <div class="small-12 medium-8 large-8 columns">
       <h6 class="subheader"><%= template.title %></h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="<%= template.id %>"><i class="icon-tag"></i></span>
     </div>
-    <div class="small-12 medium-3 large-3 columns right">
+    <div class="small-12 medium-2 large-2 columns right">
       <ul class="button-group radius right">
         <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button secondary icon-edit' %></li>
-        <li><%= link_to 'View', template, :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'View', output_path(template), :class => ' small button secondary icon-view' %></li>
       </ul>
     </div>
     <!-- details -->
@@ -62,7 +61,7 @@
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
     </div>
-    <div class="small-11 medium-7 large-7 columns">
+    <div class="small-11 medium-8 large-8 columns">
       <div class="info-details">
         <h6 class="subheader">SQL Output</h6>
       </div>
@@ -70,7 +69,7 @@
     <div class="small-1 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
-    <div class="small-11 medium-3 large-3 columns right">
+    <div class="small-11 medium-2 large-2 columns right">
       <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
     </div>
     <!-- details -->
@@ -93,7 +92,7 @@
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
     </div>
-    <div class="small-11 medium-7 large-7 columns">
+    <div class="small-11 medium-8 large-8 columns">
       <div class="info-details">
         <h6 class="subheader">URL Output</h6>
       </div>
@@ -101,7 +100,7 @@
     <div class="small-1 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
-    <div class="small-11 medium-3 large-3 columns right">
+    <div class="small-11 medium-2 large-2 columns right">
       <span class="has-tip tip-top radius right" data-tooltip title="Add sample URL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
     </div>
     <!-- details -->
@@ -124,7 +123,7 @@
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
     </div>
-    <div class="small-11 medium-7 large-7 columns">
+    <div class="small-11 medium-8 large-8 columns">
       <div class="info-details">
         <h6 class="subheader">File Output</h6>
       </div>
@@ -132,7 +131,7 @@
     <div class="small-1 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
-    <div class="small-11 medium-3 large-3 columns right">
+    <div class="small-11 medium-2 large-2 columns right">
       <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add radius small button primary',:title => 'Add sample File output' %></span>
     </div>
     <!-- details -->
@@ -155,7 +154,7 @@
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
     </div>
-    <div class="small-11 medium-7 large-7 columns">
+    <div class="small-11 medium-8 large-8 columns">
       <div class="info-details">
         <h6 class="subheader">Mail Output</h6>
       </div>
@@ -163,7 +162,7 @@
     <div class="small-1 medium-1 large-1 columns">
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
-    <div class="small-11 medium-3 large-3 columns right">
+    <div class="small-11 medium-2 large-2 columns right">
       <span class="has-tip tip-top radius right" data-tooltip title="Add sample Mail output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add radius small button primary',:title => 'Add sample Mail output' %></span>
     </div>
     <!-- details -->
@@ -181,12 +180,4 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- demo video -->
-  <div id="endpoints_demo_video" class="reveal-modal large" data-reveal>
-    <h2>Endpoints Demo Video</h2>
-    <div class="flex-video widescreen vimeo" style="display: block;">
-      <iframe width="1280" height="720" src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0" frameborder="0" allowfullscreen="" data-src="http://www.youtube-nocookie.com/embed/9ZewPElGitQ?rel=0"></iframe>
-    </div>
-    <a class="close-reveal-modal">&#215;</a>
   </div>

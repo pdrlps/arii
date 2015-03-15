@@ -2,7 +2,7 @@
 <% if @template.errors.any? %>
 <div id="error_explanation" class="alert-box alert">
   <h2><%= pluralize(@template.errors.count, "error") %>
-    prohibited this template from being saved:</h2>
+    prohibited this output from being saved:</h2>
     <ul>
       <% @template.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,15 +10,7 @@
     </ul>
   </div>
   <% end %>
-  <h4 class="subheader">Endpoint Properties</h4>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :identifier, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_field :identifier, :tabindex => autotab, :autofocus => true, :required => '' %>
-    </div>
-  </div>
+  <h4 class="subheader">Output Properties</h4>
   <div class="row">
     <div class="small-3 columns">
       <%= f.label :title, :class => 'right inline' %>

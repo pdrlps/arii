@@ -2,7 +2,7 @@
 <% if @agent.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@agent.errors.count, "error") %>
-    prohibited this agent from being saved:</h2>
+    prohibited this input from being saved:</h2>
     <ul>
       <% @agent.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -10,15 +10,7 @@
     </ul>
   </div>
   <% end %>
-  <h4>Agent Properties</h4>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :identifier, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_field :identifier, :tabindex => autotab, :autofocus => true %>
-    </div>
-  </div>
+  <h4>Input Properties</h4>
   <div class="row">
     <div class="small-3 columns">
       <%= f.label :title, :class => 'right inline' %>
@@ -76,6 +68,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit 'Create', :class => 'button right success small radius', :tabindex => autotab %>
+    <%= link_to 'Create', '#' ,:class => 'button right success small radius icon-create', :id => 'create_input' , :tabindex => autotab %>
   </div>
   <% end %>

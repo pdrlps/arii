@@ -22,9 +22,6 @@
         <%= javascript_include_tag "custom.modernizr" %>
         <%= csrf_meta_tags %>
       </head>
-      <%
-      #@feedback = Feedback.new
-      %>
       <body>
         <div class="fixed">
           <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
@@ -39,14 +36,13 @@
               <ul class="left">
               </ul>
               <ul class="right">
+                <li><a href="#" class="icon-lifebuoy"></a></li>
                 <li class="has-dropdown">
-                  <a href="#" class="icon-help">&nbsp;</a>
+                  <a href="#" class="icon-resources">&nbsp;</a>
                   <ul class="dropdown">
-                    <li data-tooltip class="has-tip radius" title="Features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="How"><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="Use Cases"><%= link_to 'Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
-                    <li data-tooltip class="has-tip radius" title="Contact"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
+                    <li><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
+                    <li><%=  link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-docs') %></li>
+                    <li><%= link_to('FAQ'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-faq') %></li>
                   </ul>
                 </li>
                 <li class="divider"></li>

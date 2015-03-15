@@ -1,10 +1,9 @@
 <% content_for :title, "Sign in - #{ENV["APP_TITLE"]}" %>
-
-<h1>Sign <strong>in</strong></h1>
+<h3 class="subheader">Sign <strong>in</strong></h3>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
-  <%= flash[:notice].html_safe %>
-  <a href="#" class="close">&times;</a>
+	<%= flash[:notice].html_safe %>
+	<a href="#" class="close">&times;</a>
 </div>
 <% end %>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => {:novalidate => true}) do |f| %>
@@ -35,7 +34,5 @@
 		</div>
 	</div>
 </div>
-
 <% end %>
-
 <%= render "devise/shared/links" %>

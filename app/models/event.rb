@@ -40,4 +40,16 @@ class Event < ActiveRecord::Base
 		end
 		@events
 	end
+
+	##
+	# => Get all events for the given integration.
+	#
+	def self.by_integration integration
+		begin
+			@events = Event.joins(agent: :integrations).where(integrations: {:id => integration.id}).order(created_at: :desc)
+		rescue Exception => e
+			Services::Slog.exception e
+		end
+		@events
+	end
 end

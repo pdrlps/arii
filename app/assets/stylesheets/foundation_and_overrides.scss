@@ -415,7 +415,7 @@ $crumb-slash: ">";
 // $joyride-tip-bg: #333;
 // $joyride-tip-default-width: 300px;
 // $joyride-tip-padding: rem-calc(18 20 24);
-// $joyride-tip-border: solid 1px #555;
+$joyride-tip-border: none; //solid 1px #555;
 // $joyride-tip-radius: 4px;
 // $joyride-tip-position-offset: 22px;
 
@@ -1003,11 +1003,17 @@ $topbar-dropdown-label-bg: #eff1f5;
 $button-sml: rem-calc(4);
 $button-margin-bottom: rem-calc(0);
 
-
 // labels updates
-//$label-font-sizing: rem-calc(12);
 $label-font-weight: 300; //bold;
 $label-font-color: #343d46;
 $label-font-color-alt: #fff;
+
+// joyride updates
+.joyride-tip-guide {
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+}
+
 @import 'foundation';
 $include-open-sans: true;

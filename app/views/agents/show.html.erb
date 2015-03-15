@@ -1,12 +1,7 @@
 <% content_for :title, "#{@agent.title} - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Agents', agents_path %></li>
-  <li class="current"><%= @agent.title %></li>
-</ul>
 <div class="row">
   <div class="small-12 columns">
-    <h1><%= @agent.title %></h1>
+    <h3 class="subheader"><%= @agent.title %></h3>
   </div>
 </div>
 <!-- main content -->
@@ -18,6 +13,6 @@
 <% end %>
 <%= render :partial => "agents/show", locals: {:agent => @agent} %><div class="row">
   <div class="small-12 columns right">
-    <%= link_to 'Remove', @agent, :tabindex => autotab, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@agent.title} agent?" } %>
+    <%= link_to 'Remove', @agent, :tabindex => autotab, :class => 'icon-delete remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@agent.title} input?" } %>
   </div>
 </div>

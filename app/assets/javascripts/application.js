@@ -13,7 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-// require turbolinks
+//= require turbolinks
 //= require_tree .
 
 if (typeof String.prototype.startsWith != 'function') {
@@ -35,6 +35,7 @@ if (typeof String.prototype.addSlashes != 'function') {
 
 $(function() {
   $(document).foundation();
+  update_sidebar();
 
   // API KEY MANAGEMENT
   update_user_remove_key_selectors();
@@ -42,7 +43,17 @@ $(function() {
   //temp for user adding keys
   $('#user_add_api_key').on('click', update_user_generate_key);
 
-  update_sidebar();
+
+  /**
+   *  Files
+   */
+
+  // Joyride Tour
+  $('#what_files').on('click', function(event){
+    $(document).foundation({joyride: { template : { button : '<a href="#" class="small button radius joyride-next-tip"></a>',
+    prev_button : '<a href="#" class="small button radius joyride-prev-tip"></a>'}} }).foundation('joyride', 'start');
+  });
+
 
 });
 
@@ -52,7 +63,7 @@ $(function() {
  */
 function update_sidebar(){
 
-  menu_items = ['integrations', 'inputs', 'outputs','dashboard', 'files', 'library', 'user', 'events'];
+  menu_items = ['integrations', 'inputs', 'outputs','dashboard', 'files', 'library', 'user', 'events', 'docs', 'how', 'faq'];
   menu_items.forEach(function(entry) {
     if (window.location.href.indexOf(entry) > 0) {
     $('#sidebar_' + entry).addClass('active');

@@ -1,54 +1,53 @@
 <% content_for :title, "New user sign up - #{ENV["APP_TITLE"]}" %>
-<h1>Sign up</h1>
+<h3 class="subheader">Sign up</h3>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:"data-abide" => ''}) do |f| %>
-  <%= devise_error_messages! %>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :name, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_field :name, :autofocus => true, :tabindex => autotab %>
-      <small class="error">Your name must have at least 4 characters.</small>
-    </div>
+<%= devise_error_messages! %>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :name, :class => 'right inline' %>
   </div>
-    <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :username, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_field :username, :required => '', :pattern => '[A-Za-z0_9_]{4,}', :tabindex => autotab %>
-      <small class="error">Your name must have at least 4 characters.</small>
-    </div>
+  <div class="small-9 columns">
+    <%= f.text_field :name, :autofocus => true, :tabindex => autotab %>
+    <small class="error">Your name must have at least 4 characters.</small>
   </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :email, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.email_field :email, :required => '', :tabindex => autotab %>
-      <small class="error">A valid email address is required.</small>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :password, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.password_field :password, :required => '' , :tabindex => autotab %>
-      <small class="error">There's something wrong with your password (must have at least 8 chars, upper and lower case).</small>
-    </div>
-  </div>
-    <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :password_confirmation, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.password_field :password_confirmation, :required => '', :tabindex => autotab %>
-      <small class="error">There's something wrong with your password confirmation. Is it the same?</small>
-    </div>
-  </div>
-  <div class="actions">
-	<%= f.submit 'Sign up'.html_safe, :class => 'button tiny radius right success', :tabindex => 40 %>
 </div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :username, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.text_field :username, :required => '', :pattern => '[A-Za-z0_9_]{4,}', :tabindex => autotab %>
+    <small class="error">Your name must have at least 4 characters.</small>
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :email, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.email_field :email, :required => '', :tabindex => autotab %>
+    <small class="error">A valid email address is required.</small>
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :password, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.password_field :password, :required => '' , :tabindex => autotab %>
+    <small class="error">There's something wrong with your password (must have at least 8 chars, upper and lower case).</small>
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :password_confirmation, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.password_field :password_confirmation, :required => '', :tabindex => autotab %>
+    <small class="error">There's something wrong with your password confirmation. Is it the same?</small>
+  </div>
+</div>
+<div class="actions">
+  <%= f.submit 'Sign up'.html_safe, :class => 'button tiny radius right success', :tabindex => 40 %>
 </div>
 <%end %>

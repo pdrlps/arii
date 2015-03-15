@@ -1,9 +1,38 @@
-<div class="row">
-	<div class="small-12 medium-12 large-12 columns"><h4 class="subheader"><%= link_to template.title, template %></h4></div>
-	<div class="small-12 medium-8 large-8 columns left">
-		<span class="label secondary radius icon-publisher"><%= template.publisher %></span>
-	</div>
-	<div class="small-12 medium-4 large-4 columns right">
-		<a class="remove right remove_template_integration has-tip" data-tooltip data-id="<%= template.id %>" title="Detach <%= template.identifier %>">Remove endpoint</a>
-	</div>
+<div id="output_details_<%= template.id %>" class="row agent-info <%= (template.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
+    <div class="small-12 medium-1 large-1 columns">
+        <div class="switch small success radius">
+            <input class="output_toggle" data-id="<%= template.id %>" id="output_switch_<%= template.id %>" type="checkbox" <%= (template.status == 100) ? 'checked' : '' %> name="switch_output_<%= template.id %>">
+            <label for="output_switch_<%= template.id %>"></label>
+        </div>
+    </div>
+    <div class="small-12 medium-5 large-5 columns">
+        <h6 class="subheader"><%= template.title %></h6>
+    </div>
+    <div class="small-12 medium-1 large-1 columns">
+        <span class="label right radius secondary output_details_toggle" data-id="<%= template.id %>"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-12 medium-4 large-4 columns right">
+        <ul class="button-group radius right">
+            <li><%= link_to 'Detach', '#', :class => 'small button alert icon-delete remove_template_integration', :data => {:id => template.id} %></li>
+            <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button secondary icon-edit' %></li>
+            <li><%= link_to 'View', output_path(template), :class => ' small button secondary icon-view' %></li>
+        </ul>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+        <div class="row output_details" id="details_output_<%= template.id %>" >
+            <div class="small-2 medium-1 large-1 columns ">
+                &nbsp;
+            </div>
+            <div class="small-2 medium-1 large-1 columns icon-input">
+            </div>
+            <div class="small-8 medium-10 large-10 columns">
+                <ul class="no-bullet left">
+                    <li><span class="label secondary radius icon-events"><%= template.count %> Events</span></li>
+                    <li><span class="label secondary radius icon-updated"><%= template.last_execute_at.nil? ? 'Not executed' : time_ago_in_words(template.last_execute_at) + ' ago' %></span></li>
+                    <li><span class="label secondary radius icon-endpooint"><%= template.publisher %></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

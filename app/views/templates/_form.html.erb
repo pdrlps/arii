@@ -2,50 +2,54 @@
 <% if @template.errors.any? %>
 <div id="error_explanation" class="alert-box alert">
   <h2><%= pluralize(@template.errors.count, "error") %>
-    prohibited this template from being saved:</h2>
-    <ul>
-      <% @template.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
+  prohibited this template from being saved:</h2>
+  <ul>
+    <% @template.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :title, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.text_area :title, :tabindex => autotab %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label 'description', :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.text_area :help, :tabindex => autotab %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label :publisher, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.select :publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['Email', 'mail'], ['File','file'], ['Dropbox','dropbox']], {:selected => (@template.publisher.nil?) ? 'url' : @template.publisher}), {:tabindex => autotab} %>
+  </div>
+</div>
+<!-- Publisher properties -->
+<div id="publisher_content">
+  <%= render :partial => "templates/payload_#{@template.publisher}", locals: {:template => @template} %>
+</div>
+<div class="row">
+  <div class="small-12 medium-2 large-2 columns right">
+    <ul class="button-group radius right">
+      <li><%= link_to 'Back', :back, :class => 'small button secondary icon-back' %></li>
+      <li><%= link_to 'Save', '#', :class => 'small button success edit_save_template icon-save',:tabindex => autotab, :id => 'save_template'  %></li>
     </ul>
   </div>
-  <% end %>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :title, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_area :title, :tabindex => autotab %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label 'description', :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_area :help, :tabindex => autotab %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :publisher, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.select :publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['Email', 'mail'], ['File','file'], ['Dropbox','dropbox']], {:selected => (@template.publisher.nil?) ? 'url' : @template.publisher}), {:tabindex => autotab} %>
-    </div>
-  </div>
-  <!-- Publisher properties -->
-  <div id="publisher_content">
-    <%= render :partial => "templates/payload_#{@template.publisher}", locals: {:template => @template} %>
-  </div>
-  <div class="row">
-    <div class="small-2 columns right">
-      <%= f.submit 'Save', :class => "button right small right radius success", :tabindex => autotab, :id => 'save_template' %>
-    </div>
-  </div>
-  <% end %>
-  <div class="row">
-  <div class="small-1 columns right">
-    <%= link_to 'Remove', @template, :class => 'remove right', method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
+<% end %>
+<br />
+<div class="row">
+  <div class="small-12 columns right">
+    <%= link_to 'Remove', @template, :class => 'remove right icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@template.title} output?" } %>
   </div>
 </div>

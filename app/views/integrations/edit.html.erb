@@ -1,72 +1,63 @@
 <% content_for :title, "Editing #{@integration.title} - #{ENV["APP_TITLE"]}" %>
-<h1 id="integration" data-id="<%= @integration.id %>">Editing <strong><%= @integration.title %></strong></h1>
+<h3 class="subheader" id="integration" data-id="<%= @integration.id %>">Editing <strong><%= @integration.title %></strong></h3>
 <%= render 'form' %>
-<!-- Agents -->
+<br />
+<!-- Inputs -->
 <div class="row">
   <div class="small-12 medium-2 large-2 columns">
-    <h3><%= pluralize(@integration.agents.size, 'Agent') %></h3>
+    <h4><%= pluralize(@integration.agents.size, 'Input') %></h4>
   </div>
   <div class="small-12 medium-10 large-10 columns">
     <% @integration.agents.each do |agent| %>
     <%= render :partial => "agents/show_integration", locals: {:agent => agent} %>
     <% end %>
-    <br />
+    <hr />
     <div class="row" id="edit_select_agent" >
-      <div class="small-3 medium-3 large-3 columns">
-        <label class="right inline">Add agent</label>
+      <div class="small-12 medium-4 large-4 columns">
+        <label class="right inline">Add input</label>
       </div>
-      <div class="small-9 medium-9 large-9 columns">
+      <div class="small-12 medium-8 large-8 columns">
         <select id="edit_agent_select_list" tabindex="8">
-          <option value="0" selected="selected">Create new agent...</option>
+          <option value="0" selected="selected">Create new input...</option>
           <% @agents.each do |agent| %>
           <option value="<%= agent.id %>"><%= agent.title %></option>
           <% end %>
         </select>
-      </div>
-      <div class="small-12 medium-12 large-12 columns" >
-        <div class="row">
-          <div class="small-2 columns right">
-            <a href="#" id="edit_save_agent_select" class="button tiny success radius right">Add</a>
-          </div>
-        </div>
+        <a href="#" id="edit_save_agent_select" class="button small success radius right icon-add">Add</a>
       </div>
     </div>
   </div>
 </div>
-<!-- Endpoints -->
+<br />
+<!-- Outputs -->
 <div class="row">
   <div class="small-12 medium-2 large-2 columns">
-    <h3><%= pluralize(@integration.templates.size, 'Endpoint') %></h3>
+    <h4><%= pluralize(@integration.templates.size, 'Output') %></h4>
   </div>
   <div class="small-12 medium-10 large-10 columns">
     <% @integration.templates.each do |template| %>
     <%= render :partial => "templates/show_integration", locals: {:template => template} %>
     <% end %>
+    <hr/>
     <div class="row" id="edit_select_template">
-      <div class="small-3 medium-3 large-3 columns">
-        <label class="right inline">Add endpoint</label>
+      <div class="small-12 medium-4 large-4 columns">
+        <label class="right inline">Add output</label>
       </div>
-      <div class="small-9 medium-9 large-9 columns">
+      <div class="small-12 medium-8 large-8 columns">
         <select id="edit_template_select_list" tabindex="8">
-          <option value="0" selected="selected">Create new endpoint...</option>
+          <option value="0" selected="selected">Create new output...</option>
           <% @templates.each do |template| %>
           <option value="<%= template.id %>"><%= template.title %></option>
           <% end %>
         </select>
-      </div>
-      <div class="small-12 medium-12 large-12 columns" >
-        <div class="row">
-          <div class="small-2 columns right">
-            <a href="#" id="edit_save_template_select" class="button tiny success radius right">Add</a>
-          </div>
-        </div>
+        <a href="#" id="edit_save_template_select" class="button small success radius right icon-add">Add</a>
       </div>
     </div>
   </div>
 </div>
 <br />
 <div class="row">
-  <div class="small-1 columns right">
-    <%= link_to 'Remove', @integration, :class => 'remove right', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
+  <div class="small-12 columns right">
+    <%= link_to 'Remove', @integration, :class => 'remove right delete icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
   </div>
 </div>

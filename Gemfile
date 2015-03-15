@@ -55,6 +55,9 @@ gem 'omniauth-linkedin'
 gem 'omniauth-twitter'
 gem 'omniauth-dropbox-oauth2'
 
+# Turbolinks for faster page loads. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
 ##
 # External services APIs
 #
