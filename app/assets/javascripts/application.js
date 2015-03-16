@@ -34,6 +34,7 @@ if (typeof String.prototype.addSlashes != 'function') {
 }
 
 $(function() {
+  var $root = $('html, body');
   $(document).foundation();
   update_sidebar();
 
@@ -70,6 +71,13 @@ $(function() {
       window.location = '/events/integration/' + $(this).val();
    })
 
+   /**
+    * Lifebuoy
+    */
+   $('#lifebuoy').on('click', function(event) {
+    event.preventDefault();
+    $('.lifebuoy').toggle('fast');
+   })
 
 });
 

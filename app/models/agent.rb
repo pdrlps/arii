@@ -11,7 +11,7 @@ class Agent < ActiveRecord::Base
   # => Store for saving Hashes in DB
   # => Accessors to make everything easy to access
   #
-  store   :payload, accessors: [:uri, :cache, :checked, :headers, :delimiter, :server, :host, :port, :database, :username, :password, :query, :selectors, :sheet]
+  store   :payload, accessors: [:uri, :cache, :checked, :headers, :delimiter, :server, :host, :port, :database, :username, :password, :query, :selectors, :sheet, :type]
   store   :memory
   attr_accessor :content
 

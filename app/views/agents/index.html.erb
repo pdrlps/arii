@@ -13,7 +13,7 @@
     <div class="small-6 columns">
       <ul class="inline-list right">
         <li><a href="#" id="what_input" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create input'.html_safe, new_agent_path, :class => 'icon-create small button radius primary' %></li>
+        <li><%= link_to 'Create input'.html_safe, new_agent_path, :class => 'icon-create small button radius info' %></li>
       </ul>
     </div>
   </div>
@@ -33,9 +33,9 @@
     </div>
     <div class="small-12 medium-3 large-3 columns right">
       <ul class="button-group radius right">
-        <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
-        <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button info icon-edit' %></li>
-        <li><%= link_to 'View', input_path(agent), :class => ' small button info icon-view' %></li>
+        <li><%= link_to 'View', input_path(agent), :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
+        <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button primary icon-execute',:title => "Execute #{agent.title}" %></li>
       </ul>
     </div>
     <!-- details -->
@@ -74,7 +74,7 @@
       <span class="label right radius secondary input_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-3 large-3 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL input' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button info',:title => 'Add sample SQL input' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -106,7 +106,7 @@
       <span class="label right radius secondary input_details_toggle" data-id="sample2"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-3 large-3 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample XML inpu"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'xml'}, :class => 'icon-add radius small button primary',:title => 'Add sample XML input' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample XML inpu"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'xml'}, :class => 'icon-add radius small button info',:title => 'Add sample XML input' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -138,7 +138,7 @@
       <span class="label right radius secondary input_details_toggle" data-id="sample3"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-3 large-3 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample JSON Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'json'}, :class => 'icon-add radius small button primary',:title => 'Add sample JSON Input' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample JSON Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'json'}, :class => 'icon-add radius small button info',:title => 'Add sample JSON Input' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -170,7 +170,7 @@
       <span class="label right radius secondary input_details_toggle" data-id="sample4"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-3 large-3 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample CSV Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'csv'}, :class => 'icon-add radius small button primary',:title => 'Add sample CSV Input' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample CSV Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'csv'}, :class => 'icon-add radius small button info',:title => 'Add sample CSV Input' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -202,7 +202,7 @@
       <span class="label right radius secondary input_details_toggle" data-id="sample5"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-3 large-3 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample RSS Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'rss'}, :class => 'icon-add radius small button primary',:title => 'Add sample RSS Input' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample RSS Input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'rss'}, :class => 'icon-add radius small button info',:title => 'Add sample RSS Input' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">

@@ -15,6 +15,9 @@ ARII::Application.routes.draw do
   # Caches (internal) control
   resources :caches
 
+  # Colors
+  get '/colors', :to => redirect('/colors.html')
+
   # Contact
   get "contact/index", to: 'contact#index'
   get 'contacts', to: redirect('/contact/index')

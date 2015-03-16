@@ -1,5 +1,5 @@
 <% events.each do |event| %>
-<div class="row agent-info info-enabled">
+<div class="row agent-info info-secondary">
   <div class="small-12 medium-1 large-1 columns left">
     <%= link_to event.id, event %>
   </div>
@@ -19,7 +19,7 @@
     <%= event.created_at %>
   </div>
   <div class="small-12 medium-2 large-2 columns right">
-    <%= link_to 'View', event, :class => 'button small info radius icon-view right' %>
+    <%= link_to 'View', event, :class => 'button small primary radius icon-view right' %>
   </div>
 </div>
 <% end %>

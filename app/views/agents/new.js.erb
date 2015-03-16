@@ -1,10 +1,75 @@
 $(function() {
 	$('#agent_publisher').on('change', agent_update_publisher_view)
-	$('#seed').on('change', agent_update_seed_view);
+	//$('#seed').on('change', agent_update_seed_view);
 	update_payload_selector_add();
 	update_seed_selector_add();
 	update_payload_selector_remove();
 	update_seed_selector_remove();
+
+	/**
+	 * WIZARD
+	 */
+
+	 // manage input types
+	 $('#input_local').on('click', function(event) {
+	 	event.preventDefault();
+	 	$('.input_area').fadeOut();		// hide stuff
+	 	$('#input_area_publisher').fadeIn();
+	 	$('#publisher_content').fadeIn();
+
+	 	// update styles
+	 	$('#input_panel_cloud').removeClass('selected').addClass('deselected');
+	 	$('#input_panel_local').removeClass('deselected').addClass('selected');
+
+	 	$('#new_input_progress').width('25%');	// update progress bar
+	 });
+
+	 $('#input_cloud').on('click', function(event) {
+	 	event.preventDefault();
+	 	$('.input_area').fadeOut();
+	 	$('#input_area_cloud').fadeIn();
+
+
+	 	// update styles
+	 	$('#input_panel_cloud').removeClass('deselected').addClass('selected');
+	 	$('#input_panel_local').removeClass('selected').addClass('deselected');
+
+	 	$('#new_input_progress').width('25%');	// update progress bar
+	 });
+
+	 //  manage cloud types
+
+	 $('#input_cloud_push').on('click', function(event) {
+	 	event.preventDefault();
+	 	$('#input_area_schedule').fadeOut();	// hide schedule
+	 	$('#input_area_publisher').fadeIn();
+	 	$('#publisher_content').fadeIn();
+
+	 	// update styles
+	 	$('#input_panel_poll').removeClass('selected').addClass('deselected');
+	 	$('#input_panel_push').removeClass('deselected').addClass('selected');
+
+	 	$('#new_input_progress').width('50%');	// update progress bar
+	 });
+
+	 $('#input_cloud_poll').on('click', function(event) {
+	 	event.preventDefault();
+	 	$('#input_area_schedule').fadeIn();
+	 	$('#input_area_publisher').fadeIn();
+	 	$('#publisher_content').fadeIn();
+
+	 	// update styles
+	 	$('#input_panel_poll').removeClass('deselected').addClass('selected');
+	 	$('#input_panel_push').removeClass('selected').addClass('deselected');
+
+	 	$('#new_input_progress').width('50%');	// update progress bar
+	 });
+
+	 // update progress on cache
+	 $('#agent_payload_cache').on('change', function(event) {
+	 	$('#new_input_progress').width('90%');	// update progress bar
+	 });
+
 
 });
 
@@ -26,6 +91,7 @@ function agent_update_publisher_view(event) {
 		$('#publisher_content').html("<%= j render(:partial => 'publisher_sql') %>");
 	}
 	update_payload_selector_add();
+	$('#new_input_progress').width('75%');	// update progress bar
 }
 
 /**
@@ -99,6 +165,9 @@ function add_payload_selector(id) {
 		update_payload_selector_remove();
 	}
 
+	$('#new_input_progress').width('100%');	// update progress bar
+	$('#input_progress').removeClass('info').addClass('success');
+
 }
 
 /**
@@ -146,8 +215,11 @@ function update_payload_selector_remove() {
  **/
 function update_payload_selector_add() {
 	// Manage payload selectors list
-	$('.payload_selector_add').on('click', add_payload_selector_from_click)
-	$('.payload_selector_value').on('keypress', add_payload_selector_from_keypress)
+	$('.payload_selector_add').on('click', add_payload_selector_from_click);
+	$('.payload_selector_value').on('keypress', add_payload_selector_from_keypress);
+	$('#agent_payload_cache').on('change', function(event) {
+	 	$('#new_input_progress').width('90%');	// update progress bar
+	});
 }
 
 /**

@@ -3,6 +3,7 @@
     <label for="agent_payload_sqlserver" class="right inline">Server</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the database management systems (further options will be available in the future).</i>
     <%= select_tag 'agent_payload_sqlserver', options_for_select([['MySQL', 'mysql'], ['Postgres', 'postgresql']], {:selected => @agent.server}), {:tabindex => autotab, :name => 'agent[server]'} %>
   </div>
 </div>
@@ -11,6 +12,7 @@
     <label for="agent_payload_host" class="right inline">Host</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the database host server address.</i>
     <input type="text" id="agent_payload_host" tabindex="<%= autotab %>" value="<%= @agent.host.nil? ? '' : @agent.host %>" name="agent[host]"  placeholder="E.g.: localhost" />
   </div>
 </div>
@@ -19,6 +21,7 @@
     <label for="agent_payload_port" class="right inline">Port</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the database server port.</i>
     <input type="number" id="agent_payload_port" name="agent[port]"  value="<%= @agent.port.nil? ? '' : @agent.port %>" tabindex="<%= autotab %>" placeholder="E.g.: 3306" />
   </div>
 </div>
@@ -27,6 +30,7 @@
     <label for="agent_payload_database" class="right inline">Database</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the database name.</i>
     <input type="text" id="agent_payload_database" name="agent[database]" value="<%= @agent.database.nil? ? '' : @agent.database %>"  tabindex="<%= autotab %>" placeholder="E.g.: ARiiP" />
   </div>
 </div>
@@ -35,6 +39,7 @@
     <label for="agent_payload_username" class="right inline">Username</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the database connection user name.</i>
     <input type="text" id="agent_payload_username" name="agent[username]" value="<%= @agent.username.nil? ? '' : @agent.username %>"  tabindex="<%= autotab %>" placeholder="E.g.: root" />
   </div>
 </div>
@@ -43,6 +48,7 @@
     <label for="agent_payload_password" class="right inline">Password</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the database connection user password.</i>
     <input type="text" id="agent_payload_password" name="agent[password]" value="<%= @agent.password.nil? ? '' : @agent.password %>"  tabindex="<%= autotab %>" placeholder="E.g.: 12345" />
   </div>
 </div>
@@ -51,6 +57,7 @@
     <label for="agent_payload_query" class="right inline">Query</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a SQL query for execution in the database. This is your tracked dataset.</i>
     <textarea id="agent_payload_query" tabindex="<%= autotab %>" name="agent[query]" placeholder="E.g.: SELECT * FROM..."><%= @agent.query.nil? ? '' : @agent.query %></textarea>
   </div>
 </div>
@@ -59,6 +66,7 @@
     <label class="right inline">Cache</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Specify the caching element of your dataset. This the column from your SQL query results that will be used to verify if each row is unique.</i>
     <input id="agent_payload_cache" tabindex="<%= autotab %>" name="agent[cache]" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  type="text" />
   </div>
 </div>

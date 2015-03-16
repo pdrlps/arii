@@ -30,7 +30,7 @@
     <div class="small-6 columns right">
       <ul class="inline-list right">
         <li><a href="#" id="what_integration" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right primary' %></li>
+        <li><%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right info' %></li>
       </ul>
     </div>
   </div>
@@ -50,9 +50,9 @@
     </div>
     <div class="small-12 medium-3 large-3 columns right">
       <ul class="button-group radius right">
-        <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button success icon-execute',:title => "Execute #{integration.title}" %></li>
-        <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button info icon-edit' %></li>
-        <li><%= link_to 'View', integration, :class => ' small button info icon-view' %></li>
+        <li><%= link_to 'View', integration, :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button secondary icon-edit' %></li>
+        <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button primary icon-execute',:title => "Execute #{integration.title}" %></li>
       </ul>
     </div>
     <!-- Inputs & Outputs -->
@@ -103,7 +103,7 @@
       </div>
       <div class="small-12 medium-3 large-3 columns right">
         <ul class="button-group radius right">
-          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action small button primary right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
+          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'sql', :template => 'file'}, :class => 'action small button info right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
         </ul>
       </div>
       <div class="small-12 medium-12 large-12 columns">
@@ -143,7 +143,7 @@
       </div>
       <div class="small-12 medium-3 large-3 columns right">
         <ul class="button-group radius right">
-          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action small button primary right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
+          <li><%= link_to 'Add'.html_safe, {:controller => 'integrations', :action => 'add', :agent => 'xml', :template => 'sql'}, :class => 'action small button info right icon-add', :title => "Add SQL results to CSV file sample integration" %></li>
         </ul>
       </div>
       <div class="small-12 medium-12 large-12 columns">

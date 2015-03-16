@@ -2,72 +2,97 @@
 <% if @agent.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@agent.errors.count, "error") %>
-    prohibited this input from being saved:</h2>
-    <ul>
-      <% @agent.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
+  prohibited this input from being saved:</h2>
+  <ul>
+    <% @agent.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h5>Details</h5>
   </div>
-  <% end %>
-  <h4>Input Properties</h4>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :title, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_field :title, :tabindex => autotab %>
-    </div>
+  <div class="small-3 columns">
+    <%= f.label :title, :class => 'right inline' %>
   </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label 'description', :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_area :help, :tabindex => autotab %>
-    </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Set the input title.</i>
+    <%= f.text_field :title, :tabindex => autotab %>
   </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :schedule, :class => 'right inline', :tabindex => autotab %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.select :schedule,  options_from_collection_for_select(@schedules, :first, :last, '1'),{},{:tabindex => autotab}  %>
-    </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label 'description', :class => 'right inline' %>
   </div>
-  <hr >
-  <!-- Publisher properties -->
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :publisher, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.select  :publisher, options_for_select([['SQL', 'sql'], ['CSV', 'csv'],['Excel', 'excel'], ['XML','xml'], ['JSON','json']]), {:selected => 'sql'}, {:tabindex => autotab} %>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a general input description.</i>
+    <%= f.text_area :help, :tabindex => autotab %>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <h5 class="">Type</h5>
+  </div>
+  <div class="small-6 medium-6 large-6 columns text-center">
+    <div class="panel radius" id="input_panel_cloud">
+      <a href="#" id="input_cloud" class="input_type icon-cloud">Cloud</a><br/>
+      <span class="icon-info input_info">Your data and services are accessible online.</span>
     </div>
   </div>
-  <div id="publisher_content">
-    <%= render(:partial => 'agents/publisher_sql') %>
-  </div>
-  <hr >
-  <!-- Seed Properties -->
-  <div class="row">
-    <div class="small-3 columns">
-      <label class="right inline">Seed</label>
-    </div>
-    <div class="small-9 columns">
-      <select id="seed" tabindex="<%= autotab %>" name="seed[publisher]">
-        <option selected="selected" value="none">None</option>
-        <option value="sql">SQL</option>
-        <option value="csv">CSV</option>
-        <option value="xml">XML</option>
-        <option value="json">JSON</option>
-      </select>
+  <div class="small-6 medium-6 large-6 columns text-center">
+    <div class="panel radius" id="input_panel_local">
+      <a href="#" id="input_local" class="input_type icon-local">Local</a><br/>
+      <span class="icon-info input_info">Your data and services are private.</span>
     </div>
   </div>
-  <div id="seed_content">
+</div>
+<div class="row input_area" id="input_area_cloud">
+  <div class="small-12 columns">
+    <h5 class="">Monitoring</h5>
   </div>
-
-  <div class="actions">
-    <%= link_to 'Create', '#' ,:class => 'button right success small radius icon-create', :id => 'create_input' , :tabindex => autotab %>
+  <div class="small-6 medium-6 large-6 columns text-center">
+    <div class="panel radius" id="input_panel_poll">
+      <a href="#" id="input_cloud_poll" class="input_type icon-poll">Poll</a><br/>
+      <span class="icon-info input_info">Your data and services are regularly tracked.</span>
+    </div>
   </div>
-  <% end %>
+  <div class="small-6 medium-6 large-6 columns text-center">
+    <div class="panel radius" id="input_panel_push">
+      <a href="#" id="input_cloud_push" class="input_type icon-push">Push</a><br/>
+      <span class="icon-info input_info">Your data and services send events to ARiiP.</span>
+    </div>
+  </div>
+</div>
+<div class="row input_area" id="input_area_schedule">
+  <div class="small-12 columns">
+    <h5 class="">Schedule</h5>
+  </div>
+  <div class="small-3 columns">
+    <%= f.label :schedule, :class => 'right inline', :tabindex => autotab %>
+  </div>
+  <div class="small-9 columns">
+    <%= f.select :schedule,  options_from_collection_for_select(@schedules, :first, :last, '1'),{},{:tabindex => autotab}  %>
+  </div>
+</div>
+<!-- Publisher properties -->
+<div class="row input_area" id="input_area_publisher" >
+  <div class="small-12 columns">
+    <h5>Publisher</h5>
+  </div>
+  <div class="small-3 columns">
+    <%= f.label :publisher, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the input data publisher type.</i>
+    <%= f.select  :publisher, options_for_select([['SQL', 'sql'], ['CSV', 'csv'],['Excel', 'excel'], ['XML','xml'], ['JSON','json']]), {:selected => 'sql'}, {:tabindex => autotab} %>
+  </div>
+</div>
+<div id="publisher_content" class="input_area">
+  <%= render(:partial => 'agents/publisher_sql') %>
+</div>
+<div class="actions">
+  <%= link_to 'Create', '#' ,:class => 'button right success small radius icon-create', :id => 'create_input' , :tabindex => autotab %>
+</div>
+<% end %>

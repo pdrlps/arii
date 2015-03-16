@@ -30,16 +30,9 @@
     font-style: normal;
  }
 
-
-
-
  /** STATIC CSS **/
  html{
   height: 100%;
-}
-
-body {
-	font-weight: 300;
 }
 
 pre , code, kbd, samp {
@@ -53,7 +46,6 @@ pre code { border: 0px !important; padding: 0;}
 code { padding: 0 3px 0 3px; }
 
 b, strong {
-	font-weight: 600;
 }
 
 em {
@@ -79,11 +71,6 @@ li.social {
   font-size: 1.5em;
 }
 
-.text-right {
-	text-align: right;
-	float:right;
-}
-
 .user-side-text {
 	font-size: 10px;
 	color: #333;
@@ -101,14 +88,14 @@ li.social {
 .selector {
 	font-weight: 600;
 	font-style: italic;
-	color: #f04124;
+	color: #2980B9;
 }
 
 /** highlight code **/
 .code {
   font-weight: 600;
   font-style: italic;
-  color: #548ACF;
+  color: #16A085;
 }
 
 .remember_me {
@@ -203,6 +190,11 @@ a:hover.remove  {
 .icon-docs:before { content: '\e8e3'; }
 .icon-resources:before { content: '\e82a'; }
 .icon-lifebuoy:before { content: '\e8bb'; }
+.icon-info:before { content: '\e8af'; }
+.icon-cloud:before { content: '\e853'; }
+.icon-local:before { content: '\e87e'; }
+.icon-poll:before { content: '\e870'; }
+.icon-push:before { content: '\e8f4'; }
 
 /** legacy */
 .icon-agent:before { content: '\e8c7'; }
@@ -239,8 +231,6 @@ a:hover.remove  {
 .icon-details:before { content: '\E73E';}
 .icon-trash:before { content: '\E729'; color: #FF0000;}
 
-.icon-play:before { content: '\e85d'; }
-.icon-pause:before { content: '\2016'; }
 
 /** Social icons **/
 .icon-facebook:before { font-family: 'entypo-social'; content: '\F30E'; }
@@ -253,7 +243,6 @@ a:hover.remove  {
 .xl-icon {
   font-size: 24px;
 }
-
 
 
 .event_list {
@@ -279,11 +268,30 @@ a:hover.remove  {
   z-index: 1000;
 }
 
+dropdown a:hover {
+  background-color: #FFF;
+}
+
+
+
+.lifebuoy {
+  display: none;
+  visibility: none;
+}
+
+#lifebuoy {
+  background-color: #C0392B;
+  color: white;
+}
+#lifebuoy:hover {
+  background-color: #E74C3C;
+  }
+
 
 /** sidebar */
 .sidebar {
 position: fixed;
-background-color: #4f5a66;
+background-color: #34495E; /* 34495E */
 top: 0;
 bottom: 0;
 width: 200px;
@@ -297,17 +305,16 @@ z-index: 20;
   position: fixed;
   bottom: 16px;
   right: 16px;
-  background-color: #343d46;
+  background-color: #7F8C8D;
   color: #FFF;
-  padding: 4px;
-  font-size: 80%;
-  border-radius: 16px;
+  font-size: 1.5em;
+  padding: 2px;
+  border-radius: 20px;
     opacity: 0.5;
     filter: alpha(opacity=50);
     display: block;
-    width: 32px;
-    height: 32px;
-    font-size: 110%;
+    width: 40px;
+    height: 40px;
     display: block;
 }
 #feedback a {
@@ -318,3 +325,4 @@ z-index: 20;
 opacity: 1;
     filter: alpha(opacity=100);
 }
+

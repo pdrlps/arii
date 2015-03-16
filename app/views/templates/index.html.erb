@@ -12,7 +12,7 @@
     <div class="small-6 columns right">
       <ul class="inline-list right">
         <li><a href="#" id="what_output" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create output'.html_safe, new_template_path, :class => 'icon-create small button radius right primary' %></li>
+        <li><%= link_to 'Create output'.html_safe, new_template_path, :class => 'icon-create small button radius right info' %></li>
       </ul>
     </div>
   </div>
@@ -32,8 +32,8 @@
     </div>
     <div class="small-12 medium-2 large-2 columns right">
       <ul class="button-group radius right">
-        <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button info icon-edit' %></li>
-        <li><%= link_to 'View', output_path(template), :class => ' small button info icon-view' %></li>
+        <li><%= link_to 'View', output_path(template), :class => ' small button secondary icon-view' %></li>
+        <li><%= link_to 'Edit', edit_output_path(template), :class => 'small button secondary icon-edit' %></li>
       </ul>
     </div>
     <!-- details -->
@@ -70,7 +70,7 @@
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-2 large-2 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'sql'}, :class => 'icon-add radius small button info',:title => 'Add sample SQL output' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -101,7 +101,7 @@
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-2 large-2 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample URL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add radius small button primary',:title => 'Add sample SQL output' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample URL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'url'}, :class => 'icon-add radius small button info',:title => 'Add sample SQL output' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -132,7 +132,7 @@
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-2 large-2 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add radius small button primary',:title => 'Add sample File output' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample SQL output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'file'}, :class => 'icon-add radius small button info',:title => 'Add sample File output' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">
@@ -163,7 +163,7 @@
       <span class="label right radius secondary output_details_toggle" data-id="sample1"><i class="icon-tag"></i></span>
     </div>
     <div class="small-11 medium-2 large-2 columns right">
-      <span class="has-tip tip-top radius right" data-tooltip title="Add sample Mail output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add radius small button primary',:title => 'Add sample Mail output' %></span>
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample Mail output"><%= link_to 'Add', {:controller => 'templates', :action => 'add', :identifier => 'mail'}, :class => 'icon-add radius small button info',:title => 'Add sample Mail output' %></span>
     </div>
     <!-- details -->
     <div class="small-12 medium-12 large-12 columns">

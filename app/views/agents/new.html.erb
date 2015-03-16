@@ -1,7 +1,15 @@
 <% content_for :javascript_includes do %>
 <%= javascript_include_tag "#{ENV['APP_HOST']}agents/new.js" %>
 <% end %>
-
 <% content_for :title, "New input - #{ENV["APP_TITLE"]}" %>
-<h1>New input</h1>
+<div class="row">
+    <div class="small-12 medium-8 large-8 columns">
+        <h3 class="subheader">New input</h3>
+    </div>
+    <div class="small-12 medium-4 large-4 columns">
+        <div class="progress info radius" id="input_progress">
+            <span class="meter" id="new_input_progress" style="width: 0%;"></span>
+        </div>
+    </div>
+</div>
 <%= render 'new' %>

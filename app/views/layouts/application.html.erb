@@ -36,12 +36,12 @@
               <ul class="left">
               </ul>
               <ul class="right">
-                <li><a href="#" class="icon-lifebuoy"></a></li>
+                <li><a href="#" id="lifebuoy" class="icon-lifebuoy"></a></li>
                 <li class="has-dropdown">
                   <a href="#" class="icon-resources">&nbsp;</a>
                   <ul class="dropdown">
                     <li><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
-                    <li><%=  link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-docs') %></li>
+                    <li><%= link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-docs') %></li>
                     <li><%= link_to('FAQ'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-faq') %></li>
                   </ul>
                 </li>
