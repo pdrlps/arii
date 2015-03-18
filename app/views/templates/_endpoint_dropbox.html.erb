@@ -3,15 +3,17 @@
     <label for="publisher_dropbox_method" class="right inline">Method</label>
   </div>
   <div class="small-9 columns">
-   <%= select_tag 'template[method]', options_for_select([['Append', 'append'], ['Create', 'create'], ['Delete', 'delete']], {:selected => template.method}), {:id => 'publisher_dropbox_method', :tabindex => autotab} %>
- </div>
+    <i class="label info lifebuoy">Select the file management operation.</i>
+    <%= select_tag 'template[method]', options_for_select([['Append', 'append'], ['Create', 'create'], ['Delete', 'delete']], {:selected => template.method}), {:id => 'publisher_dropbox_method', :tabindex => autotab} %>
+  </div>
 </div>
 <div class="row">
   <div class="small-3 columns">
     <label for="publisher_dropbox_uri" class="right inline">URI</label>
   </div>
   <div class="small-9 columns">
-    <input type="url" required id="publisher_dropbox_uri" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" placeholder="E.g.: file:///home/user/this.csv" />
+    <i class="label info lifebuoy">Provide the file path (within your workspace).</i>
+    <input type="url" required id="publisher_dropbox_uri" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" placeholder="E.g.: ariip_log.csv" />
   </div>
 </div>
 <div class="row">
@@ -19,6 +21,7 @@
     <label for="publisher_dropbox_content" class="right inline">Content</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the file content.</i>
     <textarea type="text" required id="publisher_dropbox_content" tabindex="<%= autotab %>" name="template[content]" placeholder="E.g.: %{arii.date},%{id}\n"><%= template.content.nil? ? '' : template.content %></textarea>
   </div>
 </div>

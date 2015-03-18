@@ -61,6 +61,8 @@
             </div>
           </div>
           <br />
+          <br />
+          <br />
           <!-- Finish main content -->
           <!-- feedback -->
           <div id="feedback">
@@ -69,6 +71,9 @@
           <%= render partial: "helper/feedback"  %>
           <%= javascript_include_tag "application" %>
           <%= yield :javascript_includes %>
+          <% if content_for?(:custom_js) %>
+          <%= yield(:custom_js) %>
+          <% end %>
           <!-- HotJar -->
           <script>
           (function(f,b){

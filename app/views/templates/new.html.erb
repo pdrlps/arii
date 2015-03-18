@@ -1,12 +1,11 @@
 <% content_for :javascript_includes do %>
-<%= javascript_include_tag "#{ENV['APP_HOST']}templates/new.js" %>
+<%= javascript_include_tag "#{ENV['APP_HOST']}outputs/new.js" %>
 <% end %>
-
-<% content_for :title, "New endpoint - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs">
-  <li><a href="<%= root_url %>">Home</a></li>
-  <li><%= link_to 'Endpoints', templates_path %></li>
-  <li class="current">New endpoint</li>
-</ul>
-<h1>New endpoint</h1>
+<% content_for :title, "New output - #{ENV["APP_TITLE"]}" %>
+<h3 class="subheader">New output</h3>
 <%= render 'new' %>
+<div class="row">
+    <div class="small-12 columns right">
+        <%= link_to 'Create', '#' ,:class => 'button right success small radius icon-create', :id => 'create_output' , :tabindex => autotab %>
+    </div>
+</div>

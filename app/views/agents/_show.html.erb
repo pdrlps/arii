@@ -11,8 +11,8 @@
   </div>
   <div class="small-10 medium-3 large-3 columns right text-right">
     <ul class="button-group radius right">
-      <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button success icon-execute',:title => "Execute #{agent.title}" %></li>
-      <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button info icon-edit' %></li>
+      <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
+      <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button primary icon-execute',:title => "Execute #{agent.title}" %></li>
     </ul>
   </div>
 </div>
@@ -21,19 +21,35 @@
   <div class="small-2 columns">
     <div class="agent-hl ">
       <div class="big center">
-        <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this agent"><%= link_to agent.events.size, {:controller => 'events', :action => 'input', :id => agent.id} %></span>
+        <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this input."><%= link_to agent.events.size, {:controller => 'events', :action => 'input', :id => agent.id} %></span>
       </div>
       <h5 class="center icon-events xl-icon"></h5>
     </div>
+    <% if agent.schedule == 'none' %>
     <div class="agent-hl">
       <div class="big center">
-        <span class="has-tip radius" data-tooltip title="Schedule: ARiiP polls this agent every <%= agent.schedule %>"><%= agent.schedule %></span>
+        <span class="has-tip radius" data-tooltip title="Push: ARiiP receives data from this input.">push</span>
+      </div>
+      <h5 class="center icon-push xl-icon"></h5>
+    </div>
+    <% elsif agent.schedule == 'local' %>
+    <div class="agent-hl">
+      <div class="big center">
+        <span class="has-tip radius" data-tooltip title="Local: ARiiP monitors this input privately.">local</span>
+      </div>
+      <h5 class="center icon-local xl-icon"></h5>
+    </div>
+    <% else %>
+    <div class="agent-hl">
+      <div class="big center">
+        <span class="has-tip radius" data-tooltip title="Schedule: ARiiP monitors this input every <%= agent.schedule %>"><%= agent.schedule %></span>
       </div>
       <h5 class="center icon-schedule xl-icon"></h5>
     </div>
+    <% end %>
     <div class="agent-hl">
       <div class="big center">
-        <span class="has-tip radius" data-tooltip title="Monitor: this agent processes '<%= agent.publisher %>'' input"><%= agent.publisher %></span>
+        <span class="has-tip radius" data-tooltip title="Monitor: this input processes '<%= agent.publisher %>'' input"><%= agent.publisher %></span>
       </div>
       <h5 class="center icon-publisher xl-icon"></h5>
     </div>
@@ -45,7 +61,7 @@
     </div>
     <hr>
     <div class="row">
-      <h4 class="subheader">Input Details</h4>
+      <h4 class="subheader">Publisher Details</h4>
       <% if agent.publisher == 'sql' then %>
       <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
       <% end %>

@@ -1,65 +1,144 @@
 <% content_for :title, "New integration - #{ENV["APP_TITLE"]}" %>
-<h1>New integration<small id="step" class="right">Step <strong>1</strong></small></h1>
-<%= render 'form' %>
-<!-- Agent setup -->
-<div id="new_select_agent" class="hidden">
-  <div class="row" >
-    <div class="small-3 columns">
-      <label class="right inline">Select agent</label>
-    </div>
-    <div class="small-9 columns">
-      <select id="new_agent_select_list" tabindex="<%= autotab %>">
-        <option value="0" selected="selected">Create new agent...</option>
-        <% @agents.each do |agent| %>
-        <option value="<%= agent.id %>"><%= agent.title %></option>
-        <% end %>
-      </select>
-    </div>
+<% content_for :custom_js,  "<script src=\"#{ENV['APP_HOST']}integrations/new.js\" type=\"text/javascript\"></script>".html_safe %>
+<div class="row">
+  <div class="small-12 medium-6 large-6 columns">
+    <h3 class="subheader">New integration</h3>
   </div>
-  <div class="row">
-    <div class="small-2 columns right">
-      <a href="#" tabindex="<%= autotab %>" id="new_save_agent_select" class="button tiny success radius right">Next</a>
+  <div class="small-12 medium-6 large-6 columns right">
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 medium-8 large-8 columns">
+    <ul class="tabs" data-tab>
+      <li class="tab-title active"><a href="#tab_details" class="icon-details tab_radius" id="tab_link_details">Details</a></li>
+      <li class="tab-title"><a href="#tab_input" class="icon-input tab_radius" id="tab_link_input">Input</a></li>
+      <li class="tab-title"><a href="#tab_output" class="icon-output tab_radius" id="tab_link_output">Output</a></li>
+      <li class="tab-title"><a href="#tab_review" class="icon-review tab_radius" id="tab_link_review">Review</a></li>
+    </ul>
+  </div>
+  <div class="small-12 medium-4 large-4 columns">
+    <div class="progress info radius" id="integration_progress">
+      <span class="meter" id="new_integration_progress" style="width: 0%;"></span>
     </div>
   </div>
 </div>
-<!-- Template setup -->
-<div id="new_select_template" class="hidden">
-  <div class="row" >
-    <div class="small-3 columns">
-      <label class="right inline">Select endpoint</label>
-    </div>
-    <div class="small-9 columns">
-      <select tabindex="<%= autotab %>" id="new_template_select_list" tabindex="8">
-        <option value="0" selected="selected">Create new endpoint...</option>
-        <% @templates.each do |template| %>
-        <option value="<%= template.id %>"><%= template.title %></option>
-        <% end %>
-      </select>
+<div class="tabs-content">
+  <div class="content active" id="tab_details">
+    <%= render 'new' %>
+  </div>
+  <div class="content" id="tab_input">
+    <!-- Input setup -->
+    <div id="new_select_agent" class="hidden">
+      <div class="row">
+        <div class="small-6 medium-6 large-6 columns text-center">
+          <div class="panel radius" id="integration_panel_existing_input">
+            <a href="#" id="integration_existing_input" class="input_type icon-existing">Existing</a><br/>
+            <span class="icon-info input_info">Select from existing inputs.</span>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-6 columns text-center">
+          <div class="panel radius" id="integration_panel_new_input">
+            <a href="#" id="integration_new_input" class="input_type icon-create">New</a><br/>
+            <span class="icon-info input_info">Create a new input.</span>
+          </div>
+        </div>
+      </div>
+      <div class="row integration_area" id="integration_area_existing_input">
+        <div class="small-12 medium-3 large-3 columns">
+          <label class="right inline">Select input</label>
+        </div>
+        <div class="small-12 medium-9 large-9 columns">
+          <%= select_tag 'new_agent_select_list', options_from_collection_for_select(@agents, "id", "title"), include_blank: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns integration_area" id="existing_input_load">
+        </div>
+        <div class="small-12 columns right hidden" id="new_integration_next_input">
+          <a href="#" tabindex="<%= autotab %>" id="new_integration_next_input_button" class="button small info radius right icon-next">Next</a>
+        </div>
+      </div>
+      <div class="row integration_area" id="integration_area_new_input">
+        <div class="small-12 columns">
+          <%= render "agents/new"  %>
+        </div>
+        <div class="small-12 columns right" >
+          <a href="#" tabindex="<%= autotab %>" id="new_save_input" class="button small info radius right icon-next">Next</a>
+        </div>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="small-2 columns right">
-      <a tabindex="<%= autotab %>" href="#" id="new_save_template_select" class="button tiny success radius right">Next</a>
+  <div class="content" id="tab_output">
+    <!-- Output setup -->
+    <div id="new_select_template" class="hidden">
+      <div class="row" >
+        <div class="small-6 medium-6 large-6 columns text-center">
+          <div class="panel radius" id="integration_panel_existing_output">
+            <a href="#" id="integration_existing_output" class="input_type icon-existing">Existing</a><br/>
+            <span class="icon-info input_info">Select from existing outputs.</span>
+          </div>
+        </div>
+        <div class="small-6 medium-6 large-6 columns text-center">
+          <div class="panel radius" id="integration_panel_new_output">
+            <a href="#" id="integration_new_output" class="input_type icon-create">New</a><br/>
+            <span class="icon-info input_info">Create a new output.</span>
+          </div>
+        </div>
+      </div>
+      <div class="row output_area" id="integration_area_existing_output">
+        <div class="small-3 columns">
+          <label class="right inline">Select output</label>
+        </div>
+        <div class="small-9 columns">
+          <%= select_tag 'new_template_select_list', options_from_collection_for_select(@templates, "id", "title"), include_blank: true %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 columns"  id="existing_output_load">
+        </div>
+        <div class="small-12 columns right hidden" id="new_integration_next_output">
+          <a href="#" tabindex="<%= autotab %>" id="new_integration_next_output_button" class="button small info radius right icon-next">Next</a>
+        </div>
+      </div>
+      <div class="row output_area" id="integration_area_new_output">
+        <div class="small-12 columns">
+          <%= render partial: "templates/new"  %>
+        </div>
+        <div class="small-12 columns right">
+          <a href="#" tabindex="<%= autotab %>" id="new_save_output" class="button small info radius right icon-next">Next</a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<div class="hidden" id="new_template_form">
-  <div class="row">
-    <div class="small-3 columns right">
-      <label class="right inline">
-      Create new endpoint</label>
+  <div class="content" id="tab_review">
+    <!-- Review -->
+    <div class="row">
+      <div class="small-12 columns">
+        <h4 class="subheader" id="review_integration"></h4>
+        <p id="review_integration_description">
+        </p>
+      </div>
     </div>
-    <div class="small-9 columns">
-      <%= render "templates/new" %>
+    <div class="row">
+      <div class="small-12 medium-3 large-3 columns">
+        <h6>Input</h6>
+      </div>
+      <div class="small-12 medium-9 large-9 columns"id="review_input">
+      </div>
+    </div>
+    <br />
+    <div class="row">
+      <div class="small-12 medium-3 large-3 columns">
+        <h6>Output</h6>
+      </div>
+      <div class="small-12 medium-9 large-9 columns"id="review_output">
+      </div>
+    </div>
+    <br />
+    <div class="row hidden" id="new_integration_save">
+      <div class="small-12 columns right">
+        <a tabindex="<%= autotab %>" href="#" class="button small success radius right icon-integration" id="new_integration_save_button">Create Integration</a>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="small-12 columns right">
-      <%= link_to 'Next', integrations_path, :class => 'button tiny radius success right', :tabindex => autotab %>
-    </div>
-  </div>
-</div>
-<!-- Finalize -->
-<div class="row hidden" id="new_integration_save">
-  <a tabindex="<%= autotab %>" href="#" class="button small success radius right icon-integration" id="new_integration_save_button">Create Integration</a>
 </div>

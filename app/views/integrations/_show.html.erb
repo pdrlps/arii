@@ -10,8 +10,8 @@
   </div>
   <div class="small-10 medium-3 large-3 columns right text-right">
     <ul class="button-group radius right">
-      <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button success icon-execute',:title => "Execute #{integration.title}" %></li>
-      <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button info icon-edit' %></li>
+      <li><%= link_to 'Edit', edit_integration_path(integration), :class => 'small button secondary icon-edit' %></li>
+      <li><%= link_to 'Execute', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button primary icon-execute',:title => "Execute #{integration.title}" %></li>
     </ul>
   </div>
 </div>
@@ -24,10 +24,8 @@
 <br />
 <!-- Inputs -->
 <div class="row">
-  <div class="small-12 medium-2 large-2 columns">
+  <div class="small-12 columns">
     <h4><%= pluralize(integration.agents.size, 'Input') %></h4>
-  </div>
-  <div class="small-12 medium-10 large-10 columns">
     <% integration.agents.each do |agent| %>
     <%= link_to "<h3 class=\"subheader\">#{agent.title}</h3>".html_safe, agent %>
     <%=  render :partial => "agents/show", locals: {:agent => agent} %>
@@ -37,10 +35,8 @@
 <br />
 <!-- Outputs -->
 <div class="row">
-  <div class="small-12 medium-2 large-2 columns">
+  <div class="small-12 columns">
     <h4><%= pluralize(integration.templates.size, 'Output') %></h4>
-  </div>
-  <div class="small-12 medium-10 large-10 columns">
     <% integration.templates.each do |template| %>
     <%= link_to "<h3 class=\"subheader\">#{template.title}</h3>".html_safe, template %>
     <%= render :partial => "templates/show", locals: {:template => template} %>

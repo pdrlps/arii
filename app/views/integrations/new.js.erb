@@ -1,0 +1,390 @@
+$(function() {
+
+    // inputs
+    $('#agent_publisher').on('change', agent_update_publisher_view);
+    update_payload_selector_add();
+    update_payload_selector_remove();
+
+    // outputs
+    // Manage POST params list
+    $('.publisher_url_post_params_add').on('click', add_url_post_params_from_click);
+    $('.publisher_url_post_params_value').on('keypress', add_url_post_params_from_keypress);
+
+    //
+    $('#template_endpoint').on('change', template_update_endpoint_view)
+    $('#edit_template_payload_select').on('change', edit_update_payload);
+
+    // handler for show/hide parameters with request type
+    $('#publisher_url_method').on('change', update_publisher_url_params_view);
+
+    // handler to show/hide content according to request type
+    $('#publisher_url_message').on('change', update_publisher_message_view)
+
+
+    update_url_post_params_remove();
+
+    // Remote save new input
+    $('#new_agent').on('ajax:success', new_input_save);
+
+    // Remote save new output
+    $('#new_template').on('ajax:success', new_output_save);
+
+});
+
+
+/**
+ *  Update on input creation.
+ **/
+function new_input_save(e, data, status, xhr) {
+    if (status === 'success') {
+        $('#integration_area_new_input').fadeOut();
+        var html = '<div class="small-3 columns">&nbsp;</div><div class="small-9 columns"><h5 id="input" data-id="' + data.id + '"><a href="../inputs/' + data.id + '" target="_blank">' + data.title + '</a></h5><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule">' + data.schedule + '</span><br /><ul class="inline-list"><li><strong>Selectors: </strong></li>';
+        var selectors = eval(data.payload.selectors);
+        $.each(selectors, function(i) {
+            var selector = eval(selectors[i]);
+            $.each(selector, function(k, v) {
+                html += '<li>' + k + '</li>';
+            })
+        });
+        html += '</ul></div>';
+        // update small with selected
+        $('#existing_input_load').html(html);
+
+        // update review tab
+        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+        $('#review_input').html(review);
+        $('#existing_input_load').fadeIn();
+
+        show_down($('#new_select_template'));
+
+        $('#tab_link_output').trigger('click');
+        $('#tab_link_input').removeClass('icon-input').addClass('tab_complete').addClass('icon-check');
+    }
+}
+
+
+
+/**
+ *  Update on output creation.
+ **/
+function new_output_save(e, data, status, xhr) {
+    if (status === 'success') {
+        $('#integration_area_new_output').fadeOut();
+        var html = '<div class="small-3 columns">&nbsp;</div><div class="small-9 columns"><h5 id="output" data-id="' + data.id + '"><a href="../templates/' + data.id + '" target="_blank">' + data.title + '</a></h5><span class="label secondary radius icon-endpoint">' + data.publisher + '</span></div>';
+        $('#existing_output_load').html(html);
+
+
+        // update review tab
+        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-endpoint">' + data.endpoint + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../outputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../outputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+        $('#review_output').html(review);
+
+        show_down($('#new_integration_save'));
+
+        $('#tab_link_review').trigger('click');
+        $('#tab_link_output').removeClass('icon-output').addClass('tab_complete').addClass('icon-check');
+    }
+}
+
+
+/*
+ *	Toggle form according to Agent publisher
+ */
+function agent_update_publisher_view(event) {
+    publisher = $(this).find(':selected').val();
+
+    if (publisher === 'csv') {
+        $('#publisher_content').html("<%= j render(:partial => 'agents/publisher_csv') %>");
+    } else if (publisher === 'excel') {
+        $('#publisher_content').html("<%= j render(:partial => 'agents/publisher_excel') %>");
+    } else if (publisher === 'xml') {
+        $('#publisher_content').html("<%= j render(:partial => 'agents/publisher_xml') %>");
+    } else if (publisher === 'json') {
+        $('#publisher_content').html("<%= j render(:partial => 'agents/publisher_json') %>");
+    } else if (publisher === 'sql') {
+        $('#publisher_content').html("<%= j render(:partial => 'agents/publisher_sql') %>");
+    }
+    update_payload_selector_add();
+    $('#new_input_progress').width('75%'); // update progress bar
+}
+
+/**
+ *	Add POST param to list
+ **/
+function add_payload_selector(id) {
+
+    var selectors = JSON.parse($('#payload_selector_hidden').val());
+
+    var destination = $('#payload_selector_include');
+    var next_id = id + 1;
+    var origin_key_text = $('#payload_selector_key_' + id);
+    var origin_value_text = $('#payload_selector_value_' + id);
+    var origin_button = $('#payload_selector_button_' + id);
+
+    // update hidden content
+    var selector = '{"' + origin_key_text.val() + '":"' + origin_value_text.val() + '"}'
+    selectors.push(JSON.parse(selector))
+    $('#payload_selector_hidden').val(JSON.stringify(selectors));
+
+    // cleanup POST params form
+    origin_key_text.parent().removeClass('error');
+    origin_value_text.parent().removeClass('error');
+
+    // validate POST params form
+    if (!destination.is(':visible')) {
+        destination.show();
+    }
+    if (origin_key_text.val() === '') {
+        origin_key_text.parent().addClass('error');
+    } else if (origin_value_text.val() === '') {
+        origin_value_text.parent().addClass('error');
+    } else {
+        // process
+        destination.append('<div class="row payload_selector_new_' + id + '"><div class="small-3 columns left"><label class="right inline">Selector ' + id + '</label></div><div class="small-4 columns payload_selector_key_' + id + '"><input data-id="' + id + '" type="text" placeholder="E.g.: id" disabled class="disabled payload_selector_key" value="' + origin_key_text.val() + '"></div><div class="small-4 columns payload_selector_value_' + id + '"><input id="payload_selector_value_' + id + '" type="text" placeholder="E.g.: id" disabled class="disabled template_variable_text" value="' + origin_value_text.val() + '"></div><div class="small-1 columns publisher_url_params_new_' + id + '"><a href="#" data-id="' + id + '" class="remove right payload_selector_remove">Remove</a></div></div>');
+        origin_key_text.removeAttr('id');
+        origin_value_text.removeAttr('id');
+        origin_button.removeAttr('id')
+        origin_key_text.attr('id', 'payload_selector_key_' + next_id);
+        origin_value_text.attr('id', 'payload_selector_value_' + next_id);
+        origin_button.attr('id', 'payload_selector_button_' + next_id);
+        origin_key_text.val('');
+        origin_value_text.val('');
+        origin_key_text.data('id', next_id);
+        origin_value_text.data('id', next_id);
+        origin_button.data('id', next_id);
+        origin_key_text.focus();
+        update_payload_selector_remove();
+    }
+
+    $('#new_input_progress').width('100%'); // update progress bar
+    $('#input_progress').removeClass('info').addClass('success');
+
+}
+
+/**
+ *	Add URL POST param  handler for button click
+ **/
+function add_payload_selector_from_click(event) {
+    event.preventDefault();
+    add_payload_selector($(this).data('id'));
+
+}
+
+/**
+ *	Add URL POST param handler for "enter" keypress
+ **/
+function add_payload_selector_from_keypress(event) {
+    if (event.which == 13) {
+        add_payload_selector($(this).data('id'));
+    }
+}
+
+/**
+ *	Removes existing POST param
+ **/
+function remove_payload_selector(event) {
+    event.preventDefault();
+    var id = $(this).data('id');
+    var selectors = JSON.parse($('#payload_selector_hidden').val());
+    var key = $('#payload_selector_key_' + id).val();
+    var value = $('#payload_selector_value_' + id).val();
+    selectors = remove_obj_from_array(selectors, JSON.parse('{"' + key + '":"' + value + '"}'));
+    $('#payload_selector_hidden').val(JSON.stringify(selectors));
+    $('.payload_selector_new_' + $(this).data('id')).remove();
+    $('#payload_selector_new_' + id).remove();
+}
+
+/**
+ *	Reload jQuery model to listen to new events for POST params "Remove" button
+ **/
+function update_payload_selector_remove() {
+    $('.payload_selector_remove').on('click', remove_payload_selector);
+}
+
+/**
+ *	Reassign Selectors "Add" button attributes
+ **/
+function update_payload_selector_add() {
+    // Manage payload selectors list
+    $('.payload_selector_add').on('click', add_payload_selector_from_click);
+    $('.payload_selector_value').on('keypress', add_payload_selector_from_keypress);
+    $('#agent_payload_cache').on('change', function(event) {
+        $('#new_input_progress').width('90%'); // update progress bar
+    });
+}
+
+/**
+ *  Reload jQuery model to listen to new events for POST params "Remove" button
+ **/
+function update_url_post_params_remove() {
+    $('.publisher_url_params_remove').on('click', remove_url_post_params);
+}
+
+
+/**
+ *  Add POST param to list
+ **/
+function add_url_post_params(id) {
+    var selectors = JSON.parse($('#url_post_params_hidden').val());
+
+    var destination = $('#publiser_url_post_params');
+    var next_id = id + 1;
+    var origin_key_text = $('#publisher_url_post_params_key_' + id);
+    var origin_value_text = $('#publisher_url_post_params_value_' + id);
+    var origin_button = $('#publisher_url_post_params_button_' + id);
+
+    // cleanup POST params form
+    origin_key_text.parent().removeClass('error');
+    origin_value_text.parent().removeClass('error');
+
+    // update hidden content
+    var selector = '{"' + origin_key_text.val() + '":"' + origin_value_text.val() + '"}';
+    selectors.push(JSON.parse(selector));
+    $('#url_post_params_hidden').val(JSON.stringify(selectors));
+
+    // validate POST params form
+    if (!destination.is(':visible')) {
+        destination.show();
+    }
+    if (origin_key_text.val() === '') {
+        origin_key_text.parent().addClass('error');
+    } else if (origin_value_text.val() === '') {
+        origin_value_text.parent().addClass('error');
+    } else {
+        // process
+        destination.append('<div class="row publisher_url_post_params_new_' + id + '"><div class="small-3 columns"><label class="right inline">Parameter ' + id + '</label></div><div class="small-4 columns publisher_url_post_params_key_' + id + '"><input id="publisher_url_post_params_key_' + id + '" data-id="' + id + '" type="text" placeholder="E.g.: id" disabled class="disabled publisher_url_post_params_key" value="' + origin_key_text.val() + '"/></div><div class="small-4 columns publisher_url_post_params_value_' + id + '"><input id="publisher_url_post_params_value_' + id + '" type="text" placeholder="E.g.: id" disabled class="disabled " value="' + origin_value_text.val() + '" /></div><div class="small-1 columns publisher_url_params_new_' + id + '"><a href="#" data-id="' + id + '" class="remove publisher_url_params_remove">Remove</a></div></div>');
+        origin_key_text.removeAttr('id');
+        origin_value_text.removeAttr('id');
+        origin_button.removeAttr('id');
+        origin_key_text.attr('id', 'publisher_url_post_params_key_' + next_id);
+        origin_value_text.attr('id', 'publisher_url_post_params_value_' + next_id);
+        origin_button.attr('id', 'publisher_url_post_params_button_' + next_id);
+        origin_key_text.val('');
+        origin_value_text.val('');
+        origin_key_text.data('id', next_id);
+        origin_value_text.data('id', next_id);
+        origin_button.data('id', next_id);
+        origin_key_text.focus();
+        $('#save_template').val('Save');
+        update_url_post_params_remove();
+    }
+}
+
+/**
+ *  Add URL POST param  handler for button click
+ **/
+function add_url_post_params_from_click(event) {
+    event.preventDefault();
+    add_url_post_params($(this).data('id'));
+
+}
+
+/**
+ *  Add URL POST param handler for "enter" keypress
+ **/
+function add_url_post_params_from_keypress(event) {
+    if (event.which == 13) {
+        add_url_post_params($(this).data('id'));
+    }
+}
+
+/**
+ *  Removes existing POST param
+ **/
+function remove_url_post_params(event) {
+    event.preventDefault();
+    var id = $(this).data('id');
+    var selectors = JSON.parse($('#url_post_params_hidden').val());
+    var key = $('#publisher_url_post_params_key_' + id).val();
+    var value = $('#publisher_url_post_params_value_' + id).val();
+    selectors = remove_obj_from_array(selectors, JSON.parse('{"' + key + '":"' + value + '"}'));
+    $('#url_post_params_hidden').val(JSON.stringify(selectors));
+    $('.publisher_url_post_params_new_' + id).remove();
+    $('#save_template').val('Save');
+    //alert($('#url_post_params_hidden').val());
+}
+
+/**
+ *  Toggle URL request params form according to request method
+ **/
+function update_publisher_url_params_view(event) {
+    type = $(this).find(':selected').val();
+    if (type == 'post') {
+        $('#publiser_url_post_params').show();
+    } else { //if(type == 'get') {
+        $('#publiser_url_post_params').hide();
+    }
+}
+
+/**
+ *  Toggle content box form according to message request type
+ **/
+function update_publisher_message_view(event) {
+    type = $(this).find(':selected').val();
+    if (type == 'form') {
+        $('#publisher_url_content_box').hide();
+    } else {
+        $('#publisher_url_content_box').show();
+    }
+}
+
+/**
+ *  Handles reloading forms on changing template publisher.
+ **/
+function edit_update_payload(event) {
+    event.preventDefault();
+    $('.lifebuoy').hide();
+    publisher = $(this).find(':selected').val();
+    if (publisher === 'file') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_file', :locals => {:template => @template}) %>");
+    } else if (publisher === 'dropbox') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_dropbox', :locals => {:template => @template}) %>");
+    } else if (publisher === 'mail') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_mail', :locals => {:template => @template}) %>");
+    } else if (publisher === 'sql') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_sql', :locals => {:template => @template}) %>");
+    } else if (publisher === 'url') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_url', :locals => {:template => @template}) %>");
+    }
+}
+
+
+/*
+ *  Toggle form according to Temnplate publisher (the good way!)
+ */
+function template_update_endpoint_view(event) {
+    event.preventDefault();
+    $('.lifebuoy').hide();
+    publisher = $(this).find(':selected').val();
+    if (publisher === 'file') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_file', :locals => {:template => @template}) %>");
+    } else if (publisher === 'dropbox') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_dropbox', :locals => {:template => @template}) %>");
+    } else if (publisher === 'mail') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_mail', :locals => {:template => @template}) %>");
+    } else if (publisher === 'sql') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_sql', :locals => {:template => @template}) %>");
+    } else if (publisher === 'url') {
+        $('#endpoint_content').html("<%= j render(:partial => 'templates/endpoint_url', :locals => {:template => @template}) %>");
+    }
+}
+
+/**
+ * HELPER FUNCTIONS
+ */
+
+// Remove given Oject from Array.
+function remove_obj_from_array(list, val) {
+
+    for (var i = 0; i < list.length; i++) {
+        var json_obj = list[i];
+        for (var key in json_obj) {
+            for (var k in val) {
+                if (json_obj[key] === val[k]) {
+                    list.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+    }
+    return list;
+}

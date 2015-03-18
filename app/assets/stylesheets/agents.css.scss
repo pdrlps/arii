@@ -89,8 +89,6 @@ cursor: pointer;
     display: none;
 }
 
-
-
 .lifebuoy {
   display: none;
   visibility: none;
@@ -100,14 +98,35 @@ cursor: pointer;
 	display: none;
 }
 
+.integration_area {
+	@extend .input_area;
+}
+
+.output_area {
+	@extend .input_area;
+}
+
+.panel:hover {
+	border-color: lighten($info-color,20%);
+	background-color: lighten($info-color,50%);
+}
+
 .selected {
 	background-color: lighten($success-color,50%);
 	border-color: lighten($success-color,30%);
+}
+.selected:hover {
+	background-color: lighten($success-color,45%);
+	border-color: lighten($success-color,35%);
 }
 
 .deselected {
 	background-color: lighten($alert-color,40%);
 	border-color: lighten($alert-color,30%);
+}
+.deselected:hover {
+	background-color: lighten($alert-color,35%);
+	border-color: lighten($alert-color,25%);
 }
 
 .input_type{

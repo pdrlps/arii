@@ -2,9 +2,6 @@ $(function() {
 	// Create input
 	$('#create_input').on('click', create_input);
 
-	// Remote save new input
-	$('#new_agent').on('ajax:success', new_agent_save);
-
 	// Edit input
 	$('.edit_save_agent').on('click', save_input_on_edit);
 
@@ -62,16 +59,6 @@ function update_input_toggle(event) {
 			$(this).prop('checked',true);
 		}
 	});
-	}
-}
-
-/**
- *	Redirect on agent save.
- **/
-function new_agent_save(e, data, status, xhr) {
-	if (status === 'success') {
-		agent = JSON.parse(xhr.responseText);
-		window.location = '../inputs/' + agent.id;
 	}
 }
 

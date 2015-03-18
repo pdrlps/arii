@@ -4,7 +4,7 @@ class CreateTemplates < ActiveRecord::Migration
       t.string :identifier
       t.text :title
       t.text :help
-      t.string :publisher
+      t.string :endpoint
       t.text :payload
       t.text :memory
       t.integer :count

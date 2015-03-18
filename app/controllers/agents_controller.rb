@@ -19,7 +19,7 @@ class AgentsController < ApplicationController
       @agent = current_user.agents.find(params[:id])
 
     rescue Exception => e
-      flash[:notice] = "You are not authorized to access that Agent."
+      flash[:notice] = "You are not authorized to access that Input."
       Services::Slog.exception e
       redirect_to :root
     end
@@ -35,8 +35,6 @@ class AgentsController < ApplicationController
       end
     end
     @agent = Agent.new
-    @seed = Seed.new
-    @seed.publisher = 'none'
 
     respond_to do |format|
       format.html {render action: "new"}
@@ -65,11 +63,6 @@ class AgentsController < ApplicationController
     @agent.events_count = 0
     @agent.identifier ="in_#{SecureRandom.hex(32)}"
 
-    # include seed in agent?
-    if params[:seed][:publisher] != 'none' then
-      @seed = @agent.seeds.build(seed_params)
-    end
-
     respond_to do |format|
       if @agent.save
         current_user.agents.push(@agent)
@@ -86,17 +79,9 @@ class AgentsController < ApplicationController
   # PATCH/PUT /agents/1.json
   def update
     respond_to do |format|
-      # include seed in agent?
-      if params[:seed][:publisher] != 'none' then
-        @seed = Seed.where(:identifier => params[:seed][:identifier]).first
-        if @seed.nil?
-          @seed = @agent.seeds.build(seed_params)
-        else
-          @seed.update(seed_params)
-        end
-      end
+
       if @agent.update(agent_params)
-        format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
+        format.html { redirect_to @agent, notice: 'Input was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -129,10 +114,10 @@ class AgentsController < ApplicationController
   end
 
   def import
-    @file = File.read("data/agents/#{params[:identifier]}.js")
+    @file = File.read("data/inputs/#{params[:identifier]}.js")
     @agent = Agent.create! JSON.parse(@file)
 
-    response = { :status => 200, :message => "[ARiiP]: agent #{params[:identifier]} imported", :id => @agent[:id] }
+    response = { :status => 200, :message => "[ARiiP]: input #{params[:identifier]} imported", :id => @agent[:id] }
     respond_to do |format|
       format.json { render :json => response}
       format.xml { render :xml => response}
@@ -154,7 +139,7 @@ class AgentsController < ApplicationController
       }
 
       respond_to do |format|
-        format.html { redirect_to @agent, notice: 'Agent execution started.' }
+        format.html { redirect_to @agent, notice: 'Input execution started.' }
       end
     rescue Exception => e
       Services::Slog.exception e
@@ -166,12 +151,11 @@ class AgentsController < ApplicationController
   # => Add existing sample agents to user.
   #
   def add
-    @object = JSON.parse(File.read("data/agents/#{params[:identifier]}.js"))
-    @object['identifier'] = "#{@object['identifier']}_#{current_user.id}"
+    @object = JSON.parse(File.read("data/inputs/#{params[:identifier]}.js"))
     @agent = Agent.create! @object
     @agent.events_count = 0
     @agent.last_check_at = Time.now
-    @agent.identifier = "#{@agent.id}_#{@agent.identifier}_#{SecureRandom.hex(8)}"
+    @agent.identifier ="in_#{SecureRandom.hex(32)}"
     current_user.agents.push @agent
     if @agent.save then
       respond_to do |format|
@@ -237,7 +221,7 @@ class AgentsController < ApplicationController
       @agent = Agent.find(params[:id])
     rescue Exception => e
       Services::Slog.exception e
-      flash[:notice] = "Sorry, <i class=\"icon-shuffle\"></i> couldn't find the agent identified by <em>#{params[:id]}</em>."
+      flash[:notice] = "Sorry, <i class=\"icon-ariip\"></i> couldn't find the input identified by <em>#{params[:id]}</em>."
       redirect_to :controller => "agents", :action => "index"
     end
   end
@@ -246,12 +230,7 @@ class AgentsController < ApplicationController
   def agent_params
     a = params[:agent].clone
     #a[:selectors] = JSON.parse(a[:selectors])
-    a.permit(:publisher, :payload, :identifier, :title, :help, :schedule, :seed, :action, :uri, :cache, :headers, :delimiter, :checked ,:server, :host, :port, :database, :username, :password, :query, :selectors, :sheet)
+    a.permit(:publisher, :payload, :identifier, :title, :help, :schedule, :action, :uri, :cache, :headers, :delimiter, :checked ,:server, :host, :port, :database, :username, :password, :query, :selectors, :sheet)
   end
 
-  def seed_params
-    s = params[:seed].clone
-    s[:seed] = params[:seed]
-    s.require(:seed).permit(:publisher, :payload, :identifier, :title, :help,:uri, :cache, :headers, :delimiter, :server, :host, :port, :database, :checked,:username, :password, :query, :selectors)
-  end
 end

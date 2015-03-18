@@ -1,17 +1,19 @@
 <div class="row">
   <div class="small-3 columns">
-    <label for="publisher_url_method" class="right inline">Method</label>
+    <label for="publisher_url_uri" class="right inline">URI</label>
   </div>
   <div class="small-9 columns">
-    <%= select_tag 'template[method]', options_for_select([['POST', 'post'], ['GET', 'get']], {:selected => (template.method.nil?) ? 'post' : template.method}), {:id => 'publisher_url_method', :tabindex => autotab} %>
+    <i class="label info lifebuoy">Provide the endpoint URI.</i>
+    <input type="url" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" required id="publisher_url_uri" placeholder="E.g.: http://ariip.com/..." />
   </div>
 </div>
 <div class="row">
   <div class="small-3 columns">
-    <label for="publisher_url_uri" class="right inline">URI</label>
+    <label for="publisher_url_method" class="right inline">Method</label>
   </div>
   <div class="small-9 columns">
-    <input type="url" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" required id="publisher_url_uri" placeholder="E.g.: http://ariip.com/..." />
+    <i class="label info lifebuoy">Select the URL delivery method.</i>
+    <%= select_tag 'template[method]', options_for_select([['POST', 'post'], ['GET', 'get']], {:selected => (template.method.nil?) ? 'post' : template.method}), {:id => 'publisher_url_method', :tabindex => autotab} %>
   </div>
 </div>
 <div class="row">
@@ -19,6 +21,7 @@
     <label for="publisher_url_message" class="right inline">Message type</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the URL request message type.</i>
     <%= select_tag 'template[message]', options_for_select([['Form data', 'form'], ['Text (text/plain)', 'text/plain'], ['JSON (application/json)', 'application/json'], ['JavaScript', 'application/javascript'], ['XML (application/xml)', 'application/xml'], ['XML (text/xml)', 'text/xml'], ['HTML (text/html)', 'text/html']], {:selected => (template.message.nil?) ? 'application/json' : template.message}), {:id => 'publisher_url_message', :tabindex => autotab} %>
   </div>
 </div>
@@ -27,13 +30,13 @@
     <label for="publisher_url_content" class="right inline">Content</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the URL request content (if needed).</i>
     <textarea tabindex="<%= autotab %>" name="template[content]" id="publisher_url_content" placeholder="E.g.: {'id':'123', ...}"><%= template.content.nil? ? '' : template.content %></textarea>
   </div>
 </div>
 <!-- Conditional POST parameters start -->
 <div id="publiser_url_post_params">
   <input type="hidden" id="url_post_params_hidden" name="template[selectors]" value='<%= @template.selectors.nil? ? '[]' : @template.selectors %>' />
-
   <% i = 1 %>
   <% unless template.selectors.nil? then %>
   <% JSON.parse(template.selectors).each do |selector| %>
@@ -59,15 +62,16 @@
   <% end %>
   <% end %>
 </div>
-
 <div class="row">
   <div class="small-3 columns">
     <label class="right inline">New parameter</label>
   </div>
   <div class="small-4 columns">
+    <i class="label info lifebuoy">Set the POST request parameter key.</i>
     <input type="text" class="publisher_url_post_params_key " tabindex="<%= autotab %>" data-id="<%= i %>" placeholder="Key" id="publisher_url_post_params_key_<%= i %>" />
   </div>
   <div class="small-4 columns">
+    <i class="label info lifebuoy">Set the POST request parameter value.</i>
     <input type="text" class="publisher_url_post_params_value " tabindex="<%= autotab %>" data-id="<%= i %>" placeholder="Value" id="publisher_url_post_params_value_<%= i %>" />
   </div>
   <div class="small-1 columns">

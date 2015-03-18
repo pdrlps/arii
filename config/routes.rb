@@ -70,11 +70,11 @@ ARII::Application.routes.draw do
   # Inputs control
   resources :inputs, :controller =>'agents'
   resources :agents
-  get "agents/partials/:identifier", to: 'agents#partials'      # what is this?
-  get "agents/import/:identifier", to: "agents#import"          # import from JSON file
-  get "agents/:id/get", to: "agents#get"                        # load agent as JSON
-  get "agents/add/:identifier", to: "agents#add"                # add sample agent to user
-  get "agents/:id/execute", to: "agents#execute"                # launch on-demand agent execution
+  get "inputs/partials/:identifier", to: 'agents#partials'      # what is this?
+  get "inputs/import/:identifier", to: "agents#import"          # import from JSON file
+  get "inputs/:id/get", to: "agents#get"                        # load agent as JSON
+  get "inputs/add/:identifier", to: "agents#add"                # add sample agent to user
+  get "inputs/:id/execute", to: "agents#execute"                # launch on-demand agent execution
   get "inputs/:id/enable", to: 'agents#enable'                  # enable input
   get "inputs/:id/disable", to: 'agents#disable'                # disable input
 
@@ -98,10 +98,9 @@ ARII::Application.routes.draw do
   # Outputs controls (previously Templates)
   resources :outputs, :controller =>'templates'
   resources :templates
-  get "templates/:id/get", to: "templates#get"                    # load template as JSON
-  post "templates/new"
-  get "templates/start"
-  get "templates/add/:identifier", to: 'templates#add'            # add template from samples to user
+  get "outputs/:id/get", to: "templates#get"                    # load template as JSON
+  get "outputs/start"
+  get "outputs/add/:identifier", to: 'templates#add'            # add template from samples to user
   get "outputs/:id/enable", to: 'templates#enable'                # enable output
   get "outputs/:id/disable", to: 'templates#disable'              # disable output
 

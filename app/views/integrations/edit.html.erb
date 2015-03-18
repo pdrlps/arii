@@ -4,10 +4,8 @@
 <br />
 <!-- Inputs -->
 <div class="row">
-  <div class="small-12 medium-2 large-2 columns">
-    <h4><%= pluralize(@integration.agents.size, 'Input') %></h4>
-  </div>
-  <div class="small-12 medium-10 large-10 columns">
+  <div class="small-12 columns">
+    <h5><%= pluralize(@integration.agents.size, 'Input') %></h5>
     <% @integration.agents.each do |agent| %>
     <%= render :partial => "agents/show_integration", locals: {:agent => agent} %>
     <% end %>
@@ -31,10 +29,8 @@
 <br />
 <!-- Outputs -->
 <div class="row">
-  <div class="small-12 medium-2 large-2 columns">
-    <h4><%= pluralize(@integration.templates.size, 'Output') %></h4>
-  </div>
-  <div class="small-12 medium-10 large-10 columns">
+  <div class="small-12 columns">
+    <h5><%= pluralize(@integration.templates.size, 'Output') %></h5>
     <% @integration.templates.each do |template| %>
     <%= render :partial => "templates/show_integration", locals: {:template => template} %>
     <% end %>
@@ -61,3 +57,4 @@
     <%= link_to 'Remove', @integration, :class => 'remove right delete icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
   </div>
 </div>
+<br />

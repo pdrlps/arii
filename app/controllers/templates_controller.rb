@@ -16,7 +16,7 @@ class TemplatesController < ApplicationController
     begin
       @template = current_user.templates.find(params[:id])
     rescue Exception => e
-      flash[:notice] = "You are not authorized to access that Template"
+      flash[:notice] = "You are not authorized to access that Output"
       Services::Slog.exception e
       redirect_to :root
     end
@@ -26,7 +26,6 @@ class TemplatesController < ApplicationController
   def new
     @template = Template.new
     if request.post? then
-      puts params[:message]
       attrs = JSON.parse(params[:message])
       attrs[:identifier] = "out_#{SecureRandom.hex(32)}"
       @template = Template.create! attrs
@@ -35,7 +34,7 @@ class TemplatesController < ApplicationController
       if @template.save
         current_user.templates.push(@template)
         current_user.save
-        response = { :status => 200, :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => @template[:id] }
+        response = { :status => 200, :message => "[ARiiP]: output #{params[:identifier]} loaded", :id => @template[:id] }
       end
       respond_to do |format|
         #format.html { redirect_to templates_url }
@@ -55,18 +54,17 @@ class TemplatesController < ApplicationController
   # POST /templates
   # POST /templates.json
   def create
-    @template = Template.new(template_params)
+    puts template_params
+    @template = Template.create! template_params
     @template.last_execute_at = nil
     @template.status = 100
     @template.count = 0
-    @template.identifier = "o_#{SecureRandom.hex(32)}"
+    @template.identifier = "out_#{SecureRandom.hex(32)}"
     respond_to do |format|
       if @template.save
         current_user.templates.push(@template)
         current_user.save
-        Services::Slog.info({:message => "New endpoint created", :module => "EndpointsController", :task => "create_endpoint", :extra => {:endpoint => @template.identifier, :user => current_user, :payload => @template}})
-        #format.html { redirect_to @template, notice: 'Template was successfully created.' }
-        #format.json { render action: 'show', status: :created, location: @template }
+
         format.json { render json: @template, status: :created }
       else
         format.html { render action: 'new' }
@@ -81,7 +79,7 @@ class TemplatesController < ApplicationController
     puts template_params
     respond_to do |format|
       if @template.update(template_params)
-        format.html { redirect_to @template, notice: 'Template was successfully updated.' }
+        format.html { redirect_to @template, notice: 'Output was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -117,7 +115,7 @@ class TemplatesController < ApplicationController
       puts params[:message]
       attrs = JSON.parse(params[:message])
       @template = Template.create! attrs
-      response = { :status => 200, :message => "[ARiiP]: template #{params[:identifier]} loaded", :id => @template[:id] }
+      response = { :status => 200, :message => "[ARiiP]: output #{params[:identifier]} loaded", :id => @template[:id] }
       respond_to do |format|
         format.html { redirect_to templates_url }
         format.json { render :json => response}
@@ -143,10 +141,10 @@ class TemplatesController < ApplicationController
   # => Add existing sample templates to user.
   #
   def add
-    @object = JSON.parse(File.read("data/endpoints/#{params[:identifier]}.js"))
+    @object = JSON.parse(File.read("data/outputs/#{params[:identifier]}.js"))
     @object['identifier'] = "#{@object['identifier']}_#{current_user.id}"
     @template = Template.create! @object
-    @template.identifier = "#{@template.id}_#{@template.identifier}_#{SecureRandom.hex(8)}"
+    @template.identifier = "out_#{SecureRandom.hex(32)}"
     @template.status = 100
     @template.count = 0
 
@@ -197,13 +195,13 @@ class TemplatesController < ApplicationController
       @template = Template.find(params[:id])
     rescue Exception => e
       Services::Slog.exception e
-      flash[:notice] = "Sorry, <i class=\"icon-shuffle\"></i> couldn't find the template identified by <em>#{params[:id]}</em>."
+      flash[:notice] = "Sorry, <i class=\"icon-ariip\"></i> couldn't find the output identified by <em>#{params[:id]}</em>."
       redirect_to :controller => "templates", :action => "index"
     end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def template_params
-    params.require(:template).permit(:identifier, :title, :help, :publisher, :variables, :payload, :memory, :count, :last_execute_at, :created_at, :updated_at, :method, :content,:uri, :cache, :checked, :headers, :delimiter, :host, :port, :database, :username, :password, :query, :selectors, :server, :to, :cc, :bcc, :subject, :message)
+    params.require(:template).permit(:identifier, :title, :help, :publisher, :variables, :payload, :memory, :count, :last_execute_at, :created_at, :updated_at, :method, :content,:uri, :cache, :checked, :headers, :delimiter, :host, :port, :database, :username, :password, :query, :selectors, :server, :to, :cc, :bcc, :subject, :message, :endpoint)
   end
 end

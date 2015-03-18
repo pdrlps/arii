@@ -11,9 +11,6 @@
 </div>
 <% end %>
 <div class="row">
-  <div class="small-12 columns">
-    <h5>Details</h5>
-  </div>
   <div class="small-3 columns">
     <%= f.label :title, :class => 'right inline' %>
   </div>
@@ -33,10 +30,7 @@
 </div>
 <% end %>
 <div class="row">
-  <div class="small-2 columns actions right">
-    <ul class="button-group radius right">
-      <li><%= link_to 'Back', :back, :class => 'small button secondary icon-back', :tabindex => autotab %></li>
-      <li><%= link_to 'Save', '#', :class => 'button small success radius integration_save icon-save', :tabindex => autotab %></li>
-    </ul>
+  <div class="small-12 columns right">
+    <%= link_to 'Next', '#', :class => 'button small info radius integration_save icon-next right', :tabindex => autotab %>
   </div>
 </div>

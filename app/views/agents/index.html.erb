@@ -13,7 +13,7 @@
     <div class="small-6 columns">
       <ul class="inline-list right">
         <li><a href="#" id="what_input" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create input'.html_safe, new_agent_path, :class => 'icon-create small button radius info' %></li>
+        <li><%= link_to 'Create input'.html_safe, new_input_path, :class => 'icon-create small button radius info' %></li>
       </ul>
     </div>
   </div>
@@ -51,7 +51,7 @@
             <li><span class="label secondary radius icon-events"><%= agent.events.size %> Events</span></li>
             <li><span class="label secondary radius icon-updated"><%= time_ago_in_words(agent.last_check_at) %> ago</span></li>
             <li><span class="label secondary radius icon-publisher"><%= agent.publisher %></span></li>
-            <li><span class="label secondary radius icon-schedule"><%= agent.schedule %></span></li>
+            <li><span class="label secondary radius icon-schedule icon-<%= agent.schedule %>"><%= agent.schedule %></span></li>
             <%= (agent.seeds.size != 0) ? "<li><span class=\"label radius icon-seed\">#{pluralize(agent.seeds.size, 'seed')}</span></li>".html_safe : '' %>
           </ul>
         </div>

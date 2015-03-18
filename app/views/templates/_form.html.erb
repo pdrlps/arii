@@ -28,15 +28,15 @@
 </div>
 <div class="row">
   <div class="small-3 columns">
-    <%= f.label :publisher, :class => 'right inline' %>
+    <%= f.label :endpoint, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
-    <%= f.select :publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['Email', 'mail'], ['File','file'], ['Dropbox','dropbox']], {:selected => (@template.publisher.nil?) ? 'url' : @template.publisher}), {:tabindex => autotab} %>
+    <%= f.select :endpoint, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['Email', 'mail'], ['File','file'], ['Dropbox','dropbox']], {:selected => (@template.endpoint.nil?) ? 'url' : @template.endpoint}), {:tabindex => autotab} %>
   </div>
 </div>
 <!-- Publisher properties -->
 <div id="publisher_content">
-  <%= render :partial => "templates/payload_#{@template.publisher}", locals: {:template => @template} %>
+  <%= render :partial => "templates/endpoint_#{@template.endpoint}", locals: {:template => @template} %>
 </div>
 <div class="row">
   <div class="small-12 medium-2 large-2 columns right">

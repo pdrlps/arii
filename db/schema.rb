@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313151938) do
+ActiveRecord::Schema.define(version: 20150316214538) do
 
   create_table "agent_mappings", force: :cascade do |t|
     t.integer  "integration_id", limit: 4
@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 20150313151938) do
     t.string   "identifier",      limit: 255
     t.text     "title",           limit: 65535
     t.text     "help",            limit: 65535
-    t.string   "publisher",       limit: 255
+    t.string   "endpoint",        limit: 255
     t.text     "payload",         limit: 65535
     t.text     "memory",          limit: 65535
     t.integer  "count",           limit: 4
@@ -162,6 +162,7 @@ ActiveRecord::Schema.define(version: 20150313151938) do
     t.datetime "last_execute_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "endpoint",        limit: 255
   end
 
   add_index "templates", ["identifier"], name: "index_templates_on_identifier", unique: true, using: :btree

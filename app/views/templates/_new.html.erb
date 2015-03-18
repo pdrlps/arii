@@ -2,49 +2,52 @@
 <% if @template.errors.any? %>
 <div id="error_explanation" class="alert-box alert">
   <h2><%= pluralize(@template.errors.count, "error") %>
-    prohibited this output from being saved:</h2>
-    <ul>
-      <% @template.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-      <% end %>
-    </ul>
+  prohibited this output from being saved:</h2>
+  <ul>
+    <% @template.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <h5>Details</h5>
   </div>
-  <% end %>
-  <h4 class="subheader">Output Properties</h4>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :title, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_area :title, :tabindex => autotab, :required => '' %>
-    </div>
+  <div class="small-3 columns">
+    <%= f.label :title, :class => 'right inline' %>
   </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label 'description', :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-      <%= f.text_area :help, :tabindex => autotab %>
-    </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Set the output title.</i>
+    <%= f.text_field :title, :tabindex => autotab, :required => '' %>
   </div>
-  <div class="row">
-    <div class="small-3 columns">
-      <%= f.label :publisher, :class => 'right inline' %>
-    </div>
-    <div class="small-9 columns">
-     <% if current_user.has_dropbox %>
-     <%= f.select(:publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'],['Email', 'mail'], ['File','file'],['Dropbox','dropbox']], {:selected => 'url'}), :tabindex => autotab) %>
-     <% else %>
-     <%= f.select(:publisher, options_for_select([['SQL', 'sql'], ['URL', 'url'],['Email', 'mail'], ['File','file']], {:selected => 'url'}), :tabindex => autotab) %>
-     <% end %>
-
-
-    </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    <%= f.label 'description', :class => 'right inline' %>
   </div>
-  <div id="publisher_content">
-    <%= render :partial => "templates/payload_url", locals: {:template => @template} %>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a general output description.</i>
+    <%= f.text_area :help, :tabindex => autotab %>
   </div>
-  <div class="actions">
-    <%= f.submit 'Create', :class => 'button right success small radius', :tabindex => autotab %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <h5 class="">Endpoint</h5>
   </div>
-  <% end %>
+  <div class="small-3 columns">
+    <%= f.label :endpoint, :class => 'right inline' %>
+  </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the output endpoint (to where input data will be sent).</i>
+    <% if current_user.has_dropbox %>
+    <%= f.select(:endpoint, options_for_select([['SQL', 'sql'], ['URL', 'url'],['Email', 'mail'], ['File','file'],['Dropbox','dropbox']], {:selected => 'url'}), :tabindex => autotab) %>
+    <% else %>
+    <%= f.select(:endpoint, options_for_select([['SQL', 'sql'], ['URL', 'url'],['Email', 'mail'], ['File','file']], {:selected => 'url'}), :tabindex => autotab) %>
+    <% end %>
+  </div>
+</div>
+<div id="endpoint_content">
+  <%= render :partial => "templates/endpoint_url", locals: {:template => @template} %>
+</div>
+<% end %>

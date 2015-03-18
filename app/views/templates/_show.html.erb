@@ -10,7 +10,7 @@
     <span class="label secondary radius icon-delivery">Last delivery <%= template.last_execute_at.nil? ? 'not executed' : time_ago_in_words(template.last_execute_at) +' ago' %></span>
   </div>
   <div class="small-10 medium-3 large-3 columns right text-right">
-    <span class="has-tip tip-top radius" data-tooltip title="Edit <%= template.title %>"><%= link_to 'Edit', edit_output_path(template), :class => "icon-edit small button radius info", :title => "Edit #{template.title}" %></span>
+    <span class="has-tip tip-top radius" data-tooltip title="Edit <%= template.title %>"><%= link_to 'Edit', edit_output_path(template), :class => "icon-edit small button radius secondary", :title => "Edit #{template.title}" %></span>
   </div>
 </div>
 <br />
@@ -24,9 +24,9 @@
     </div>
     <div class="agent-hl">
       <div class="big center">
-        <span class="has-tip tip-top radius" data-tooltip title="Delivery: this template delivers '<%= template.publisher %>'' output"><%= template.publisher %></span>
+        <span class="has-tip tip-top radius" data-tooltip title="Delivery: this template delivers '<%= template.endpoint %>' output"><%= template.endpoint %></span>
       </div>
-      <h5 class="center icon-publisher xl-icon"></h5>
+      <h5 class="center icon-endpoint xl-icon"></h5>
     </div>
   </div>
   <div class="small-10 columns">
@@ -36,20 +36,20 @@
     </div>
     <hr>
     <div class="row">
-      <h4 class="subheader">Publisher</h4>
-      <% if template.publisher == 'sql' then %>
+      <h4 class="subheader">Endpoint Details</h4>
+      <% if template.endpoint == 'sql' then %>
       <%= render partial: "templates/show_sql", locals: {:template => template}%>
       <% end %>
-      <% if template.publisher == 'file' then %>
+      <% if template.endpoint == 'file' then %>
       <%= render partial: "templates/show_file", locals: {:template => template}%>
       <% end %>
-      <% if template.publisher == 'url' then %>
+      <% if template.endpoint == 'url' then %>
       <%= render partial: "templates/show_url", locals: {:template => template}%>
       <% end %>
-      <% if template.publisher == 'mail' then %>
+      <% if template.endpoint == 'mail' then %>
       <%= render partial: "templates/show_mail", locals: {:template => template}%>
       <% end %>
-      <% if template.publisher == 'dropbox' then %>
+      <% if template.endpoint == 'dropbox' then %>
       <%= render partial: "templates/show_dropbox", locals: {:template => template}%>
       <% end %>
     </div>

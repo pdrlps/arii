@@ -1,5 +1,5 @@
 <% content_for :javascript_includes do %>
-<%= javascript_include_tag "#{ENV['APP_HOST']}agents/new.js" %>
+<%= javascript_include_tag "#{ENV['APP_HOST']}inputs/new.js" %>
 <% end %>
 <% content_for :title, "New input - #{ENV["APP_TITLE"]}" %>
 <div class="row">
@@ -13,3 +13,8 @@
     </div>
 </div>
 <%= render 'new' %>
+<div class="row">
+    <div class="small-12 columns right">
+        <%= link_to 'Create', '#' ,:class => 'button right success small radius icon-create', :id => 'create_input' , :tabindex => autotab %>
+    </div>
+</div>
