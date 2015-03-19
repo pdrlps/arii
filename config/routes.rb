@@ -40,7 +40,6 @@ ARII::Application.routes.draw do
   get "stream" => 'events/index'
   get 'events/input/:id', to: 'events#input'
   get 'events/integration/:id', to: 'events#integration'
-  resources :events
   resources :events do
      get 'page/:page', :action => :index, :on => :collection
   end

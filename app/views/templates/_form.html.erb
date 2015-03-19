@@ -15,6 +15,7 @@
     <%= f.label :title, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Set the output title.</i>
     <%= f.text_area :title, :tabindex => autotab %>
   </div>
 </div>
@@ -23,6 +24,7 @@
     <%= f.label 'description', :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a general output description.</i>
     <%= f.text_area :help, :tabindex => autotab %>
   </div>
 </div>
@@ -31,6 +33,7 @@
     <%= f.label :endpoint, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the output endpoint (to where input data will be sent).</i>
     <%= f.select :endpoint, options_for_select([['SQL', 'sql'], ['URL', 'url'], ['Email', 'mail'], ['File','file'], ['Dropbox','dropbox']], {:selected => (@template.endpoint.nil?) ? 'url' : @template.endpoint}), {:tabindex => autotab} %>
   </div>
 </div>

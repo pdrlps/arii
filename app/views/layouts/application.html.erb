@@ -68,6 +68,9 @@
           <div id="feedback">
             <a href="#" data-reveal-id="give_feedback"  class="icon-feedback">&nbsp;</a>
           </div>
+
+          <!-- overlay -->
+          <div id="overlayed" class="hidden">&nbsp;</div>
           <%= render partial: "helper/feedback"  %>
           <%= javascript_include_tag "application" %>
           <%= yield :javascript_includes %>

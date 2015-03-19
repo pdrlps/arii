@@ -3,6 +3,7 @@
     <label class="right inline">URI</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the publisher URI.</i>
     <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>"  name="agent[uri]" type="text" />
   </div>
 </div>
@@ -11,6 +12,7 @@
     <label class="right inline">Headers</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Check if the file includes an headers row (first row).</i>
     <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? 'checked' : '' %>  name="agent[headers]" type="checkbox" />
   </div>
 </div>
@@ -19,6 +21,7 @@
     <label class="right inline">Delimiter</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a custom field delimiter (if different from ';',',' or '\t').</i>
     <input id="agent_payload_delimiter" value="<%= @agent.delimiter.nil? ? '' : @agent.delimiter %>"  name="agent[delimiter]" type="text" />
   </div>
 </div>
@@ -27,7 +30,16 @@
     <label class="right inline">Cache</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Specify the caching element of your dataset.<br />This the column number from your CSV file that will be used to verify if each row is unique.</i>
     <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  name="agent[cache]" type="number" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    &nbsp;
+  </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy text-left">Configure your selectors.<br />Selectors are single data extraction elements that will be passed to the outputs configuration.<br />Keys are the variable names and Values are CSV column numbers.</i>
   </div>
 </div>
 <%= render :partial => "agents/edit_selectors", locals: {:agent => @agent} %>

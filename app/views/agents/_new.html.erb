@@ -12,13 +12,13 @@
 <% end %>
 <div class="row">
   <div class="small-6 medium-6 large-6 columns text-center">
-    <div class="panel radius" id="input_panel_cloud">
+    <div class="agent-info info-secondary" id="input_panel_cloud">
       <a href="#" id="input_cloud" class="input_type icon-cloud">Cloud</a><br/>
       <span class="icon-info input_info">Your data and services are accessible online.</span>
     </div>
   </div>
   <div class="small-6 medium-6 large-6 columns text-center">
-    <div class="panel radius" id="input_panel_local">
+    <div class="agent-info info-secondary" id="input_panel_local">
       <a href="#" id="input_local" class="input_type icon-local">Local</a><br/>
       <span class="icon-info input_info">Your data and services are private.</span>
     </div>
@@ -26,13 +26,13 @@
 </div>
 <div class="row input_area" id="input_area_cloud">
   <div class="small-6 medium-6 large-6 columns text-center">
-    <div class="panel radius" id="input_panel_poll">
+    <div class="agent-info info-secondary" id="input_panel_poll">
       <a href="#" id="input_cloud_poll" class="input_type icon-poll">Scheduled</a><br/>
       <span class="icon-info input_info">Your data and services are regularly tracked.</span>
     </div>
   </div>
   <div class="small-6 medium-6 large-6 columns text-center">
-    <div class="panel radius" id="input_panel_push">
+    <div class="agent-info info-secondary" id="input_panel_push">
       <a href="#" id="input_cloud_push" class="input_type icon-push">Push</a><br/>
       <span class="icon-info input_info">Your data and services send events to ARiiP.</span>
     </div>
@@ -64,6 +64,7 @@
     <%= f.label :schedule, :class => 'right inline', :tabindex => autotab %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the monitoring schedule for your data source (how frequently we check for new content).</i>
     <%= f.select :schedule,  options_from_collection_for_select(@schedules, :first, :last, '1'),{},{:tabindex => autotab}  %>
   </div>
 </div>

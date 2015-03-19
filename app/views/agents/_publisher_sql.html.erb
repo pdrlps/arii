@@ -66,8 +66,19 @@
     <label class="right inline">Cache</label>
   </div>
   <div class="small-9 columns">
-    <i class="label info lifebuoy">Specify the caching element of your dataset. This the column from your SQL query results that will be used to verify if each row is unique.</i>
+    <i class="label info lifebuoy text-left">Specify the caching element of your dataset. <br />This the column from your SQL query results that will be used to verify if each row is unique.</i>
     <input id="agent_payload_cache" tabindex="<%= autotab %>" name="agent[cache]" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  type="text" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    &nbsp;
+  </div>
+  <div class="small-8 columns">
+    <i class="label info lifebuoy text-left">Configure your selectors.<br />Selectors are single data extraction elements that will be passed to the outputs configuration.<br/>Keys are the variable names and Values are SQL column names.</i>
+  </div>
+  <div class="small-1 right columns">
+  &nbsp;
   </div>
 </div>
 <%= render :partial => "agents/edit_selectors", locals: {:agent => @agent} %>

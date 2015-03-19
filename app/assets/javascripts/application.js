@@ -58,8 +58,8 @@ $(function() {
         $(document).foundation({
             joyride: {
                 template: {
-                    button: '<a href="#" class="small button radius joyride-next-tip"></a>',
-                    prev_button: '<a href="#" class="small button radius joyride-prev-tip"></a>'
+                    button: '<a href="#" class="small button joyride-next-tip info radius"></a>',
+                    prev_button: '<a href="#" class="small button joyride-prev-tip info radius"></a>'
                 }
             }
         }).foundation('joyride', 'start');
@@ -97,8 +97,8 @@ $(function() {
         $('#publisher_content').fadeIn();
 
         // update styles
-        $('#input_panel_cloud').removeClass('selected').addClass('deselected');
-        $('#input_panel_local').removeClass('deselected').addClass('selected');
+        $('#input_panel_cloud').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#input_panel_local').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
 
         $('#new_input_progress').width('25%'); // update progress bar
 
@@ -117,8 +117,8 @@ $(function() {
         $('#input_area_cloud').fadeIn();
 
         // update styles
-        $('#input_panel_cloud').removeClass('deselected').addClass('selected');
-        $('#input_panel_local').removeClass('selected').addClass('deselected');
+        $('#input_panel_cloud').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
+        $('#input_panel_local').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
 
         $('#new_input_progress').width('25%'); // update progress bar
     });
@@ -132,8 +132,8 @@ $(function() {
         $('#publisher_content').fadeIn();
 
         // update styles
-        $('#input_panel_poll').removeClass('selected').addClass('deselected');
-        $('#input_panel_push').removeClass('deselected').addClass('selected');
+        $('#input_panel_poll').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#input_panel_push').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
 
         $('#new_input_progress').width('50%'); // update progress bar
 
@@ -153,8 +153,8 @@ $(function() {
         $('#publisher_content').fadeIn();
 
         // update styles
-        $('#input_panel_poll').removeClass('deselected').addClass('selected');
-        $('#input_panel_push').removeClass('selected').addClass('deselected');
+        $('#input_panel_poll').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
+        $('#input_panel_push').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
 
         $('#new_input_progress').width('50%'); // update progress bar
     });

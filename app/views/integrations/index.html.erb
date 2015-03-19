@@ -30,7 +30,7 @@
     <div class="small-6 columns right">
       <ul class="inline-list right">
         <li><a href="#" id="what_integration" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create integration'.html_safe, new_integration_path, :class => 'icon-create small button radius right info' %></li>
+        <li><%= link_to 'Create integration'.html_safe, new_integration_path, :id => 'create_integration_button', :class => 'icon-create small button radius right info' %></li>
       </ul>
     </div>
   </div>
@@ -43,7 +43,7 @@
       </div>
     </div>
     <div class="small-12 medium-7 large-7 columns">
-      <h6 class="subheader"><%= link_to integration.title, integration, :class => '' %> </h6>
+      <h6 class="subheader"><%= link_to integration.title, integration, :class => '' %></h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
       <span class="label radius secondary right integration_details_toggle" data-id="<%= integration.id %>"><%= integration.agents.count %><i class="icon-integration"></i><%= integration.templates.count %></span>
@@ -80,7 +80,7 @@
           <ul class="no-bullet left">
             <% integration.templates.each do |template| %>
             <li><%= link_to template.title, template %>
-              <span class="label secondary radiussi icon-endpoint"><%= template.publisher %></span></li>
+              <span class="label secondary radius icon-endpoint"><%= template.publisher %></span></li>
               <% end %>
             </ul>
           </div>
@@ -116,8 +116,8 @@
           <div class="small-10 medium-5 large-5 columns left">
             <ul class="no-bullet left">
               <li>
-                <span class="label radius secondary icon-publisher">sql</span>
-                <span class="label radius secondary icon-schedule">1d</span>
+                <span class="label  secondary radius icon-publisher">sql</span>
+                <span class="label  secondary radius icon-schedule">1d</span>
               </li>
             </ul>
           </div>
@@ -174,19 +174,23 @@
   </div>
   <!-- joyride tour -->
   <ol class="joyride-list" data-joyride>
-    <li data-id="what_integration" data-text="Next" data-options="tip_location: top; prev_button: false">
-      <p>Hello and welcome to the Joyride <br>documentation page.</p>
+    <li data-id="what_integration" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:none">
+      <p>This is your integrations workspace.</p>
     </li>
-    <li data-id="integrations_header" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev">
-      <h4>Stop #1</h4>
-      <p>You can control all the details for you tour stop. Any valid HTML will work inside of Joyride.</p>
+    <li data-id="integrations_header" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+      <h4>Integrations list.</h4>
+      <p>This list includes all your integrations. You can check the input and output details for each or launch their execution on demand.</p>
+    </li>
+    <li data-id="create_integration_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+      <h4>Create integration.</h4>
+      <p>Click here to launch the new integration wizard.</p>
     </li>
     <li data-id="integration_samples" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
-      <h4>Stop #2</h4>
-      <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+      <h4>Samples list.</h4>
+      <p>If you're a bit lost, start by adding a sample integration from this list!</p>
     </li>
     <li data-button="End" data-prev-text="Prev">
-      <h4>Stop #3</h4>
-      <p>It works as a modal too!</p>
+      <h4>More questions?</h4>
+      <p>Check the full documentation, the demo videos or our sample use cases!</p>
     </li>
   </ol>

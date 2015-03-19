@@ -3,7 +3,7 @@
   <div class="small-12 medium-1 large-1 columns left">
     <%= link_to event.id, event %>
   </div>
-  <div class="small-12 medium-6 large-6 columns">
+  <div class="small-12 medium-10 large-10 columns">
     <% event.payload.each do |k,v| %>
     <div class="row">
       <div class="small-12 medium-3 large-3 columns">
@@ -15,11 +15,8 @@
     </div>
     <% end %>
   </div>
-  <div class="small-12 medium-3 large-3 columns">
-    <%= event.created_at %>
-  </div>
-  <div class="small-12 medium-2 large-2 columns right">
-    <%= link_to 'View', event, :class => 'button small primary radius icon-view right' %>
+  <div class="small-12 medium-1 large-1 columns right">
+    <%= link_to '', event, :class => 'button small primary radius icon-view right' %>
   </div>
 </div>
 <% end %>

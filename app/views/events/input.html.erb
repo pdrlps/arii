@@ -16,3 +16,10 @@
 <%= render :partial => "events/filters"%>
 <%= render :partial => "events/events", locals: {:events => @events} %>
 <% end %>
+<div class="small-12 medium-12 large-12 columns">
+  <div class="row">
+    <div class="small-12 pagination-centered">
+      <%= paginate @events, :remote => true, :param_name => 'page' %>
+    </div>
+  </div>
+</div>

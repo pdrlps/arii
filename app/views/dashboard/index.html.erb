@@ -1,2 +1,84 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<% content_for :title, "Dashboard - #{ENV["APP_TITLE"]}" %>
+<div class="small-12 medium-12 large-12 columns">
+    <h3 class="subheader">Dashboard</h3>
+    <div class="row">
+        <div class="small-12 medium-4 large-4 columns">
+            <div class="row">
+                <div class="small-12 medium-8 large-8 columns">
+                    <h5><%= pluralize(@integrations.size, 'Integration') %></h5>
+                </div>
+                <div class="small-12 medium-4 large-4 columns">
+                    <%= link_to ''.html_safe, new_integration_path, :id => 'create_integration_button', :class => 'icon-create small button radius right info' %>
+                </div>
+            </div>
+            <% @integrations.each do |integration| %>
+            <div id="input_details_<%= integration.id %>" class="row input-info <%= (integration.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
+                <div class="small-12 medium-6 large-6 columns">
+                    <h6 class="subheader"><%= link_to integration.title, integration, :class => '' %></h6>
+                </div>
+                <div class="small-6 columns">
+                    <ul class="button-group radius right">
+                        <li><%= link_to '', edit_integration_path(integration), :class => 'small button secondary icon-edit' %></li>
+                        <li><%= link_to '', {:controller => 'integrations', :action => 'execute', :id => integration.id}, :class => 'small button primary icon-execute',:title => "Execute #{integration.title}" %></li>
+                    </ul>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+            <div class="row">
+                <div class="small-12 medium-8 large-8 columns">
+                    <h5><%= pluralize(@inputs.size, 'Input') %></h5>
+                </div>
+                <div class="small-12 medium-4 large-4 columns">
+                    <%= link_to ''.html_safe, new_input_path, :id => 'create_input_button', :class => 'icon-create small button radius right info' %>
+                </div>
+            </div>
+            <% @inputs.each do |input| %>
+            <div id="input_details_<%= input.id %>" class="row input-info <%= (input.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
+                <div class="small-12 medium-6 large-6 columns">
+                    <h6 class="subheader"><%= link_to input.title, input_path(input), :class => '' %></h6>
+                </div>
+                <div class="small-6 columns">
+                    <ul class="button-group radius right">
+                        <li><%= link_to '', edit_input_path(input), :class => 'small button secondary icon-edit' %></li>
+                        <li><%= link_to '', {:controller => 'agents', :action => 'execute', :id => input.id}, :class => 'small button primary icon-execute',:title => "Execute #{input.title}" %></li>
+                    </ul>
+                </div>
+            </div>
+            <% end %>
+        </div>
+        <div class="small-12 medium-4 large-4 columns">
+            <div class="row">
+                <div class="small-12 medium-8 large-8 columns">
+                    <h5><%= pluralize(@outputs.size, 'output') %></h5>
+                </div>
+                <div class="small-12 medium-4 large-4 columns">
+                    <%= link_to ''.html_safe, new_output_path, :id => 'create_output_button', :class => 'icon-create small button radius right info' %>
+                </div>
+            </div>
+            <% @outputs.each do |output| %>
+            <div id="input_details_<%= output.id %>" class="row input-info <%= (output.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
+                <div class="small-12 medium-6 large-6 columns">
+                    <h6 class="subheader"><%= link_to output.title, output_path(output), :class => '' %></h6>
+                </div>
+                <div class="small-6 columns">
+                    <ul class="button-group radius right">
+                        <li><%= link_to '', edit_output_path(output), :class => 'small button secondary icon-edit' %></li>
+                    </ul>
+                </div>
+            </div>
+            <% end %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 columns">
+            <h5>Stream</h5>
+            <%= render :partial => "events/events_dashboard", locals: {:events => @events} %>
+        </div>
+        <div class="small-12 columns right">
+            <br />
+            <%= link_to 'More', events_path, :class => 'small button info radius right icon-next' %>
+        </div>
+    </div>
+</div>

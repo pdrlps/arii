@@ -15,8 +15,7 @@
         <label class="right inline">Add input</label>
       </div>
       <div class="small-12 medium-8 large-8 columns">
-        <select id="edit_agent_select_list" tabindex="8">
-          <option value="0" selected="selected">Create new input...</option>
+        <select id="edit_agent_select_list" tabindex="<%= autotab %>">
           <% @agents.each do |agent| %>
           <option value="<%= agent.id %>"><%= agent.title %></option>
           <% end %>
@@ -40,8 +39,7 @@
         <label class="right inline">Add output</label>
       </div>
       <div class="small-12 medium-8 large-8 columns">
-        <select id="edit_template_select_list" tabindex="8">
-          <option value="0" selected="selected">Create new output...</option>
+        <select id="edit_template_select_list" tabindex="<%= autotab %>">
           <% @templates.each do |template| %>
           <option value="<%= template.id %>"><%= template.title %></option>
           <% end %>
@@ -54,7 +52,7 @@
 <br />
 <div class="row">
   <div class="small-12 columns right">
-    <%= link_to 'Remove', @integration, :class => 'remove right delete icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" } %>
+    <%= link_to 'Remove', @integration, :class => 'remove right delete icon-delete', method: :delete, data: { confirm: "Are you sure you want to remove the #{@integration.title} integration?" }, :tabindex => autotab %>
   </div>
 </div>
 <br />

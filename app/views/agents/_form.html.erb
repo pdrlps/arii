@@ -14,6 +14,7 @@
     <%= f.label :title, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Set the input title.</i>
     <%= f.text_field :title, :tabindex => autotab, :autofocus => true %>
   </div>
 </div>
@@ -22,6 +23,7 @@
     <%= f.label 'description', :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a general input description.</i>
     <%= f.text_area :help, :tabindex => autotab %>
   </div>
 </div>
@@ -30,6 +32,7 @@
     <%= f.label :schedule, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the monitoring schedule for your data source (how frequently we check for new content).</i>
     <%= f.select :schedule, options_from_collection_for_select(@schedules, :first, :last, {:selected => @agent.schedule}),{},{:tabindex => autotab} %>
   </div>
 </div>
@@ -40,44 +43,13 @@
     <%= f.label :publisher, :class => 'right inline' %>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Select the input data publisher type.</i>
     <%= f.select :publisher, options_for_select([['SQL', 'sql'], ['CSV', 'csv'],['Excel', 'excel'], ['XML','xml'], ['JSON','json']], {:selected => @agent.publisher}), {}, {:tabindex => autotab} %>
   </div>
 </div>
 <div id="publisher_content">
   <%= render(:partial => "agents/publisher_#{@agent.publisher}") %>
 </div>
-<hr>
-<!-- Seed processing -->
-<% unless @agent.seeds.size > 0 then %>
-<div class="row">
-  <div class="small-3 columns">
-    <label class="right inline">Add Seed</label>
-  </div>
-  <div class="small-9 columns">
-    <select id="seed" tabindex="<%= autotab %>" name="seed[publisher]">
-      <option selected="selected" value="none">None</option>
-      <option value="sql">SQL</option>
-      <option value="csv">CSV</option>
-      <option value="xml">XML</option>
-      <option value="json">JSON</option>
-    </select>
-  </div>
-</div>
-<div id="seed_content">
-</div>
-<% else %>
-<% @agent.seeds.each do |seed| %>
-<div class="row">
-  <div class="small-3 columns">
-    <label class="right inline">Seed</label>
-  </div>
-  <div class="small-9 columns">
-    <%= select_tag 'seed[publisher]', options_for_select([['SQL', 'sql'], ['CSV', 'csv'], ['XML','xml'], ['JSON','json']], {:selected => seed.publisher}), {:tabindex => autotab, :id => 'seed', :name => 'seed[publisher]'} %>
-  </div>
-</div>
-<%= render :partial => "agents/seed_#{seed.publisher}", locals: {:seed => seed} %>
-<% end %>
-<% end %>
 <div class="row">
   <div class="small-12 medium-2 large-2 columns right">
     <ul class="button-group radius right">

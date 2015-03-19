@@ -51,7 +51,7 @@ function new_input_save(e, data, status, xhr) {
         $('#existing_input_load').html(html);
 
         // update review tab
-        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</a></li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</a></li></ul></div></div>';
         $('#review_input').html(review);
         $('#existing_input_load').fadeIn();
 
@@ -75,7 +75,7 @@ function new_output_save(e, data, status, xhr) {
 
 
         // update review tab
-        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-endpoint">' + data.endpoint + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../outputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../outputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-endpoint">' + data.endpoint + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../outputs/' + data.id + '" class="small button secondary icon-view">View</a></li><li><a href="../outputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</a></li></ul></div></div>';
         $('#review_output').html(review);
 
         show_down($('#new_integration_save'));

@@ -3,6 +3,7 @@
     <label class="right inline">URI</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide the publisher URI.</i>
     <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>" name="agent[uri]" type="text" />
   </div>
 </div>
@@ -11,6 +12,7 @@
     <label class="right inline">Query</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Provide a XMLPath query for extracting XML data. This is your tracked dataset.</i>
     <input id="agent_payload_query" tabindex="<%= autotab %>" value="<%= @agent.query.nil? ? '' : @agent.query %>" name="agent[query]" type="text" />
   </div>
 </div>
@@ -19,7 +21,16 @@
     <label class="right inline">Cache</label>
   </div>
   <div class="small-9 columns">
+    <i class="label info lifebuoy">Specify the caching element of your dataset.<br />This the XPath query to extract the element that will be used to verify if each entry is unique.</i>
     <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>" name="agent[cache]" type="text" />
+  </div>
+</div>
+<div class="row">
+  <div class="small-3 columns">
+    &nbsp;
+  </div>
+  <div class="small-9 columns">
+    <i class="label info lifebuoy text-left">Configure your selectors.<br />Selectors are single data extraction elements that will be passed to the outputs configuration.<br />Keys are the variable names and Values are XPath queries.</i>
   </div>
 </div>
 <%= render :partial => "agents/edit_selectors", locals: {:agent => @agent} %>

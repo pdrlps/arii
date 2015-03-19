@@ -159,6 +159,19 @@ function remove_url_post_params(event) {
  **/
 function edit_template_save(e, data, status, xhr) {
     if (status === 'success') {
+
+        // show overlay
+        $('#overlayed').fadeIn('fast');
+
+        // highlight button
+        $('#save_template').css('z-index', '10000').html('Saved');
+
+        // hide overlay
+        setTimeout(function() {
+            $('#overlayed').fadeOut('fast')
+        }, '500');
+
+        // add change handler
         $('#save_template').html('Saved');
         $('.edit_template :input').on('change', function() {
             $('#save_template').html('Save');

@@ -26,7 +26,7 @@
 			<div class="small-12 medium-5 large-5 columns right" >
 				<ul class="button-group radius right" id="<%= i == 0 ? 'files_tour_2' : '' %>">
 					<li><a href="<%= "../files/delete/#{File.basename(file)}" %>" class="icon-delete small button alert">Delete</a></li>
-					<li><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download small button primary">Download</a></li>
+					<li><a href="<%= "../files/get/#{File.basename(file)}" %>" class="icon-download small button info">Download</a></li>
 				</ul>
 			</div>
 		</div>
@@ -45,7 +45,7 @@
 	<% unless @files.size == 0 %>
 	<li data-id="files_tour_2" data-button="Next" data-prev-text="Prev" data-options="tip_location: left; nub_position: right;">
 		<h4>File actions</h4>
-		<p>Download or delete existing from your workspace.</p>
+		<p>Download or delete existing files from your workspace.</p>
 	</li>
 	<% end %>
 	<li data-button="End" data-prev-text="Prev">

@@ -10,8 +10,8 @@ $(function() {
         $('#integration_area_existing_input').fadeIn();
 
         // update styles
-        $('#integration_panel_new_input').removeClass('selected').addClass('deselected');
-        $('#integration_panel_existing_input').removeClass('deselected').addClass('selected');
+        $('#integration_panel_new_input').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#integration_panel_existing_input').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
     });
 
     $('#integration_new_input').on('click', function(event) {
@@ -21,8 +21,8 @@ $(function() {
         $('#integration_area_new_input').fadeIn();
 
         // update styles
-        $('#integration_panel_existing_input').removeClass('selected').addClass('deselected');
-        $('#integration_panel_new_input').removeClass('deselected').addClass('selected');
+        $('#integration_panel_existing_input').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#integration_panel_new_input').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
     });
 
     // manage outputs
@@ -32,8 +32,8 @@ $(function() {
         $('#integration_area_existing_output').fadeIn();
 
         // update styles
-        $('#integration_panel_new_output').removeClass('selected').addClass('deselected');
-        $('#integration_panel_existing_output').removeClass('deselected').addClass('selected');
+        $('#integration_panel_new_output').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#integration_panel_existing_output').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
     });
 
     $('#integration_new_output').on('click', function(event) {
@@ -42,8 +42,8 @@ $(function() {
         $('#integration_area_new_output').fadeIn();
 
         // update styles
-        $('#integration_panel_existing_output').removeClass('selected').addClass('deselected');
-        $('#integration_panel_new_output').removeClass('deselected').addClass('selected');
+        $('#integration_panel_existing_output').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
+        $('#integration_panel_new_output').removeClass('info-disabled').removeClass('info-secondary').addClass('info-enabled');
     });
 
 
@@ -203,7 +203,7 @@ function existing_save_agent_select(event) {
         $('#existing_input_load').html(html);
 
         // update review tab
-        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+        var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</a></li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</a></li></ul></div></div>';
         $('#review_input').html(review);
         $('#existing_input_load').fadeIn();
     });
@@ -245,7 +245,7 @@ function existing_save_template_select(event) {
 
 
             // update review tab
-            var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-endpoint">' + data.endpoint + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../outputs/' + data.id + '" class="small button secondary icon-view">View</li><li><a href="../outputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</li></ul></div></div>';
+            var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-endpoint">' + data.endpoint + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../outputs/' + data.id + '" class="small button secondary icon-view">View</a></li><li><a href="../outputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</a></li></ul></div></div>';
             $('#review_output').html(review);
         });
     }
@@ -297,7 +297,18 @@ function new_integration_save_meta(e, data, status, xhr) {
  **/
 function save_edit_integration(e, data, status, xhr) {
     if (status === 'success') {
-        $('.integration_save').html('Saved');
+        // show overlay
+        $('#overlayed').fadeIn('fast');
+
+        // highlight button
+        $('.integration_save').css('z-index', '10000').html('Saved');
+
+        // hide overlay
+        setTimeout(function() {
+            $('#overlayed').fadeOut('fast')
+        }, '500');
+
+
         $('.edit_integration :input').on('change', function() {
             $('.integration_save').html('Save');
         });

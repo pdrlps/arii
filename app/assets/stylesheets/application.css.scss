@@ -437,3 +437,18 @@ dropdown a:hover {
   background-color: lighten($success-color,55%);
   color: $primary-color;
 }
+
+/** button feedback overlay */
+#overlayed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ECF0F1;
+    filter:alpha(opacity=50);
+    -moz-opacity:0.5;
+    -khtml-opacity: 0.5;
+    opacity: 0.5;
+    z-index: 2000;
+}

@@ -36,6 +36,9 @@ function agent_update_publisher_view(event) {
     }
     update_payload_selector_add();
 
+    // hide lifebuoys
+    $('.lifebuoy').fadeOut('fast');
+
     $('#new_input_progress').width('75%'); // update progress bar
 }
 

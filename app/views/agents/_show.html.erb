@@ -5,13 +5,16 @@
       <label for="input_switch_<%= agent.id %>"></label>
     </div>
   </div>
-  <div class="small-12 medium-8 large-8 columns">
+  <div class="small-12 medium-7 large-7 columns">
     <span class="label secondary radius icon-updated">Updated <%= time_ago_in_words(agent.updated_at) %> ago</span>
     <span class="label secondary radius icon-check">Last check <%= time_ago_in_words(agent.last_check_at) %> ago</span>
   </div>
-  <div class="small-10 medium-3 large-3 columns right text-right">
+  <div class="small-10 medium-4 large-4 columns right text-right">
     <ul class="button-group radius right">
       <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
+      <% if agent.schedule == 'local' %>
+        <%= link_to 'Download', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button info icon-download',:title => "Execute #{agent.title}" %>
+      <% end %>
       <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button primary icon-execute',:title => "Execute #{agent.title}" %></li>
     </ul>
   </div>
@@ -61,7 +64,7 @@
     </div>
     <hr>
     <div class="row">
-      <h4 class="subheader">Publisher Details</h4>
+      <h4 class="subheader">Publisher</h4>
       <% if agent.publisher == 'sql' then %>
       <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
       <% end %>
