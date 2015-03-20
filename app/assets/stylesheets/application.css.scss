@@ -121,6 +121,14 @@ a:hover.remove {
   display: none;
 }
 
+/** COLORS */
+.dark_red {
+  color: #C0392B;
+}
+.dark_grey {
+  color: #7F8C8D;
+}
+
 /** ICONS */
 
 /** iconography classes **/
@@ -264,6 +272,13 @@ a:hover.remove {
 }
 .icon-details:before { content: '\e8a0'; }
 .icon-review:before { content: '\e900'; }
+.icon-lock:before { content: '\e8c5'; }
+.icon-trash:before { content: '\e92a'; }
+.icon-localcloud:before { content: '\e925'; }
+.icon-more:before { content: '\e818'; }
+.icon-many2many:before { content: '\e90c'; }
+.icon-easy:before { content: '\e84e'; }
+.icon-start:before { content: '\e848'; }
 
 /** legacy */
 .icon-agent:before {
@@ -320,36 +335,14 @@ a:hover.remove {
 .icon-files:before {
   content: '\e876';
 }
-.icon-trash:before {
-  content: '\E729';
-  color: #FF0000;
-}
 
 /** Social icons **/
-.icon-facebook:before {
-  font-family: 'entypo-social';
-  content: '\F30E';
-}
-.icon-twitter:before {
-  font-family: 'entypo-social';
-  content: '\F309';
-}
-.icon-linkedin:before {
-  font-family: 'entypo-social';
-  content: '\F318';
-}
-.icon-github:before {
-  font-family: 'entypo-social';
-  content: '\F300';
-}
-.icon-dropbox_oauth2:before {
-  font-family: 'entypo-social';
-  content: '\F330';
-}
-.icon-google_oauth2:before {
-  font-family: 'entypo-social';
-  content: '\F30F';
-}
+.icon-facebook:before { content: '\e94c'; }
+.icon-twitter:before { content: '\e979'; }
+.icon-linkedin:before { content: '\e95c'; }
+.icon-github:before { content: '\e952'; }
+.icon-dropbox_oauth2:before  { content: '\e949'; }
+.icon-google_oauth2:before { content: '\e954'; }
 .xl-icon {
   font-size: 24px;
 }
@@ -399,6 +392,7 @@ dropdown a:hover {
   z-index: 20;
   -webkit-box-shadow: rgba(0, 0, 0, 0.0980392) 2px 2px 5px 2px;
 }
+
 
 /** feedback */
 #feedback {
@@ -451,4 +445,15 @@ dropdown a:hover {
     -khtml-opacity: 0.5;
     opacity: 0.5;
     z-index: 2000;
+}
+
+/* buttons */
+.whiteonwhite {
+  @include button(
+    $bg: false,
+    $radius:true,
+    $padding: rem-calc(8)
+    );
+  $button-function-factor: 20%;
+  border: solid 1px $primary-color;
 }

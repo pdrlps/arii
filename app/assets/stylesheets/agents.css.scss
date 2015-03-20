@@ -133,3 +133,13 @@ cursor: pointer;
 	font-size: 2em;
 	font-weight: 700;
 }
+
+
+ul.off-canvas-list li a.active {
+  border-left: #FFF 4px solid;
+  background-color:#2C3E50;
+}
+
+ul.off-canvas-list li a:hover {
+  background-color: #2C3E50;
+}

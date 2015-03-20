@@ -1023,5 +1023,10 @@ $switch-active-color: $success-color;
 // topbar updates
 $topbar-dropdown-link-bg-hover: #FFF;
 
+// headers
+$header-font-color: $primary-color;
+$subheader-font-color:#95A5A6;
+$hr-border-color: #BDC3C7;
+
 @import 'foundation';
 $include-open-sans: true;

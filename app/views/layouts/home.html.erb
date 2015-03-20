@@ -23,46 +23,51 @@
         <%= javascript_include_tag "custom.modernizr" %>
         <%= csrf_meta_tags %>
       </head>
-      <body>
-        <!-- navbar -->
-        <div data-magellan-expedition="fixed" class="row animated fadeIn center home_navbar">
-          <div class="small-2 medium-1 large-1 columns left icon-ariip">
+      <body id="home">
+        <div class="row fixed animated fadeInDown center centered centered-text" id="home_nav">
+          <div class="small-1 columns left text-left icon-ariip dark_red">
             &nbsp;
           </div>
-          <div class="small-8 medium-9 large-9 columns">
-            <dl class="sub-nav left">
-              <dd><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></dd>
-              <dd><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></dd>
-              <dd><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></dd>
-              <dd><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></dd>
-            </dl>
+          <div class="small-9 columns">
+            <ul class="inline-list center centered-text" id="home_list ">
+              <li><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
+              <li><%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => '' %></li>
+              <li><%= link_to 'Use cases', {:controller => '/how', :action => 'index'}, :class => '' %></li>
+              <li><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
+              <li><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
+            </ul>
           </div>
-          <div class="small-2 medium-2 large-2 columns right">
-            <dl class="sub-nav right">
-              <dd><%= user_signed_in? ? link_to("Hi #{(current_user.name ||= current_user.username)}!".html_safe, edit_user_registration_path, :id => 'sidebar_details',:class => 'icon-user sidebar-icon') : link_to('Sign in',new_user_session_path,:class => 'icon-user') %></dd>
-            </dl>
+          <div class="small-2 columns right text-right">
+            <%= link_to('Sign in',new_user_session_path,:class => 'small button info radius icon-user right text-right') %>
           </div>
         </div>
+        <!-- navbar end -->
         <!-- Start main content -->
-        <div class="row">
-          <%= yield %>
+        <div class="row" id="home_content">
+          <div class="small-12 columns">
+            <%= yield %>
+          </div>
         </div>
         <br />
         <!-- Finish main content -->
         <!-- Footer -->
         <div class="row">
           <div class="small-12 medium-4 large-4 columns center">
-            <i class="icon-ariip huge dark"></i>
+            <i class="icon-ariip gigantic dark_grey"></i>
             <br />
-            &copy; Copyright 2015 <a href="http://ariip.com" title="ARiiP">http://ariip.com</a>
+            <small>&copy; Copyright 2015 <a href="http://ariip.com" title="ARiiP">http://ariip.com</a></small>
           </div>
           <div class="small-6 medium-4 large-4 columns">
             <h5 class="subheader">Links</h5>
-            Pricing
+            <ul class="no-bullet">
+              <li>Pricing</li>
+            </ul>
           </div>
           <div class="small-6 medium-4 large-4 columns right">
             <h5 class="subheader">Follow us</h5>
-            Twitter
+            <ul class="no-bullet">
+              <li class="icon-twitter">Twitter</li>
+            </ul>
           </div>
         </div>
         <%= javascript_include_tag "application" %>

@@ -62,7 +62,7 @@
 </div>
 <div class="row">
   <div class="small-2 columns right">
-    <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'remove right' %>
+    <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete, :class => 'remove icon-delete right' %>
   </div>
 </div>
 <% end %>
@@ -83,7 +83,7 @@
     <h3>API Keys</h3>
     <ul class="no-bullet" id="api_keys">
       <% current_user.api_keys.each do |apikey| %>
-      <li id="user_api_key_<%= apikey.access_token %>"><%= link_to '', {:controller => '/flux_capacitor', :action => 'generate_client', :access_token => apikey.access_token, :format => 'json'}, :class => 'has-tip icon-download', :method => :post, :title => 'Download sample client', :target => '_blank', :data => {:tooltip => ''} %> <%= apikey.access_token %> <a href="#" data-id="<%= apikey.access_token %>" title="Remove API key" data-tooltip class="remove icon-trash user_remove_api_key has-tip"></a></li>
+      <li id="user_api_key_<%= apikey.access_token %>"><%= link_to '', {:controller => '/flux_capacitor', :action => 'generate_client', :access_token => apikey.access_token, :format => 'json'}, :class => 'has-tip icon-lock', :method => :post, :title => 'Download sample client', :target => '_blank', :data => {:tooltip => ''} %> <%= apikey.access_token %> <a href="#" data-id="<%= apikey.access_token %>" title="Remove API key" data-tooltip class="remove icon-trash user_remove_api_key has-tip"></a></li>
       <% end %>
     </ul>
     <a href="#" id="user_add_api_key" title="Add new API key" class="button tiny radius icon-add">Add</a>

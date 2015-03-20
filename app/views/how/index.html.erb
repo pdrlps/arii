@@ -1,97 +1,34 @@
 <% content_for :title, "How it works - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs animated fadeIn">
-    <li><a href="<%= root_url %>">Home</a></li>
-    <li class="current">How it works</li>
-</ul>
-<h1 class="animated fadeIn">What is <strong>ARiiP</strong>?</h1>
-<div class="row">
-    <div class="small-6 columns">
-
-    </div>
-    <div class="small-6 columns">
-        <strong>ARiiP</strong> easily connects any data and services you use, enabling the automation of miscellaneous integration and interoperability tasks.
-        <br />
-        <a href="#" data-reveal-id="request_access" class="button success radius">Request access</a>
-    </div>
-</div>
-<h1 class="animated fadeIn">How <strong>ARiiP</strong> works</h1>
-<div class="row animated fadeIn">
-    <div class="small-6 columns" >
-        <h3 class="subheader">1. Setup your integrations</h3>
-        <p>Here's a sample integration:
-        </p>
-        <p>
-        <blockquote><i>When I add a new contact to my CRM, send him a welcome email.</i></blockquote>
-        </p>
-        <p>
-        The first part (adding a new contact to the CRM system) is the <strong>event</strong>. The second part (sending an email) is the <strong>action</strong>.
-        </p>
-        <p>
-        Another sample:
-        </p>
-        <p>
-        <blockquote><i>Everytime I register a new financial transaction, add the transaction details to a file.</i></blockquote>
-        </p>
-        <p>
-        With ARiiP you can create integration such as these, connecting miscellaneous data sources and services without writing a single line of code.
-        </p>
-    </div>
-    <div class="small-6 columns">
-        <div class="th">
-        <%= image_tag 'ss_integration.png' %>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="row animated fadeIn">
-    <div class="small-6 columns">
-        <h3 class="subheader">2. ARiiP tracks everything</h3>
-        <p>
-        With ARiiP you can deploy custom <strong>agents</strong> to track content sources, looking for new <strong>events</strong>. Events trigger actions, and these can be
-        configured through ARiiP's delivery <strong>endpoints</strong>.
-        </p>
-        <p>
-        ARiiP does all this automatically, ensuring that you don't need any additional effort to connect your data and services.
-        </p>
-        <p>
-        In ARiiP's Dashboard you can check the status of your integrations, manage your connected accounts or analyse the latest events tracked by the platform.
-        </p>
-    </div>
-    <div class="small-6 columns">
-    <div class="th">
-        <%= image_tag 'ss_dashboard.png' %>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="row animated fadeIn">
-    <div class="small-6 columns">
-        <h3 class="subheader">3. Relax</h3>
-        <p>
-        ARiiP is taking care of everything for you. Now, you can focus on what your business really needs and leave the technical integration &amp; interoperability in the hands of a fully-automated real-tome platform.
-        </p>
-        <p>
-        Why develop <i>ad hoc</i> solutions and wasting precious coding hours building complex integrations when ARiiP can do it for you?
-        </p>
-    </div>
-    <div class="small-6 columns">
-    <div class="th">
-        <%= image_tag 'ss_home.png' %>
-        </div>
-    </div>
-</div>
-<hr>
-<div class="row animated fadeIn">
-    <div class="small-12 columns">
-        <p>
-           For further information, check the <%= link_to 'full documentation', {:controller => '/docs'}, :class => 'icon-documentation' %>.
-        </p>
-    </div>
-</div>
-
+<h1 class="animated fadeIn">How does <i class="icon-ariip"></i> work?</h1>
 <div class="row">
     <div class="small-12 columns">
-        Need help setting it up? <%= link_to 'Contact us and we\'ll help you set up your integration', {:controller => '/contact', :action => 'index'} %>
+        <ul class="tabs vertical" data-tab>
+            <li class="tab-title  active"><a href="#inputs" class="icon-input tab_radius">Setup your inputs</a></li>
+            <li class="tab-title "><a href="#outputs" class="icon-output tab_radius">Setup your outputs</a></li>
+            <li class="tab-title "><a href="#integrations" class="icon-integration tab_radius">Setup your integrations</a></li>
+            <li class="tab-title "><a href="#manage" class="icon-details tab_radius">Manage &amp; control integrations</a></li>
+        </ul>
+        <div class="tabs-content">
+            <div class="content active" id="inputs">
+                <div class="flex-video widescreen vimeo">
+                    <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+            <div class="content" id="outputs">
+                <div class="flex-video widescreen vimeo">
+                    <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+            <div class="content" id="integrations">
+                <div class="flex-video widescreen vimeo">
+                    <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+            <div class="content" id="manage">
+                <div class="flex-video widescreen vimeo">
+                    <iframe src="http://player.vimeo.com/video/60122989" width="400" height="225" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<%= render(:partial => 'helper/requestaccess') %>
