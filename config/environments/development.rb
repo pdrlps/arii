@@ -15,6 +15,7 @@ ARII::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+   config.action_mailer.default_url_options = { :host => 'localhost' }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -28,5 +29,16 @@ ARII::Application.configure do
   config.assets.debug = true
 
   config.host = 'http://localhost:3000/'
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.zoho.com',
+    port:                 587,
+    from:                 'noreply@ariip.com',
+    domain:               'noreply@ariip.com',
+    user_name:            '<username>',
+    password:             '#noreplyariip#',
+    authentication:       'login',
+    enable_ssl:           true,
+    enable_tls:           true,
+    enable_starttls_auto: true
+  }
 end
-

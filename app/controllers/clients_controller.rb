@@ -4,21 +4,52 @@ class ClientsController < ApplicationController
   # GET /clients
   # GET /clients.json
   def index
-    @clients = Client.all
+    unless user_signed_in?
+      redirect_to root_url
+      return
+    end
+
+    if current_user.status == 110
+      @clients = Client.all
+    else
+      redirect_to root_url, :notice => 'Unauthorized Access.'
+    end
   end
 
   # GET /clients/1
   # GET /clients/1.json
   def show
+    unless user_signed_in?
+      redirect_to root_url
+      return
+    end
+    if current_user.status != 110
+      redirect_to root_url, :notice => 'Unauthorized Access.'
+    end
   end
 
   # GET /clients/new
   def new
-    @client = Client.new
+    begin
+      if current_user.status == 110
+        @client = Client.new
+      else
+        redirect_to root_url, :notice => 'Unauthorized Access.'
+      end
+    rescue Exception => e
+      redirect_to root_url
+    end
   end
 
   # GET /clients/1/edit
   def edit
+    unless user_signed_in?
+      redirect_to root_url
+      return
+    end
+    if current_user.status != 110
+      redirect_to root_url, :notice => 'Unauthorized Access.'
+    end
   end
 
   # POST /clients
@@ -62,13 +93,13 @@ class ClientsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_client
-      @client = Client.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_client
+    @client = Client.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def client_params
-      params.require(:client).permit(:name, :email, :phone, :message, :payload, :origin)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def client_params
+    params.require(:client).permit(:name, :email, :phone, :message, :payload, :origin)
+  end
 end

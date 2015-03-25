@@ -1,41 +1,75 @@
-<%= form_for(@client) do |f| %>
-  <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-      <ul>
-      <% @client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for(@client, :remote => true, :data => {:abide => ''}) do |f| %>
+<% if @client.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+  <ul>
+    <% @client.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :name, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_field :name, :value => current_user.name ||= current_user.username,  :required => true, :pattern => '[a-zA-Z]+' %>
+        <small class="error">Name is required and must be a string.</small>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
   </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :email,:class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.email_field :email, :value => current_user.email, :required => true %>
+        <small class="error">A valid email address is required.</small>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :phone %><br>
-    <%= f.text_field :phone %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label :phone, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_field :phone %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :message %><br>
-    <%= f.text_area :message %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <h3 class="subheader">What do you want to integrate?</h3>
+    Give us an idea, as complete as possible, about the integration you want to do.
   </div>
-  <div class="field">
-    <%= f.label :payload %><br>
-    <%= f.text_area :payload %>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
+        <%= f.label 'Integration', :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.text_area :message, :required => true %>
+        <small class="error">Please describe your integration needs.</small>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :origin %><br>
-    <%= f.text_field :origin %>
+</div>
+<div class="row">
+  <div class="small-12 columns right">
+    <%= f.hidden_field :origin, :value => "#{controller.controller_name}:#{controller.action_name}" %>
+    <%= f.submit 'Get Quote for Custom Integration', :class => 'button right success radius icon-mail' %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+</div>
 <% end %>

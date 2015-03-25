@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
   # Set a new feedback variable for form on all application pages
   def set_feedback
     @feedback = Feedback.new
+    @client = Client.new
   end
 
   protected
@@ -45,7 +46,7 @@ class ApplicationController < ActionController::Base
       elsif controller_name == 'sessions' && action_name == 'new'
         'home'
       else
-        'application'
+        'home'
       end
     end
   end

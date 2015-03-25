@@ -23,6 +23,7 @@
         <%= csrf_meta_tags %>
       </head>
       <body>
+      <a href="" class=" button small success animated fadeInDown radius icon-star center" data-reveal-id="request_integration" id="request_custom_integration_button">Request custom integration</a>
         <div class="fixed ">
           <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
             <ul class="title-area">
@@ -34,7 +35,9 @@
             </ul>
             <section class="top-bar-section application-nav">
               <ul class="left">
+
               </ul>
+
               <ul class="right">
                 <li><a href="#" id="lifebuoy" class="icon-lifebuoy"></a></li>
                 <li class="has-dropdown">
@@ -52,10 +55,10 @@
           </nav>
           </div><!-- End Top Bar -->
           <!-- Start main content -->
-          <div class="sidebar">
+          <div class="sidebar animated fadeInLeft">
             <%= render partial: "helper/sidebar"  %>
           </div>
-          <div class="content_application">
+          <div class="content_application animated fadeIn">
             <div class="row animated fadeIn" id="content">
               <%= yield %>
             </div>
@@ -71,6 +74,7 @@
           <!-- overlay -->
           <div id="overlayed" class="hidden">&nbsp;</div>
           <%= render partial: "helper/feedback"  %>
+          <%= render partial: "helper/custom_integration"  %>
           <%= javascript_include_tag "application" %>
           <%= yield :javascript_includes %>
           <% if content_for?(:custom_js) %>

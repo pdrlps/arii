@@ -16,9 +16,7 @@ ARII::Application.routes.draw do
   # About
   get "about/index"
 
-  # Alphas control
-  resources :alphas
-  post "alphas/request", to: 'alphas#request'
+  # Alphas control  post "alphas/request", to: 'alphas#request'
 
   # Caches (internal) control
   resources :caches

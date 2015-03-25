@@ -4,6 +4,10 @@ class FeedbacksController < ApplicationController
   respond_to :html
 
   def index
+    unless user_signed_in?
+      redirect_to root_url
+      return
+    end
     if current_user.status == 110
       @feedbacks = Feedback.all
       respond_with(@feedbacks)
@@ -42,11 +46,11 @@ class FeedbacksController < ApplicationController
   end
 
   private
-    def set_feedback
-      @feedback = Feedback.find(params[:id])
-    end
+  def set_feedback
+    @feedback = Feedback.find(params[:id])
+  end
 
-    def feedback_params
-      params.require(:feedback).permit(:name, :email, :subject, :message, :origin, :payload)
-    end
+  def feedback_params
+    params.require(:feedback).permit(:name, :email, :subject, :message, :origin, :payload)
+  end
 end

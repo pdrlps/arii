@@ -6,6 +6,6 @@ class HomeController < ApplicationController
       redirect_to :controller => "dashboard", :action => "index"
     end
 
-    @alpha = Alpha.new
+    @beta = Betas.new
   end
 end

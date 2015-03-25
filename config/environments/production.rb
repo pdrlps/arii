@@ -86,4 +86,19 @@ ARII::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'ariip.com', :protocol => 'http://' }
   config.host = 'http://ariip.com/'
+
+  # mail options
+  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.zoho.com',
+    port:                 587,
+    from:                 'noreply@ariip.com',
+    domain:               'noreply@ariip.com',
+    user_name:            '<username>',
+    password:             '#noreplyariip#',
+    authentication:       'login',
+    enable_ssl:           true,
+    enable_tls:           true,
+    enable_starttls_auto: true
+  }
 end

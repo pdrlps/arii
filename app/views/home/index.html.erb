@@ -14,7 +14,7 @@
         <%= link_to 'Learn how ARiiP works', {:controller => '/how', :action => 'index'}, :class => 'button large expand radius info icon-how' %>
       </div>
       <div class="small-12 medium-6 large-6 columns">
-        <%= link_to('Start using ARiiP',new_user_session_path,:class => 'button success large expand radius icon-start') %>
+        <a href="" class="button success large expand radius icon-start" data-reveal-id="request_access">Start using ARiiP</a>
       </div>
     </div>
   </div>
@@ -78,11 +78,3 @@
   </div>
 </div>
 <!-- access modal content -->
-<div id="request_access" class="reveal-modal" data-reveal>
-  <h2>Request Access</h2>
-  <div id="request_access_message">
-    <%= render(:partial => 'alphas/form') %>
-  </div>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-</div>

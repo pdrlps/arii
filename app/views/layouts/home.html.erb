@@ -23,10 +23,11 @@
         <%= javascript_include_tag "custom.modernizr" %>
         <%= csrf_meta_tags %>
       </head>
+      <% @beta = Betas.new %>
       <body id="home">
         <div class=" fixed" id="home_nav">
           <div class="small-1 columns left text-left">
-          <a href="<%= root_url %>" class="icon-ariip dark_red">&nbsp;</a>
+            <a href="<%= root_url %>" class="icon-ariip dark_red">&nbsp;</a>
           </div>
           <div class="small-7 columns">
             <ul class="inline-list center centered-text" id="home_list ">
@@ -38,7 +39,7 @@
             </ul>
           </div>
           <div class="small-2 columns">
-            <a id="request_beta" class="small button alert radius icon-start expand">Start using ARiiP</a>
+            <a id="request_beta" class="small button alert radius icon-start expand" data-reveal-id="request_access">Start using ARiiP</a>
           </div>
           <div class="small-2 columns right text-right">
             <%= link_to('Sign in',new_user_session_path,:class => 'small button primary radius icon-user right text-right') %>
@@ -52,7 +53,7 @@
           </div>
         </div>
         <!-- Finish main content -->
-
+        <%= render partial: "helper/requestaccess"  %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript_includes %>
         <!-- HotJar -->

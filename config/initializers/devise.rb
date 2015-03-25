@@ -252,6 +252,10 @@ Devise.setup do |config|
   config.omniauth :github, ENV['GITHUB_KEY'], ENV['GITHUB_SECRET'], scope: "user, public_repo"
   config.omniauth :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET']
   #config.omniauth :dropbox_oauth2, ENV['DROPBOX_KEY'], ENV['DROPBOX_SECRET'], {:signature_method => 'PLAINTEXT'}
+  if Rails.env.development? then
+    OmniAuth.config.full_host = 'http://localhost:3000'
+  end
+
   if Rails.env.production? then
     OmniAuth.config.full_host = 'http://ariip.com'
   end

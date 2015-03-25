@@ -406,6 +406,16 @@ dropdown a:hover {
   background-color: #E74C3C;
 }
 
+#request_custom_integration_button {
+  width: 20%;
+  margin: 0 auto;
+  position: fixed;
+  z-index: 500;
+  top: 8px;
+  display: block;
+  left: 40%;
+}
+
 /** sidebar */
 .sidebar {
   position: fixed;
