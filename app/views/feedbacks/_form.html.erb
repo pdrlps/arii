@@ -1,4 +1,4 @@
-<%= form_for(@feedback, :remote => true) do |f| %>
+<%= form_for(@feedback, :remote => true, :data => {:abide => ''}) do |f| %>
 <% if @feedback.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this feedback from being saved:</h2>
@@ -16,7 +16,8 @@
         <%= f.label :name, :class => 'right inline' %>
       </div>
       <div class="small-10 columns">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, :required => true, :pattern => '[a-zA-Z]+' %>
+        <small class="error">Name is required and must be a string.</small>
       </div>
     </div>
   </div>
@@ -28,7 +29,8 @@
         <%= f.label :email, :class => 'right inline' %>
       </div>
       <div class="small-10 columns">
-        <%= f.email_field :email %>
+        <%= f.email_field :email, :required => true %>
+        <small class="error">A valid email address is required.</small>
       </div>
     </div>
   </div>
@@ -52,13 +54,15 @@
         <%= f.label :message, :class => 'right inline' %>
       </div>
       <div class="small-10 columns">
-        <%= f.text_area :message %>
+        <%= f.text_area :message, :required => true %>
+        <small class="error">Weren't you going to tell us something?</small>
       </div>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="small-12 columns right">
+    <%= f.hidden_field :origin, :value => "#{controller.controller_name}:#{controller.action_name}" %>
     <%= f.submit 'Give Feedback', :class => 'button right success radius icon-mail' %>
   </div>
 </div>

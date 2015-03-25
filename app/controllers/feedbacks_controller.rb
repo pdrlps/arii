@@ -47,6 +47,6 @@ class FeedbacksController < ApplicationController
     end
 
     def feedback_params
-      params.require(:feedback).permit(:name, :email, :subject, :message)
+      params.require(:feedback).permit(:name, :email, :subject, :message, :origin, :payload)
     end
 end

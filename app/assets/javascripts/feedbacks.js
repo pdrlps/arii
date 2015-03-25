@@ -11,8 +11,19 @@ $(function() {
  **/
 function new_feedback_save(e, data, status, xhr) {
     if (status === 'success') {
-        $('#feedback_message').animate({opacity:0}, function(e) {
-            $('#feedback_message').html('Thank you! If needed, we will be in touch shortly.').animate({opacity:1});
+        $('#feedback_message').animate({
+            opacity: 0
+        }, function(e) {
+
+            // update feedback message
+            $('#feedback_message').html('Thank you! If needed, we will be in touch shortly.').animate({
+                opacity: 1
+            });
+
+            // remove modal after 3s
+            setTimeout(function(e) {
+                $('#give_feedback').foundation('reveal', 'close');
+            }, 3000);
         });
     }
 }
