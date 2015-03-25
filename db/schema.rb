@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150316214538) do
+ActiveRecord::Schema.define(version: 20150324163634) do
 
   create_table "agent_mappings", force: :cascade do |t|
     t.integer  "integration_id", limit: 4
@@ -63,6 +63,17 @@ ActiveRecord::Schema.define(version: 20150316214538) do
     t.datetime "updated_at"
   end
 
+  create_table "betas", force: :cascade do |t|
+    t.string   "origin",     limit: 255
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "job",        limit: 255
+    t.text     "payload",    limit: 65535
+    t.text     "what",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
   create_table "caches", force: :cascade do |t|
     t.string   "publisher",  limit: 255
     t.integer  "agent_id",   limit: 4
@@ -74,6 +85,17 @@ ActiveRecord::Schema.define(version: 20150316214538) do
   end
 
   add_index "caches", ["id"], name: "index_caches_on_id", using: :btree
+
+  create_table "clients", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "email",      limit: 255
+    t.string   "phone",      limit: 255
+    t.text     "message",    limit: 65535
+    t.text     "payload",    limit: 65535
+    t.string   "origin",     limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0, null: false
@@ -154,7 +176,7 @@ ActiveRecord::Schema.define(version: 20150316214538) do
     t.string   "identifier",      limit: 255
     t.text     "title",           limit: 65535
     t.text     "help",            limit: 65535
-    t.string   "endpoint",        limit: 255
+    t.string   "publisher",       limit: 255
     t.text     "payload",         limit: 65535
     t.text     "memory",          limit: 65535
     t.integer  "count",           limit: 4

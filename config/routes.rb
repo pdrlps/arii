@@ -1,5 +1,13 @@
 ARII::Application.routes.draw do
 
+  get 'faq/index'
+
+  get 'pricing/index'
+
+  resources :betas
+
+  resources :clients
+
   # Home
   root  'home#index'
   get 'home' => 'home/index'
@@ -120,6 +128,12 @@ ARII::Application.routes.draw do
   get "tester/agent/:identifier", to: 'tester#agent'
   get 'tester/dropbox', to: 'tester#dropbox'
 
+  # Use Cases
+  get "use_cases/index"
+  get 'use_cases/online2rest', to: 'use_cases#online2rest'
+  get 'use_cases/ticket2email', to: 'use_cases#ticket2email'
+  get 'use_cases/github2database', to: 'use_cases#github2database'
+  get 'use_cases/twitter2file', to: 'use_cases#twitter2file'
 
   # Authentication
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }
@@ -139,7 +153,6 @@ ARII::Application.routes.draw do
 
   # New homepage stuff
   get "how/index"
-  get "use_cases/index"
   get "features/index"
 
   # ariip image hack

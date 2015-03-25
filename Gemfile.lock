@@ -239,6 +239,7 @@ GEM
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     retriable (1.4.1)
+    rorvswild (0.2.0)
     ruby-ole (1.2.11.8)
     rubyXL (3.3.7)
       nokogiri (>= 1.4.4)
@@ -341,6 +342,7 @@ DEPENDENCIES
   rails
   redis
   rest-client
+  rorvswild
   rubyXL
   rufus-scheduler
   sass-rails

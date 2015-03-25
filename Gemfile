@@ -112,6 +112,9 @@ gem 'kaminari'
 # Figaro for easy configuration variables. Read more: https://github.com/laserlemon/figaro
 gem "figaro"
 
+# RoRvsWild for monitoring. Read more: http://rorvswild.com
+gem "rorvswild"
+
 group :development, :test, :production do
 	# Generates UML from Model.
 	gem 'railroady'

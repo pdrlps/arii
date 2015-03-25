@@ -24,41 +24,37 @@
         <%= csrf_meta_tags %>
       </head>
       <body>
-        <div class="fixed">
-          <nav class="top-bar animated fadeInDown">
+        <div class="fixed ">
+          <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
             <ul class="title-area">
               <!-- Title Area -->
               <li class="name">
-                <h1><a href="<%= root_url %>" class="logo"><%= image_tag "ariip_xl.png", :size => '20' %></a></h1>
+                <a href="<%= root_url %>" class="icon-ariip logo dark_red"></a>
               </li>
-              <li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li>
+              <li class="toggle-topbar menu-icon"><a href="#" title="<%= ENV["APP_TITLE"] %>"><span>menu</span></a></li>
             </ul>
-            <section class="top-bar-section">
+            <section class="top-bar-section application-nav">
               <ul class="left">
-                <li data-tooltip class="has-tip radius" title="Features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
-                <li data-tooltip class="has-tip radius" title="How"><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => '' %></li>
-                <li data-tooltip class="has-tip radius" title="Use Cases"><%= link_to 'Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
-                <li data-tooltip class="has-tip radius" title="About"><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => '' %></li>
-                <li data-tooltip class="has-tip radius" title="Contact"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
+                <li><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => 'icon-features' %></li>
+                <li><%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
+                <li><%= link_to 'Use cases', {:controller => '/use_cases', :action => 'index'}, :class => 'icon-usecases' %></li>
+                <li><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => 'icon-about' %></li>
+                <li><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => 'icon-mail' %></li>
               </ul>
               <ul class="right">
-                <li class="has-tip radius" data-tooltip title="User"><a class="right-off-canvas-toggle" title="User"><%= user_signed_in? ? (current_user.name ||= current_user.username) : 'Sign in' %></a></li>
-              </ul>
-              <!-- Right Nav Section -->
-              <ul class="right">
-                <li><%= link_to "FAQ", :controller => '/docs', :action => 'show', :section => 'faq', :topic => 'index' %></li>
-                <!--<li class="divider"></li>
-                <li><%= link_to "How To", :controller => '/docs', :action => 'show', :section => 'how_to', :topic => 'index' %></li>-->
+                <li><%= link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-docs') %></li>
+                <li><%= link_to('FAQ'.html_safe, {:controller => '/faq'}, :id => '',:class => 'icon-faq') %></li>
                 <li class="divider"></li>
-                <li><%= link_to "Reference", :controller => '/docs' %></li>
-                <li class="divider"></li>
+                <li class="has-tip radius" data-tooltip title="User"><%= user_signed_in? ? link_to("Hi #{(current_user.name ||= current_user.username)}!".html_safe, edit_user_registration_path, :id => 'sidebar_details',:class => 'icon-user sidebar-icon') : link_to('Sign in',new_user_registration_path) %></li>
               </ul>
             </section>
           </nav>
           </div><!-- End Top Bar -->
           <!-- Start main content -->
-          <div class="row content animated fadeIn" id="content">
-            <%= yield %>
+          <div class="row content  " id="content">
+            <div class="small-12 columns">
+              <%= yield %>
+            </div>
           </div>
           <!-- Finish main content -->
           <%= javascript_include_tag "application" %>

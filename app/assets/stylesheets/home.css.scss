@@ -1,55 +1,22 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-.banner {
-	margin: 0 auto;
-	text-align: center;
-}
-
-
-
-.dark {
- color: darken(#8fa1b2, 10%);
-}
-
-.home_navbar {
-    padding: 4px;
-}
+.dark { color: darken(#8fa1b2, 10%); }
+.home_navbar { padding: 4px; }
 
 /** homepage */
-#home {
-    color: #2C3E50;
-}
+#home { color: #2C3E50; }
+#home .gigantic { font-size: 256%; }
+#home .huge { font-size: 512%;}
+#home h1 { font-size: 4em; }
+#home h1, h2, h3, h4, h5 { color: #2C3E50; }
+#home h1.subheader, h2.subheader, h3.subheader, h4.subheader, h5.subheader { }
+#home_content { padding-top: 50px; }
+#home_nav { padding: 4px; background-color: white; width: 100%; position: fixed; }
+#home_list a { color: #2C3E50; }
+#home_list a:hover { color: #7F8C8D; }
+#home_footer { width: 100%; background-color: #34495E; color: white; border-top: solid 1px #2C3E50; }
+#home_footer * { background-color: #34495E; height: 100%; }
+#home_footer a { font-size: 80%; color: white; }
+#home_footer a:hover { color: #ECF0F1; text-decoration: underline; }
+.home_footer { width: 100%; background-color: #34495E; }
+#home_footer h5 { color: white; }
 
-#home .gigantic {
-  font-size: 512%;
-}
-
-#home h1 {
-    font-size: 4em;
-
-}
-
-#home h1, h2, h3, h4, h5 {
-color: #2C3E50;
-}
-
-#home h1.subheader, h2.subheader, h3.subheader, h4.subheader, h5.subheader {
-}
-
-#home_content {
- margin-top: 50px;
- padding-top: 50px;
-}
-
-#home_nav {
-    padding: 4px;
-    background-color: white;
-}
-#home_list a {
-    color: #2C3E50;
-}
-
-#home_list a:hover {
-    color: #7F8C8D;
-}
+.home_tab_content { }

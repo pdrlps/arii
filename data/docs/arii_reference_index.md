@@ -12,17 +12,17 @@
 
  <div class="large-9 columns" role="content"  markdown="1">
 
-# Agents
+# Inputs
 
-**Agents** use [Detectors][] to monitor, in real-time, via [polling][], external [sources][] for content changes. Content changes trigger new events.
+**Inputs** use [Detectors][] to monitor, in real-time, via [polling][], external [sources][] for content changes. Content changes trigger new events.
 
-**Agents** can be run at **ARiiP**'s server, or configured for local execution using the **ARiiP** [client][]. 
+**Inputs** can be run at **ARiiP**'s server, or configured for local execution using the **ARiiP** [client][]. 
 
-**Agents** can also be setup to receive events data from external sources, via [push][]. This means a data package is POSTed to an predefined service.
+**Inputs** can also be setup to receive events data from external sources, via [push][]. This means a data package is POSTed to an predefined service.
 
-# Agent Publishers
+# Input Publishers
 
-Each [agent][] has one and only one publisher. Publishers are defined in the `publisher` property of each [agent][]. 
+Each [input][] has one and only one publisher. Publishers are defined in the `publisher` property of each [input][]. 
 
 ## Delimited File
 
@@ -46,9 +46,9 @@ A [Detector][] monitors delimited files accessible through a valid URI (`http://
           }
         ]
       },
-      "identifier": "agent id",
-      "title": "agent title",
-      "help": "agent helpsd",
+      "identifier": "input id",
+      "title": "input title",
+      "help": "input helpsd",
       "schedule": "1w"
     }
 
@@ -93,21 +93,6 @@ A [Detector][] can be configured to monitor a database. In this scenario, a _SEL
       "schedule": "1h"
     }
 
-## LinkedData
-
-<div data-alert class="alert-box warning radius">
-  <strong>Note</strong>: LinkedData support is not yet available.
-  <a href="#" class="close">&times;</a>
-</div>
-
-Detector can be used to monitor LinkedData URIs. These must be publicly resolveable addresses and must respond properly to `Accept Encoding` headers, according [to the LinkedData principles][linkeddata]. With LinkedData monitors, Detector checks all `predicates` described in the URI response. If any new predicate is detected or if a predicate object has changed, Detector will generate a new event.
-
-## SPARQL Endpoint
-
-<div data-alert class="alert-box warning radius">
-  <strong>Note</strong>: SPARQL Endpoint support is not yet available.
-  <a href="#" class="close">&times;</a>
-</div>
 
 ## Structured File
 
@@ -115,20 +100,20 @@ A **Detector** can monitor structured files for more complex data exchange scena
 
 # Client
 
-[Agents][] can be executed locally using the [ARiiP client script](https://github.com/pdrlps/ARiiP-client). This script uses the **ARiiP** [gem][] to access **ARiiP**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the endpoint directly).
+[Inputs][] can be executed locally using the [ARiiP client script](https://github.com/pdrlps/ARiiP-client). This script uses the **ARiiP** [gem][] to access **ARiiP**'s [API](#fluxcapacitor), analyzing local content and processing identified [events][] (i.e., delivering the endpoint directly).
 
 Local clients bring three key benefits to the **ARiiP** platform: distributed monitoring, improved load control and better security.
-At the architecture level, any number of agents can be remotely deployed and configured to push data to the main **ARiiP** server. 
-[Agents][]' scheduling is more flexible. [Agents][] run as a standalone ruby script with an associated configuration file. Script execution can be automated, using a cron job task for instance, or can be run ad-hoc, when the data owners want to integrate/publish new data.
-With client-side [agents][], sensitive content,  such as authentication credentials or private API tokens, do not need to be registered in **ARiiP**'s server platform. 
+At the architecture level, any number of inputs can be remotely deployed and configured to push data to the main **ARiiP** server. 
+[Inputs][]' scheduling is more flexible. [Inputs][] run as a standalone ruby script with an associated configuration file. Script execution can be automated, using a cron job task for instance, or can be run ad-hoc, when the data owners want to integrate/publish new data.
+With client-side [inputs][], sensitive content,  such as authentication credentials or private API tokens, do not need to be registered in **ARiiP**'s server platform. 
 
 # Detector
 
-The **Detector** engine will perform the [polling][] of configured [sources][] using configured [agents][]. Spot the Differences monitors specified resources looking for changes in the output content. **Detector**'s algorithm identifies what has changed since the last visit to a data source (using hashes and id matching). When content changes are detected, the **Detector** triggers a new [event][]. [Events][] will then be processed through configured **ARiiP** integration rules. In the system, detected events are sent for processing to the **FluxCapacitor**.
+The **Detector** engine will perform the [polling][] of configured [sources][] using configured [inputs][]. Spot the Differences monitors specified resources looking for changes in the output content. **Detector**'s algorithm identifies what has changed since the last visit to a data source (using hashes and id matching). When content changes are detected, the **Detector** triggers a new [event][]. [Events][] will then be processed through configured **ARiiP** integration rules. In the system, detected events are sent for processing to the **FluxCapacitor**.
 
-# Endpoints
+# Outputs
 
-**Delivery Endpoints** are used to define how **ARiiP** will handle [events][] data obtained by the [agents][]. 
+**Outputs** are used to define how **ARiiP** will handle [events][] data obtained by the [inputs][]. 
 
 ## Metadata
 
@@ -150,7 +135,7 @@ A human readable Title shown in the UI as a user works to complete an [Action][a
 
 ### Help Text
 
-Human readable description of an action field, useful for describing some detail you couldn't list in the Label.
+Human readable description of an action field, useful for describing some detail you couldn't list in the title.
 
 **Example**: *Choose which room to send the message to.* or *Add a title to the note.*
 
@@ -187,9 +172,9 @@ Sample configuration for exchanged data between the application controller and t
       }
     }
 
-# Endpoint Types
+# Output Types
 
-[Delivery Endpoints][] have one (and only one) type. This defines what processing is required in the [Postman][postman] engine for successful delivery of the data. Variables in each endpoint are marked within `%{ }` characters.
+[Outputs][] have one (and only one) type. This defines what processing is required in the [Postman][postman] engine for successful delivery of the data. Variables in each endpoint are marked within `%{ }` characters.
 
 ## Email
 
@@ -416,7 +401,7 @@ For example, say a service has a "New Row Added" event being monitored. We will 
     {
       "id": 987654,
       "create_at": "Mon, 17 Sep 2013 15:07:01 0000",
-      "agent_id": 1,
+      "input_id": 1,
       "payload": { ... }
     }
 
@@ -430,7 +415,7 @@ These key/value objects are available for mapping into the action as required.
 
 ### Verify Cache
 
-This methods is used by [client][] [agents][] to verify if a specific set of properties has already been processed by **ARiiP**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [endpoints][deliveryendpoint] associated with provided [agent][] for delivery.
+This methods is used by [client][] [inputs][] to verify if a specific set of properties has already been processed by **ARiiP**. When the content is not on the cache, i.e. has not been processed yet, this method returns the list of [endpoints][deliveryendpoint] associated with provided [input][] for delivery.
 
 **Address**: POST to `../ARiiP/fluxcapacitor/verify.json`
 
@@ -438,7 +423,7 @@ This methods is used by [client][] [agents][] to verify if a specific set of pro
   
       {
       "access_token": 987654,
-      "agent":"csv_agent"",
+      "input":"csv_input"",
       "cache": 1,
       "seed": "abc",
       "payload": { ... }
@@ -446,7 +431,7 @@ This methods is used by [client][] [agents][] to verify if a specific set of pro
 
 # Gem
 
-**ARiiP** [gem](http://rubygems.org/gems/ARiiP) includes all monitoring and detection features required by distributed [agents][] in a single [open-source package](https://github.com/pdrlps/ARiiP-gem).
+**ARiiP** [gem](http://rubygems.org/gems/arii) includes all monitoring and detection features required by distributed [inputs][] in a single [open-source package](https://github.com/pdrlps/arii-gem).
 
 To install, add this line to your application's Gemfile:
 
@@ -467,7 +452,7 @@ Sample usage can be found in **ARiiP**'s [client][].
 
 # Helper Functions
 
-**ARiiP** includes several internal functions allowing quick access to generic variables that can be used in all [endpoints][deliveryendpoints]. These functions allow the endpoints to retrieve information such as date/time, random numbers or strings, among many others.
+**ARiiP** includes several internal functions allowing quick access to generic variables that can be used in all [outputs][outputs]. These functions allow the endpoints to retrieve information such as date/time, random numbers or strings, among many others.
 
 ## Usage
 
@@ -503,9 +488,9 @@ Some additional notes on `code` blocks:
 # Hooks
 
 The traditional workflow uses the [Detector][] to detect new [events][]. However, [events][] can be pushed into **ARiiP** using the Web/REST hooks interface. In this case, the hook payload is directly [pushed][push] to the [Integration][].
-Relevant data must be sent in the POST request parameters. Upon receiving these data, **ARiiP** will start the [detector][] for the identified [agent][], processing the associated [integrations][].
+Relevant data must be sent in the POST request parameters. Upon receiving these data, **ARiiP** will start the [detector][] for the identified [input][], processing the associated [integrations][].
 
-**Address**: Hooks must [push][] data to `ARiiP/push/<agent_identifier>.js` address.
+**Address**: Hooks must [push][] data to `ARiiP/push/<input_identifier>.js` address.
 
 # Icons
 
@@ -513,16 +498,16 @@ Here's **ARiiP** iconography legend.
 
 <ul class="no-bullet">
 <li><a class="icon-about xl-icon"> </a> about</li>
-<li><a class="icon-add xl-icon"> </a> add (add sample agent, integration or endpoint)</li>
-<li><a class="icon-agent xl-icon"> </a> agent</li>
+<li><a class="icon-add xl-icon"> </a> add (add sample input, integration or endpoint)</li>
+<li><a class="icon-input xl-icon"> </a> input</li>
 <li><a class="icon-delete xl-icon"> </a> delete/remove</li>
-<li><a class="icon-details xl-icon"> </a> details (agent or endpoint configuration details)</li>
+<li><a class="icon-details xl-icon"> </a> details (input or endpoint configuration details)</li>
 <li><a class="icon-documentation xl-icon"> </a> documentation</li>
 <li><a class="icon-download xl-icon"> </a> download</li>
 <li><a class="icon-settings xl-icon"> </a> edit/settings</li>
-<li><a class="icon-list xl-icon"> </a> events (on agent: events found, on endpoint: deliveries made)</li>
+<li><a class="icon-list xl-icon"> </a> events (on input: events found, on endpoint: deliveries made)</li>
 <li><a class="icon-files xl-icon"> </a> files</li>
-<li><a class="icon-arii xl-icon"> </a> logo</li>
+<li><a class="icon-ariip xl-icon"> </a> logo</li>
 <li><a class="icon-install xl-icon"> </a> install</li>
 <li><a class="icon-integration xl-icon"> </a> integration</li>
 <li><a class="icon-publisher xl-icon"> </a> publisher</li>
@@ -538,7 +523,7 @@ Here's **ARiiP** iconography legend.
 
 # Integrations
 
-**Integrations** are the complete workflows of what users want to achieve, associating one or more [agents][] with one or more [endpoints][deliveryendpoints].
+**Integrations** are the complete workflows of what users want to achieve, associating one or more [inputs][] with one or more [outputs][].
 
 **Examples**
 
@@ -546,7 +531,7 @@ Here's **ARiiP** iconography legend.
 - Add new data to database (Ex: WAVe)
 - Create issue from task (Ex: Redmine)
 
-You can think of **Integrations** as the full path from database SELECTs or file processing to POSTs, writes, query executions, or the creation of a resource. **Integrations** start with the [agents][] and are finalized by the [Postman](#Postman) using the specified [delivery endpoints][].
+You can think of **Integrations** as the full path from database SELECTs or file processing to POSTs, writes, query executions, or the creation of a resource. **Integrations** start with the [inputs][] and are finalized by the [Postman](#Postman) using the specified [outpus][].
 
 ## Metadata
 
@@ -582,13 +567,7 @@ Handles the final step of the [integrations][]: gets the [integration fields][] 
 
 # Push
 
-**ARiiP** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **ARiiP** will start processing the [agents][] specified in the push request. [Agents][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [agent][], even if they have specific monitoring schedules.
-
-# Seeds
-
-[Agents][] can have any number of **Seeds** where you can configure an initial dataset to start the monitoring. Seeds are useful for monitoring long lists of similar sources.
-
-**Seeds** configuration is identical to [agents][]'. Variables defined in **seed** selectors will replace content in the [agents][] settings, enabling the composition of dynamic queries or file access strategies.
+**ARiiP** in addition to polling, [integrations][] can be configured to receive data directly from external services. *Pushing* data into **ARiiP** will start processing the [inputs][] specified in the push request. [Inputs][] can be configured to not run in any specific schedule, meaning that they will only run when they receive data via push. However, note that you can push data into any [input][], even if they have specific monitoring schedules.
 
 # Sources
 
@@ -596,7 +575,7 @@ Handles the final step of the [integrations][]: gets the [integration fields][] 
 
 # Variables
 
-[Agents][] and [delivery endpoints][delivery] can have an endless number of variables being matched within **ARiiP**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Agents][] and [Endpoints][].
+[Inputs][] and [outputs][] can have an endless number of variables being matched within **ARiiP**. Variables are available in _payload_ objects in any configuration. Variables are extracted from configured in [Inputs][] and [Outputs][].
 
 ## Usage
 
@@ -607,20 +586,15 @@ Handles the final step of the [integrations][]: gets the [integration fields][] 
 </div>
 
 
-[agent]:              #agents
-[agents]:             #agents
+[input]:              #inputs
+[inputs]:             #inputs
 [client]:             #client
-[Endpoint]:           #endpoints
-[Endpoints]:          #endpoints
+[Output]:             #outputs
+[Outputs]:            #outputs
 [gem]:                #gem
 [Integration]:        #integrations
 [Integrations]:       #integrations
 [integration fields]: #integration-fields
-[delivery]:           #deliveries
-[deliveryendpoint]:   #endpoints
-[deliveryendpoints]:  #endpoints
-[delivery endpoint]:  #endpoints
-[delivery endpoints]: #endpoints
 [Detector]:           #detector
 [Detectors]:          #detector
 [event]:              #events

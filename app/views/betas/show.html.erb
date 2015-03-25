@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin:</strong>
+  <%= @beta.origin %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @beta.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @beta.email %>
+</p>
+
+<p>
+  <strong>Job:</strong>
+  <%= @beta.job %>
+</p>
+
+<p>
+  <strong>Payload:</strong>
+  <%= @beta.payload %>
+</p>
+
+<p>
+  <strong>What:</strong>
+  <%= @beta.what %>
+</p>
+
+<%= link_to 'Edit', edit_beta_path(@beta) %> |
+<%= link_to 'Back', betas_index_path %>

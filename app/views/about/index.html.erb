@@ -1,24 +1,22 @@
 <% content_for :title, "About - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs animated fadeIn">
-	<li><a href="<%= root_url %>">Home</a></li>
-	<li class="current">About</li>
-</ul>
-<h1 class="animated fadeIn">About <strong>ARiiP</strong></h1>
-
-<div class="row animated fadeIn">
+<div class="row">
+	<div class="small-12 columns">
+		<h1 class="">About</h1>
+	</div>
+</div>
+<div class="row">
 	<div class="small-12 columns">
 		<p>
 			<strong>ARiiP</strong> is innovative platform for automated, real-time, integration and interoperability among data and services.
 		</p>
 		<p>
-		<strong>ARiiP</strong>  is built by a team of young entrepreneurs with combined experience in Management, Sales/Marketing, Development and Research, that aims at bringing you the best Integration-as-a-Service solution. Feel free to reach out.
+			<strong>ARiiP</strong>  is built by a team of young entrepreneurs with combined experience in Management, Sales/Marketing, Development and Research, that aims at bringing you the best Integration-as-a-Service solution. Feel free to reach out.
 		</p>
 	</div>
 </div>
 <div class="row animated fadeIn">
-
 	<div class="small-12 columns">
-	<h2>The Team</h2>
+		<h2 class="subheader">The Team</h2>
 		<%= render(:partial => 'business') %>
 	</div>
 </div>

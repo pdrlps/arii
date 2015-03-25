@@ -1,6 +1,6 @@
 <aside class="large-4 columns" markdown="1" style="position:fixed;font-size:80%;">
 
-##### Outline
+### Outline
 {:.no_toc}
 
 * TOC
@@ -20,34 +20,34 @@
 
 # How does ARiiP work?
 
-**ARiiP** relies on distributed agents to monitor custom content changes. When new changes are detected, **ARiiP** generates a new [Event][] and triggers the execution of any number of [endpoints][] associated with the starting [agent][] (through integrations).
+**ARiiP** relies on distributed inputs to monitor custom content changes. When new changes are detected, **ARiiP** generates a new [Event][] and triggers the execution of any number of [outputs][] associated with the starting [input][] (through integrations).
 
 <hr>
 
-# What are agents?
+# What are inputs?
 
-[Agents][] are intelligent algorithms that monitor configured data sources, detecting changes to their content. [Agents][] can run on **ARiiP**'s' server or locally, in a truly distributed environment.
+[Inputs][] are intelligent algorithms that monitor configured data sources, detecting changes to their content. [Inputs][] can run on **ARiiP**'s' server or locally, in a truly distributed environment.
 
 <hr>
 
-# What are endpoints?
+# What are outputs?
 
-[Endpoints][] are used to define what to do with the data gathered by [agents][]. This can go from updating a file in your Dropbox account to sending custom emails.
+[Outputs][] are used to define what to do with the data gathered by [inputs][]. This can go from updating a file in your Dropbox account to sending custom emails.
 
 <hr>
 
 # What are integrations?
 
-Putting it simply, [Integrations][] connect [agents][] with [endpoints][]. Hence, [integrations][] are the logical bridge between the distributed monitored [sources][] and the actions triggered by content changes.
+Putting it simply, [Integrations][] connect [inputs][] with [outputs][]. Hence, [integrations][] are the logical bridge between the distributed monitored [sources][] and the actions triggered by content changes.
 <hr>
 
 </div>
 
-[agent]:        /ariip/docs/#agents
-[agents]:       /ariip/docs/#agents
+[input]:        /ariip/docs/#inputs
+[inputs]:       /ariip/docs/#inputs
 [event]:        /ariip/docs/#events
-[endpoints]:    /ariip/docs/#endpoints
-[endpoint]:     /ariip/docs/#endpoints
+[outputs]:      /ariip/docs/#outputs
+[output]:       /ariip/docs/#outputs
 [integrations]: /ariip/docs/#integrations
 [integration]:  /ariip/docs/#integrations
 [sources]:      /ariip/docs/#sources

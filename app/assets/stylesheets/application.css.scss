@@ -82,6 +82,13 @@ li.social {
   margin-right: 4px;
 }
 
+.full-width {
+   width: 100%;
+   margin-left: auto;
+   margin-right: auto;
+   max-width: initial;
+}
+
 /** highlight variables **/
 .selector {
   font-weight: 600;
@@ -127,6 +134,10 @@ a:hover.remove {
 }
 .dark_grey {
   color: #7F8C8D;
+}
+
+.white {
+  color: white;
 }
 
 /** ICONS */
@@ -279,6 +290,20 @@ a:hover.remove {
 .icon-many2many:before { content: '\e90c'; }
 .icon-easy:before { content: '\e84e'; }
 .icon-start:before { content: '\e848'; }
+.icon-usecases:before { content: '\e828'; }
+.icon-about:before { content: '\e8af'; }
+.icon-pricing:before { content: '\e86c'};
+.icon-features:before { content: '\e88c'; }
+.icon-small-right:before { content: '\e83f'; }
+.icon-document:before { content: '\e875'; }
+.icon-database:before { content: '\e871'; }
+.icon-spreadsheet:before { content: '\e912'; }
+.icon-shuffle:before { content: '\e90c'; }
+.icon-browser:before { content: '\e830'; }
+.icon-ticket:before { content: '\e926'; }
+.icon-cog:before { content: '\e855'; }
+.icon-infinity:before { content: '\e8ad'; }
+.icon-star:before { content: '\e917'; }
 
 /** legacy */
 .icon-agent:before {
@@ -431,6 +456,10 @@ dropdown a:hover {
   background-color: lighten($success-color,55%);
   color: $primary-color;
 }
+.tab_verticals {
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
 
 /** button feedback overlay */
 #overlayed {
@@ -456,4 +485,13 @@ dropdown a:hover {
     );
   $button-function-factor: 20%;
   border: solid 1px $primary-color;
+}
+
+
+/*
+ * PRICING STUFF
+ */
+.pricing {
+  padding: 8px;
+  padding-bottom: 8px;
 }

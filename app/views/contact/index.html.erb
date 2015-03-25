@@ -1,38 +1,28 @@
 <% content_for :title, "Contact - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs animated fadeIn">
-    <li><a href="<%= root_url %>">Home</a></li>
-    <li class="current">Contact</li>
-</ul>
 <div class="row animated fadeIn">
   <div class="large-12 columns">
-      <h2>Get in touch!</h2>
-      <p>
-      <strong>ARiiP</strong> brings straightforward data integration &amp; interoperability to all, from any data source to any application service. <br/>
-        Feel free to drop us a line, your feedback is highly appreciated!
-      </p>
+    <h1>Contact</h1>
+    <strong>ARiiP</strong> brings straightforward data integration &amp; interoperability to all, from any data source to any application service. <br/>
+    Feel free to drop us a line, your feedback is highly appreciated!
   </div>
 </div>
-<div class="row animated fadeIn">
-    <div class="small-6 columns">
-        <h3 class="subheader">Drop us a line</h3>
-        <div id="feedback_message">
-        <%= render(:partial => 'feedbacks/form') %>
-        </div>
+<div class="row  ">
+  <div class="small-6 columns">
+    <h3 class="subheader">Drop us a line</h3>
+    <div id="feedback_message">
+      <%= render(:partial => 'feedbacks/form') %>
     </div>
-    <div class="small-6 columns text-center">
-        <h3 class="subheader">Follow us</h3>
-        <h3 class="subheader">Interested?</h3>
-        <a href="#" data-reveal-id="request_access" class="button success radius">Request access</a>
-    </div>
+  </div>
+  <div class="small-6 columns text-center">
+    <h3 class="subheader">Interested?</h3>
+    <a href="#" data-reveal-id="request_access" class="button  alert radius icon-start ">Start using ARiiP</a>
+  </div>
 </div>
-
 <!-- access modal content -->
 <div id="request_access" class="reveal-modal" data-reveal>
   <h2>Request Access</h2>
   <div id="request_access_message">
-  <%= render(:partial => 'alphas/form') %>
+    <%= render(:partial => 'alphas/form') %>
   </div>
   <a class="close-reveal-modal">&#215;</a>
-
-
 </div>

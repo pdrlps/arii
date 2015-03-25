@@ -5,6 +5,18 @@ class UseCasesController < ApplicationController
     generate_content 'use_cases', 'index'
   end
 
+  def online2rest
+  end
+
+  def ticket2email
+  end
+
+  def github2database
+  end
+
+  def twitter2file
+  end
+
   ##
   # => Read the raw content for documentations
   #

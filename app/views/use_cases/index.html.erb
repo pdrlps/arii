@@ -1,9 +1,11 @@
-<% content_for :title, "Use Case - #{ENV["APP_TITLE"]}" %>
-<ul class="breadcrumbs animated fadeIn">
-    <li><a href="<%= root_url %>">Home</a></li>
-    <li class="current">Use Cases</li>
-</ul>
-<h1 class="animated fadeIn"><strong>ARiiP</strong>'s sample use cases</h1>
-<article id="use_cases">
-    <%= @content.html_safe %>
-</article>
+<% content_for :title, "Use Cases - #{ENV["APP_TITLE"]}" %>
+<h1 class="">Use Cases</h1>
+<div class="row">
+    <%= render "usecases", :selected => 'none' %>
+    <div class="small-12 medium-8 large-8 columns text-center">
+    <i class="icon-infinity gigantic dark_red"></i>
+        <h5 class="subheader">Use case suggestion?</h5>
+        If you have a Use Case you wanted to understand and see how Ariip works on that specific integration problem, just contact us:
+        <%= link_to 'More', {:controller => '/use_cases', :action => 'index'}, :class => 'small button success radius icon-feedback' %>
+    </div>
+</div>

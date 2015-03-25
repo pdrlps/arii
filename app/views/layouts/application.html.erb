@@ -23,7 +23,7 @@
         <%= csrf_meta_tags %>
       </head>
       <body>
-        <div class="fixed animated fadeInDown">
+        <div class="fixed ">
           <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
             <ul class="title-area">
               <!-- Title Area -->
@@ -40,9 +40,9 @@
                 <li class="has-dropdown">
                   <a href="#" class="icon-resources">&nbsp;</a>
                   <ul class="dropdown">
-                    <li><%= link_to 'How', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
                     <li><%= link_to('Documentation'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-docs') %></li>
                     <li><%= link_to('FAQ'.html_safe, {:controller => '/docs'}, :id => '',:class => 'icon-faq') %></li>
+                    <li><%= link_to 'How to', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
                   </ul>
                 </li>
                 <li class="divider"></li>
@@ -68,7 +68,6 @@
           <div id="feedback">
             <a href="#" data-reveal-id="give_feedback"  class="icon-feedback">&nbsp;</a>
           </div>
-
           <!-- overlay -->
           <div id="overlayed" class="hidden">&nbsp;</div>
           <%= render partial: "helper/feedback"  %>
