@@ -13,82 +13,80 @@
     <ul class="button-group radius right">
       <li><%= link_to 'Edit', edit_input_path(agent), :class => 'small button secondary icon-edit' %></li>
       <% if agent.schedule == 'local' %>
-        <%= link_to 'Download', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button info icon-download',:title => "Execute #{agent.title}" %>
+      <li><a href="/inputs/<%= agent.id %>/download.js" id="download_local_input" data-id="<%= agent.id %>" class="small button info icon-download">Download</a></li>
       <% end %>
       <li><%= link_to 'Execute', {:controller => 'agents', :action => 'execute', :id => agent.id}, :class => 'small button primary icon-execute',:title => "Execute #{agent.title}" %></li>
     </ul>
   </div>
 </div>
 <br />
-<div class="row">
-  <div class="small-2 columns">
-    <div class="agent-hl ">
+<div class="row" data-equalizer>
+  <div class="small-2 columns" data-equalizer>
+    <div class="agent-info info-secondary">
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Events: ARiiP detected <%= agent.events.size %> for this input."><%= link_to agent.events.size, {:controller => 'events', :action => 'input', :id => agent.id} %></span>
       </div>
       <h5 class="center icon-events xl-icon"></h5>
     </div>
     <% if agent.schedule == 'none' %>
-    <div class="agent-hl">
+    <div class="agent-info info-secondary">
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Push: ARiiP receives data from this input.">push</span>
       </div>
       <h5 class="center icon-push xl-icon"></h5>
     </div>
     <% elsif agent.schedule == 'local' %>
-    <div class="agent-hl">
+    <div class="agent-info info-secondary">
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Local: ARiiP monitors this input privately.">local</span>
       </div>
       <h5 class="center icon-local xl-icon"></h5>
     </div>
     <% else %>
-    <div class="agent-hl">
+    <div class="agent-info info-secondary">
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Schedule: ARiiP monitors this input every <%= agent.schedule %>"><%= agent.schedule %></span>
       </div>
       <h5 class="center icon-schedule xl-icon"></h5>
     </div>
     <% end %>
-    <div class="agent-hl">
+    <div class="agent-info info-secondary">
       <div class="big center">
         <span class="has-tip radius" data-tooltip title="Monitor: this input processes '<%= agent.publisher %>'' input"><%= agent.publisher %></span>
       </div>
       <h5 class="center icon-publisher xl-icon"></h5>
     </div>
   </div>
-  <div class="small-10 columns">
+  <div class="small-10 columns" data-equalizer>
     <div class="row">
       <h4 class="subheader">Description</h4>
       <%= agent.help %>
     </div>
     <hr>
     <div class="row">
-      <h4 class="subheader">Publisher</h4>
-      <% if agent.publisher == 'sql' then %>
-      <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
-      <% end %>
-      <% if agent.publisher == 'xml' then %>
-      <%= render partial: "agents/show_xml", locals: {:agent => agent}%>
-      <% end %>
-      <% if agent.publisher == 'json' then %>
-      <%= render partial: "agents/show_json", locals: {:agent => agent}%>
-      <% end %>
-      <% if agent.publisher == 'csv' then %>
-      <%= render partial: "agents/show_csv", locals: {:agent => agent}%>
-      <% end %>
-      <% if agent.publisher == 'excel' then %>
-      <%= render partial: "agents/show_excel", locals: {:agent => agent}%>
-      <% end %>
+      <div class="small-12 columns">
+        <h4 class="subheader">Publisher</h4>
+        <% if agent.publisher == 'sql' then %>
+        <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
+        <% end %>
+        <% if agent.publisher == 'xml' then %>
+        <%= render partial: "agents/show_xml", locals: {:agent => agent}%>
+        <% end %>
+        <% if agent.publisher == 'json' then %>
+        <%= render partial: "agents/show_json", locals: {:agent => agent}%>
+        <% end %>
+        <% if agent.publisher == 'csv' then %>
+        <%= render partial: "agents/show_csv", locals: {:agent => agent}%>
+        <% end %>
+        <% if agent.publisher == 'excel' then %>
+        <%= render partial: "agents/show_excel", locals: {:agent => agent}%>
+        <% end %>
+      </div>
     </div>
-    <% if agent.seeds.size != 0 then %>
-    <hr>
-    <div class="row">
-      <h4 class="subheader">Seeds</h4>
-      <% agent.seeds.each do |s| %>
-      <%= render partial: "seeds/show", locals: {:seed => s}   %>
-      <% end %>
-    </div>
-    <% end %>
   </div>
+</div>
+<!-- local install modal -->
+<div id="install_local" class="reveal-modal" data-reveal aria-labelledby="install_local" aria-hidden="true" role="dialog">
+  <%= render "install/local" %>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

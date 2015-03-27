@@ -16,6 +16,18 @@ $(function() {
 
     // Enable/Disable input
     $('.output_toggle').on('change', update_output_toggle);
+
+    // Joyride Tour
+    $('#what_output').on('click', function(event) {
+        $(document).foundation({
+            joyride: {
+                template: {
+                    button: '<a href="#" class="small button joyride-next-tip info radius"></a>',
+                    prev_button: '<a href="#" class="small button joyride-prev-tip info radius"></a>'
+                }
+            }
+        }).foundation('joyride', 'start');
+    });
 });
 
 

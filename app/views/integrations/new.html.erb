@@ -11,8 +11,11 @@
   <div class="small-12 medium-8 large-8 columns">
     <ul class="tabs" data-tab>
       <li class="tab-title active"><a href="#tab_details" class="icon-details tab_radius" id="tab_link_details">Details</a></li>
+      <li class="tab-title tab_divider"><i class="icon-small-right "></i></li>
       <li class="tab-title"><a href="#tab_input" class="icon-input tab_radius" id="tab_link_input">Input</a></li>
+      <li class="tab-title tab_divider"><i class="icon-small-right "></i></li>
       <li class="tab-title"><a href="#tab_output" class="icon-output tab_radius" id="tab_link_output">Output</a></li>
+      <li class="tab-title tab_divider"><i class="icon-small-right "></i></li>
       <li class="tab-title"><a href="#tab_review" class="icon-review tab_radius" id="tab_link_review">Review</a></li>
     </ul>
   </div>
@@ -138,4 +141,10 @@
       </div>
     </div>
   </div>
+</div>
+
+<!-- local install modal -->
+<div id="install_local" class="reveal-modal" data-reveal aria-labelledby="install_local" aria-hidden="true" role="dialog">
+  <%= render "install/local" %>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

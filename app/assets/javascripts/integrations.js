@@ -8,6 +8,8 @@ $(function() {
         $('.integration_area').fadeOut();
         $('.output_area').fadeOut(); // hide stuff
         $('#integration_area_existing_input').fadeIn();
+        $('#new_integration_next_input_button').fadeIn();
+
 
         // update styles
         $('#integration_panel_new_input').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
@@ -19,6 +21,7 @@ $(function() {
         $('.integration_area').fadeOut();
         $('.output_area').fadeOut(); // hide stuff
         $('#integration_area_new_input').fadeIn();
+        $('#new_integration_next_input_button').fadeOut();
 
         // update styles
         $('#integration_panel_existing_input').removeClass('info-enabled').removeClass('info-secondary').addClass('info-disabled');
@@ -204,6 +207,10 @@ function existing_save_agent_select(event) {
 
         // update review tab
         var review = '<div id="input_details_' + data.id + '" class="row agent-info info-secondary"><div class="small-12 medium-6 large-6 columns"><h6 class="subheader">' + data.title + '</h6></div><div class="small-3 columns"><span class="label secondary radius icon-publisher">' + data.publisher + '</span> <span class="label secondary radius icon-schedule icon-' + data.schedule + '">' + data.schedule + '</span></div><div class="small-3 columns"><ul class="button-group radius right"><li><a href="../inputs/' + data.id + '" class="small button secondary icon-view">View</a></li><li><a href="../inputs/' + data.id + '/edit" class="small button secondary icon-edit">Edit</a></li></ul></div></div>';
+        if (data.schedule === 'local') {
+            review += '<br/><div class="row"><div class="small-12 columns"><div data-alert class="alert-box warning radius"><i class="icon-warning"></i>You have configured an input for local execution, <a href="#" data-reveal-id="install_local">check the setup instructions for a full explanation on how to do this</a>.</div></div></div>'
+        }
+        $(document).foundation('reveal', 'reflow');
         $('#review_input').html(review);
         $('#existing_input_load').fadeIn();
     });

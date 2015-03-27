@@ -1,8 +1,8 @@
 {
     "identifier": "daringfireball_sql",
-    "title": "DaringFireball SQL endpoint.",
+    "title": "DaringFireball SQL.",
     "help": "Submit DaringFireball content to internal database.",
-    "publisher": "sql",
+    "endpoint": "sql",
     "payload": {
         "server": "postgresql",
         "host": "127.0.0.1",

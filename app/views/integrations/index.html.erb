@@ -46,7 +46,9 @@
       <h6 class="subheader"><%= link_to integration.title, integration, :class => '' %></h6>
     </div>
     <div class="small-12 medium-1 large-1 columns">
+      <% if integration.agents.count > 0 || integration.templates.count > 0 %>
       <span class="label radius secondary right integration_details_toggle" data-id="<%= integration.id %>"><%= integration.agents.count %><i class="icon-integration"></i><%= integration.templates.count %></span>
+      <% end %>
     </div>
     <div class="small-12 medium-3 large-3 columns right">
       <ul class="button-group radius right">
@@ -61,6 +63,7 @@
         <div class="small-2 medium-1 large-1 columns">
           &nbsp;
         </div>
+        <% if integration.agents.count > 0 %>
         <div class="small-2 medium-1 large-1 columns icon-input">
         </div>
         <div class="small-10 medium-5 large-5 columns left">
@@ -74,6 +77,8 @@
             <% end %>
           </ul>
         </div>
+        <% end %>
+        <% if integration.templates.count > 0 %>
         <div class="small-2 medium-1 large-1 columns icon-output">
         </div>
         <div class="small-10 medium-4 large-4 columns left">
@@ -84,6 +89,7 @@
               <% end %>
             </ul>
           </div>
+          <% end %>
         </div>
       </div>
     </div>

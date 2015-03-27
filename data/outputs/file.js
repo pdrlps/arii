@@ -2,7 +2,7 @@
 	"identifier": "daring_endpoint",
 	"title": "DaringFireball file",
 	"help": "Append DaringFireball content to a file on your workspace.",
-	"publisher": "file",
+	"endpoint": "file",
 	"payload": {
 		"method": "append",
 		"uri": "daring_fireball.csv",

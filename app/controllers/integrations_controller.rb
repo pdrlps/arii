@@ -219,7 +219,7 @@ class IntegrationsController < ApplicationController
     @helper = Services::Helper.new
 
 
-    agent_object = JSON.parse(File.read("data/agents/#{params[:agent]}.js"))
+    agent_object = JSON.parse(File.read("data/inputs/#{params[:agent]}.js"))
     agent_object['identifier'] = "#{agent_object['identifier']}_#{current_user.id}_#{@helper.random_int}"
     @agent = Agent.create! agent_object
     @agent.events_count = 0
@@ -228,7 +228,7 @@ class IntegrationsController < ApplicationController
     current_user.agents.push @agent
 
     #load template
-    template_object = JSON.parse(File.read("data/endpoints/#{params[:template]}.js"))
+    template_object = JSON.parse(File.read("data/outputs/#{params[:template]}.js"))
     template_object['identifier'] = "#{template_object['identifier']}_#{current_user.id}_#{@helper.random_int}"
     @template = Template.create! template_object
     @template.status = 100

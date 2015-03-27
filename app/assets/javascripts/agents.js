@@ -16,7 +16,29 @@ $(function() {
 
     // Enable/Disable input
     $('.input_toggle').on('change', update_input_toggle);
+
+    // Joyride Tour
+    $('#what_input').on('click', function(event) {
+        $(document).foundation({
+            joyride: {
+                template: {
+                    button: '<a href="#" class="small button joyride-next-tip info radius"></a>',
+                    prev_button: '<a href="#" class="small button joyride-prev-tip info radius"></a>'
+                }
+            }
+        }).foundation('joyride', 'start');
+    });
+
+    // download local inputs
+    $('#download_local_input').on('click', download_local_input)
 });
+
+/**
+ * Download local input handler
+ */
+function download_local_input(event) {
+    $('#install_local').foundation('reveal', 'open');
+}
 
 /**
  * Create input handler

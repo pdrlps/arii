@@ -103,7 +103,7 @@ $(function() {
         $('#new_input_progress').width('25%'); // update progress bar
 
         // update and set schedule
-        $('#agent_schedule').append('<option value="push">Push</option>').val('push');
+        $('#agent_schedule').append('<option value="local">Local</option>').val('local');
     });
 
     $('#input_cloud').on('click', function(event) {
@@ -138,7 +138,7 @@ $(function() {
         $('#new_input_progress').width('50%'); // update progress bar
 
         // update and set schedule
-        $('#agent_schedule').append('<option value="local">Local</option>').val('local');
+        $('#agent_schedule').append('<option value="push">Push</option>').val('push');
     });
 
     $('#input_cloud_poll').on('click', function(event) {
@@ -170,7 +170,7 @@ $(function() {
     $('#lifebuoy').on('click', function(event) {
         event.preventDefault();
         $('.lifebuoy').toggle('fast');
-    })
+    });
 
 });
 

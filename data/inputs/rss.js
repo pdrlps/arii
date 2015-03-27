@@ -1,6 +1,6 @@
 {
     "identifier": "svbtle_rss",
-    "title": "RSS Feed Agent",
+    "title": "RSS Feed",
     "help": "Monitor content from RSS feed.",
     "publisher": "xml",
     "schedule": "5m",

@@ -1,5 +1,9 @@
 ARII::Application.routes.draw do
 
+  get 'install/local'
+
+  get 'install/server'
+
   get 'faq/index'
 
   get 'pricing/index'
@@ -82,6 +86,7 @@ ARII::Application.routes.draw do
   get "inputs/:id/execute", to: "agents#execute"                # launch on-demand agent execution
   get "inputs/:id/enable", to: 'agents#enable'                  # enable input
   get "inputs/:id/disable", to: 'agents#disable'                # disable input
+  get "inputs/:id/download", to: 'agents#download'              # download sample client
 
   # Integrations control
   resources :integrations

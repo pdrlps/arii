@@ -28,6 +28,7 @@ class AgentsController < ApplicationController
   # GET /agents/new
   def new
     @schedules = {}
+
     timings = JSON.parse(ENV["APP_SCHEDULE"])
     timings.each do |timing|
       timing.each do |schedule, full|
@@ -45,6 +46,8 @@ class AgentsController < ApplicationController
   # GET /agents/1/edit
   def edit
     @schedules = {}
+    @schedules['local'] = 'Local'
+    @schedules['push'] = 'Push'
     timings = JSON.parse(ENV["APP_SCHEDULE"])
     timings.each do |timing|
       timing.each do |schedule, full|
@@ -108,7 +111,7 @@ class AgentsController < ApplicationController
 
     @agent.destroy
     respond_to do |format|
-      format.html { redirect_to agents_url }
+      format.html { redirect_to inputs_url }
       format.json { head :no_content }
     end
   end
@@ -180,7 +183,7 @@ class AgentsController < ApplicationController
     end
   end
 
-    ##
+  ##
   # Disable input (will not execute!). Status = 400
   def disable
     begin
@@ -211,6 +214,53 @@ class AgentsController < ApplicationController
     rescue Exception => e
       Services::Slog.exception e
       format.json {render json: @input}
+    end
+  end
+
+  ##
+  # Download agent configuration (if local)
+  def download
+    begin
+      key = current_user.api_keys.first.access_token
+    rescue Exception => e
+      key = ApiKey.create!
+      current_user.api_keys.push key
+      key.save
+      current_user.save
+    end
+
+    begin
+      @input = current_user.agents.find(params[:id])#, :select => 'identifier, publisher, payload')
+
+      if @input.schedule == 'local'
+
+
+        @inputs = Array.new
+        input = Hash.new
+        input[:identifier] = @input[:identifier]
+        input[:publisher] = @input[:publisher]
+        input[:payload] = @input[:payload]
+        @inputs.push input
+        @client = Hash.new
+        @server = Hash.new
+        @server[:host] = ENV["APP_HOST"]
+        @server[:name] = ENV["APP_TITLE"]
+        @server[:access_token] = key
+        @client[:server] = @server
+        @client[:agents] = @inputs
+        respond_to do |format|
+          format.json  {
+            #render :json => @client
+            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}.js", :type => 'application/json', :disposition => 'attachment'
+          }
+          format.js  {
+            #render :json => @client
+            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}.js", :type => 'application/json', :disposition => 'attachment'
+          }
+        end
+      end
+    rescue Exception => e
+      Services::Slog.exception e
     end
   end
 

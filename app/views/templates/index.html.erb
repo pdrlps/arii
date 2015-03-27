@@ -7,12 +7,12 @@
 <div class="small-12 columns">
   <div class="row">
     <div class="small-6 columns left">
-      <h3 class="subheader">Outputs</h3>
+      <h3 class="subheader" id="outputs_header">Outputs</h3>
     </div>
     <div class="small-6 columns right">
       <ul class="inline-list right">
         <li><a href="#" id="what_output" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create output'.html_safe, new_output_path, :class => 'icon-create small button radius right info' %></li>
+        <li><%= link_to 'Create output'.html_safe, new_output_path, :id => 'create_output_button' , :class => 'icon-create small button radius right info' %></li>
       </ul>
     </div>
   </div>
@@ -56,7 +56,7 @@
   </div>
   <% end %>
   <hr>
-  <h5 class="subheader">Add sample output</h5>
+  <h5 class="subheader" id="output_samples">Add sample output</h5>
   <div class="row agent-info info-secondary">
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
@@ -181,3 +181,26 @@
       </div>
     </div>
   </div>
+
+  <!-- joyride tour -->
+  <ol class="joyride-list" data-joyride>
+    <li data-id="what_output" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:fade">
+      <p>This is your outputs workspace.</p>
+    </li>
+    <li data-id="outputs_header" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade; tip_location: bottom;">
+      <h4>Outputs list.</h4>
+      <p>This list includes all your outputs, where you can check the output details.</p>
+    </li>
+    <li data-id="create_output_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+      <h4>Create output.</h4>
+      <p>Click here to launch the new output wizard.</p>
+    </li>
+    <li data-id="output_samples" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Samples list.</h4>
+      <p>If you're in a hurry, start by adding a sample output from this list!</p>
+    </li>
+    <li data-button="End" data-prev-text="Prev">
+      <h4>More questions?</h4>
+      <p>Check the full documentation, the demo videos or our <%= link_to 'sample use cases', {:controller => '/use_cases'} %>!</p>
+    </li>
+  </ol>

@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">Track local inputs</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        <h4 class="subheader">Setup</h4>
+        To use ARiiP as a local input tracker, you need to setup a few things first... With the following elements in place, you can trigger the input monitoring execution on demand, or configure it to run periodically.
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        <ul class="tabs " data-tab>
+            <li class="tab-title active"><a class="tab_radius " href="#ruby">Ruby environment</a></li>
+            <li class="tab-title"><a class="tab_radius " href="#gem">ARiiP library</a></li>
+            <li class="tab-title"><a class="tab_radius " href="#executable">ARiiP executable</a></li>
+            <li class="tab-title"><a class="tab_radius " href="#input">Input configuration file</a></li>
+        </ul>
+        <div class="tabs-content">
+            <div class="content active" id="ruby">
+                <p>The ARiiP executable needs the Ruby libraries. <a href="https://www.ruby-lang.org/en/documentation/installation/" target="_blank">To install Ruby, check the official guides</a>.</p>
+            </div>
+            <div class="content" id="gem">
+                <p>The public ARiiP library is a gem file, the more common Ruby package management tool. To install ARiiP's gem locally, just run the following snippet in the command line.</p>
+            <pre>gem install arii</pre>
+        </div>
+        <div class="content" id="executable">
+            <p>ARiiP's executable controls the input monitoring process. It's a small Ruby script that loads the input configuration from a JSON file and handles the detection monitoring via a secure API.</p>
+            <%= link_to 'Download ARiiP executable', 'arii.rb', :class => 'icon-download button small radius primary expand' %>
+        </div>
+        <div class="content" id="input">
+            <p>If you created an input that is configured for local execution, there's a download button in the top right actions toolbar. Place this file in the same folder as ARiiP's executable.</p>
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+<div class="small-12 columns">
+    <h5>Launching the input tracker</h5>
+    <p>With all components setup, you can start the content monitoring process by executing the following snippet in the command line.</p>
+<pre>ruby arii.rb &lt;configuration-file&gt;.json</pre>
+<br/>
+<p>If you want to trigger the monitoring periodically, <a href="https://kayako.atlassian.net/wiki/display/DOCS/Setting+up+a+server+cron+or+scheduled+task" target="_blank">there are several ways to do that for Windows, Linux and Mac OS X</a>.</p>
+</div>
+</div>

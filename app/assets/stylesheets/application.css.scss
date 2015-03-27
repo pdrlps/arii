@@ -83,10 +83,9 @@ li.social {
 }
 
 .full-width {
-   width: 100%;
-   margin-left: auto;
-   margin-right: auto;
-   max-width: initial;
+  .row {
+    max-width: 100%;
+  }
 }
 
 /** highlight variables **/
@@ -304,6 +303,7 @@ a:hover.remove {
 .icon-cog:before { content: '\e855'; }
 .icon-infinity:before { content: '\e8ad'; }
 .icon-star:before { content: '\e917'; }
+.icon-warning:before { content: '\e8dd'; }
 
 /** legacy */
 .icon-agent:before {
@@ -457,8 +457,8 @@ dropdown a:hover {
 /** tabs */
 .tab_radius {
   border-radius: 4px;
-  margin-left: 4px;
-  margin-right: 4px;
+  margin-left: 16px;
+  margin-right: 16px;
 }
 .tab_complete {
   border: solid 1px #FFF;
@@ -469,6 +469,9 @@ dropdown a:hover {
 .tab_verticals {
   margin-top: 8px;
   margin-bottom: 8px;
+}
+.tab_divider {
+ margin-top: 8px;
 }
 
 /** button feedback overlay */

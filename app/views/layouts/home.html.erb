@@ -39,10 +39,11 @@
             </ul>
           </div>
           <div class="small-2 columns">
-            <a id="request_beta" class="small button alert radius icon-start expand" data-reveal-id="request_access">Start using ARiiP</a>
+            <a id="request_beta" class="small button info radius icon-start expand" data-reveal-id="request_access">Start using ARiiP</a>
           </div>
           <div class="small-2 columns right text-right">
-            <%= link_to('Sign in',new_user_session_path,:class => 'small button primary radius icon-user right text-right') %>
+          <%= user_signed_in? ? link_to("Hi #{(current_user.name ||= current_user.username)}!".html_safe,{:controller => 'dashboard'}, :class => 'small button primary radius icon-dashboard sidebar-icon') : link_to('Sign in',new_user_session_path,:class => 'small button primary radius icon-user right text-right') %>
+
           </div>
         </div>
         <!-- navbar end -->

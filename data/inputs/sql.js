@@ -1,6 +1,6 @@
 {
     "identifier": "df_sql",
-    "title": "DaringFireball SQL agent.",
+    "title": "DaringFireball SQL",
     "help": "Read DaringFireball articles from internal database.",
     "publisher": "sql",
     "schedule": "1d",

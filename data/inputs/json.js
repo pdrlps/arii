@@ -1,6 +1,6 @@
 {
 	"identifier": "disease_json",
-	"title": "Diseasecard JSON agent",
+	"title": "Diseasecard JSON",
 	"help": "Load data for Alzheimer's disease from Diseasecard, available in JSON format.",
 	"publisher": "json",
 	"schedule": "1h",

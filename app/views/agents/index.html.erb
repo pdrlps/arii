@@ -8,12 +8,12 @@
 <div class="small-12 medium-12 large-12 columns">
   <div class="row">
     <div class="small-6 columns left">
-      <h3 class="subheader">Inputs</h3>
+      <h3 class="subheader" id="inputs_header">Inputs</h3>
     </div>
     <div class="small-6 columns">
       <ul class="inline-list right">
         <li><a href="#" id="what_input" class="button small radius warning icon-help">What is this?</a></li>
-        <li><%= link_to 'Create input'.html_safe, new_input_path, :class => 'icon-create small button radius info' %></li>
+        <li><%= link_to 'Create input'.html_safe, new_input_path, :id => 'create_input_button', :class => 'icon-create small button radius info' %></li>
       </ul>
     </div>
   </div>
@@ -60,7 +60,7 @@
   </div>
   <% end %>
   <hr>
-  <h5 class="subheader">Add sample input</h5>
+  <h5 class="subheader" id="input_samples">Add sample input</h5>
   <div class="row agent-info info-secondary">
     <div class="small-1 medium-1 large-1 columns left">
       &nbsp;
@@ -221,3 +221,25 @@
       </div>
     </div>
   </div>
+  <!-- joyride tour -->
+  <ol class="joyride-list" data-joyride>
+    <li data-id="what_input" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:fade">
+      <p>This is your inputs workspace.</p>
+    </li>
+    <li data-id="inputs_header" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade; tip_location: bottom;">
+      <h4>Inputs list.</h4>
+      <p>This list includes all your inputs. You can check the input details or launch their execution on demand.</p>
+    </li>
+    <li data-id="create_input_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+      <h4>Create input.</h4>
+      <p>Click here to launch the new input wizard.</p>
+    </li>
+    <li data-id="input_samples" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+      <h4>Samples list.</h4>
+      <p>If you're in a hurry, start by adding a sample input from this list!</p>
+    </li>
+    <li data-button="End" data-prev-text="Prev">
+      <h4>More questions?</h4>
+      <p>Check the full documentation, the demo videos or our <%= link_to 'sample use cases', {:controller => '/use_cases'} %>!</p>
+    </li>
+  </ol>

@@ -45,6 +45,8 @@ class ApplicationController < ActionController::Base
         'home'
       elsif controller_name == 'sessions' && action_name == 'new'
         'home'
+      elsif controller_name == 'registrations' && action_name == 'edit'
+        'application'
       else
         'home'
       end

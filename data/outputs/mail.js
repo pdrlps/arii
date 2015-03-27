@@ -3,7 +3,7 @@
     "title": "DaringFireball mail.",
     "help": "Send DaringFireball data via mail.",
     "publisher": "mail",
-    "payload": {
+    "endpoint": {
         "to": "pedrolopes@ariip.com",
         "cc": "email@email.com",
         "bcc": "email@email.net",
