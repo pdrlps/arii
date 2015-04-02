@@ -138,6 +138,18 @@ $(function() {
         }).foundation('joyride', 'start');
     });
 
+        $('#what_integration_new').on('click', function(event) {
+        $(document).foundation({
+            joyride: {
+                template: {
+                    button: '<a href="#" class="small button radius joyride-next-tip"></a>',
+                    prev_button: '<a href="#" class="small button radius joyride-prev-tip"></a>',
+                    wrapper: '<div class="joyride-content-wrapper radius"></div>',
+                }
+            }
+        }).foundation('joyride', 'start');
+    });
+
 });
 
 

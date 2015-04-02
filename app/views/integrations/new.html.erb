@@ -5,6 +5,9 @@
     <h3 class="subheader">New integration</h3>
   </div>
   <div class="small-12 medium-6 large-6 columns right">
+    <ul class="inline-list right">
+      <li><a href="#" id="what_integration_new" class="button small radius warning icon-help">What is this?</a></li>
+    </ul>
   </div>
 </div>
 <div class="row">
@@ -142,9 +145,34 @@
     </div>
   </div>
 </div>
-
 <!-- local install modal -->
 <div id="install_local" class="reveal-modal" data-reveal aria-labelledby="install_local" aria-hidden="true" role="dialog">
   <%= render "install/local" %>
   <a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>
+<!-- joyride tour -->
+<ol class="joyride-list" data-joyride>
+  <li data-id="what_integration_new" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:none">
+    <p>This is the new integration wizard.</p>
+  </li>
+  <li data-id="tab_link_details" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+    <h4>Details</h4>
+    <p>Setup a new Integration easily.</p>
+  </li>
+  <li data-id="tab_link_input" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+    <h4>Input</h4>
+    <p>Here you setup the integration inputs. You can select from existing inputs or create a new one. </p>
+  </li>
+  <li data-id="tab_link_output" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <h4>Output</h4>
+    <p>Here you setup the integration inputs. You can select from existing outputs or create a new one. </p>
+  </li>
+  <li data-id="tab_link_review" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+    <h4>Review</h4>
+    <p>Here we show your integration details for review.</p>
+  </li>
+  <li data-button="End" data-prev-text="Prev">
+    <h4>More info?</h4>
+    <p>If you need any additional information, check the our <%= link_to 'how to', {:controller => '/how'}, :class => 'icon-how' %> videos or the <%= link_to 'full documentation', {:controller => '/docs'}, :class => 'icon-docs' %>.</p>
+  </li>
+</ol>

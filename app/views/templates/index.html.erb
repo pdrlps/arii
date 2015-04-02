@@ -181,26 +181,25 @@
       </div>
     </div>
   </div>
-
   <!-- joyride tour -->
   <ol class="joyride-list" data-joyride>
     <li data-id="what_output" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:fade">
       <p>This is your outputs workspace.</p>
     </li>
-    <li data-id="outputs_header" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade; tip_location: bottom;">
-      <h4>Outputs list.</h4>
-      <p>This list includes all your outputs, where you can check the output details.</p>
-    </li>
     <li data-id="create_output_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
       <h4>Create output.</h4>
-      <p>Click here to launch the new output wizard.</p>
+      <p>Setup a new Outut easily.</p>
+    </li>
+    <li data-id="outputs_header" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade; tip_location: bottom;">
+      <h4>Outputs list.</h4>
+      <p>Here you have all active or paused outputs you made and with shortcuts to View and Edit output.</p>
     </li>
     <li data-id="output_samples" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
       <h4>Samples list.</h4>
-      <p>If you're in a hurry, start by adding a sample output from this list!</p>
+      <p>Here you can find sample outputs that you can pick up to setup your output faster. Just click “Add” and configure it!</p>
     </li>
     <li data-button="End" data-prev-text="Prev">
-      <h4>More questions?</h4>
-      <p>Check the full documentation, the demo videos or our <%= link_to 'sample use cases', {:controller => '/use_cases'} %>!</p>
+      <h4>More info?</h4>
+      <p>If you need any additional information, check the our <%= link_to 'how to', {:controller => '/how'}, :class => 'icon-how' %> videos or the <%= link_to 'full documentation', {:controller => '/docs'}, :class => 'icon-docs' %>.</p>
     </li>
   </ol>

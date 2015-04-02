@@ -1,58 +1,56 @@
 <%= form_for(@beta, url: betas_path,  :remote => true, :data  => {:abide => ''}) do |f| %>
-  <% if @beta.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@beta.errors.count, "error") %> prohibited this beta from being saved:</h2>
-
-      <ul>
-      <% @beta.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<% if @beta.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@beta.errors.count, "error") %> prohibited this beta from being saved:</h2>
+  <ul>
+    <% @beta.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 <h5 class="subheader">Be an early tester</h5>
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-1 columns">
-          <%= f.label :name, :class => 'right inline', :required => true %>
-        </div>
-        <div class="small-11 columns">
-           <%= f.text_field :name %>
-           <small class="error">Name is required and must be a string.</small>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="row">
+  <div class="small-12 columns">
     <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-1 columns">
-          <%= f.label :email, :class => 'right inline' %>
-        </div>
-        <div class="small-11 columns">
-           <%= f.email_field :email, :required => true %>
-           <small class="error">A valid email address is required.</small>
-        </div>
+      <div class="small-1 columns">
+        <%= f.label :name, :class => 'right inline' %>
+      </div>
+      <div class="small-11 columns">
+        <%= f.text_field :name, :required => true %>
+        <small class="error">Name is required and must be a string.</small>
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="small-12 columns">
-      <div class="row">
-        <div class="small-1 columns">
-          <%= f.label :job, :class => 'right inline' %>
-        </div>
-        <div class="small-11 columns">
-           <%= f.select :job, options_for_select([['Web Developer', 'webdeveloper'], ['Software Engineer', 'softwareengineer'], ['EAI Consultant','eaiconsultant'], ['Investor','investor'],['Entrepreneur','entrepreneur']]), { include_blank: true}, {:tabindex => autotab} %>
-        </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-1 columns">
+        <%= f.label :email, :class => 'right inline' %>
+      </div>
+      <div class="small-11 columns">
+        <%= f.email_field :email, :required => true %>
+        <small class="error">A valid email address is required.</small>
       </div>
     </div>
   </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-1 columns">
+        <%= f.label :job, :class => 'right inline' %>
+      </div>
+      <div class="small-11 columns">
+        <%= f.select :job, options_for_select([['Web Developer', 'webdeveloper'], ['Software Engineer', 'softwareengineer'], ['EAI Consultant','eaiconsultant'], ['Investor','investor'],['Entrepreneur','entrepreneur']]), { include_blank: true}, {:tabindex => autotab} %>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
   <div class="small-12 columns right">
-  <%= f.hidden_field :origin, :value => "#{controller.controller_name}:#{controller.action_name}" %>
+    <%= f.hidden_field :origin, :value => "#{controller.controller_name}:#{controller.action_name}" %>
     <%= f.submit 'Request Beta Access', :class => 'button right success radius' %>
   </div>
 </div>

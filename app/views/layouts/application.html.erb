@@ -48,7 +48,6 @@
                     <li><%= link_to 'How to', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
                   </ul>
                 </li>
-                <li class="divider"></li>
                 <li class="has-tip radius" data-tooltip title="User"><%= user_signed_in? ? link_to("Hi #{(current_user.name ||= current_user.username)}!".html_safe, edit_user_registration_path, :id => 'sidebar_details',:class => 'icon-user sidebar-icon') : link_to('Sign in',new_user_registration_path) %></li>
               </ul>
             </section>

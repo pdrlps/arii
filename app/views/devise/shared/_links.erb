@@ -18,7 +18,7 @@
 		<h5 class="subheader">No account?</h5>
 		<ul class="no-bullet">
 			<%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-			<li><a href="" class="small button radius icon-start primary ">Request Access</a>
+			<li><a href="" class="small button radius icon-start primary" data-reveal-id="request_access">Request Access</a>
 		<%# link_to "Sign up", new_registration_path(resource_name) %></li>
 		<% end -%>
 	</ul>

@@ -2,16 +2,28 @@
 <h3 class="subheader">Events</h3>
 <% unless flash[:notice].nil? then %>
 <div data-alert class="alert-box warning radius">
-  <%= flash[:notice].html_safe %>
-  <a href="#" class="close">&times;</a>
+    <%= flash[:notice].html_safe %>
+    <a href="#" class="close">&times;</a>
 </div>
 <% end %>
-<%= render :partial => "events/filters"%>
-<%= render :partial => "events/events", locals: {:events => @events} %>
 <div class="small-12 medium-12 large-12 columns">
-  <div class="row">
-    <div class="small-12 pagination-centered">
-      <%= paginate @events, :remote => true, :param_name => 'page' %>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+            <%= render :partial => "events/filters"%>
+        </div>
     </div>
-  </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+            <%= render :partial => "events/events", locals: {:events => @events} %>
+        </div>
+    </div>
+    <div class="row">
+        <div class="small-12 medium-12 large-12 columns">
+            <div class="row">
+                <div class="small-12 pagination-centered">
+                    <%= paginate @events, :remote => true, :param_name => 'page' %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

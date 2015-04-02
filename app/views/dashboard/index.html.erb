@@ -1,6 +1,12 @@
 <% content_for :title, "Dashboard - #{ENV["APP_TITLE"]}" %>
+<% unless flash[:notice].nil? then %>
+<div data-alert class="alert-box warning radius">
+    <%= flash[:notice].html_safe %>
+    <a href="#" class="close">&times;</a>
+</div>
+<% end %>
 <div class="small-12 medium-12 large-12 columns">
-    <h3 class="subheader">Dashboard</h3>
+    <h3 class="subheader" id="dashboard_header">Dashboard</h3>
     <div class="row">
         <div class="small-12 medium-4 large-4 columns">
             <div class="row">
@@ -73,7 +79,7 @@
     </div>
     <div class="row">
         <div class="small-12 columns">
-            <h5>Stream</h5>
+            <h5 id="stream_header">Stream</h5>
             <%= render :partial => "events/events_dashboard", locals: {:events => @events} %>
         </div>
         <div class="small-12 columns right">
@@ -82,3 +88,44 @@
         </div>
     </div>
 </div>
+<!-- initial tour -->
+<ol class="joyride-list" data-joyride>
+    <li data-id="lifebuoy" data-text="Next" data-options="tip_animation:fade; prev_button: false">
+        <p>If you have any doubts, press this button to get an explanation of what is needed in each field.</p>
+    </li>
+    <li data-id="request_custom_integration_button" data-class="custom so-awesome" data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade;">
+        <h4>Request Custom Integration</h4>
+        <p>If you need help building an Integration, ask us for a quote.</p>
+    </li>
+    <li data-id="dashboard_header" data-button="Next" data-prev-text="Prev" data-options="tip_location:bottom;tip_animation:fade">
+        <h4>Dashboard</h4>
+        <p>Here is a quick preview of all the Integration, Inputs and Outputs currently setup.</p>
+    </li>
+    <li data-id="stream_header" data-button="Next" data-prev-text="Prev" data-options="tip_location:top;tip_animation:fade">
+        <h4>Stream</h4>
+        <p>Here you can see the latest events from all your integrations!</p>
+    </li>
+    <li data-button="End" data-prev-text="Prev">
+        <h4>More info</h4>
+        <p>If you need any additional information, check the our <%= link_to 'how to', {:controller => '/how'}, :class => 'icon-how' %> videos or the <%= link_to 'full documentation', {:controller => '/docs'}, :class => 'icon-docs' %>.</p>
+    </li>
+</ol>
+<% content_for :javascript_includes do %>
+<script>
+$(document).ready(function() {
+if (!$.cookie('ariip_dashboard')) {
+$(document).foundation({
+joyride: {
+template: {
+button: '<a href="#" class="small button joyride-next-tip info radius"></a>',
+prev_button: '<a href="#" class="small button joyride-prev-tip info radius"></a>'
+}
+}
+}).foundation('joyride', 'start');
+$.cookie('ariip_dashboard', 'ridden', {
+expires: 365
+});
+}
+});
+</script>
+<% end %>
