@@ -1,6 +1,7 @@
 class PricingController < ApplicationController
-    layout 'home'
+  layout 'home'
 
   def index
+    @client = Client.new
   end
 end

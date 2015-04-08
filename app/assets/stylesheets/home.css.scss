@@ -1,8 +1,10 @@
+@import "compass/layout/sticky-footer";
+@include sticky-footer(160px, "#home_content", "#root_footer", "#home_footer");
+
 .dark { color: darken(#8fa1b2, 10%); }
 .home_navbar { padding: 4px; }
 
 /** homepage */
-#home { color: #2C3E50; }
 #home .gigantic { font-size: 256%; }
 #home .huge { font-size: 512%;}
 #home h1 { font-size: 4em; }
@@ -12,10 +14,11 @@
 #home_nav { padding: 4px; background-color: white; width: 100%; position: fixed; }
 #home_list a { color: #2C3E50; }
 #home_list a:hover { color: #7F8C8D; }
-#home_footer { background-color: #34495E; color: white; border-top: solid 1px #2C3E50; bottom: 0; }
+#home_footer { background-color: #34495E; color: white; border-top: solid 1px #2C3E50;}
 #home_footer a { font-size: 80%; color: white; }
 #home_footer a:hover { color: #ECF0F1; text-decoration: underline; }
-.home_footer { width: 100%; background-color: #34495E; }
 #home_footer h5 { color: white; }
 
-.home_tab_content { }
+.use_case {
+    margin: 16px auto;
+}

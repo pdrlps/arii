@@ -11,7 +11,7 @@
             Start using Ariip platform to develop your integration services.
             You can start by trying our platform in Beta and see how it works.
         </p>
-        <a class="button alert radius icon-start">Request Beta Access</a>
+        <a class="button alert radius icon-start" data-reveal-id="request_access">Request Beta Access</a>
         <br/><br/>
     </div>
     <div class="small-12 agent-info info-secondary medium-6 large-6 columns text-center pricing">
@@ -19,7 +19,7 @@
         <p>
             If you need a specific integration made and do not have the required skills or time - challenge us!
         </p>
-        <a class="button success radius icon-star">Request Custom Integration</a>
+        <a class="button success radius icon-star" data-reveal-id="request_integration">Request Custom Integration</a>
         <br/>
         <br/>
     </div>
@@ -32,6 +32,7 @@
 <div class="row">
     <div class="small-12 columns">
         <h2 class="subheader">How is ARiiP used?</h2>
-        <%= link_to 'Check our Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => 'button small expand radius info icon-usecases' %>
+        <%= link_to 'Check our Use Cases', {:controller => '/use_cases', :action => 'index'}, :class => 'button expand radius info icon-usecases' %>
     </div>
 </div>
+<%= render partial: "helper/custom_integration"  %>

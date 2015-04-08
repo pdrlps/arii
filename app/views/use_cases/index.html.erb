@@ -1,15 +1,13 @@
 <% content_for :title, "Use Cases - #{ENV["APP_TITLE"]}" %>
-<h1 class="">Use Cases</h1>
 <div class="row">
-    <%= render "usecases", :selected => 'none' %>
-    <div class="small-12 medium-8 large-8 columns text-center">
-    <i class="icon-infinity gigantic dark_red"></i>
-        <h5 class="subheader">Use case suggestion?</h5>
-        If you have a Use Case you wanted to understand and see how Ariip works on that specific integration problem, just contact us:
-        <%= link_to 'More', {:controller => '/use_cases', :action => 'index'}, :class => 'small button success radius icon-feedback' %>
+    <div class="small-12 columns">
+        <h1 class="">Use Cases</h1>
+        <p>
+            Here are some examples of real-life situations where you can use <strong>ARiiP</strong>.
+        </p>
     </div>
 </div>
-<br />
-<br />
-<br />
-<br />
+<div class="row" data-equalizer>
+    <%= render "usecases", :selected => 'none' %>
+
+</div>

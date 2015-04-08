@@ -304,7 +304,7 @@ a:hover.remove {
 .icon-infinity:before { content: '\e8ad'; }
 .icon-star:before { content: '\e917'; }
 .icon-warning:before { content: '\e8dd'; }
-
+.icon-filter:before { content: '\e89b'; }
 /** legacy */
 .icon-agent:before {
   content: '\e8c7';
@@ -449,6 +449,7 @@ dropdown a:hover {
 }
 #feedback a {
   color: #FFF;
+  display: block;
 }
 #feedback:hover {
   opacity: 1;

@@ -14,12 +14,13 @@
   </div>
 </div>
 <%= render :partial => "events/filters"%>
+<br/>
 <%= render :partial => "events/events", locals: {:events => @events} %>
-<% end %>
 <div class="small-12 medium-12 large-12 columns">
   <div class="row">
     <div class="small-12 pagination-centered">
-      <%= paginate @events, :remote => true, :param_name => 'page' %>
+      <%= paginate @events %>
     </div>
   </div>
 </div>
+<% end %>

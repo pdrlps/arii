@@ -150,7 +150,7 @@ class TemplatesController < ApplicationController
 
     current_user.templates.push @template
     respond_to do |format|
-      format.html { redirect_to @template }
+      format.html { redirect_to edit_output_path(@template) }
     end if @template.save
   end
 

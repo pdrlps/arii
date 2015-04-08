@@ -162,7 +162,7 @@ class AgentsController < ApplicationController
     current_user.agents.push @agent
     if @agent.save then
       respond_to do |format|
-        format.html { redirect_to @agent }
+        format.html { redirect_to edit_input_path(@agent)}
       end
     end
   end

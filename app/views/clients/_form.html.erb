@@ -16,7 +16,7 @@
         <%= f.label :name, :class => 'right inline' %>
       </div>
       <div class="small-10 columns">
-        <%= f.text_field :name, :value => current_user.name ||= current_user.username,  :required => true, :pattern => '[a-zA-Z]+' %>
+        <%= f.text_field :name, :value => current_user.nil? ? '' : current_user.name ||= current_user.username,  :required => true, :pattern => '[a-zA-Z]+' %>
         <small class="error">Name is required and must be a string.</small>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <%= f.label :email,:class => 'right inline' %>
       </div>
       <div class="small-10 columns">
-        <%= f.email_field :email, :value => current_user.email, :required => true %>
+        <%= f.email_field :email, :value => current_user.nil? ? '' : current_user.email, :required => true %>
         <small class="error">A valid email address is required.</small>
       </div>
     </div>
@@ -69,7 +69,7 @@
 <div class="row">
   <div class="small-12 columns right">
     <%= f.hidden_field :origin, :value => "#{controller.controller_name}:#{controller.action_name}" %>
-    <%= f.submit 'Get Quote for Custom Integration', :class => 'button right success radius icon-mail' %>
+    <%= f.submit button ||= 'Get Quote for Custom Integration', :class => 'button right success radius icon-mail' %>
   </div>
 </div>
 <% end %>

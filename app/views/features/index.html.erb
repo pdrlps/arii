@@ -1,42 +1,46 @@
 <% content_for :title, "Features - #{ENV["APP_TITLE"]}" %>
-<h1 class="">Features</h1>
 <div class="row">
-  <div class="small-9 columns">
+  <div class="small-12 columns">
+    <h1 class="">Features</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 medium-7 columns">
     <a name="automation"><h3 class="subheader">Automation</h3></a>
     <p>
       Create automated integration pipelines. No more scripting and manually launching tasks: with
       <strong>ARiiP</strong>, the platform does the work for you.
     </p>
     <p>
-      Deploy local or remote agents to monitor your data, ARiiP will make sure that everything is tracked and will trigger your integrations in realtime.
+      Track local or remote input data, ARiiP will make sure that everything is monitored and will trigger your integrations in realtime.
     </p>
     <p>
       Furthermore, you can develop additional plugins to your systems that will push events data to ARiiP, starting the integration process on demand.
     </p>
   </div>
-  <div class="small-3 columns">
-    <div class="icon-input huge"></div>
+  <div class="small-12 medium-5 columns">
+    <%= link_to(image_tag('inputs.png', :alt => 'Inputs'), image_path('inputs.png'), :class => 'th', :target => '_blank') %>
   </div>
 </div>
 <hr/>
 <div class="row">
-  <div class="small-3 columns">
-    <div class="icon-realtime huge"></div>
+  <div class="small-12 medium-5 columns">
+    <%= link_to(image_tag('stream.png', :alt => 'Realtime'), image_path('stream.png'), :class => 'th', :target => '_blank') %>
   </div>
-  <div class="small-9 columns">
+  <div class="small-12 medium-7 columns">
     <a name="realtime"><h3 class="subheader">Realtime</h3></a>
     <p>No more integration snapshots. Where traditional data integration strategies create a unique version of aggregated data, with
       <strong>ARiiP</strong>
     the integration is continuous and in (near) real time.</p>
     <p>
-      As ARiiP's agents are monitoring your content in a predefined schedule, never miss data because they have not been integrated. The platform ensures
-      that all the data delivered to the configured endpoints are fresh.
+      As ARiiP's input monitors track your content in a predefined schedule, never miss data because they have not been integrated. The platform ensures
+      that all the data delivered to the configured endpoints are fresh. Or simply update your apps to push data into ARiiP, starting the integration processes on demand.
     </p>
   </div>
 </div>
 <hr/>
 <div class="row">
-  <div class="small-9 columns">
+  <div class="small-12 medium-7 columns">
     <a name="integration"><h3 class="subheader">Integration</h3></a>
     <p>Integrate everything. If there&apos;s a way to get the data,
       <strong>ARiiP</strong>
@@ -45,24 +49,25 @@
       Forget writing custom database adapters or XML parsers, ARiiP already features several data acquisition algorithms.
     </p>
   </div>
-  <div class="small-3 columns">
-    <div class="icon-integration huge">
-    </div>
-  </div>
-  <hr/>
-  <div class="row">
-    <div class="small-3 columns">
-      <div class="icon-output huge"></div>
-    </div>
-    <div class="small-9 columns">
-      <a name="interoperability"><h3 class="subheader">Interoperability</h3></a>
-      <p >Delivery endpoints to interoperate with everything. From custom SQL queries, to file appends, to web service calls or sending emails, with
-        <strong>ARiiP</strong>
-      integrated data can be sent anywhere.</p>
-      <p>
-        Our advanced templating engine enables transforming and loading extracted data before delivery. Write custom <code>code</code> or use available functions to modify your data
-        into a more suitable model.
-      </p>
-    </div>
+  <div class="small-12 medium-5 columns">
+    <%= link_to(image_tag('integrations.png', :alt => 'Integrations'), image_path('integrations.png'), :class => 'th', :target => '_blank') %>
   </div>
 </div>
+<hr/>
+<div class="row">
+  <div class="small-12 medium-5 columns">
+    <%= link_to(image_tag('outputs.png', :alt => 'Outputs'), image_path('outputs.png'), :class => 'th', :target => '_blank') %>
+  </div>
+  <div class="small-12 medium-7 columns">
+    <a name="interoperability"><h3 class="subheader">Interoperability</h3></a>
+    <p >Delivery outputs to interoperate with everything. From custom SQL queries, to file appends, to web service calls or sending emails, with
+      <strong>ARiiP</strong>
+    integrated data can be sent anywhere.</p>
+    <p>
+      Our advanced templating engine enables transforming and loading extracted data before delivery. Write custom <code>code</code> or use available functions to modify your data
+      into a more suitable model.
+    </p>
+  </div>
+</div>
+<br />
+<br />

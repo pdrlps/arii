@@ -13,4 +13,7 @@
     <i class="label info lifebuoy">Select the Integration from which you want to see the events</i>
     <%= select_tag 'integrations_filter', options_from_collection_for_select(@integrations, "id", "title"), include_blank: true %>
   </div>
+  <div class="small-12 columns right text-right">
+  <a class="small button success radius icon-filter" title="Filter events" id="events_filter">Filter</a>
+  </div>
 </div>

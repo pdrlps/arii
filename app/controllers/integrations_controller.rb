@@ -249,7 +249,7 @@ class IntegrationsController < ApplicationController
 
     if @agent.save && @template.save && @integration.save then
       respond_to do |format|
-        format.html { redirect_to @integration }
+        format.html { redirect_to edit_integration_path(@integration) }
       end
     end
   end

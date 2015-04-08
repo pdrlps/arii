@@ -17,6 +17,9 @@ class UseCasesController < ApplicationController
   def twitter2file
   end
 
+  def more
+  end
+
   ##
   # => Read the raw content for documentations
   #

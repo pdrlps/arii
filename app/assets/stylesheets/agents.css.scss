@@ -135,9 +135,13 @@ cursor: pointer;
 	font-weight: 700;
 }
 
+ul.off-canvas-list li a {
+margin-left: 4px;
+}
 
 ul.off-canvas-list li a.active {
   border-left: #FFF 4px solid;
+  margin-left: 0;
   background-color:#2C3E50;
 }
 

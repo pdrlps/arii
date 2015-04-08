@@ -1,6 +1,6 @@
 {
     "identifier": "daringfireball_sql",
-    "title": "DaringFireball SQL.",
+    "title": "DaringFireball SQL",
     "help": "Submit DaringFireball content to internal database.",
     "endpoint": "sql",
     "payload": {

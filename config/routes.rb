@@ -137,6 +137,7 @@ ARII::Application.routes.draw do
   get 'use_cases/ticket2email', to: 'use_cases#ticket2email'
   get 'use_cases/github2database', to: 'use_cases#github2database'
   get 'use_cases/twitter2file', to: 'use_cases#twitter2file'
+  get 'use_cases/more', to: 'use_cases#more'
 
   # Authentication
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }

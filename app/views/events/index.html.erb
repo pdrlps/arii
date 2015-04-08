@@ -1,29 +1,26 @@
-<% content_for :title, "Events page #{params[:page]} - #{ENV["APP_TITLE"]}" %>
-<h3 class="subheader">Events</h3>
 <% unless flash[:notice].nil? then %>
+<% content_for :title, "Events - #{ENV["APP_TITLE"]}" %>
 <div data-alert class="alert-box warning radius">
     <%= flash[:notice].html_safe %>
     <a href="#" class="close">&times;</a>
 </div>
-<% end %>
+<% else %>
+<% content_for :title, "Events - #{params[:page]} - #{ENV["APP_TITLE"]}" %>
+<div class="row">
+    <div class="small-6 columns left">
+        <h3 class="subheader"><%= @events.count %> Events</h3>
+    </div>
+    <div class="small-6 columns right">
+    </div>
+</div>
+<%= render :partial => "events/filters"%>
+<br/>
+<%= render :partial => "events/events", locals: {:events => @events} %>
 <div class="small-12 medium-12 large-12 columns">
     <div class="row">
-        <div class="small-12 medium-12 large-12 columns">
-            <%= render :partial => "events/filters"%>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12 medium-12 large-12 columns">
-            <%= render :partial => "events/events", locals: {:events => @events} %>
-        </div>
-    </div>
-    <div class="row">
-        <div class="small-12 medium-12 large-12 columns">
-            <div class="row">
-                <div class="small-12 pagination-centered">
-                    <%= paginate @events, :remote => true, :param_name => 'page' %>
-                </div>
-            </div>
+        <div class="small-12 pagination-centered">
+            <%= paginate @events %>
         </div>
     </div>
 </div>
+<% end %>

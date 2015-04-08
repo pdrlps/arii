@@ -1,28 +1,41 @@
 <% unless selected == 'online2rest' %>
-<div class="small-6 medium-4 large-4 columns text-center">
+<div class="small-6 medium-4 large-4 columns text-center use_case left" data-equalizer>
     <i class="icon-browser gigantic dark_red"></i><i class="icon-small-right gigantic dark_red"></i><i class="icon-cog gigantic dark_red"></i>
     <h5 class="subheader">Online form to REST service</h5>
     <%= link_to 'More', {:controller => '/use_cases', :action => 'online2rest'}, :class => 'small button info radius icon-more' %>
 </div>
 <% end %>
 <% unless selected == 'ticket2email' %>
-<div class="small-6 medium-4 large-4 columns text-center">
+<div class="small-6 medium-4 large-4 columns text-center use_case left" data-equalizer>
     <i class="icon-ticket gigantic dark_red"></i><i class="icon-small-right gigantic dark_red"></i><i class="icon-mail gigantic dark_red"></i>
     <h5 class="subheader">Local ticketing to Email</h5>
     <%= link_to 'More', {:controller => '/use_cases', :action => 'ticket2email'}, :class => 'small button info radius icon-more' %>
 </div>
 <% end %>
 <% unless selected == 'github2database' %>
-<div class="small-6 medium-4 large-4 columns text-center">
+<div class="small-6 medium-4 large-4 columns text-center use_case left" data-equalizer>
     <i class="icon-github gigantic dark_red"></i><i class="icon-small-right gigantic dark_red"></i><i class="icon-database gigantic dark_red"></i>
     <h5 class="subheader">GitHub issues to Database</h5>
     <%= link_to 'More', {:controller => '/use_cases', :action => 'github2database'}, :class => 'small button info radius icon-more' %>
 </div>
 <% end %>
 <% unless selected == 'twitter2file' %>
-<div class="small-6 medium-4 large-4 columns text-center">
+<div class="small-6 medium-4 large-4 columns text-center use_case left" data-equalizer>
     <i class="icon-twitter gigantic dark_red"></i><i class="icon-small-right gigantic dark_red"></i><i class="icon-files gigantic dark_red"></i>
     <h5 class="subheader">Twitter mentions to local File</h5>
     <%= link_to 'More', {:controller => '/use_cases', :action => 'twitter2file'}, :class => 'small button info radius icon-more' %>
 </div>
 <% end %>
+<% unless selected == 'more' %>
+<div class="small-6 medium-4 large-4 columns text-center use_case left" data-equalizer>
+    <i class="icon-infinity gigantic dark_red"></i>
+    <h5 class="subheader">Integrate Everything</h5>
+    <%= link_to 'More', {:controller => '/use_cases', :action => 'more'}, :class => 'small button info radius icon-more' %>
+</div>
+<% end %>
+<div class="small-12 medium-4 large-4 columns text-center use_case left"  data-equalizer>
+    <i class="icon-star gigantic dark_grey"></i>
+    <h5 class="subheader">Have a specific challenge?</h5>
+    <!--<p>If you need to integrate data &amp; services and want to understand how <strong>ARiiP</strong> can help...</p>-->
+    <a class="small button icon-star radius success" data-reveal-id="request_integration">Challenge us</a>
+</div>

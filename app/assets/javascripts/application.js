@@ -70,16 +70,28 @@ $(function() {
      * Events
      */
 
-    // redirect on inputs filter change
+    // filter action
+    $('#events_filter').on('click', function(event) {
+        event.preventDefault();
+        if ($('#inputs_filter').val() != '') {
+            window.location = '/events/input/' + $('#inputs_filter').val();
+        } else if ($('#integrations_filter').val() != '') {
+            window.location = '/events/integration/' + $('#integrations_filter').val();
+        } else {
+            window.location = '/events';
+        }
+
+    });
+    // updates on inputs filter change
     $('#inputs_filter').on('change', function(event) {
         event.preventDefault();
-        window.location = '/events/input/' + $(this).val();
+        $('#integrations_filter').val('');
     })
 
     // redirect on integrations filter change
     $('#integrations_filter').on('change', function(event) {
         event.preventDefault();
-        window.location = '/events/integration/' + $(this).val();
+        $('#inputs_filter').val('');
     })
 
 

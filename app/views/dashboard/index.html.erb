@@ -77,9 +77,10 @@
             <% end %>
         </div>
     </div>
+    <hr />
     <div class="row">
         <div class="small-12 columns">
-            <h5 id="stream_header">Stream</h5>
+            <h5 id="stream_header">Stream <small>Your latest events</small></h5>
             <%= render :partial => "events/events_dashboard", locals: {:events => @events} %>
         </div>
         <div class="small-12 columns right">

@@ -47,10 +47,11 @@
         </div>
         <!-- navbar end -->
         <!-- Start main content -->
-        <div class="row" id="home_content">
+        <div class="row animated fadeIn" id="home_content">
           <div class="small-12 columns">
             <%= yield %>
           </div>
+          <div id="root_footer"></div>
         </div>
         <!-- Finish main content -->
         <!-- Footer -->
@@ -92,6 +93,8 @@
           </div>
         </div>
         <%= render partial: "helper/requestaccess"  %>
+        <!-- Send challenge modal -->
+        <%= render "helper/custom_integration", :title => 'Challenge us', :button => 'Send challenge'  %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript_includes %>
         <!-- HotJar -->
