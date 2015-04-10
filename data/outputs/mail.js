@@ -2,8 +2,8 @@
     "identifier": "daringfireball_mail",
     "title": "DaringFireball mail.",
     "help": "Send DaringFireball data via mail.",
-    "publisher": "mail",
-    "endpoint": {
+    "endpoint": "mail",
+    "payload": {
         "to": "pedrolopes@ariip.com",
         "cc": "email@email.com",
         "bcc": "email@email.net",

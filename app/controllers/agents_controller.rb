@@ -233,29 +233,45 @@ class AgentsController < ApplicationController
       @input = current_user.agents.find(params[:id])#, :select => 'identifier, publisher, payload')
 
       if @input.schedule == 'local'
-
-
         @inputs = Array.new
-        input = Hash.new
-        input[:identifier] = @input[:identifier]
-        input[:publisher] = @input[:publisher]
-        input[:payload] = @input[:payload]
-        @inputs.push input
-        @client = Hash.new
-        @server = Hash.new
-        @server[:host] = ENV["APP_HOST"]
-        @server[:name] = ENV["APP_TITLE"]
-        @server[:access_token] = key
-        @client[:server] = @server
-        @client[:agents] = @inputs
+
+        begin
+          input = Hash.new
+          input[:identifier] = @input[:identifier]
+          input[:publisher] = @input[:publisher]
+          payload = @input[:payload]
+          selectors = Array.new
+          s = JSON.parse(@input[:payload][:selectors])
+          s.each do |k|
+            k.each do |i,v|
+              a = Hash.new
+              a[i] = v
+              selectors.push a
+            end
+          end
+          payload[:selectors] = selectors
+          input[:payload] = payload
+          @inputs.push input
+          @client = Hash.new
+          @server = Hash.new
+          @server[:host] = ENV["APP_HOST"]
+          @server[:name] = ENV["APP_TITLE"]
+          @server[:access_token] = key
+          @client[:server] = @server
+          @client[:agents] = @inputs
+        rescue Exception => e
+          Services::Slog.exception e
+        end
+
+
         respond_to do |format|
           format.json  {
             #render :json => @client
-            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}.js", :type => 'application/json', :disposition => 'attachment'
+            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}", :type => 'application/json', :disposition => 'attachment'
           }
           format.js  {
             #render :json => @client
-            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}.js", :type => 'application/json', :disposition => 'attachment'
+            send_data JSON.pretty_generate(@client), :filename => "#{@input[:identifier]}", :type => 'application/json', :disposition => 'attachment'
           }
         end
       end

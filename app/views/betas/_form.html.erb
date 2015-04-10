@@ -43,7 +43,7 @@
         <%= f.label :job, :class => 'right inline' %>
       </div>
       <div class="small-11 columns">
-        <%= f.select :job, options_for_select([['Web Developer', 'webdeveloper'], ['Software Engineer', 'softwareengineer'], ['EAI Consultant','eaiconsultant'], ['Investor','investor'],['Entrepreneur','entrepreneur']]), { include_blank: true}, {:tabindex => autotab} %>
+        <%= f.select :job, options_for_select([  ['EAI Consultant','eaiconsultant'], ['Entrepreneur','entrepreneur'],['Investor','investor'],['IT Manager','itmanager'], ['Software Engineer', 'softwareengineer'],['Web Developer', 'webdeveloper'], ['Other','other']]), { include_blank: true}, {:tabindex => autotab} %>
       </div>
     </div>
   </div>

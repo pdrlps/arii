@@ -71,12 +71,15 @@ class FluxCapacitorController < ApplicationController
       end
     rescue Exception => e
       Services::Slog.exception e
-      render(:file => File.join(Rails.root, 'public/403.html'), :status => 403, :layout => false)
+      render :json => {:status => 403, :exception => e}
     end
+
+
     respond_to do |format|
       format.json  {
         render :json => {:cache => @cache, :templates => @templates}
       }
+
     end
   end
 

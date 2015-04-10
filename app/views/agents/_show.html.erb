@@ -63,30 +63,39 @@
       <%= agent.help %>
     </div>
     <hr>
+    <% if (agent.schedule == 'push') %>
     <div class="row">
       <div class="small-12 columns">
-        <h4 class="subheader">Publisher</h4>
-        <% if agent.publisher == 'sql' then %>
-        <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
-        <% end %>
-        <% if agent.publisher == 'xml' then %>
-        <%= render partial: "agents/show_xml", locals: {:agent => agent}%>
-        <% end %>
-        <% if agent.publisher == 'json' then %>
-        <%= render partial: "agents/show_json", locals: {:agent => agent}%>
-        <% end %>
-        <% if agent.publisher == 'csv' then %>
-        <%= render partial: "agents/show_csv", locals: {:agent => agent}%>
-        <% end %>
-        <% if agent.publisher == 'excel' then %>
-        <%= render partial: "agents/show_excel", locals: {:agent => agent}%>
-        <% end %>
-      </div>
+        <h4 class="subheader">Push</h4>
+        Use the following URL for push-based data input.
+      <pre><%= "#{ENV['APP_HOST']}push/#{agent.identifier}.json" %></pre>
+    </div>
+  </div>
+  <% end %>
+  <div class="row">
+    <div class="small-12 columns">
+      <h4 class="subheader">Publisher</h4>
+      <% if agent.publisher == 'sql' then %>
+      <%= render partial: "agents/show_sql", locals: {:agent => agent}%>
+      <% end %>
+      <% if agent.publisher == 'xml' then %>
+      <%= render partial: "agents/show_xml", locals: {:agent => agent}%>
+      <% end %>
+      <% if agent.publisher == 'json' then %>
+      <%= render partial: "agents/show_json", locals: {:agent => agent}%>
+      <% end %>
+      <% if agent.publisher == 'csv' then %>
+      <%= render partial: "agents/show_csv", locals: {:agent => agent}%>
+      <% end %>
+      <% if agent.publisher == 'excel' then %>
+      <%= render partial: "agents/show_excel", locals: {:agent => agent}%>
+      <% end %>
     </div>
   </div>
 </div>
+</div>
 <!-- local install modal -->
 <div id="install_local" class="reveal-modal" data-reveal aria-labelledby="install_local" aria-hidden="true" role="dialog">
-  <%= render "install/local" %>
-  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+<%= render "install/local" %>
+<a class="close-reveal-modal" aria-label="Close">&#215;</a>
 </div>

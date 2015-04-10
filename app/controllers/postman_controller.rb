@@ -15,7 +15,7 @@ class PostmanController < ApplicationController
     begin
       @template = Template.find_by! identifier: params[:identifier]
 
-      case @template[:publisher]
+      case @template[:endpoint]
       when 'sql'
         @delivery = Services::SQLTemplate.new @template
       when 'file'
@@ -87,16 +87,16 @@ class PostmanController < ApplicationController
 
   def load
     begin
-      @t = Template.where(identifier: params[:identifier], publisher: params[:publisher])
+      @t = Template.where(identifier: params[:identifier], endpoint: params[:endpoint])
       if @t.count > 0 then
         response = { :status => "402", :message => "[ARiiP]: output #{params[:identifier]} already exists"}
       else
-        attrs = JSON.parse(IO.read("templates/#{params[:publisher]}/#{params[:identifier]}.js"))
+        attrs = JSON.parse(IO.read("templates/#{params[:endpoint]}/#{params[:identifier]}.js"))
         t = Template.create! attrs
         response = { :status => "200", :message => "[ARiiP]: outut #{params[:identifier]} loaded", :id => "#{t[:id]}" }
       end
     rescue
-      response = { :status => "401", :message => "Error: output not found for #{params[:publisher]} with name #{params[:key]}.", :error =>  $!}
+      response = { :status => "401", :message => "Error: output not found for #{params[:endpoint]} with name #{params[:key]}.", :error =>  $!}
       Services::Slog.exception e
     end
 
@@ -120,7 +120,7 @@ class PostmanController < ApplicationController
 
     t = Template.find_by identifier: params[:identifier]
 
-    if t[:publisher] == 'sql' then
+    if t[:endpoint] == 'sql' then
       @lol = t[:payload][:host] #[:method]
     else
       @lol = t[:payload][:uri]

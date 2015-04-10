@@ -1,12 +1,22 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :login %><br />
-  <%= f.email_field :login, :autofocus => true %></div>
-
-  <div><%= f.submit "Send me reset password instructions", :class => 'button success radius small' %></div>
-<% end %>
-
+<div class="row">
+    <div class="small-12 columns">
+        <h1>Forgot your password?</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+        <%= devise_error_messages! %>
+        <div><%= f.label :login %><br />
+        <%= f.email_field :login, :autofocus => true %></div>
+        <div><%= f.submit "Send me reset password instructions", :class => 'button success radius' %></div>
+        <% end %>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="panel radius  alert-box">
+        Please check your SPAM mailbox or add <strong>noreply@ariip.com</strong> to your contacts list.
+    </div>
+</div>
 <%= render "devise/shared/links" %>

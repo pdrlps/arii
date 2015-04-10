@@ -40,7 +40,7 @@
         <strong class="right inline">Message</strong>
       </div>
       <div class="small-10 columns">
-        <%= highlight_variables(template[:payload][:message]) %>
+        <%= highlight_variables(template[:payload][:message]).html_safe %>
       </div>
     </div>
   </div>

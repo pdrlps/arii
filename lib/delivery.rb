@@ -10,12 +10,12 @@ module Services
   # Main Delivery class, to be inherited by SQL, File and URL templates
   #
   class Delivery
-    attr_accessor :template, :identifier, :publisher
+    attr_accessor :template, :identifier, :endpoint
 
     def initialize template
       begin
         @identifier = template[:identifier]
-        @publisher = template[:publisher]
+        @endpoint = template[:endpoint]
         @template = template
         @help = Services::Helper.new
 

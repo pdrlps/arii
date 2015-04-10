@@ -1,4 +1,6 @@
-<% content_for :title, "Features - #{ENV["APP_TITLE"]}" %>
+<% content_for :title, "#{ENV["APP_TITLE"]} - Features | Integration Platform for Developers" %>
+<% content_for :meta_description, '<meta name="description" content="Discover all about our Features: Automation, Realtime, Integration and Interoperability. ARiiP is an Integration-as-a-Service platform for developers and companies." />'.html_safe %>
+<% content_for :meta_keywords, '<meta name="keywords" content="ariip, integration, integration-as-a-service, iaas, ipaas, create integration, cloud integration, local integration, features" />'.html_safe %>
 <div class="row">
   <div class="small-12 columns">
     <h1 class="">Features</h1>
@@ -19,13 +21,13 @@
     </p>
   </div>
   <div class="small-12 medium-5 columns">
-    <%= link_to(image_tag('inputs.png', :alt => 'Inputs'), image_path('inputs.png'), :class => 'th', :target => '_blank') %>
+    <%= link_to(image_tag('automation_feature_inputs.png', :alt => 'automation feature for inputs'), image_path('automation_feature_inputs.png'), :class => 'th', :target => '_blank') %>
   </div>
 </div>
 <hr/>
 <div class="row">
   <div class="small-12 medium-5 columns">
-    <%= link_to(image_tag('stream.png', :alt => 'Realtime'), image_path('stream.png'), :class => 'th', :target => '_blank') %>
+    <%= link_to(image_tag('realtime_feature_stream_events.png', :alt => 'realtime feature with stream of events'), image_path('realtime_feature_stream_events.png'), :class => 'th', :target => '_blank') %>
   </div>
   <div class="small-12 medium-7 columns">
     <a name="realtime"><h3 class="subheader">Realtime</h3></a>
@@ -50,13 +52,13 @@
     </p>
   </div>
   <div class="small-12 medium-5 columns">
-    <%= link_to(image_tag('integrations.png', :alt => 'Integrations'), image_path('integrations.png'), :class => 'th', :target => '_blank') %>
+    <%= link_to(image_tag('integrations.png', :alt => 'integrations for everything'), image_path('integrations.png'), :class => 'th', :target => '_blank') %>
   </div>
 </div>
 <hr/>
 <div class="row">
   <div class="small-12 medium-5 columns">
-    <%= link_to(image_tag('outputs.png', :alt => 'Outputs'), image_path('outputs.png'), :class => 'th', :target => '_blank') %>
+    <%= link_to(image_tag('interoperability_feature_outputs.png', :alt => 'interoperability for outputs'), image_path('interoperability_feature_outputs.png'), :class => 'th', :target => '_blank') %>
   </div>
   <div class="small-12 medium-7 columns">
     <a name="interoperability"><h3 class="subheader">Interoperability</h3></a>

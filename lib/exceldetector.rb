@@ -62,7 +62,8 @@ module Services
               @payloads.push payload
             end
           end
-        else if object[:uri].ends_with? 'xls'
+        end
+        if object[:uri].ends_with? 'xls'
           Spreadsheet.client_encoding = 'UTF-8'
           book = Spreadsheet.open(open(object[:uri]))
 
@@ -102,5 +103,4 @@ module Services
       Services::Slog.exception e
     end
   end
-end
 end

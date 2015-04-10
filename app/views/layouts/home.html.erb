@@ -11,13 +11,16 @@
       <!--[if (gte IE 9)|!(IE)]><!-->
       <html lang="en"> <!--<![endif]-->
       <head>
+        <title><%= content_for?(:title) ? yield(:title) : "#{ENV['APP_TITLE']} | Integration Platform for Developers" %></title>
+        <%= favicon_link_tag 'favicon.ico' %>
         <meta charset="utf-8" />
         <!-- Uncomment to make IE8 render like IE7 -->
         <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
         <!-- Set the viewport width to device width for mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <%= favicon_link_tag 'favicon.ico' %>
-        <title><%= content_for?(:title) ? yield(:title) : ENV["APP_TITLE"] %></title>
+        <%= content_for?(:meta_keywords) ? yield(:meta_keywords) : '<meta name="keywords" content=“ariip, integration, integration-as-a-service, iaas, ipaas, create integration, cloud integration, local integration” />'.html_safe %>
+        <%= content_for?(:meta_description) ? yield(:meta_description) : '<meta name="description" content="ARiiP provides an Integration-as-a-Service platform to allow developers and companies to easily develop and manage their own integrations, be it local or cloud based." />'.html_safe %>
+
         <%= stylesheet_link_tag    "application" %>
         <%= stylesheet_link_tag    "animate.min" %>
         <%= javascript_include_tag "custom.modernizr" %>
@@ -68,7 +71,7 @@
                     <li class="icon-pricing"><%= link_to 'Pricing', {:controller => '/pricing', :action => 'index'}, :class => '' %></li>
                     <li class="icon-features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
                     <li class="icon-how"><%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => '' %></li>
-                    <li class="icon-usecases"><%= link_to 'Use cases', {:controller => '/how', :action => 'index'}, :class => '' %></li>
+                    <li class="icon-usecases"><%= link_to 'Use cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
                   </ul>
                 </div>
                 <div class="small-12 medium-4 large-4 columns" data-equalizer>
@@ -94,7 +97,7 @@
         </div>
         <%= render partial: "helper/requestaccess"  %>
         <!-- Send challenge modal -->
-        <%= render "helper/custom_integration", :title => 'Challenge us', :button => 'Send challenge'  %>
+        <%= render "helper/custom_integration", :title => 'Challenge us', :button => 'Send challenge', :message => 'If you have a specific problem to integrate &amp; services and want to understand how <strong>ARiiP</strong> can help you, just challenge us!'.html_safe  %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript_includes %>
         <!-- HotJar -->

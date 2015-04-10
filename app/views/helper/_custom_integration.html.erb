@@ -1,5 +1,6 @@
 <div id="request_integration" class="reveal-modal" data-reveal>
     <h2><%= title ||= 'Get a Quote for Custom Integration!' %></h2>
+    <p><%= message ||= '' %></p>
     <div id="client_message">
         <%= defined?(button) ? render('clients/form', :button => button) : render('clients/form')%>
     </div>

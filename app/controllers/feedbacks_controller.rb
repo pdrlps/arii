@@ -4,6 +4,8 @@ class FeedbacksController < ApplicationController
   respond_to :html
 
   def index
+    @feedback = Feedback.new
+    @client = Client.new
     unless user_signed_in?
       redirect_to root_url
       return
@@ -17,10 +19,14 @@ class FeedbacksController < ApplicationController
   end
 
   def show
+    @feedback = Feedback.new
+    @client = Client.new
     respond_with(@feedback)
   end
 
   def new
+    @feedback = Feedback.new
+    @client = Client.new
     @feedback = Feedback.new
     respond_with(@feedback)
   end
