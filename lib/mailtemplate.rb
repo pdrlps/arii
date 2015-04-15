@@ -27,7 +27,7 @@ module Services
 
         mail.cc = @template[:payload][:cc]
         mail.content_type = 'text/html; charset=UTF-8'
-        mail.body = "#{@template[:payload][:message]}<br /><a href=\"http://ariip.com\"><img src=\"http://ariip.com/images/logo.png\" align=\"ARiiP\"></a><br />Message sent automatically via <a href=\"http://ariip.com/\">ARiiP</a>"
+        mail.body = "#{@template[:payload][:message]}<br /><a href=\"https://ariip.com\"><img src=\"https://ariip.com/images/logo.png\" align=\"ARiiP\"></a><br />Message sent automatically via <a href=\"https://ariip.com/\">ARiiP</a>"
 
 
         mail.deliver

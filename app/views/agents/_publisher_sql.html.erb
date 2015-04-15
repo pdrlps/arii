@@ -67,7 +67,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy text-left">Specify the caching element of your dataset. <br />This the column from your SQL query results that will be used to verify if each row is unique.</i>
-    <input id="agent_payload_cache" tabindex="<%= autotab %>" name="agent[cache]" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  type="text" />
+    <input id="agent_payload_cache" tabindex="<%= autotab %>" name="agent[cache]" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"placeholder="E.g.: id"   type="text" />
   </div>
 </div>
 <div class="row">

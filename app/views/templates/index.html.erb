@@ -16,6 +16,14 @@
       </ul>
     </div>
   </div>
+  <% if (@templates.size == 0) %>
+  <div class="row">
+    <div class="small-12 columns">
+      Outputs define where your data will be delivered.<br /><br/>
+      <h5 class="subheader">Start <%= link_to 'creating a new output', new_output_path, :class => '' %> or adding one from the samples below.</h5>
+    </div>
+  </div>
+  <% end %>
   <% @templates.each do |template| %>
   <div id="output_details_<%= template.id %>" class="row agent-info <%= (template.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-12 medium-1 large-1 columns">

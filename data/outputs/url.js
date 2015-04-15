@@ -5,6 +5,6 @@
 	"endpoint": "url",
 	"payload": {
 		"method": "get",
-		"uri": "http://ariip.com/fluxcapacitor/ping/%{id}"
+		"uri": "https://ariip.com/fluxcapacitor/ping/%{id}"
 	}
 }

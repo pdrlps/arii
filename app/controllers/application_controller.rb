@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     if Rails.env.production?
       {
         :host => "ariip.com",
-        :protocol => 'http://'
+        :protocol => 'https://'
       }
     else
       {}

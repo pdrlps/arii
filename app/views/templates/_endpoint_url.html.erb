@@ -4,7 +4,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the endpoint URI.</i>
-    <input type="url" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" required id="publisher_url_uri" placeholder="E.g.: http://ariip.com/..." />
+    <input type="url" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" required id="publisher_url_uri" placeholder="E.g.: https://ariip.com/..." required />
+    <small class="error">URL endpoints require a valid destination route.</small>
   </div>
 </div>
 <div class="row">

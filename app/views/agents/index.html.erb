@@ -17,6 +17,15 @@
       </ul>
     </div>
   </div>
+    <% if (@agents.size == 0) %>
+  <div class="row">
+    <div class="small-12 columns">
+      Inputs define where your data comes from.<br />
+      <br />
+      <h5 class="subheader">Start by <%= link_to 'creating a new input', new_input_path, :class => '' %> or adding one from the samples below.</h5>
+    </div>
+  </div>
+  <% end %>
   <% @agents.each do |agent| %>
   <div id="input_details_<%= agent.id %>" class="row agent-info <%= (agent.status == 100) ? 'info-enabled' : 'info-disabled'  %>">
     <div class="small-12 medium-1 large-1 columns">
@@ -87,6 +96,38 @@
         <div class="small-8 medium-10 large-10 columns">
           <ul class="no-bullet left">
             <li><span class="label secondary radius icon-publisher">sql</span></li>
+            <li><span class="label secondary radius icon-schedule">1d</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row agent-info info-secondary">
+    <div class="small-1 medium-1 large-1 columns left">
+      &nbsp;
+    </div>
+    <div class="small-11 medium-7 large-7 columns">
+      <div class="info-details">
+        <h6 class="subheader">Local SQL Input</h6>
+      </div>
+    </div>
+    <div class="small-1 medium-1 large-1 columns">
+      <span class="label right radius secondary input_details_toggle" data-id="sample7"><i class="icon-tag"></i></span>
+    </div>
+    <div class="small-11 medium-3 large-3 columns right">
+      <span class="has-tip tip-top radius right" data-tooltip title="Add sample Local SQL input"><%= link_to 'Add', {:controller => 'agents', :action => 'add', :identifier => 'local'}, :class => 'icon-add radius small button info',:title => 'Add sample Local SQL input' %></span>
+    </div>
+    <!-- details -->
+    <div class="small-12 medium-12 large-12 columns">
+      <div class="row input_details" id="details_input_sample7" >
+        <div class="small-2 medium-1 large-1 columns ">
+          &nbsp;
+        </div>
+        <div class="small-2 medium-1 large-1 columns icon-input">
+        </div>
+        <div class="small-8 medium-10 large-10 columns">
+          <ul class="no-bullet left">
+            <li><span class="label secondary radius icon-publisher">local</span></li>
             <li><span class="label secondary radius icon-schedule">1d</span></li>
           </ul>
         </div>
@@ -223,10 +264,10 @@
   </div>
   <!-- joyride tour -->
   <ol class="joyride-list" data-joyride>
-    <li data-id="what_input" data-text="Next" data-options="tip_location: top; prev_button: false;tip_animation:fade">
+    <li data-id="what_input" data-text="Next" data-options="tip_location: bottom; prev_button: false;tip_animation:fade">
       <p>This is your inputs workspace.</p>
     </li>
-    <li data-id="create_input_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_animation:fade">
+    <li data-id="create_input_button" data-class="custom " data-text="Next" data-prev-text="Prev" data-options="tip_location: left;tip_animation:fade">
       <h4>Create input.</h4>
       <p>Setup a new Input easily.</p>
     </li>

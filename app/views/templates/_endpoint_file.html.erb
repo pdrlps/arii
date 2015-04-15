@@ -13,7 +13,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the file path (within your workspace).</i>
-    <input type="text" id="publisher_file_uri" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" placeholder="E.g.: log_this.csv" />
+    <input type="text" id="publisher_file_uri" tabindex="<%= autotab %>" value="<%= template.uri.nil? ? '' : template.uri %>" name="template[uri]" placeholder="E.g.: log_this.csv" required />
+    <small class="error">File endpoints require a valid file name.</small>
   </div>
 </div>
 <div class="row">

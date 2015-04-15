@@ -33,7 +33,7 @@ A [Detector][] monitors delimited files accessible through a valid URI (`http://
     {
       "publisher": "csv",
       "payload": {
-        "uri": "http://ariip.com/",
+        "uri": "https://ariip.com/",
         "cache": "0",
         "headers": "on",
         "delimiter": "\n",
@@ -380,7 +380,7 @@ This URL Route POSTs extracted data to the defined URL route. [Action Fields][ac
 
 The destination URL for the request.
 
-**Example**: http://ariip.com/postman/%{id}, http://bmd-software.com/
+**Example**: https://ariip.com/postman/%{id}, http://bmd-software.com/
 
 **Property**: `uri` (maps to `ARiiP:uri`)
 

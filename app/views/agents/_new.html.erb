@@ -1,4 +1,4 @@
-<%= form_for(@agent, :remote => true) do |f| %>
+<%= form_for(@agent, :remote => true, :data  => {:abide => ''}) do |f| %>
 <% if @agent.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@agent.errors.count, "error") %>
@@ -47,7 +47,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Set the input title.</i>
-    <%= f.text_field :title, :tabindex => autotab %>
+    <%= f.text_field :title, :required => true, :tabindex => autotab, :placeholder => 'E.g.: my input' %>
+    <small class="error">Input title is required and must be a string.</small>
   </div>
 </div>
 <div class="row">
@@ -56,7 +57,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide a general input description.</i>
-    <%= f.text_area :help, :tabindex => autotab %>
+    <%= f.text_area :help, :tabindex => autotab, :placeholder => 'E.g.: my input description'%>
   </div>
 </div>
 <div class="row input_area" id="input_area_schedule">
@@ -78,7 +79,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Select the input data publisher type.</i>
-    <%= f.select  :publisher, options_for_select([['SQL', 'sql'], ['CSV', 'csv'],['Excel', 'excel'], ['XML','xml'], ['JSON','json']]), {:selected => 'sql'}, {:tabindex => autotab} %>
+    <%= f.select :publisher, options_for_select([['SQL', 'sql'], ['CSV', 'csv'],['Excel', 'excel'], ['XML','xml'], ['JSON','json']]), {:selected => 'sql'}, {:tabindex => autotab} %>
   </div>
 </div>
 <div id="publisher_content" class="input_area">

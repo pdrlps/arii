@@ -4,7 +4,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the publisher URI.</i>
-    <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>" name="agent[uri]" type="text" />
+    <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>" name="agent[uri]" type="text" placeholder="E.g.: https://ariip.com/demo.js" />
   </div>
 </div>
 <div class="row">
@@ -13,7 +13,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide a JSONPath query for extracting JSON data. This is your tracked dataset.</i>
-    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.query.nil? ? '' : @agent.query %>" name="agent[query]" type="text" />
+    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.query.nil? ? '' : @agent.query %>" name="agent[query]" type="text" placeholder="E.g.: //id"  />
   </div>
 </div>
 <div class="row">
@@ -22,7 +22,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Specify the caching element of your dataset.<br />This the JSONPath query to extract the element that will be used to verify if each entry is unique.</i>
-    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>" name="agent[cache]" type="text" />
+    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>" name="agent[cache]" type="text" placeholder="E.g.: //type.id"  />
   </div>
 </div>
 <div class="row">

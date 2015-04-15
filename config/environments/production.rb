@@ -44,7 +44,7 @@ ARII::Application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  #config.force_ssl = true
+  config.force_ssl = true
 
   # Set to :debug to see everything in the log.
   config.log_level = :info
@@ -59,7 +59,7 @@ ARII::Application.configure do
   # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  #config.action_controller.asset_host = "http://ariip.com"
+  #config.action_controller.asset_host = "https://ariip.com"
 
   # Precompile additional assets.
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
@@ -85,7 +85,7 @@ ARII::Application.configure do
   # devise config
 
   config.action_mailer.default_url_options = { :host => 'ariip.com' }
-  config.host = 'http://ariip.com/'
+  config.host = 'https://ariip.com/'
 
   # mail options
   config.action_mailer.delivery_method = :smtp

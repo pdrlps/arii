@@ -24,3 +24,11 @@
   </div>
 </div>
 <% end %>
+<% content_for :custom_js do %>
+<script type="text/javascript">
+$(document).ready(function() {
+    var res = window.location.href.split('/');
+    $('#integrations_filter').val(res[res.length - 1]);
+});
+</script>
+<% end %>

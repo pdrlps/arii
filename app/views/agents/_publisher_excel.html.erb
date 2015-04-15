@@ -4,7 +4,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the publisher URI.</i>
-    <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>"  name="agent[uri]" type="text" />
+    <input id="agent_payload_uri" tabindex="<%= autotab %>" value="<%= @agent.uri.nil? ? '' : @agent.uri %>"  name="agent[uri]" type="text" placeholder="E.g.: https://ariip.com/demo.xls" />
   </div>
 </div>
 <div class="row">
@@ -12,8 +12,8 @@
     <label class="right inline">Headers</label>
   </div>
   <div class="small-9 columns">
-    <i class="label info lifebuoy">Check if the file includes an headers row (first row).</i>
-    <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? '' : @agent.headers %>  name="agent[headers]" type="text" />
+    <i class="label info lifebuoy">Provide the number of header rows in your Excel file.</i>
+    <input id="agent_payload_headers" tabindex="<%= autotab %>" <%= @agent.headers ? '' : @agent.headers %>  name="agent[headers]" type="text" placeholder="E.g.: 2"  />
   </div>
 </div>
 <div class="row">
@@ -22,7 +22,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the Excel sheet where the data are.</i>
-    <input id="agent_payload_sheet" value="<%= @agent.sheet.nil? ? '' : @agent.sheet %>"  name="agent[sheet]" type="text" />
+    <input id="agent_payload_sheet" value="<%= @agent.sheet.nil? ? '' : @agent.sheet %>"  name="agent[sheet]" type="text" placeholder="E.g.: Data"  />
   </div>
 </div>
 <div class="row">
@@ -31,7 +31,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Specify the caching element of your dataset.<br />This the column number from your Excel sheet that will be used to verify if each row is unique.</i>
-    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  name="agent[cache]" type="number" />
+    <input id="agent_payload_cache" tabindex="<%= autotab %>" value="<%= @agent.cache.nil? ? '' : @agent.cache %>"  name="agent[cache]" type="number" placeholder="E.g.: 0"  />
   </div>
 </div>
 <div class="row">

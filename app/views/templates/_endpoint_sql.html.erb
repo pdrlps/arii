@@ -13,7 +13,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the database host server address.</i>
-    <input type="text" id="publisher_sql_host" tabindex="<%= autotab %>" value="<%= template.host.nil? ? '' : template.host %>" name="template[host]" placeholder="E.g.: localhost" />
+    <input type="text" id="publisher_sql_host" tabindex="<%= autotab %>" value="<%= template.host.nil? ? '' : template.host %>" name="template[host]" placeholder="E.g.: localhost" required />
+    <small class="error">SQL endpoints require an host.</small>
   </div>
 </div>
 <div class="row">
@@ -31,7 +32,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the database name.</i>
-    <input type="text" id="publisher_sql_database" tabindex="<%= autotab %>" value="<%= template.database.nil? ? '' : template.database %>" name="template[database]" placeholder="E.g.: ariip" />
+    <input type="text" id="publisher_sql_database" tabindex="<%= autotab %>" value="<%= template.database.nil? ? '' : template.database %>" name="template[database]" placeholder="E.g.: ariip" required />
+    <small class="error">SQL endpoints require a database name.</small>
   </div>
 </div>
 <div class="row">
@@ -40,7 +42,8 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the database connection user name.</i>
-    <input type="text" id="publisher_sql_username" tabindex="<%= autotab %>" value="<%= template.username.nil? ? '' : template.username %>" name="template[username]" placeholder="E.g.: root" />
+    <input type="text" id="publisher_sql_username" tabindex="<%= autotab %>" value="<%= template.username.nil? ? '' : template.username %>" name="template[username]" placeholder="E.g.: root" required />
+    <small class="error">SQL endpoints require a connection user name.</small>
   </div>
 </div>
 <div class="row">
@@ -59,5 +62,6 @@
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide a SQL query for execution in the database. This is the data delivery.</i>
     <textarea id="publisher_sql_query" tabindex="<%= autotab %>"  name="template[query]"placeholder="E.g.: INSERT INTO..."><%= template.query.nil? ? '' : template.query %></textarea>
+    <small class="error">SQL endpoints require SQL query to deliver the data.</small>
   </div>
 </div>
