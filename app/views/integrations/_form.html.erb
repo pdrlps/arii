@@ -1,4 +1,4 @@
-<%= form_for(@integration, :remote => true) do |f| %>
+<%= form_for(@integration, :remote => true, :data  => {:abide => ''}) do |f| %>
 <% if @integration.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@integration.errors.count, "error") %>

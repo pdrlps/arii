@@ -144,7 +144,8 @@ class Agent < ActiveRecord::Base
           integration.templates.each do |t|
             Services::Slog.debug({:message => "Sending #{identifier} for delivery by #{t.identifier}", :module => "Agent", :task => "process", :extra => {:agent => identifier, :template => t.identifier, :payload => checkup[:payload].to_s, :destination => "#{ENV["APP_HOST"]}postman/deliver/#{t.identifier}.js"}})
             checkup[:payload].each do |payload|
-              response = RestClient.post "#{ENV["APP_HOST"]}postman/deliver/#{t.identifier}.js", payload
+              #response = RestClient.post "#{ENV['APP_HOST']}postman/deliver/#{t.identifier}.js", payload, {:verify_ssl => OpenSSL::SSL::VERIFY_NONE}
+              response = RestClient::Request.execute(:method => 'post', :url => "#{ENV['APP_HOST']}postman/deliver/#{t.identifier}.js", :payload => payload ,:verify_ssl => OpenSSL::SSL::VERIFY_NONE )
               case response.code
               when 200
                 i = i + 1
@@ -158,7 +159,7 @@ class Agent < ActiveRecord::Base
         end
         #end
       end
-      RestClient.post("#{ENV["APP_HOST"]}fluxcapacitor/agents/#{id}/update_meta", {:events_count => events_count + i, :last_check_at => Time.now}) if i > 1
+      RestClient::Request.execute(:method => 'post', :url => "#{ENV['APP_HOST']}fluxcapacitor/agents/#{id}/update_meta", :payload => {:events_count => events_count + i, :last_check_at => Time.now}, :verify_ssl => OpenSSL::SSL::VERIFY_NONE) if i > 1
     rescue Exception => e
       Services::Slog.exception e
     end

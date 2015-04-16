@@ -16,7 +16,7 @@ module Services
       begin
 
         Mail.defaults do
-          delivery_method :smtp, :address => ENV["MAIL_ADDRESS"], :port => ENV["MAIL_PORT"], :domain => ENV["MAIL_DOMAIN"], :user_name => ENV["MAIL_USERNAME"], :password => ENV["MAIL_PASSWORD"], :authentication => ENV["MAIL_AUTHENTICATION"], :enable_starttls_auto => ENV["MAIL_STARTTLS"], :ssl => ENV["MAIL_SSL"], :tls => ENV["MAIL_TLS"], :domain => ENV["MAIL_DOMAIN"]
+          delivery_method :smtp, :address => ENV["MAIL_ADDRESS"], :port => ENV["MAIL_PORT"], :domain => ENV["MAIL_DOMAIN"], :user_name => ENV["MAIL_USERNAME"], :password => ENV["MAIL_PASSWORD"], :authentication => ENV["MAIL_AUTHENTICATION"], :enable_starttls_auto => ENV["MAIL_STARTTLS"], :ssl => ENV["MAIL_SSL"], :tls => ENV["MAIL_TLS"]
         end
 
         mail = Mail.new

@@ -4,7 +4,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide the destination address.</i>
-    <input type="email" id="publisher_mail_host" tabindex="<%= autotab %>" value="<%= template.to.nil? ? '' : template.to %>" name="template[to]" placeholder="E.g.: john@gmail.com" required />
+    <input type="text" id="publisher_mail_host" tabindex="<%= autotab %>" value="<%= template.to.nil? ? '' : template.to %>" name="template[to]" placeholder="E.g.: john@gmail.com" required />
     <small class="error">Mail endpoints require a destination address.</small>
   </div>
 </div>
@@ -14,7 +14,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide additional CC addresses (if needed).</i>
-    <input type="email" id="publisher_mail_cc" tabindex="<%= autotab %>" value="<%= template.cc.nil? ? '' : template.cc %>" name="template[cc]" placeholder="E.g.: alice@gmail.com" />
+    <input type="text" id="publisher_mail_cc" tabindex="<%= autotab %>" value="<%= template.cc.nil? ? '' : template.cc %>" name="template[cc]" placeholder="E.g.: alice@gmail.com" />
   </div>
 </div>
 <div class="row">
@@ -23,7 +23,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Provide additional BCC addresses (if needed).</i>
-    <input type="email" id="publisher_mail_bcc" tabindex="<%= autotab %>" value="<%= template.bcc.nil? ? '' : template.bcc %>" name="template[bcc]" placeholder="E.g.: bob@gmail.com" />
+    <input type="text" id="publisher_mail_bcc" tabindex="<%= autotab %>" value="<%= template.bcc.nil? ? '' : template.bcc %>" name="template[bcc]" placeholder="E.g.: bob@gmail.com" />
   </div>
 </div>
 <div class="row">

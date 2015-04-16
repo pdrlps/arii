@@ -3,47 +3,133 @@
 <% content_for :meta_keywords, '<meta name="keywords" content="ariip, integration, integration-as-a-service, iaas, ipaas, create integration, cloud integration, local integration, use cases" />'.html_safe %>
 <div class="row">
     <div class="small-12 columns">
-        <h1 class="">More use cases</h1>
+        <h1 class="">Additional challenges</h1>
         <p>
             There so much more you can do with <strong>ARiiP</strong>!
         </p>
     </div>
 </div>
-<div class="row" data-equalizer>
-    <div class="small-12 medium-6 large-6 columns left" data-equalizer>
-        <h3 class="subheader">Look up customer orders table</h3>
-        <p>
-            Find customers who hadn't received their orders due to shipping problems. Customers info are in multiple files and it is need an output excel report.
-        </p>
-    </div>
-    <div class="small-12 medium-6 large-6 columns left" data-equalizer>
-        <h3 class="subheader">Bank transactions Fraud Detection</h3>
-        <p>
-            Identify corrupt transactions (for example missing customer IDs and incorrect currencies). Input data are stored in CSV files, TXT and XML and the Output a simple HTML report.
-        </p>
-    </div>
-    <div class="small-12 medium-6 large-6 columns left" data-equalizer>
-        <h3 class="subheader">Building Operational Data Stores</h3>
-        <p>
-            An integrated data repository addresses a specific business area and providing complete and current information that can be used by business users and BI applications. This is stored in a relational database and receives updates from a dedicated set of programs, ETL or EAI tools. Given the business need fulfilled by an operational data store, it requires timely updates. <strong>ARiiP</strong> provides an efficient mechanism to keep an ODS updated, by identifying and delivering the changes to the ETL or EAI tool on a continuous basis, rather than periodically querying the entire database for changes. In addition, <strong>ARiiP</strong> can push changes in near real time to support ODS applications that have very low latency requirements.
-        </p>
-    </div>
-    <div class="small-12 medium-6 large-6 columns left" data-equalizer>
-        <h3 class="subheader">Business Dashboards</h3>
-        <p>
-            Dashboards provide managers with selected metrics (KPIs), that measure the performance of various business operations. Dashboards however, are only as good as the metrics they provide and the process of updating these metrics is typically done at the data integration level. Metrics that are updated infrequently mean that the user might become aware of a business problem too late. Implementing <strong>ARiiP</strong> provides a method of identifying changes to different data sources that are required in order to measure for example a certain KPI. For example, one integration should come with data triggers that can process data changes in a given order and to calculate new values of the KPI close to the time of the change. This would provide greater, timelier visibility to the business user resulting in much faster and more effective response to changing business conditions.
-        </p>
-    </div>
-    <div class="small-12 medium-6 large-6 columns left" data-equalizer>
-        <h3 class="subheader">BI and Data Warehousing</h3>
-        <p>
-            Using <strong>ARiiP</strong> in conjunction with ETL tools for faster more efficient data extract in data warehouse implementations. Traditional ETL processes require that the OS be taken off line for a given period of time. Given the limitation of this "bulk" approach, most IT departments update their data warehouse only daily, and often on a weekly basis, meaning the data on which business decisions are being made can be up to a day or a week old. Competitive pressures nowadays demand much more up-to-the-minute information, so companies now look for ways to update their data warehouse faster, and reduce transfer latency as much as possible.
-        <strong>ARiiP</strong> delivers changes to an ETL or EAI tool in batch or real time.
-            Why <strong>ARiiP</strong>: This allows dramatic improvements in the efficiency of the entire process, reduces or totally eliminates batch windows, delivers information with low latency, and reduces the associated costs including CPU cycles, storage, network bandwidth and human resources.
-        </p>
+<br />
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">Look up customer orders </h3>
+        <div class="row" data-equalizer>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius" data-equalizer-watch>
+                    <h5><strong>Scenario</strong></h5>
+                    <p>
+                        Find customers who hadn't received their orders due to shipping problems. Customers info are in multiple files.
+                    </p>
+                </div>
+            </div>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius callout" data-equalizer-watch>
+                    <h5><strong>Why ARiiP?</strong></h5>
+                    <p>
+                        ARiiP can filter, extract and combine the orders and customers info from the multiple files and provide the problematic orders matched with customers for an output excel report.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<br /><br /><br />
+<br />
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">Bank transactions fraud detection</h3>
+        <div class="row" data-equalizer>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius" data-equalizer-watch>
+                    <h5><strong>Scenario</strong></h5>
+                    <p>
+                        In financial environments, there’s often need to perform operations on multiple data formats in order to check and report suspicious transactions. So, it’s need to identify corrupt transactions, for example missing customer IDs from data that is stored in multiple files, like CSV, TXT and XML.
+                    </p>
+                </div>
+            </div>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius callout" data-equalizer-watch>
+                    <h5><strong>Why ARiiP?</strong></h5>
+                    <p>
+                        ARiiP provides an efficient and fast mechanism to extract, combine and filter from the input files and can provide to a simple HTML report as output, with the detected transactions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">BI and Data Warehousing</h3>
+        <div class="row" data-equalizer>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius" data-equalizer-watch>
+                    <h5><strong>Scenario</strong></h5>
+                    <p>
+                        Business pressures nowadays demand much more up-to-the-minute information, so companies now look for ways to update their data warehouse faster, and reduce transfer latency as much as possible.
+                    </p>
+                </div>
+            </div>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius callout" data-equalizer-watch>
+                    <h5><strong>Why ARiiP?</strong></h5>
+                    <p>
+                        ARiiP delivers changes to an ETL or EAI tool in batch or real time. This allows dramatic improvements in the efficiency of the entire process, reduces or totally eliminates batch windows, delivers information with low latency, and reduces the associated costs including CPU cycles, storage, network bandwidth and human resources.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">Building Operational Data Stores (ODS)</h3>
+        <div class="row"  data-equalizer>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius" data-equalizer-watch>
+                    <h5><strong>Scenario</strong></h5>
+                    <p>
+                        An integrated data repository addresses a specific business area and providing complete and current information that can be used by business users and BI applications. This is stored in a relational database and receives updates from a dedicated set of programs, ETL or EAI tools. Given the business need fulfilled by an operational data store, it requires timely updates.
+                    </p>
+                </div>
+            </div>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius callout" data-equalizer-watch>
+                    <h5><strong>Why ARiiP?</strong></h5>
+                    <p>
+                        ARiiP provides an efficient mechanism to keep an ODS updated, by identifying and delivering the changes to the ETL or EAI tool on a continuous basis, rather than periodically querying the entire database for changes. In addition, ARiiP can push changes in near real time to support ODS applications that have very low latency requirements.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="small-12 columns">
+        <h3 class="subheader">Business Dashboards</h3>
+        <div class="row" data-equalizer>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius" data-equalizer-watch>
+                    <h5><strong>Scenario</strong></h5>
+                    <p>
+                        Dashboards provide managers with selected metrics (KPIs), that measure the performance of various business operations. Metrics that are updated infrequently mean that the user might become aware of a business problem too late.
+                    </p>
+                </div>
+            </div>
+            <div class="small-12 medium-6 large-6 columns" data-equalizer-watch>
+                <div class="panel radius callout" data-equalizer-watch>
+                    <h5><strong>Why ARiiP?</strong></h5>
+                    <p>
+                        Implementing ARiiP provides a method of identifying changes to different data sources that are required in order to measure for example a certain KPI. For example, one integration should come with data triggers that can process data changes in a given order and to calculate new values of the KPI close to the time of the change. This would provide greater, timelier visibility to the business user resulting in much faster and more effective response to changing business conditions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br />
 <div class="row">
     <div class="small-12 columns    ">
         <h3 class="subheader">Check other use cases</h3>

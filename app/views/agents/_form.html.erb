@@ -1,4 +1,4 @@
-<%= form_for(@agent, :remote => true) do |f| %>
+<%= form_for(@agent, :remote => true, :data  => {:abide => ''}) do |f| %>
 <% if @agent.errors.any? %>
 <div id="error_explanation">
   <h2><%= pluralize(@agent.errors.count, "error") %> prohibited this input from being saved:</h2>
