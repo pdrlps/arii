@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150324163634) do
+ActiveRecord::Schema.define(version: 20150427150053) do
 
   create_table "agent_mappings", force: :cascade do |t|
     t.integer  "integration_id", limit: 4
@@ -36,14 +36,6 @@ ActiveRecord::Schema.define(version: 20150324163634) do
   end
 
   add_index "agents", ["identifier"], name: "index_agents_on_identifier", unique: true, using: :btree
-
-  create_table "alphas", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.string   "email",      limit: 255
-    t.string   "job",        limit: 255
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "api_keys", force: :cascade do |t|
     t.string   "access_token", limit: 255
@@ -131,6 +123,7 @@ ActiveRecord::Schema.define(version: 20150324163634) do
     t.datetime "updated_at"
     t.string   "origin",     limit: 255
     t.text     "payload",    limit: 65535
+    t.string   "details",    limit: 255
   end
 
   create_table "integration_mappings", force: :cascade do |t|

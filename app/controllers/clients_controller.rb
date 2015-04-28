@@ -10,7 +10,7 @@ class ClientsController < ApplicationController
     end
 
     if current_user.status == 110
-      @clients = Client.all
+      @clients = Client.order(created_at: :desc)
     else
       redirect_to root_url, :notice => 'Unauthorized Access.'
     end

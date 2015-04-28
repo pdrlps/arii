@@ -20,7 +20,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <%= content_for?(:meta_keywords) ? yield(:meta_keywords) : '<meta name="keywords" content=“ariip, integration, integration-as-a-service, iaas, ipaas, create integration, cloud integration, local integration” />'.html_safe %>
         <%= content_for?(:meta_description) ? yield(:meta_description) : '<meta name="description" content="ARiiP provides an Integration-as-a-Service platform to allow developers and companies to easily develop and manage their own integrations, be it local or cloud based." />'.html_safe %>
-
         <%= stylesheet_link_tag    "application" %>
         <%= stylesheet_link_tag    "animate.min" %>
         <%= javascript_include_tag "custom.modernizr" %>
@@ -69,22 +68,21 @@
                 <div class="small-12 medium-4 large-4 columns"  data-equalizer>
                   <h5 class="subheader">Links</h5>
                   <ul class="no-bullet">
-                    <li class="icon-pricing"><%= link_to 'Pricing', {:controller => '/pricing', :action => 'index'}, :class => '' %></li>
                     <li class="icon-features"><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => '' %></li>
                     <li class="icon-how"><%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => '' %></li>
                     <li class="icon-usecases"><%= link_to 'Use cases', {:controller => '/use_cases', :action => 'index'}, :class => '' %></li>
+                    <li class="icon-pricing"><%= link_to 'Pricing', {:controller => '/pricing', :action => 'index'}, :class => '' %></li>
+                    <li class="icon-mail"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
                   </ul>
                 </div>
                 <div class="small-12 medium-4 large-4 columns" data-equalizer>
                   <h5 class="subheader">Follow us</h5>
                   <ul class="no-bullet">
-                    <li class="icon-mail"><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => '' %></li>
                     <li class="icon-facebook"><a href="https://www.facebook.com/AriipIntegrations" target="_blank">Facebook</a></li>
                     <li class="icon-google"><a href="https://plus.google.com/u/0/117242058272224273467/about" target="_blank">Google+</a></li>
                     <li class="icon-linkedin"><a href="https://www.linkedin.com/company/ariip" target="_blank">LinkedIn</a></li>
                     <li class="icon-twitter"><a href="https://twitter.com/AriipIntegrator" target="_blank" >Twitter</a></li>
-
-
+                    <li class="icon-youtube"><a href="https://www.youtube.com/channel/UCsfmj7VHcPAdLAbl2P432oQ" target="_blank" >YouTube</a></li>
                   </ul>
                 </div>
                 <div class="small-12 medium-4 large-4 columns"  data-equalizer>
@@ -100,37 +98,37 @@
             </div>
           </div>
         </div>
+        <!-- overlay -->
+          <div id="overlayed" class="hidden">&nbsp;</div>
         <%= render partial: "helper/requestaccess"  %>
         <!-- Send challenge modal -->
         <%= render "helper/custom_integration", :title => 'Challenge us', :button => 'Send challenge', :message => 'If you have a specific problem to integrate &amp; services and want to understand how <strong>ARiiP</strong> can help you, just challenge us!'.html_safe  %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript_includes %>
-        <!-- HotJar -->
-        <script>
-        (function(f,b){
-        var c;
-        f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
-        f._hjSettings={hjid:13226, hjsv:3};
-        c=b.createElement("script");c.async=1;
-        c.src="//static.hotjar.com/c/hotjar-13226.js?sv=3";
-        b.getElementsByTagName("head")[0].appendChild(c);
-        })(window,document);
-        </script>
-        <!-- Google Analytics -->
-        <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        ga('create', 'UA-16246623-9', 'auto');
-        ga('send', 'pageview');
-        </script>
-        <!-- CrazyEgg -->
-        <script type="text/javascript">
-        setTimeout(function(){var a=document.createElement("script");
-        var b=document.getElementsByTagName("script")[0];
-        a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0029/2065.js?"+Math.floor(new Date().getTime()/3600000);
-        a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-        </script>
+          <!-- Hotjar Tracking Code for ariip.com -->
+          <script>
+          (function(f, b) {
+          var c;
+          f.hj = f.hj || function() {
+          (f.hj.q = f.hj.q || []).push(arguments)
+          };
+          f._hjSettings = {
+          hjid: 13226,
+          hjsv: 3
+          };
+          c = b.createElement("script");
+          c.async = 1;
+          c.src = "//static.hotjar.com/c/hotjar-13226.js?sv=3";
+          b.getElementsByTagName("head")[0].appendChild(c);
+          })(window, document);
+          </script>
+          <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+          ga('create', 'UA-16246623-9', 'auto');
+          ga('send', 'pageview');
+          </script>
       </body>
     </html>

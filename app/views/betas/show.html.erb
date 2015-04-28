@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Origin:</strong>
-  <%= @beta.origin %>
-</p>
-
-<p>
   <strong>Name:</strong>
   <%= @beta.name %>
 </p>
@@ -30,5 +25,13 @@
   <%= @beta.what %>
 </p>
 
-<%= link_to 'Edit', edit_beta_path(@beta) %> |
+<p>
+  <strong>Origin:</strong>
+  <%= @beta.origin %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @beta.created_at %>
+</p>
+
 

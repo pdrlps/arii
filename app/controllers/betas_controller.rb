@@ -1,5 +1,5 @@
 class BetasController < ApplicationController
-  layout 'home'
+  layout 'application'
   before_action :set_beta, only: [:show, :edit, :update, :destroy]
 
   # GET /betas
@@ -10,7 +10,7 @@ class BetasController < ApplicationController
       return
     end
     if current_user.status == 110
-      @betas = Betas.all
+      @betas = Betas.order(created_at: :desc)
     else
       redirect_to root_url, :notice => 'Unauthorized Access.'
     end

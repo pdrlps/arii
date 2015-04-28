@@ -11,7 +11,7 @@ else
 		# create local log
 		#logger = Logger.new File.new("#{Dir.pwd}/#{ARGV[0]}.log", "w+")	# log to file
 		logger = Logger.new $stdout											# log to STDOUT
-		# create new I2X client
+		# create new ARiiP client
 		c = ARII::Client.new JSON.parse(IO.read(ARGV[0]), {:symbolize_names => true}), logger
 
 		# start processing

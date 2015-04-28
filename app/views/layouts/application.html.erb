@@ -23,7 +23,7 @@
         <%= csrf_meta_tags %>
       </head>
       <body>
-      <a href="" class=" button small success animated fadeInDown radius icon-star center" data-reveal-id="request_integration" id="request_custom_integration_button">Request custom integration</a>
+        <a href="" class=" button small success animated fadeInDown radius icon-star center" data-reveal-id="request_integration" id="request_custom_integration_button">Request custom integration</a>
         <div class="fixed ">
           <nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
             <ul class="title-area">
@@ -35,9 +35,7 @@
             </ul>
             <section class="top-bar-section application-nav">
               <ul class="left">
-
               </ul>
-
               <ul class="right">
                 <li><a href="#" id="lifebuoy" class="icon-lifebuoy"></a></li>
                 <li class="has-dropdown">
@@ -79,18 +77,23 @@
           <% if content_for?(:custom_js) %>
           <%= yield(:custom_js) %>
           <% end %>
-          <!-- HotJar -->
+          <!-- Hotjar Tracking Code for ariip.com -->
           <script>
-          (function(f,b){
+          (function(f, b) {
           var c;
-          f.hj=f.hj||function(){(f.hj.q=f.hj.q||[]).push(arguments)};
-          f._hjSettings={hjid:13226, hjsv:3};
-          c=b.createElement("script");c.async=1;
-          c.src="//static.hotjar.com/c/hotjar-13226.js?sv=3";
+          f.hj = f.hj || function() {
+          (f.hj.q = f.hj.q || []).push(arguments)
+          };
+          f._hjSettings = {
+          hjid: 13226,
+          hjsv: 3
+          };
+          c = b.createElement("script");
+          c.async = 1;
+          c.src = "//static.hotjar.com/c/hotjar-13226.js?sv=3";
           b.getElementsByTagName("head")[0].appendChild(c);
-          })(window,document);
+          })(window, document);
           </script>
-          <!-- Google Analytics -->
           <script>
           (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -98,13 +101,6 @@
           })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
           ga('create', 'UA-16246623-9', 'auto');
           ga('send', 'pageview');
-          </script>
-          <!-- CrazyEgg -->
-          <script type="text/javascript">
-          setTimeout(function(){var a=document.createElement("script");
-          var b=document.getElementsByTagName("script")[0];
-          a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0029/2065.js?"+Math.floor(new Date().getTime()/3600000);
-          a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
           </script>
         </body>
       </html>

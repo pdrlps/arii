@@ -2,20 +2,31 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @feedback.name %>
+  <%= @f.name %>
 </p>
 
 <p>
   <strong>Email:</strong>
-  <%= @feedback.email %>
+  <%= @f.email %>
 </p>
 
 <p>
   <strong>Subject:</strong>
-  <%= @feedback.subject %>
+  <%= @f.subject %>
 </p>
-
+<p>
+  <strong>Details:</strong>
+  <%= @f.details %>
+</p>
 <p>
   <strong>Message:</strong>
-  <%= @feedback.message %>
+  <%= @f.message %>
+</p>
+<p>
+  <strong>Origin:</strong>
+  <%= @f.origin %>
+</p>
+<p>
+  <strong>Date:</strong>
+  <%= @f.created_at %>
 </p>

@@ -10,20 +10,24 @@
     <div class="small-12 columns">
         <ul class="tabs vertical" data-tab>
             <li class="tab-title  active"><a href="#challenge" class="icon-input tab_radius tab_verticals">Challenge</a></li>
-            <li class="tab-title "><a href="#solution" class="icon-output tab_radius tab_verticals">Solution</a></li>
+           <!-- <li class="tab-title "><a href="#solution" class="icon-output tab_radius tab_verticals">Solution</a></li>-->
             <li class="tab-title "><a href="#whyariip" class="icon-integration tab_radius tab_verticals">Using ARiiP</a></li>
         </ul>
         <div class="tabs-content">
             <div class="content home_tab_content active" id="challenge">
                 <p>
-                Your creating a new user support management system for your company. Support tickets
+                Your creating a new user support management system for your company. A very basic form stores all support tickets in a relational database. However, how do you notify the technical staff in charge? Setting up a new mail server and implementing the required functions will imply additional development effort.
                 </p>
             </div>
             <div class="content home_tab_content" id="solution">
                 Solution
             </div>
             <div class="content home_tab_content" id="whyariip">
-                Why ARiiP?
+                <p>
+                With <strong>ARiiP</strong>, you can set your ticket database as the integration input. <strong>ARiiP</strong> will connect to it and extract the required data every time a new support ticket is stored. Next, just create an output to send emails and the integration is ready: when someone fills in the form, <strong>ARiiP</strong> will send an email.
+                <br />
+                If you have distinct types of support tickets that should be sent to distinct support, <strong>ARiiP</strong> can also help. As you can combine multiple inputs and outputs in a single integration, you can have several input queries filtering the database content and sending a single email or have a single queries delivering support ticket data to multiple destinations.
+                </p>
             </div>
         </div>
     </div>

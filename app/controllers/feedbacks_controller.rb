@@ -11,7 +11,7 @@ class FeedbacksController < ApplicationController
       return
     end
     if current_user.status == 110
-      @feedbacks = Feedback.all
+      @feedbacks = Feedback.order(created_at: :desc)
       respond_with(@feedbacks)
     else
       redirect_to root_url, :notice => 'Unauthorized Access.'
@@ -21,7 +21,8 @@ class FeedbacksController < ApplicationController
   def show
     @feedback = Feedback.new
     @client = Client.new
-    respond_with(@feedback)
+    @f = Feedback.find_by_id(params[:id])
+    respond_with(@f)
   end
 
   def new
@@ -57,6 +58,6 @@ class FeedbacksController < ApplicationController
   end
 
   def feedback_params
-    params.require(:feedback).permit(:name, :email, :subject, :message, :origin, :payload)
+    params.require(:feedback).permit(:name, :email, :subject, :message, :origin, :payload, :details)
   end
 end

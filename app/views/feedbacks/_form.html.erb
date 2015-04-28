@@ -51,6 +51,18 @@
   <div class="small-12 columns">
     <div class="row">
       <div class="small-2 columns">
+        <%= f.label :details, :class => 'right inline' %>
+      </div>
+      <div class="small-10 columns">
+        <%= f.select :details, options_for_select([  ['Bug','bug'], ['Feature Suggestion','feature'],['Question','question'], ['Other','other']]), { include_blank: true}, {:tabindex => autotab} %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="small-12 columns">
+    <div class="row">
+      <div class="small-2 columns">
         <%= f.label :message, :class => 'right inline' %>
       </div>
       <div class="small-10 columns">

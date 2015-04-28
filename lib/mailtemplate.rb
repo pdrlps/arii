@@ -22,7 +22,7 @@ module Services
         mail = Mail.new
         mail.from = ENV['MAIL_FROM']
         mail.to = @template[:payload][:to]
-        mail.subject = "[ariip] #{@template[:payload][:subject]}"
+        mail.subject = "[ARiiP] #{@template[:payload][:subject]}"
         mail.bcc = @template[:payload][:bcc]
 
         mail.cc = @template[:payload][:cc]
