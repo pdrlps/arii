@@ -4,7 +4,7 @@
   </div>
   <div class="small-9 columns">
     <i class="label info lifebuoy">Select the database management systems (further options will be available in the future).</i>
-    <%= select_tag 'agent_payload_sqlserver', options_for_select([['MySQL', 'mysql'], ['Postgres', 'postgresql']], {:selected => @agent.server}), {:tabindex => autotab, :name => 'agent[server]'} %>
+    <%= select_tag 'agent_payload_sqlserver', options_for_select([['Microsoft SQL Server', 'mssql'], ['MySQL', 'mysql'], ['Postgres', 'postgresql']], {:selected => @agent.server}), {:tabindex => autotab, :name => 'agent[server]'} %>
   </div>
 </div>
 <div class="row">

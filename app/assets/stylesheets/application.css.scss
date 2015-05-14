@@ -306,6 +306,7 @@ a:hover.remove {
 .icon-warning:before { content: '\e8dd'; }
 .icon-filter:before { content: '\e89b'; }
 .icon-threedots:before { content: '\e878'; }
+.icon-realtime:before { content: '\e852'; }
 /** legacy */
 .icon-agent:before {
   content: '\e8c7';
@@ -315,9 +316,6 @@ a:hover.remove {
 }
 .icon-template:before {
   content: '\e8c6';
-}
-.icon-realtime:before {
-  content: '\E771';
 }
 .icon-signout:before {
   content: '\e913';

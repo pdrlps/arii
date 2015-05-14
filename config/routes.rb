@@ -138,6 +138,12 @@ ARII::Application.routes.draw do
   get 'use_cases/github2database', to: 'use_cases#github2database'
   get 'use_cases/twitter2file', to: 'use_cases#twitter2file'
   get 'use_cases/more', to: 'use_cases#more'
+  get 'challenges', to: 'use_cases#index'
+  get 'challenges/online2rest', to: 'use_cases#online2rest'
+  get 'challenges/ticket2email', to: 'use_cases#ticket2email'
+  get 'challenges/github2database', to: 'use_cases#github2database'
+  get 'challenges/twitter2file', to: 'use_cases#twitter2file'
+  get 'challenges/more', to: 'use_cases#more'
 
   # Authentication
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks", :registrations => "registrations" }

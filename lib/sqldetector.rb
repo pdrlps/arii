@@ -1,6 +1,7 @@
 require 'helper'
 require 'cashier'
 require 'mysql2'
+require 'tiny_tds'
 require 'slog'
 require 'pg'
 
@@ -20,55 +21,81 @@ module Services
     def detect object
       begin
         case object[:server]
-          when 'mysql'
-            @client = Mysql2::Client.new(:host => object[:host], :username => object[:username], :password => object[:password], :database => object[:database])
-            @client.query(@agent[:payload][:query]).each(:symbolize_keys => false) do |row|
-              unless object[:cache].nil? then
-                @cache = Cashier.verify row[object[:cache]], object, row, object[:seed]
-              else
-                @cache = Cashier.verify row["id"], object, row, object[:seed]
-              end
-
-              # The actual processing
-              #
-              if @cache[:status] == 100 then
-
-                # add row data to payload from selectors (key => key, value => column name)
-                payload = Hash.new
-                JSON.parse(object[:selectors]).each do |selector|
-                  selector.each do |k, v|
-                    payload[k] = row[v]
-                  end
-                end
-                # add payload object to payloads list
-                @payloads.push payload
-              end
+        when 'mysql' # MySQL
+          @client = Mysql2::Client.new(:host => object[:host], :username => object[:username], :password => object[:password], :database => object[:database])
+          @client.query(@agent[:payload][:query]).each(:symbolize_keys => false) do |row|
+            unless object[:cache].nil? then
+              @cache = Cashier.verify row[object[:cache]], object, row, object[:seed]
+            else
+              @cache = Cashier.verify row["id"], object, row, object[:seed]
             end
-            @client.close
-          when 'postgresql'
-            client = PG::Connection.new(:host => object[:host], :user => object[:username], :password => object[:password], :dbname => object[:database])
-            client.exec(object[:query]).each do |row|
-              unless object[:cache].nil? then
-                @cache = Cashier.verify row[object[:cache]], object, row, object[:seed]
-              else
-                @cache = Cashier.verify row["id"], object, row, object[:seed]
-              end
 
-              # The actual processing
-              #
-              if @cache[:status] == 100 then
+            # The actual processing
+            #
+            if @cache[:status] == 100 then
 
-                # add row data to payload from selectors (key => key, value => column name)
-                payload = Hash.new
-                JSON.parse(object[:selectors]).each do |selector|
-                  selector.each do |k, v|
-                    payload[k] = row[v]
-                  end
+              # add row data to payload from selectors (key => key, value => column name)
+              payload = Hash.new
+              JSON.parse(object[:selectors]).each do |selector|
+                selector.each do |k, v|
+                  payload[k] = row[v]
                 end
-                # add payload object to payloads list
-                @payloads.push payload
               end
+              # add payload object to payloads list
+              @payloads.push payload
             end
+          end
+          @client.close
+        when 'mssql' # Microsoft SQL Server
+          @client = TinyTds::Client.new username: object[:username], password: object[:password], host: object[:host], database: object[:database], port: object[:port], timeout: 60
+          @results = @client.execute(@agent[:payload][:query])
+          @results.each(:symbolize_keys => false) do |row|
+            unless object[:cache].nil? then
+              @cache = Cashier.verify row[object[:cache]], object, row, object[:seed]
+            else
+              @cache = Cashier.verify row["id"], object, row, object[:seed]
+            end
+
+            # The actual processing
+            #
+            if @cache[:status] == 100 then
+
+              # add row data to payload from selectors (key => key, value => column name)
+              payload = Hash.new
+              JSON.parse(object[:selectors]).each do |selector|
+                selector.each do |k, v|
+                  payload[k] = row[v]
+                end
+              end
+              # add payload object to payloads list
+              @payloads.push payload
+            end
+          end
+          @client.close
+        when 'postgresql' # PostgreSQL
+          client = PG::Connection.new(:host => object[:host], :user => object[:username], :password => object[:password], :dbname => object[:database])
+          client.exec(object[:query]).each do |row|
+            unless object[:cache].nil? then
+              @cache = Cashier.verify row[object[:cache]], object, row, object[:seed]
+            else
+              @cache = Cashier.verify row["id"], object, row, object[:seed]
+            end
+
+            # The actual processing
+            #
+            if @cache[:status] == 100 then
+
+              # add row data to payload from selectors (key => key, value => column name)
+              payload = Hash.new
+              JSON.parse(object[:selectors]).each do |selector|
+                selector.each do |k, v|
+                  payload[k] = row[v]
+                end
+              end
+              # add payload object to payloads list
+              @payloads.push payload
+            end
+          end
         end
       rescue Exception => e
         Services::Slog.exception e

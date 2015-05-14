@@ -14,6 +14,14 @@
       </div>
     </div>
     <% end %>
+    <div class="row">
+      <div class="small-12 medium-3 large-3 columns">
+        <h6><strong>created at</strong></h6>
+      </div>
+      <div class="small-12 medium-9 large-9 columns">
+        <%= event.created_at %>
+      </div>
+    </div>
   </div>
   <div class="small-12 medium-1 large-1 columns right">
     <%= link_to '', event, :class => 'button small primary radius icon-view right' %>

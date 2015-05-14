@@ -118,6 +118,11 @@ gem "figaro"
 # RoRvsWild for monitoring. Read more: http://rorvswild.com
 gem "rorvswild"
 
+
+# TinyTDS for Microsoft SQL Server. Read more: https://github.com/rails-sqlserver/tiny_tds
+gem "tiny_tds", '~> 0.6.3.rc1'
+
+
 group :development, :test, :production do
 	# Generates UML from Model.
 	gem 'railroady'
