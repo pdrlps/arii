@@ -12,10 +12,10 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
-      <div class="small-2 columns">
+      <div class="small-12 medium-2 large-2 columns">
         <%= f.label :name, :class => 'right inline' %>
       </div>
-      <div class="small-10 columns">
+      <div class="small-12 medium-10 large-10 columns">
         <%= f.text_field :name, :value => current_user.nil? ? '' : current_user.name ||= current_user.username,  :required => true, :pattern => '[a-zA-Z]+' %>
         <small class="error">Name is required and must be a string.</small>
       </div>
@@ -25,10 +25,10 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
-      <div class="small-2 columns">
+      <div class="small-12 medium-2 large-2 columns">
         <%= f.label :email,:class => 'right inline' %>
       </div>
-      <div class="small-10 columns">
+      <div class="small-12 medium-10 large-10 columns">
         <%= f.email_field :email, :value => current_user.nil? ? '' : current_user.email, :required => true %>
         <small class="error">A valid email address is required.</small>
       </div>
@@ -38,10 +38,10 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
-      <div class="small-2 columns">
+      <div class="small-12 medium-2 large-2 columns">
         <%= f.label :phone, :class => 'right inline' %>
       </div>
-      <div class="small-10 columns">
+      <div class="small-12 medium-10 large-10 columns">
         <%= f.text_field :phone %>
       </div>
     </div>
@@ -56,10 +56,10 @@
 <div class="row">
   <div class="small-12 columns">
     <div class="row">
-      <div class="small-2 columns">
+      <div class="small-12 medium-2 large-2 columns">
         <%= f.label 'Integration', :class => 'right inline' %>
       </div>
-      <div class="small-10 columns">
+      <div class="small-12 medium-10 large-10 columns">
         <%= f.text_area :message, :required => true %>
         <small class="error">Please describe your integration needs.</small>
       </div>
