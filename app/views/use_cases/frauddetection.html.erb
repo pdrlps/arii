@@ -1,0 +1,42 @@
+<% content_for :title, "#{ENV['APP_TITLE']} - Use Cases | Integration Platform for Developers" %>
+<% content_for :meta_description, '<meta name="description" content="See how ARiiP can be used in real life situations with our use cases. ARiiP is an Integration-as-a-Service platform for developers and companies." />'.html_safe %>
+<% content_for :meta_keywords, '<meta name="keywords" content="ariip, integration, integration-as-a-service, iaas, ipaas, create integration, cloud integration, local integration, use cases" />'.html_safe %>
+<div class="row">
+    <div class="small-12 columns">
+        <h1 class="">Bank transactions fraud detection</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="small-12 columns">
+        <ul class="tabs vertical" data-tab>
+            <li class="tab-title  active"><a href="#challenge" class="icon-input tab_radius tab_verticals">Challenge</a></li>
+            <!--<li class="tab-title "><a href="#solution" class="icon-output tab_radius tab_verticals">Solution</a></li>-->
+            <li class="tab-title "><a href="#whyariip" class="icon-integration tab_radius tab_verticals">Using ARiiP</a></li>
+        </ul>
+        <div class="tabs-content">
+            <div class="content home_tab_content active" id="challenge">
+                <p>
+                    In financial environments, there is often the need to perform operations on multiple data formats, in order to check and report suspicious transactions. So, there is a need to identify corrupt transactions, for example, missing customer IDs from data that is stored in multiple files, such as CSV, TXT and XML.
+                </p>
+            </div>
+            <div class="content home_tab_content" id="solution">
+
+            </div>
+            <div class="content home_tab_content" id="whyariip">
+                 <p>
+                    ARiiP provides an efficient and fast mechanism to extract, combine and filter from the input files and can provide a simple HTML report as output, with the detected transactions.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<br /><br /><br />
+<div class="row">
+    <div class="small-12 columns    ">
+        <h3 class="subheader">Check other use cases</h3>
+    </div>
+</div>
+<br />
+<div class="row">
+    <%= render "usecases", :selected => 'frauddetection' %>
+</div>

@@ -17,6 +17,21 @@ class UseCasesController < ApplicationController
   def twitter2file
   end
 
+  def customerorders
+  end
+
+  def frauddetection
+  end
+
+  def datawarehousing
+  end
+
+  def operationaldatastores
+  end
+
+  def dashboards
+  end
+
   def more
   end
 

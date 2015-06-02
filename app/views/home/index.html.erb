@@ -3,11 +3,17 @@
     <%= image_tag 'logo@3x.png', :alt => 'ariip integrations logo' %>
     <h1>ARiiP</h1>
   </div>
+  <div class="small-12 columns">
+    <h3 class="subheader">Easily Connect Cloud and On-premise Data &amp; Services</h3>
+    <a href="#" class="button primary large radius" data-reveal-id="watch_video">Watch Video</a>
+  </div>
+</div>
+<hr />
+<div class="row centered-text content animated fadeIn">
   <div class="small-12 columns centered-text home_box">
-    <h3>Where Integrating Apps, Data and Things becomes easier for Developers and IT Organizations</h3>
-    <h5 class="subheader">
+    <h6>
     <strong>ARiiP</strong> is an Integration Platform that allows Developers and Tech Users to easily integrate any Input source (ex: CSV, SQL, XML, JSON,..) with any Output (ex: SQL, CSV, JSON, XML, Services, Email, File,..) in real-time - for both local and/or cloud Inputs and Outputs.
-    </h5>
+    </h6>
     <div class="row">
       <div class="small-12 medium-6 large-6 columns home_box">
         <%= link_to 'Learn how ARiiP works', {:controller => '/how', :action => 'index'}, :class => 'button large expand radius warning icon-how' %>
@@ -55,4 +61,54 @@
     <h5>Integrate with Local Systems.</h5>
     <p class="small-text">With ARiiP you can integrate any input in your local network without any complex coding, using our local agents, which allow distributed monitoring, improved load control and better security.</p>
   </div>
+</div>
+<hr />
+<div class="row centered-text">
+  <h2 class="subheader">Ideal for</h2>
+  <div class="small-12 medium-4 large-4 columns">
+    <h5>IT Consulting and Software Houses</h5>
+    <p class="small-text">
+    Want to save time on projects? Be able to accept more projects and potencially increase your project margin?</p>
+  </div>
+  <div class="small-12 medium-4 large-4 columns">
+    <h5>Startups and SaaS companies</h5>
+    <p class="small-text">
+      Looking to start integrating all the services you need quickly and without complex coding?
+    And improve time to market?</p>
+  </div>
+  <div class="small-12 medium-4 large-4 columns">
+    <h5>Developers</h5>
+    <p class="small-text">
+    Interested in a tool that helps integrate whatever you want, according to your own specifications? Without developing all of it from scratch?</p>
+  </div>
+  <div class="small-12 columns centered-text">
+    <div class="row">
+      <div class="small-12 columns centered-text">
+        <h5>Companies in general</h5>
+        <p class="small-text">
+        Companies that do use several services and need to connect them for specific purposes, interested in giving an extra hand to your IT team? And allow them to easily develop those connections, saving time? Allowing them to quickly go back to your core activities?</p>
+      </div>
+    </div>
+  </div>
+  <div class="small-12 columns centered-text">
+    <div class="row">
+      <div class="small-12 medium-6 large-6 columns home_box">
+        <%= link_to 'Learn how ARiiP works', {:controller => '/how', :action => 'index'}, :class => 'button large expand radius warning icon-how' %>
+      </div>
+      <div class="small-12 medium-6 large-6 columns home_box">
+        <a href="" class="button info large expand radius icon-start" data-reveal-id="request_access">Start using ARiiP</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ARiiP video modal -->
+<div id="watch_video" class="reveal-modal" data-reveal>
+  <h2>ARiiP</h2>
+  <div class="flex-video widescreen youtube">
+    <iframe id="ytplayer" type="text/html" width="720" height="405"
+    src="https://www.youtube.com/embed/LEShH1JhWt0?autoplay=0&loop=1&modestbranding=1&playsinline=1&showinfo=0&color=white&theme=light"
+    frameborder="0" allowfullscreen >
+    </iframe>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
 </div>

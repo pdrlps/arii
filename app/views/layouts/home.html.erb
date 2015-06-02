@@ -24,6 +24,31 @@
         <%= stylesheet_link_tag    "animate.min" %>
         <%= javascript_include_tag "custom.modernizr" %>
         <%= csrf_meta_tags %>
+        <!--Start of Zopim Live Chat Script-->
+        <script type="text/javascript">
+        window.$zopim || (function(d, s) {
+        var z = $zopim = function(c) {
+        z._.push(c)
+        },
+        $ = z.s =
+        d.createElement(s),
+        e = d.getElementsByTagName(s)[0];
+        z.set = function(o) {
+        z.set.
+        _.push(o)
+        };
+        z._ = [];
+        z.set._ = [];
+        $.async = !0;
+        $.setAttribute("charset", "utf-8");
+        $.src = "//v2.zopim.com/?328p7363752gyQNgMe9WZr8KW0mvxvgw";
+        z.t = +new Date;
+        $.
+        type = "text/javascript";
+        e.parentNode.insertBefore($, e)
+        })(document, "script");
+        </script>
+        <!--End of Zopim Live Chat Script-->
       </head>
       <% @beta = Betas.new %>
       <body id="home">
@@ -36,10 +61,13 @@
               <li>
                 <a href="#" data-dropdown="drop_platform" aria-controls="drop_platform" aria-expanded="false" data-options="align:bottom;is_hover:true; hover_timeout:5000" class="icon-platform">Platform</a>
               </li>
-              <li>
+              <li><%= link_to 'Use cases', {:controller => '/use_cases', :action => 'index'}, :class => 'icon-usecases' %></li>
+              <!--<li>
                 <a href="#" data-dropdown="drop_company" aria-controls="drop_company" aria-expanded="false" data-options="align:bottom;is_hover:true; hover_timeout:5000" class="icon-company">Company</a>
-              </li>
+              </li>-->
               <li><%= link_to 'Pricing', {:controller => '/pricing', :action => 'index'}, :class => 'icon-pricing' %></li>
+              <li><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => 'icon-about' %></li>
+              <li><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => 'icon-mail' %></li>
             </ul>
           </div>
           <div class="small-12 medium-2 large-2 columns">
@@ -54,11 +82,8 @@
         <ul id="drop_platform" class="f-dropdown" data-dropdown-content aria-hidden="true">
           <li><%= link_to 'Features', {:controller => '/features', :action => 'index'}, :class => 'icon-features' %></li>
           <li><%= link_to 'How it works', {:controller => '/how', :action => 'index'}, :class => 'icon-how' %></li>
-          <li><%= link_to 'Use cases', {:controller => '/use_cases', :action => 'index'}, :class => 'icon-usecases' %></li>
         </ul>
         <ul id="drop_company" class="f-dropdown" data-dropdown-content aria-hidden="true">
-              <li><%= link_to 'About', {:controller => '/about', :action => 'index'}, :class => 'icon-about' %></li>
-              <li><%= link_to 'Contact', {:controller => '/contact', :action => 'index'}, :class => 'icon-mail' %></li>
         </ul>
         <!-- Start main content -->
         <div class="row animated fadeIn" id="home_content">
@@ -114,7 +139,7 @@
         <!-- beta access request modal -->
         <%= render partial: "helper/requestaccess"  %>
         <!-- custom integration modal -->
-        <%= render "helper/custom_integration", :title => 'Challenge us', :button => 'Send challenge', :message => 'If you have a specific problem to integrate &amp; services and want to understand how <strong>ARiiP</strong> can help you, just challenge us!'.html_safe  %>
+        <%= render "helper/custom_integration", :title => 'Your scenario', :button => 'Show us your scenario', :message => 'If you have a specific problem to integrate &amp; services and want to understand how <strong>ARiiP</strong> can help you, just send us your scenario!'.html_safe  %>
         <%= javascript_include_tag "application" %>
         <%= yield :javascript_includes %>
         <!-- Hotjar Tracking Code for ariip.com -->

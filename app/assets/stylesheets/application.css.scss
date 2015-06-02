@@ -13,6 +13,7 @@
  *= require_tree .
  */
 @import 'foundation_and_overrides';
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,700);
 @charset "UTF-8";
 
 /*
@@ -309,6 +310,11 @@ a:hover.remove {
 .icon-realtime:before { content: '\e852'; }
 .icon-platform:before { content: '\e8b7'; }
 .icon-company:before { content: '\e939'; }
+.icon-customerorders:before { content: '\e801'; }
+.icon-frauddetection:before { content: '\e86b'; }
+.icon-datawarehousing:before { content: '\e8e8'; }
+.icon-operationaldatastores:before { content: '\e8db'; }
+.icon-dashboards:before { content: '\e828'; }
 /** legacy */
 .icon-agent:before {
   content: '\e8c7';
