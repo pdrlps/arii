@@ -157,7 +157,7 @@ ARII::Application.routes.draw do
 
 
   # Delayed job web interface
-  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
+  # match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
 
   # general index redirects
   get 'documentation' => 'documentation/index'

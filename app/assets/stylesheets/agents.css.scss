@@ -1,7 +1,7 @@
 // Place all the styles related to the Agents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@import 'foundation_and_overrides';
+// @import 'foundation_and_overrides';
 
 $panel-padding: rem-calc(5);
 
@@ -20,46 +20,46 @@ $panel-padding: rem-calc(5);
 }
 
 .info-enabled {
-	@extend .clear-borders;
+/*	@extend .clear-borders;
 	@extend .info-row;
 	border-left-color: lighten($success-color,10%);
-	background-color: lighten($success-color,55%);
+	background-color: lighten($success-color,55%);*/
 }
 .info-enabled:hover {
-	border-left-color: darken($success-color, 10%);
-	background-color: lighten($success-color,50%);
+	/*border-left-color: darken($success-color, 10%);
+	background-color: lighten($success-color,50%);*/
 }
 
 .info-disabled{
-	@extend .clear-borders;
+/*	@extend .clear-borders;
 	@extend .info-row;
 	border-left-color: lighten($alert-color,10%);
-	background-color: lighten($alert-color,42%);
+	background-color: lighten($alert-color,42%);*/
 }
 .info-disabled:hover {
-	border-left-color: darken($alert-color, 10%);
-	background-color: lighten($alert-color,37%);
+/*	border-left-color: darken($alert-color, 10%);
+	background-color: lighten($alert-color,37%);*/
 }
 
 .info-secondary {
-	@extend .clear-borders;
+	/*@extend .clear-borders;
 	@extend .info-row;
 	border-left-color: lighten($info-color,10%);
-	background-color: lighten($info-color,53%)
+	background-color: lighten($info-color,53%)*/
 }
 .info-secondary:hover {
-	border-left-color: darken($info-color,10%);
-	background-color: lighten($info-color,50%);
+	//border-left-color: darken($info-color,10%);
+//	background-color: lighten($info-color,50%);
 }
 
 .on {
-	background-color: $success-color;
+//	background-color: $success-color;
 	font-weight: 600;
 	color: #FFFFFF;
 }
 
 .off {
-	background-color: $alert-color;
+	//background-color: $alert-color;
 	font-weight: 600;
 	color: #FFFFFF;
 }
@@ -71,8 +71,8 @@ $panel-padding: rem-calc(5);
 }
 
 .agent-hl {
-	@include panel($padding:2px,$adjust:true);
-	@include radius();
+//	@include panel($padding:2px,$adjust:true);
+//	@include radius();
 	margin: 2px;
 }
 .center {
@@ -100,34 +100,34 @@ cursor: pointer;
 }
 
 .integration_area {
-	@extend .input_area;
+//	@extend .input_area;
 }
 
 .output_area {
-	@extend .input_area;
+//	@extend .input_area;
 }
 
 .panel:hover {
-	border-color: lighten($info-color,20%);
-	background-color: lighten($info-color,50%);
+/*	border-color: lighten($info-color,20%);
+	background-color: lighten($info-color,50%);*/
 }
 
 .selected {
-	background-color: lighten($success-color,50%);
-	border-color: lighten($success-color,30%);
+/*	background-color: lighten($success-color,50%);
+	border-color: lighten($success-color,30%);*/
 }
 .selected:hover {
-	background-color: lighten($success-color,45%);
-	border-color: lighten($success-color,35%);
+/*	background-color: lighten($success-color,45%);
+	border-color: lighten($success-color,35%);*/
 }
 
 .deselected {
-	background-color: lighten($alert-color,40%);
-	border-color: lighten($alert-color,30%);
+/*	background-color: lighten($alert-color,40%);
+	border-color: lighten($alert-color,30%);*/
 }
 .deselected:hover {
-	background-color: lighten($alert-color,35%);
-	border-color: lighten($alert-color,25%);
+/*	background-color: lighten($alert-color,35%);
+	border-color: lighten($alert-color,25%);*/
 }
 
 .input_type{

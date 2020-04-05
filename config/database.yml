@@ -1,11 +1,11 @@
 development:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: ariip
-  username: root
+  username: pedrolopes
   password: hcmt45
   host: 127.0.0.1
-  port: 3306
+  port: 5432
   pool: 500
   timeout: 5000
 

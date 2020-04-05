@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class TemplatesController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_template, only: [:show, :edit, :update, :destroy]
 
   # GET /templates

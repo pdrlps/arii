@@ -1,4 +1,4 @@
-class CreateUserTemplate < ActiveRecord::Migration
+class CreateUserTemplate < ActiveRecord::Migration[4.2]
   def change
     create_table :user_templates do |t|
       t.belongs_to :user

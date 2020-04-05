@@ -1,4 +1,4 @@
-class CreateUserAgent < ActiveRecord::Migration
+class CreateUserAgent < ActiveRecord::Migration[4.2]
   def change
     create_table :user_agents do |t|
       t.belongs_to :user

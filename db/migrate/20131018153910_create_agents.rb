@@ -1,4 +1,4 @@
-class CreateAgents < ActiveRecord::Migration
+class CreateAgents < ActiveRecord::Migration[4.2]
   def change
     create_table :agents do |t|
       t.string :publisher
@@ -11,8 +11,6 @@ class CreateAgents < ActiveRecord::Migration
       t.integer :events_count
       t.integer :status, :default => 100
       t.datetime :last_check_at
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

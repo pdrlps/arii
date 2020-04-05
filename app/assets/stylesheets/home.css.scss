@@ -1,5 +1,5 @@
-@import "compass/layout/sticky-footer";
-@include sticky-footer(200px, "#home_content", "#root_footer", "#home_footer");
+//@import "compass/layout/sticky-footer";
+//@include sticky-footer(200px, "#home_content", "#root_footer", "#home_footer");
 
 .dark { color: darken(#8fa1b2, 10%); }
 .home_navbar { padding: 4px; }

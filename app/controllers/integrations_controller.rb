@@ -1,7 +1,7 @@
 require 'securerandom'
 
 class IntegrationsController < ApplicationController
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_integration, only: [:show, :edit, :update, :destroy]
 
   # GET /integrations

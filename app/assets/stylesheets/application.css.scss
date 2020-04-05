@@ -9,12 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require 'foundation_and_overrides'
+ *= require 'foundation'
  *= require_tree .
  */
-@import 'foundation_and_overrides';
+// @import 'foundation_and_overrides';
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:300,700);
-@charset "UTF-8";
 
 /*
  * FONTS
@@ -544,9 +543,9 @@ dropdown a:hover {
 }
 .tab_complete {
   border: solid 1px #FFF;
-  border-color: lighten($success-color, 40%);
-  background-color: lighten($success-color,55%);
-  color: $primary-color;
+  //border-color: lighten($success-color, 40%);
+  //background-color: lighten($success-color,55%);
+  //color: $primary-color;
 }
 .tab_verticals {
   margin-top: 8px;
@@ -573,13 +572,13 @@ dropdown a:hover {
 
 /* buttons */
 .whiteonwhite {
-  @include button(
+  /*@include button(
     $bg: false,
     $radius:true,
     $padding: rem-calc(8)
     );
   $button-function-factor: 20%;
-  border: solid 1px $primary-color;
+  border: solid 1px $primary-color;*/
 }
 
 

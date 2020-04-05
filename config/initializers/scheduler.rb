@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'rufus/scheduler'
-require 'checkup'
-require 'slog'
-require 'json'
+# require 'rubygems'
+# require 'rufus/scheduler'
+# require 'checkup'
+# require 'slog'
+# require 'json'
 
 # Thread.new {
 #   begin
@@ -17,24 +17,25 @@ require 'json'
 #   end
 # }
 
-scheduler = Rufus::Scheduler.new
+# scheduler = Rufus::Scheduler.new
 
-JSON.parse(ENV["APP_SCHEDULE"]).each do |timing|
-  timing.each do |schedule,full|
-    unless schedule == 'none' || schedule == 'remote'
-      scheduler.every schedule do
-        begin
-          unless ActiveRecord::Base.connected?
-            ActiveRecord::Base.connection.verify!(0)
-          end
-          Services::Slog.info({:message => "Starting #{schedule} check", :module => "Scheduler", :task => "start_scheduling", :extra => {:schedule => schedule}})
-          Services::Checkup.new.check(schedule)
-        rescue Exception => e
-          Services::Slog.exception e
-        ensure
-          ActiveRecord::Base.connection_pool.release_connection
-        end
-      end
-    end
-  end
-end
+#JSON.parse(ENV["APP_SCHEDULE"]).each do |timing|
+#  timing.each do |schedule,full|
+#    unless schedule == 'none' || schedule == 'remote'
+#      scheduler.every schedule do
+#        begin
+#          unless ActiveRecord::Base.connected?
+#            ActiveRecord::Base.connection.verify!(0)
+#          end
+#          Services::Slog.info({:message => "Starting #{schedule} check", :module => "Scheduler", :task => "start_scheduling", :extra => {:schedule => schedule}})
+#          Services::Checkup.new.check(schedule)
+#        rescue Exception => e
+#          Services::Slog.exception e
+#        ensure
+#          ActiveRecord::Base.connection_pool.release_connection
+#        end
+#      end
+#    end
+#  end
+#end
+

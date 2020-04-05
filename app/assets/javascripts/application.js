@@ -11,11 +11,11 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
-//= require jquery_ujs
-//= require foundation.min
-//= require jquery.cookie
-//= require turbolinks
+// require jquery.turbolinks
+// require jquery_ujs
+// require foundation.min
+// require jquery.cookie
+// require turbolinks
 //= require_tree .
 
 if (typeof String.prototype.startsWith != 'function') {

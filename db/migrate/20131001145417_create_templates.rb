@@ -1,4 +1,4 @@
-class CreateTemplates < ActiveRecord::Migration
+class CreateTemplates < ActiveRecord::Migration[4.2]
   def change
     create_table :templates do |t|
       t.string :identifier
@@ -10,8 +10,6 @@ class CreateTemplates < ActiveRecord::Migration
       t.integer :count
       t.integer :status, :default => 100
       t.datetime :last_execute_at
-      t.datetime :created_at
-      t.datetime :updated_at
 
       t.timestamps
     end

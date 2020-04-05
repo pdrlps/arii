@@ -2,7 +2,7 @@ require 'securerandom'
 
 class AgentsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_agent, only: [:show, :edit, :update, :destroy]
 
   # GET /agents

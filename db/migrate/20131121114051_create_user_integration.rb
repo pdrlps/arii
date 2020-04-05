@@ -1,4 +1,4 @@
-class CreateUserIntegration < ActiveRecord::Migration
+class CreateUserIntegration < ActiveRecord::Migration[4.2]
   def change
     create_table :user_integrations do |t|
       t.belongs_to :user

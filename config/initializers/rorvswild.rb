@@ -1,1 +1,1 @@
-RorVsWild::Client.new(app_id: 39, api_key: "dDejEMWGsdut1agP")
+# RorVsWild::Client.new(app_id: 39, api_key: "dDejEMWGsdut1agP")
